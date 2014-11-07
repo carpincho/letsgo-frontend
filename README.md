@@ -1,4 +1,4 @@
 letsgo-frontend
 ===============
 
-Welcome to Let's Go Frontend
+Welcome to Let's Go Frontend Repo
