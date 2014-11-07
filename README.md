@@ -1,4 +1,4 @@
 letsgo-frontend
 ===============
 
-Welcome Let's Go Frontend
+Welcome to Let's Go Frontend
