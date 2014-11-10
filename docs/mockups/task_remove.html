@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Let's Go - Remove Task</title>
+
+    <link href="bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .vertical-offset-100{
+      padding-top:150px;
+    }
+
+    .i-want-the-pointer{
+      cursor:pointer;
+    }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row vertical-offset-100">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Remove Task</h3>
+         </div>
+          <div class="panel-body">
+            <form accept-charset="UTF-8" role="form">
+              <fieldset>
+
+                <div class="form-group">
+                  <label for="exampleProject">Projects</label>
+                  <select name="projects" class="form-control">
+                    <option value="project_1">Project 1</option>
+                    <option value="project_3">Project 3</option>
+                    <option value="project_4">Project 4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleSprint">Sprints</label>
+                  <select name="sprints" class="form-control">
+                    <option value="sprint_1">Sprint 1</option>
+                    <option value="sprint_3">Sprint 3</option>
+                    <option value="sprint_4">Sprint 4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputProjectName1">Available Task</label>
+                    <ul class="list-unstyled">
+                      <li><span class="glyphicon glyphicon-trash i-want-the-pointer"></span> Task 12: Name12</li>
+                      <li><span class="glyphicon glyphicon-trash i-want-the-pointer"></span> Task 14: Name14</li>
+                      <li><span class="glyphicon glyphicon-trash i-want-the-pointer"></span> Task 15: Name15</li>
+                      <li><span class="glyphicon glyphicon-trash i-want-the-pointer"></span> Task 23: Name23</li>
+                    </ul>
+                </div>
+                  <a href="" class="btn btn-default">Home</a>
+
+            </fieldset>
+              </form>
+          </div>
+          <div class="panel-footer">
+            <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="bootstrap-3.3.0/js/bootstrap.min.js"></script>
+</body>
