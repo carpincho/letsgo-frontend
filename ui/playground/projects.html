@@ -21,181 +21,153 @@ Example: Angular UI Date Picker bound to scope, with formatting options...<br><b
 -->
 <link href="../docs/mockups/stream_item.css" rel="stylesheet">
 
-<section id="projects">
+<!--section id="projects">
     <div class="page-header">
-        <h1>Project Management</h1>
-
-<div class="nav navbar-form pull-right">
-
-
-            <a style="margin-right: 0px; margin-bottom: .5em;" class="btn btn-primary" data-toggle="modal" href="#newProject"><i
-                                class="glyphicon glyphicon glyphicon-plus"/></a>
+        <h2>Project Management</h2>
     </div>
 
-        </div>
 
+</section -->
 
-    <div class="bs-docs-example">
+ <div class="row vertical-offset-100">
 
-        <form class="form-horizontal well" name="myForm">
-            <div class="control-group input-append">
-                <div class="row">
+   <!-- Projects -->
+   <div class="col-md-6">
+     <h1>Projects
+       <div class="btn-group pull-right">
+         <a href="#newProject" class="btn btn-primary btn-sm" data-toggle="modal" ><span class="glyphicon glyphicon-plus"></span> Add Project</a>
 
-                    <div class="col-md-3">
-
-                         <h4>Empty!!!  </h4>
-                    </div>
-
-                    <div class="col-md-5">
-
-                    </div>
-
-                </div>
-
-
-
-            </div>
-        </form>
-    </div>
-
-    <div class="alert alert-info">
-        <strong>Tips!</strong>
-        Add new projects!
-    </div>
-</section>
-
-
-<div class="row vertical-offset-100">
-
-  <!-- Projects -->
-  <div class="col-md-6">
-    <h2>Projects
-      <div class="btn-group pull-right">
-        <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add Project</a>
-        <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share"></span> Share</a>
       </div>
-    </h2>
+    </h1>
 
-    <div id="stream">
-      <div class="stream-item">
-        <div class="row">
-          <div class="stream-panel credits">
-            <ul class="stream-panel-ul">
-              <li><span class="item-title">Project 1</span></li>
-              <li><span class="item-content">Owner: Graziela Pereira.</span></li>
-              <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-open">Open</strong></small></p> </li>
-              <li>
-                <div class="btn-group">
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- end stream-item -->
+     <div id="stream">
+       <div class="stream-item">
+         <div class="row">
+           <div class="stream-panel credits">
+             <ul class="stream-panel-ul">
+               <li><span class="item-title">Project 1</span></li>
+               <li><span class="item-content">Owner: Graziela Pereira.</span></li>
+               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-open">Open</strong></small></p> </li>
+               <li>
+                 <div class="btn-group">
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
+                 </div>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div> <!-- end stream-item -->
 
-      <div class="stream-item">
-        <div class="row">
-          <div class="stream-panel credits selected">
-            <ul class="stream-panel-ul">
-              <li><span class="item-title">Project 2</span></li>
-              <li><span class="item-content">Owner: Graziela Pereira.</span></li>
-              <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
-              <li>
-                <div class="btn-group">
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- end stream-item -->
+       <div class="stream-item">
+         <div class="row">
+           <div class="stream-panel credits selected">
+             <ul class="stream-panel-ul">
+               <li><span class="item-title">Project 2</span></li>
+               <li><span class="item-content">Owner: Graziela Pereira.</span></li>
+               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
+               <li>
+                 <div class="btn-group">
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
+                 </div>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div> <!-- end stream-item -->
 
-      <div class="stream-item">
-        <div class="row">
-          <div class="stream-panel credits">
-            <ul class="stream-panel-ul">
-              <li><span class="item-title">Project 3</span></li>
-              <li><span class="item-content">Owner: Graziela Pereira.</span></li>
-              <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 14/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
-              <li>
-                <div class="btn-group">
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- end stream-item -->
+       <div class="stream-item">
+         <div class="row">
+           <div class="stream-panel credits">
+             <ul class="stream-panel-ul">
+               <li><span class="item-title">Project 3</span></li>
+               <li><span class="item-content">Owner: Graziela Pereira.</span></li>
+               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 14/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
+               <li>
+                 <div class="btn-group">
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
+                 </div>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div> <!-- end stream-item -->
 
-    </div> <!-- end stream -->
-  </div> <!-- end col-md-6 -->
+     </div> <!-- end stream -->
+   </div> <!-- end col-md-6 -->
 
-  <!-- Sprints -->
-  <div class="col-md-6">
-    <h2>Sprints <a href="#" class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span> Add Sprint</a></h2>
-    <div id="stream">
-      <div class="stream-item">
-        <div class="row">
-          <div class="stream-panel credits">
-            <ul class="stream-panel-ul">
-              <li><span class="item-title">Sprint 1</span></li>
-              <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
-              <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
-              <li>
-                <div class="btn-group">
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- end stream-item -->
+   <!-- Sprints -->
+   <div class="col-md-6">
+     <h1>Sprints <a href="#" class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span> Add Sprint</a></h1>
+     <div id="stream">
+       <div class="stream-item">
+         <div class="row">
+           <div class="stream-panel credits">
+             <ul class="stream-panel-ul">
+               <li><span class="item-title">Sprint 1</span></li>
+               <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
+               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+               <li>
+                 <div class="btn-group">
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                 </div>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div> <!-- end stream-item -->
 
-      <div class="stream-item">
-        <div class="row">
-          <div class="stream-panel credits">
-            <ul class="stream-panel-ul">
-              <li><span class="item-title">Sprint 2</span></li>
-              <li><span class="item-content">Summary: 3 User Stories and 3 Task.</span></li>
-              <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 12/5/2014 - End Date: 13/5/2014</small></p></li>
-              <li>
-                <div class="btn-group">
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- end stream-item -->
+       <div class="stream-item">
+         <div class="row">
+           <div class="stream-panel credits">
+             <ul class="stream-panel-ul">
+               <li><span class="item-title">Sprint 2</span></li>
+               <li><span class="item-content">Summary: 3 User Stories and 3 Task.</span></li>
+               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 12/5/2014 - End Date: 13/5/2014</small></p></li>
+               <li>
+                 <div class="btn-group">
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                 </div>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div> <!-- end stream-item -->
 
-      <div class="stream-item">
-        <div class="row">
-          <div class="stream-panel credits">
-            <ul class="stream-panel-ul">
-              <li><span class="item-title">Sprint 4</span></li>
-              <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
-              <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 14/5/2014 - End Date: 15/5/2014</small></p></li>
-              <li>
-                <div class="btn-group">
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- end stream-item -->
+       <div class="stream-item">
+         <div class="row">
+           <div class="stream-panel credits">
+             <ul class="stream-panel-ul">
+               <li><span class="item-title">Sprint 4</span></li>
+               <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
+               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 14/5/2014 - End Date: 15/5/2014</small></p></li>
+               <li>
+                 <div class="btn-group">
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                 </div>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div> <!-- end stream-item -->
 
-    </div> <!-- end stream -->
-  </div>
-</div>
-</div>
+     </div> <!-- end stream -->
+   </div>
+ </div>
 
 
 
