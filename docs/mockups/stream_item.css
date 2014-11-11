@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+#stream .stream-item .stream-panel.active{
+  background-color: rgba(40, 141, 29, 0.12);
+}
+
 #stream .stream-item .stream-panel .stream-panel-ul {
   list-style: none;
   padding: 0;
@@ -32,7 +36,7 @@
   color: #666;
 }
 #stream .stream-item .stream-panel.credits .stream-panel-ul li span.item-title {
-  color: #468c1f;
+  color: #575757;
   font-size: 1.3em;
 }
 
