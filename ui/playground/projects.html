@@ -31,7 +31,7 @@
       <li role="presentation" class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li><a data-toggle="modal" href="#newProject"><span class="glyphicon glyphicon-plus"></span> Create Project</a></li>
+          <li><a href="#newProject" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Create Project</a></li>
         </ul>
       </li>
     </ul>
@@ -123,9 +123,9 @@
                     <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
                     <li>
                       <div class="btn-group pull-right">
-                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                        <a href="#/playground/taskboard" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        <a href="#editSprint" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                        <a href="#/playground/taskboard" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                        <a href="#" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                       </div>
                       <div class="clearfix"><div>
                       </li>
@@ -143,9 +143,9 @@
                       <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 12/5/2014 - End Date: 13/5/2014</small></p></li>
                       <li>
                         <div class="btn-group pull-right">
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#/playground/taskboard" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a href="#editSprint" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#/playground/taskboard" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                          <a href="#" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                         <div class="clearfix"><div>
                         </li>
@@ -163,9 +163,9 @@
                         <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 14/5/2014 - End Date: 15/5/2014</small></p></li>
                         <li>
                           <div class="btn-group pull-right">
-                            <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                            <a href="#/playground/taskboard" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                            <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                            <a href="#editSprint" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                            <a href="#/playground/taskboard" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                            <a href="#" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                           </div>
                           <div class="clearfix"><div>
                           </li>
@@ -463,3 +463,57 @@
                   </div>
                 </div>
                 <!-- end modal projectMember -->
+
+                <!-- modal editSprint -->
+                <div class="modal" id="editSprint" fade-in>
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+                        <h4 class="modal-title">Edit Sprint</h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <form accept-charset="UTF-8" role="form">
+                          <fieldset>
+                            <div class="form-group">
+                              <label for="exampleInputProjectName1">Sprint Name (*)</label>
+                              <input class="form-control" placeholder="Project Name" name="project_name" type="text">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputStartDate">Start Date (*)</label>
+                              <input class="form-control" placeholder="4/22/2012" name="start_date" type="text">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputStartDate">Completion Date (*)</label>
+                              <input class="form-control" placeholder="4/22/2013" name="end_date" type="text">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleSelectLanguage1">Status (*)</label>
+                              <select name="project_status" class="form-control">
+                                <option value="open">open</option>
+                                <option value="closed">closed</option>
+                              </select>
+                            </div>
+
+                            <div class="form-group">
+                              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+                            </div>
+
+                          </fieldset>
+                        </form>
+                      </div>
+
+                      <div class="modal-footer">
+                        <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                        <input class="btn btn-primary" type="submit" value="Save">
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <!-- end modal editSprint -->
