@@ -1,19 +1,19 @@
-<!-- The following from angularui gets stepped on by angularstrap datepicker... -->
+  <!-- The following from angularui gets stepped on by angularstrap datepicker... -->
 
-<!--
-<div class="container">
-Example: Angular UI Date Picker bound to scope, with formatting options...<br><br>
-<div class="row">
-<div class="col-md-1 " ng-model="date2" ui-date></div>
-<div class="col-md-1"></div>
-<div class="col-md-1" ng-model="date2">
-    <p class="alert alert-info"><span class="label label-info">Selected date</span><br>{{date2}}</p>
+  <!--
+  <div class="container">
+  Example: Angular UI Date Picker bound to scope, with formatting options...<br><br>
+  <div class="row">
+  <div class="col-md-1 " ng-model="date2" ui-date></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-1" ng-model="date2">
+  <p class="alert alert-info"><span class="label label-info">Selected date</span><br>{{date2}}</p>
 
-    <p class="alert alert-info"><span class="label label-info">Formatted date</span><br>{{date2 | date:
-        'mediumDate'}}</p>
+  <p class="alert alert-info"><span class="label label-info">Formatted date</span><br>{{date2 | date:
+  'mediumDate'}}</p>
 
-    <p class="alert alert-info"><span class="label label-info">Selected month</span><br>{{date2.getMonth()}}
-    </p>
+  <p class="alert alert-info"><span class="label label-info">Selected month</span><br>{{date2.getMonth()}}
+</p>
 </div>
 <div class="col-md-1"></div>
 </div>
@@ -22,224 +22,374 @@ Example: Angular UI Date Picker bound to scope, with formatting options...<br><b
 <link href="../docs/mockups/stream_item.css" rel="stylesheet">
 
 <!--section id="projects">
-    <div class="page-header">
-        <h2>Project Management</h2>
-    </div>
+<div class="page-header">
+<h2>Project Management</h2>
+</div>
 
 
 </section -->
+<div class="row vertical-offset-100">
 
- <div class="row vertical-offset-100">
+  <!-- Projects -->
+  <div class="col-md-6">
+    <h2>Projects
+      <div class="btn-group pull-right">
+        <a href="#newProject" class="btn btn-primary btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Add Project</a>
 
-   <!-- Projects -->
-   <div class="col-md-6">
-     <h1>Projects
-       <div class="btn-group pull-right">
-         <a href="#newProject" class="btn btn-primary btn-sm" data-toggle="modal" ><span class="glyphicon glyphicon-plus"></span> Add Project</a>
 
       </div>
-    </h1>
+    </h2>
 
-     <div id="stream">
-       <div class="stream-item">
-         <div class="row">
-           <div class="stream-panel credits">
-             <ul class="stream-panel-ul">
-               <li><span class="item-title">Project 1</span></li>
-               <li><span class="item-content">Owner: Graziela Pereira.</span></li>
-               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-open">Open</strong></small></p> </li>
-               <li>
-                 <div class="btn-group">
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
-                 </div>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div> <!-- end stream-item -->
+    <div id="stream">
+      <div class="stream-item">
+        <div class="row">
+          <div class="stream-panel credits">
+            <ul class="stream-panel-ul">
+              <li><span class="item-title">Project 1</span></li>
+              <li><span class="item-content">Owner: Graziela Pereira.</span></li>
+              <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-open">Open</strong></small></p> </li>
+              <li>
+                <div class="btn-group pull-right">
+                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
+                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                  <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  <a href="#shareProject"  data-toggle="modal" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
+                </div>
+                <div class="clearfix"><div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- end stream-item -->
 
-       <div class="stream-item">
-         <div class="row">
-           <div class="stream-panel credits selected">
-             <ul class="stream-panel-ul">
-               <li><span class="item-title">Project 2</span></li>
-               <li><span class="item-content">Owner: Graziela Pereira.</span></li>
-               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
-               <li>
-                 <div class="btn-group">
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
-                 </div>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div> <!-- end stream-item -->
+        <div class="stream-item">
+          <div class="row">
+            <div class="stream-panel credits selected">
+              <ul class="stream-panel-ul">
+                <li><span class="item-title">Project 2</span></li>
+                <li><span class="item-content">Owner: Graziela Pereira.</span></li>
+                <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 10/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
+                <li>
+                  <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    <a href="#shareProject"  data-toggle="modal" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
+                  </div>
+                  <div class="clearfix"><div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
 
-       <div class="stream-item">
-         <div class="row">
-           <div class="stream-panel credits">
-             <ul class="stream-panel-ul">
-               <li><span class="item-title">Project 3</span></li>
-               <li><span class="item-content">Owner: Graziela Pereira.</span></li>
-               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 14/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
-               <li>
-                 <div class="btn-group">
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
-                 </div>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div> <!-- end stream-item -->
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Project 3</span></li>
+                  <li><span class="item-content">Owner: Graziela Pereira.</span></li>
+                  <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: 14/04/2014 - Project Status: <strong class="item-status-closed">Closed</strong></small></p> </li>
+                  <li>
+                    <div class="btn-group pull-right">
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Members</a>
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                      <a href="#shareProject"  data-toggle="modal" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
+                    </div>
+                    <div class="clearfix"><div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> <!-- end stream-item -->
 
-     </div> <!-- end stream -->
-   </div> <!-- end col-md-6 -->
+          </div> <!-- end stream -->
+        </div> <!-- end col-md-6 -->
 
-   <!-- Sprints -->
-   <div class="col-md-6">
-     <h1>Sprints <a href="#" class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span> Add Sprint</a></h1>
-     <div id="stream">
-       <div class="stream-item">
-         <div class="row">
-           <div class="stream-panel credits">
-             <ul class="stream-panel-ul">
-               <li><span class="item-title">Sprint 1</span></li>
-               <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
-               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
-               <li>
-                 <div class="btn-group">
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                 </div>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div> <!-- end stream-item -->
-
-       <div class="stream-item">
-         <div class="row">
-           <div class="stream-panel credits">
-             <ul class="stream-panel-ul">
-               <li><span class="item-title">Sprint 2</span></li>
-               <li><span class="item-content">Summary: 3 User Stories and 3 Task.</span></li>
-               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 12/5/2014 - End Date: 13/5/2014</small></p></li>
-               <li>
-                 <div class="btn-group">
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                 </div>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div> <!-- end stream-item -->
-
-       <div class="stream-item">
-         <div class="row">
-           <div class="stream-panel credits">
-             <ul class="stream-panel-ul">
-               <li><span class="item-title">Sprint 4</span></li>
-               <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
-               <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 14/5/2014 - End Date: 15/5/2014</small></p></li>
-               <li>
-                 <div class="btn-group">
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
-                   <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                 </div>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div> <!-- end stream-item -->
-
-     </div> <!-- end stream -->
-   </div>
- </div>
+        <!-- Sprints -->
+        <div class="col-md-6">
 
 
+          <h2>Sprints <a href="#newSprint" data-toggle="modal" class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span> Add Sprint</a></h2>
+          <div id="stream">
+            <div class="stream-item">
+              <div class="row">
+                <div class="stream-panel credits">
+                  <ul class="stream-panel-ul">
+                    <li><span class="item-title">Sprint 1</span></li>
+                    <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
+                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                    <li>
+                      <div class="btn-group pull-right">
+                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                        <a href="#/playground/taskboard" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                      </div>
+                      <div class="clearfix"><div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
 
-           <div class="modal" id="newProject" fade-in>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Create New Project</h4>
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">Sprint 2</span></li>
+                      <li><span class="item-content">Summary: 3 User Stories and 3 Task.</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 12/5/2014 - End Date: 13/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group pull-right">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#/playground/taskboard" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                        <div class="clearfix"><div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div> <!-- end stream-item -->
+
+                <div class="stream-item">
+                  <div class="row">
+                    <div class="stream-panel credits">
+                      <ul class="stream-panel-ul">
+                        <li><span class="item-title">Sprint 4</span></li>
+                        <li><span class="item-content">Summary: 2 User Stories and 1 Task.</span></li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 14/5/2014 - End Date: 15/5/2014</small></p></li>
+                        <li>
+                          <div class="btn-group pull-right">
+                            <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                            <a href="#/playground/taskboard" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> View Board</a>
+                            <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          </div>
+                          <div class="clearfix"><div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div> <!-- end stream-item -->
+
+                </div> <!-- end stream -->
+              </div>
             </div>
 
+            <!--modal new Project -->
+            <div class="modal" id="newProject" fade-in>
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+                    <h4 class="modal-title">Create New Project</h4>
+                  </div>
 
-            <div class="modal-body">
+
+                  <div class="modal-body">
 
 
-      <form accept-charset="UTF-8" role="form">
-              <fieldset>
+                    <form accept-charset="UTF-8" role="form">
+                      <fieldset>
 
-                <div class="form-group">
-                    <label for="exampleInputProjectName1">Project Name (*)</label>
-                    <input class="form-control" placeholder="Project Name" name="project_name" type="text">
+                        <div class="form-group">
+                          <label for="exampleInputProjectName1">Project Name (*)</label>
+                          <input class="form-control" placeholder="Project Name" name="project_name" type="text">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputProjectDescription">Project Description</label>
+                          <textarea class="form-control" name="project_description" placeholder="Project Description" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputStartDate">Start Date</label>
+                          <input class="form-control" placeholder="4/22/2012" name="start_date" type="text">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputStartDate">Completion Date</label>
+                          <input class="form-control" placeholder="4/22/2013" name="end_date" type="text">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleSelectLanguage1">Status</label>
+                          <select name="project_status" class="form-control">
+                            <option value="open">open</option>
+                            <option value="closed">closed</option>
+                          </select>
+                        </div>
+
+
+
+                      </fieldset>
+                    </form>
+
+
+
+
+
+                  </div>
+
+
+
+
+                  <div class="modal-footer">
+                    <input class="btn btn-primary" type="submit" value="Create">
+                    <a href="" class="btn btn-default">Cancel
+                      <a href="" class="btn btn-default">Back to Home</a>
+
+
+
+                      <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+
+                    </div>
+
+
+                  </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="exampleInputProjectDescription">Project Description</label>
-                    <textarea class="form-control" name="project_description" placeholder="Project Description" rows="4"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputStartDate">Start Date</label>
-                    <input class="form-control" placeholder="4/22/2012" name="start_date" type="text">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputStartDate">Completion Date</label>
-                    <input class="form-control" placeholder="4/22/2013" name="end_date" type="text">
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleSelectLanguage1">Status</label>
-                  <select name="project_status" class="form-control">
-                    <option value="open">open</option>
-                    <option value="closed">closed</option>
-                  </select>
-                </div>
-
-
-
-            </fieldset>
-              </form>
+              </div>
+              <!-- end modal newProject -->
 
 
 
 
-
-            </div>
-
+              <!-- modal shareProject -->
 
 
+              <div class="modal" id="shareProject" fade-in>
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+                      <h4 class="modal-title">Share Project</h4>
+                    </div>
 
-            <div class="modal-footer">
-                <input class="btn btn-primary" type="submit" value="Create">
-                  <a href="" class="btn btn-default">Cancel
-                  <a href="" class="btn btn-default">Back to Home</a>
+
+                    <div class="modal-body">
+
+                      <form accept-charset="UTF-8" role="form">
+                        <fieldset>
+
+                          <div class="form-group">
+                            <label for="exampleInputInvitePeople">Invite People (*)</label>
+                            <textarea class="form-control" name="project_share_addresses" placeholder="Use commas to separate multitple email addresses" rows="5"></textarea>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="exampleInputMessage">Message</label>
+                            <textarea class="form-control" name="project_share_message" placeholder="Message" rows="5"></textarea>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="examplePeopleWithAccess">Authorized People</label>
+                            <ul class="list-unstyled">
+                              <li><span class="glyphicon glyphicon-minus-sign"</span> Graziela Pereira <small>(<a href="mailto: graziela.basilio@acad.pucrs.br">graziela.basilio@acad.pucrs.br</a>)</small></li>
+                                <li><span class="glyphicon glyphicon-minus-sign"</span> Caroline Queiróz <small>(<a href="mailto: carol.qs@gmail.com">carol.qs@gmail.com</a>)</small></li>
+                                </ul>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="exampleInputTaskComments">Comments</label>
+                                <textarea class="form-control" name="task_comments" placeholder="Comments" rows="4"></textarea>
+                              </div>
 
 
 
-                                        <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+                            </fieldset>
+                          </form>
 
-            </div>
+
+
+
+
+                        </div>
+
+
+
+
+                        <div class="modal-footer">
+
+
+                          <input class="btn btn-primary" type="submit" value="Create">
+                          <a href="" class="btn btn-default">Cancel</a>
+                          <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- end modal shareProject -->
+
+
+
+
+
+
+<!-- modal newSprint -->
+
+
+<div class="modal" id="newSprint" fade-in>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+        <h4 class="modal-title">Create Sprint</h4>
+      </div>
+
+
+      <div class="modal-body">
+<form accept-charset="UTF-8" role="form">
+  <fieldset>
+
+    <div class="form-group">
+        <label for="exampleInputProjectName1">Sprint Name (*)</label>
+        <input class="form-control" placeholder="Project Name" name="project_name" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputStartDate">Start Date (*)</label>
+        <input class="form-control" placeholder="4/22/2012" name="start_date" type="text">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputStartDate">Completion Date (*)</label>
+        <input class="form-control" placeholder="4/22/2013" name="end_date" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleSelectLanguage1">Status (*)</label>
+      <select name="project_status" class="form-control">
+        <option value="open">open</option>
+        <option value="closed">closed</option>
+      </select>
+    </div>
+
+
+</fieldset>
+  </form>
+
+          </div>
+
+
+
+
+          <div class="modal-footer">
+
+
+            <input class="btn btn-primary" type="submit" value="Create">
+            <a href="" class="btn btn-default">Cancel</a>
+            <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+
+          </div>
 
 
         </div>
+      </div>
     </div>
-</div>
+
+    <!-- end modal newSprint -->

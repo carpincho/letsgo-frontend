@@ -102,6 +102,11 @@ var playground = myApp.controller('PlaygroundCtrl', ['$scope', '$routeParams', '
         // add service name to the scope...
         $scope.widgetName = $routeParams.widgetName;
         $scope.widgetUrl = "playground/" + $routeParams.widgetName + ".html"
+
+
+        //if($scope.witdgetName=="projects")
+        //  $rootScope.titlePages = "All Projects"
+
         // tree support
         $scope.deleteNode = function (data) {
             data.nodes = [];
@@ -280,4 +285,3 @@ var playground = myApp.controller('PlaygroundCtrl', ['$scope', '$routeParams', '
 
     }])
     ;
-

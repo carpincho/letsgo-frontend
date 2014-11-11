@@ -42,7 +42,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function (
     });
 
     // note that to minimize playground impact on app.js, we
-    // are including just this simple route with a parameterized 
+    // are including just this simple route with a parameterized
     // partial value (see playground.js and playground.html)
     $routeProvider.when('/playground/:widgetName', {
         templateUrl:'playground/playground.html',
@@ -113,7 +113,11 @@ myApp.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTSer
 
     }, true);
 
+
+    $rootScope.titlePages="Projects Management";
+
     // TODO move this out to a more appropriate place
+
     $rootScope.faq = [
         {key: "What is Angular-Enterprise-Seed?", value: "A starting point for server-agnostic, REST based or static/mashup UI."},
         {key: "What are the pre-requisites for running the seed?", value: "Just an HTTP server.  Add your own backend."},
