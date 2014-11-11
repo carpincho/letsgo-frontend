@@ -2,19 +2,19 @@
 
   <!--
   <div class="container">
-    Example: Angular UI Date Picker bound to scope, with formatting options...<br><br>
-    <div class="row">
-    <div class="col-md-1 " ng-model="date2" ui-date></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1" ng-model="date2">
-    <p class="alert alert-info"><span class="label label-info">Selected date</span><br>{{date2}}</p>
+  Example: Angular UI Date Picker bound to scope, with formatting options...<br><br>
+  <div class="row">
+  <div class="col-md-1 " ng-model="date2" ui-date></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-1" ng-model="date2">
+  <p class="alert alert-info"><span class="label label-info">Selected date</span><br>{{date2}}</p>
 
-    <p class="alert alert-info"><span class="label label-info">Formatted date</span><br>{{date2 | date:
+  <p class="alert alert-info"><span class="label label-info">Formatted date</span><br>{{date2 | date:
   'mediumDate'}}</p>
 
-    <p class="alert alert-info"><span class="label label-info">Selected month</span><br>{{date2.getMonth()}}</p>
-  </div>
-  -->
+  <p class="alert alert-info"><span class="label label-info">Selected month</span><br>{{date2.getMonth()}}</p>
+</div>
+-->
 
 <link href="../docs/mockups/stream_item.css" rel="stylesheet">
 
@@ -178,6 +178,9 @@
               </div>
             </div>
 
+
+            <!-- modals definition -->
+
             <!--modal new Project -->
             <div class="modal" id="newProject" fade-in>
               <div class="modal-dialog">
@@ -230,35 +233,30 @@
                   <div class="modal-footer">
                     <input class="btn btn-primary" type="submit" value="Create">
                     <a href="" class="btn btn-default">Cancel
-                    <a href="" class="btn btn-default">Back to Home</a>
+                      <a href="" class="btn btn-default">Back to Home</a>
+                    </div>
+
                   </div>
-
-
                 </div>
               </div>
-            </div>
               <!-- end modal newProject -->
 
 
 
 
               <!-- modal shareProject -->
-
-
               <div class="modal" id="shareProject" fade-in>
                 <div class="modal-dialog">
                   <div class="modal-content">
+
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
                       <h4 class="modal-title">Share Project</h4>
                     </div>
 
-
                     <div class="modal-body">
-
                       <form accept-charset="UTF-8" role="form">
                         <fieldset>
-
                           <div class="form-group">
                             <label for="exampleInputInvitePeople">Invite People (*)</label>
                             <textarea class="form-control" name="project_share_addresses" placeholder="Use commas to separate multitple email addresses" rows="5"></textarea>
@@ -282,39 +280,23 @@
                                 <textarea class="form-control" name="task_comments" placeholder="Comments" rows="4"></textarea>
                               </div>
 
-
+                              <div class="form-group">
+                                <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+                              </div>
 
                             </fieldset>
                           </form>
-
-
-
-
-
                         </div>
-
-
-
 
                         <div class="modal-footer">
                           <input class="btn btn-primary" type="submit" value="Create">
                           <a href="" class="btn btn-default">Cancel</a>
-                          <p class="help-block center-block">(*) next to each field indicates required fields.</p>
                         </div>
-
 
                       </div>
                     </div>
                   </div>
-
                   <!-- end modal shareProject -->
-
-
-
-
-
-
-
 
                   <!-- modal newSprint -->
                   <div class="modal" id="newSprint" fade-in>
@@ -324,7 +306,6 @@
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
                           <h4 class="modal-title">Create Sprint</h4>
                         </div>
-
 
                         <div class="modal-body">
                           <form accept-charset="UTF-8" role="form">
