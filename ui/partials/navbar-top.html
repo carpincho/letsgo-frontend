@@ -89,44 +89,44 @@
     </div>
   </nav>
 
-  <div class="modal" id="loginModal" fade-in>
-    <div class="modal-dialog">
-      <div class="modal-content">
+    <!-- login modal -->
+    <div class="modal" id="loginModal" fade-in>
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Login</h4>
-        </div>
-
-        <div class="modal-body">
-          <span id="login-email">Email</span>
-          <input ng-model="loginInput" type="text" placeholder="Email" name='username'>
-          <span id="login-password">Password</span>
-
-          <input ng-model="passwordInput" type="password" placeholder="Password" name='password'>
-
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-            </label>
-            <label>
-              <a href="#passwordReset" data-toggle="modal" >Forgot password?</a>
-            </label>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Login</h4>
           </div>
-        </div>
 
-        <div class="modal-footer">
-          <a class="btn btn-primary" data-dismiss="modal" ng-click="authService.login(loginInput, passwordInput)">
-          <i class="glyphicon glyphicon-user glyphicon-white"></i> Log in</a>
-        </div>
+          <div class="modal-body">
+            <span id="login-email">Email</span>
+            <input ng-model="loginInput" type="text" placeholder="Email" name='username'>
+            <span id="login-password">Password</span>
 
+            <input ng-model="passwordInput" type="password" placeholder="Password" name='password'>
+
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+              </label>
+              <label>
+                <a href="#passwordReset" data-toggle="modal" >Forgot password?</a>
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <a class="btn btn-primary" data-dismiss="modal" ng-click="authService.login(loginInput, passwordInput)">Log in</a>
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
+    <!-- login modal -->
 
 
-
-
+    <!-- passwordReset modal -->
     <div class="modal" id="passwordReset" fade-in>
       <div class="modal-dialog">
         <div class="modal-content">
@@ -152,3 +152,61 @@
         </div>
       </div>
     </div>
+    <!-- end passwordReset modal -->
+
+    <!-- signUp modal -->
+    <div class="modal" id="signUpModal" fade-in>
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Sign Up</h4>
+          </div>
+
+          <div class="modal-body">
+            <form accept-charset="UTF-8" role="form">
+              <fieldset>
+
+                <div class="form-group">
+                  <label for="exampleInputFirstName1">First Name (*)</label>
+                  <input class="form-control" placeholder="First Name" name="first_name" type="text">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputLasttName1">Last Name</label>
+                  <input class="form-control" placeholder="Last Name" name="last_name" type="text">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email Address (*)</label>
+                  <input class="form-control" placeholder="example@domain.com" name="email" type="text">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password (*)</label>
+                  <input class="form-control" placeholder="******" name="password" type="password" value="">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputConfirmPassword1">Password Confirmation (*)</label>
+                  <input class="form-control" placeholder="******" name="password" type="password" value="">
+                </div>
+
+                <div class="form-group">
+                  <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+            <input class="btn btn-primary" type="submit" value="Create">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end signUp modal -->
