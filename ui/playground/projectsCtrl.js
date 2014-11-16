@@ -26,6 +26,5 @@ angular.module('myApp').controller('ProjectsCtrl', ['$scope', function ($scope) 
       $scope.projects = myProjects;
       $scope.sprints = mySprints;
 
-
     }
 ]);
