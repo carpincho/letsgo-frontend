@@ -26,19 +26,26 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function (
         templateUrl:'partials/home.html'
     });
 
-    $routeProvider.when('/fs2', {
-        templateUrl:'partials/fs2/fs2.html',
-        controller: 'FS2Controller'
+    $routeProvider.when('/projects', {
+        templateUrl:'playground/projects.html',
+        controller: 'ProjectsCtrl'
     });
 
     $routeProvider.when('/contact', {
         templateUrl:'partials/contact.html'
     });
+
     $routeProvider.when('/about', {
         templateUrl:'partials/about.html'
     });
+
     $routeProvider.when('/faq', {
         templateUrl:'partials/faq.html'
+    });
+
+    $routeProvider.when('/fs2', {
+        templateUrl:'partials/fs2/fs2.html',
+        controller: 'FS2Controller'
     });
 
     // note that to minimize playground impact on app.js, we
