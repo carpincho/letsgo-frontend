@@ -31,6 +31,11 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function (
         controller: 'ProjectsCtrl'
     });
 
+    $routeProvider.when('/dashboard', {
+        templateUrl:'playground/dashboard.html',
+        controller: 'DashboardCtrl'
+    });
+
     $routeProvider.when('/contact', {
         templateUrl:'partials/contact.html'
     });
