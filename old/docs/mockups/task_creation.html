@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Let's Go - Create Task</title>
+
+  <link href="bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+  .vertical-offset-100{
+    padding-top:150px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row vertical-offset-100">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Create Task</h3>
+          </div>
+          <div class="panel-body">
+            <form accept-charset="UTF-8" role="form">
+              <fieldset>
+
+                <div class="form-group">
+                  <label for="exampleInputTaskDescription">Task Description (*)</label>
+                  <textarea class="form-control" name="task_description" placeholder="Task Description" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputTaskNumber">Task Number (*)</label>
+                  <input class="form-control" placeholder="42" name="task_number" type="number">
+                </div>
+
+                <div class="form-group">
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr>
+                        <th>Available</th>
+                        <th>Assigned</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="glyphicon glyphicon-plus-sign"</span> Graziela Pereira</small></td><td><span class="glyphicon glyphicon-minus-sign"></span> <small>Alexander Zanatta</small></td>
+                      </tr>
+                      <tr>
+                        <td><span class="glyphicon glyphicon-plus-sign"</span> <small>Caroline Queiróz</small></td><td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td><span class="glyphicon glyphicon-plus-sign"</span> <small>Letícia Machado</small></td><td>&nbsp;</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputTaskComments">Comments</label>
+                      <textarea class="form-control" name="task_comments" placeholder="Comments" rows="4"></textarea>
+                    </div>
+
+                    <input class="btn btn-primary" type="submit" value="Create">
+                    <a href="" class="btn btn-default">Cancel</a>
+
+                  </fieldset>
+                </form>
+              </div>
+              <div class="panel-footer">
+                <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="bootstrap-3.3.0/js/bootstrap.min.js"></script>
+    </body>

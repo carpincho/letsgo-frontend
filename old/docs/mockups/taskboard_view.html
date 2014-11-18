@@ -1,0 +1,316 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Let's Go - Taskboard</title>
+
+  <link href="bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="stream_item.css" rel="stylesheet">
+  <style>
+  .vertical-offset{
+    padding-top:50px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row vertical-offset">
+      <h2>Taskboard</h2>
+      <div class="col-md-2">
+        <h3>User Story</h3>
+        <div id="stream">
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Story 1</span></li>
+                  <li><span class="item-content">Summary: 7 Tasks.</span></li>
+                  <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                  <li>
+                    <div class="btn-group">
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <h3>Not Started</h3>
+        <div id="stream">
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 1</span></li>
+                  <li><span class="item-content">Login Page - 8 points.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 2</span></li>
+                  <li><span class="item-content">Develop Page.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+        </div> <!-- end of stream -->
+      </div> <!-- end of not started collumn -->
+
+
+      <div class="col-md-2">
+        <h3>In Progress</h3>
+        <div id="stream">
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 3</span></li>
+                  <li><span class="item-content">Test Page.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <h3>Completed</h3>
+        <div id="stream">
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 5</span></li>
+                  <li><span class="item-content">Design Page.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 6</span></li>
+                  <li><span class="item-content">Test New Module.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 7</span></li>
+                  <li><span class="item-content">Upgrade Security Module.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+        </div> <!-- end of stream -->
+      </div> <!-- end of collumn -->
+
+      <div class="col-md-2">
+        <h3>Blocked</h3>
+        <div id="stream">
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 1b</span></li>
+                  <li><span class="item-content">Test Async Calls.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+        </div> <!-- end of stream -->
+      </div> <!-- end of collumn -->
+
+    </div> <!-- end of row -->
+
+    <div class="row"> <!-- another user story -->
+      <div class="col-md-2">
+        <div id="stream">
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Story 2</span></li>
+                  <li><span class="item-content">Summary: 6 Tasks.</span></li>
+                  <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                  <li>
+                    <div class="btn-group">
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                      <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+        </div> <!-- end of stream -->
+      </div> <!-- end of collumn -->
+
+      <div class="col-md-2">
+        <div id="stream">
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 8</span></li>
+                  <li><span class="item-content">Forgot Password feature.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+        </div> <!-- end of stream -->
+      </div> <!-- end of collumn -->
+
+      <div class="col-md-2">
+        <div id="stream">
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 9</span></li>
+                  <li><span class="item-content">Send mail feature.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+        </div> <!-- end of stream -->
+      </div> <!-- end of collumn -->
+
+      <div class="col-md-2">
+        <div id="stream">
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 10</span></li>
+                  <li><span class="item-content">Database dump cron job.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 11</span></li>
+                  <li><span class="item-content">Reduce Redirect Jumps.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 12</span></li>
+                  <li><span class="item-content">Optimize Code in Bottleneck Identified.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+
+        </div> <!-- end of stream -->
+      </div> <!-- end of collumn -->
+
+      <div class="col-md-2">
+        <div id="stream">
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Task 14</span></li>
+                  <li><span class="item-content">Test Api.</span></li>
+                  <li>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> <!-- end stream-item -->
+        </div> <!-- end of stream -->
+      </div> <!-- end of collumn -->
+
+    </div> <!-- end of row -->
+  </div> <!-- container -->
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="bootstrap-3.3.0/js/bootstrap.min.js"></script>
+</body>

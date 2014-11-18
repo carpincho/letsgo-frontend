@@ -1,0 +1,64 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Let's Go - Create Story</title>
+
+  <link href="bootstrap-3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+  .vertical-offset-100{
+    padding-top:150px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row vertical-offset-100">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Create Story</h3>
+          </div>
+          <div class="panel-body">
+            <form accept-charset="UTF-8" role="form">
+              <fieldset>
+
+                <div class="form-group">
+                  <label for="exampleInputStoryTitle1">Story Title (*)</label>
+                  <input class="form-control" placeholder="Title" name="story_title" type="text">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputStoryDescription">Story Description</label>
+                  <textarea class="form-control" name="story_description" placeholder="Description" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPoints">Points (*)</label>
+                  <input class="form-control" placeholder="15" name="story_points" type="number">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputStoryNotes">Additional Notes</label>
+                  <textarea class="form-control" name="story_notes" placeholder="Notes" rows="4"></textarea>
+                </div>
+
+                <input class="btn btn-primary" type="submit" value="Create">
+                <a href="" class="btn btn-default">Cancel</a>
+
+              </fieldset>
+            </form>
+          </div>
+          <div class="panel-footer">
+            <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="bootstrap-3.3.0/js/bootstrap.min.js"></script>
+</body>
