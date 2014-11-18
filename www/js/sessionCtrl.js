@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Demo')
+angular.module('myApp')
   .controller('SessionCtrl', ['$scope', '$http', '$log', '$timeout',
     function ($scope, $http, $log, $timeout) {
 
@@ -22,10 +22,11 @@ angular.module('Demo')
           password: password
         }
 
-        $http.post('/api/sessions', payload)
+        $http.post('/sessions', payload)
           .success(function(data, status, header, config) {
 
-            $log.debug('Success logging in the user');
+            //$log.debug('Success logging in the user');
+            console.log('Success logging in the user');
 
             // show a success message
             $scope.successMsgVisible = true;
@@ -33,8 +34,8 @@ angular.module('Demo')
             $timeout(function() {$scope.successMsgVisible = false;}, 2000);
           })
           .error(function(data, status) {
-            $log.debug('Error while trying to login user.');
-
+            //$log.debug('Error while trying to login user.');
+            console.log('Error while trying to login user.');
             // show a success message
             $scope.errorMsgVisible = true;
             // let the message dissapear after 2 secs
@@ -47,7 +48,7 @@ angular.module('Demo')
       // the function to logout
       $scope.logout = function() {
 
-        $http.delete('/api/sessions')
+        $http.delete('/sessions')
           .success(function(data, status, header, config) {
 
             $log.debug('Success logging out the user');
@@ -61,5 +62,5 @@ angular.module('Demo')
             $log.debug('Error while logging out the user.');
           });
       }
-    } 
+    }
   ]);

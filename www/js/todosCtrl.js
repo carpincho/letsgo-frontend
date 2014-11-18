@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Demo')
+angular.module('myApp')
   .controller('TodosCtrl', ['$scope', '$http', '$log',
     function ($scope, $http, $log) {
 
@@ -16,7 +16,7 @@ angular.module('Demo')
       var init = function() {
         $http.get('/api/todos')
           .success(function(data, status, header, config) {
-            
+
             // the server should return a json array which contains all the todos
             $scope.todos = data;
           })
@@ -52,7 +52,7 @@ angular.module('Demo')
       // the funciton. We could directly access the $scope.todoModel to get the same values.
       // But then our unit-test would have account for that dependency.
       $scope.addTodo = function(todoDescription) {
-        
+
         // construct the payload that we will send as part of the post request
         var payload = {
           description: todoDescription
@@ -77,5 +77,5 @@ angular.module('Demo')
             alert("You must login first.")
           });
       }
-    } 
+    }
   ]);
