@@ -1,0 +1,46 @@
+<div ng-include="'partials/navbar.html'"></div>
+<h3>Requirements</h3>
+<div>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <h2>All Todos</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+		<table class="table">
+		  <tr>
+		    <th>Description</th>
+		    <th>User</th>
+		    <th>Action</th>
+		  </tr>
+		  <tr ng-repeat="todo in todos">
+		  	<td>{{todo.description}}</td>
+		  	<td>{{todo.name}}</td>
+		  	<td><button ng-click="removeTodo(todo.todoId)">Remove</button></td>
+		  </tr>
+		</table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+		<form role="form">
+		  <div class="form-group">
+		    <label for="todoInput">Add todo</label>
+		    <input type="text" class="form-control" ng-model="todoModel.description" id="todoInput" placeholder="Todo description">
+		  </div>
+
+		  <button ng-click="addTodo(todoModel.description)" class="btn btn-default">
+		  	Add todo
+		  </button>
+		</form>
+      </div>
+    </div>
+
+
+  </div> <!-- end of container -->
+</div>

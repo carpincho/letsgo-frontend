@@ -13,9 +13,13 @@ app.config(['$logProvider', function($logProvider){
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/todos', {
-        templateUrl: 'partials/todos.html',
-        controller: 'TodosCtrl'
+      //.when('/todos', {
+      //  templateUrl: 'partials/todos.html',
+      //  controller: 'TodosCtrl'
+      //})
+      .when('/home', {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
       })
       .when('/login', {
         templateUrl: 'partials/login.html',
@@ -24,6 +28,22 @@ app.config(['$routeProvider', '$locationProvider',
       .when('/logout', {
         templateUrl: 'partials/logout.html',
         controller: 'SessionCtrl'
+      })
+      .when('/projects', {
+        templateUrl: 'partials/projects.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/requirements', {
+        templateUrl: 'partials/requirements.html',
+        controller: 'RequirementsCtrl'
+      })
+      .when('/sprints', {
+        templateUrl: 'partials/sprints.html',
+        controller: 'SprintsCtrl'
+      })
+      .when('/tasks', {
+        templateUrl: 'partials/tasks.html',
+        controller: 'TasksCtrl'
       })
       .otherwise({
         redirectTo: '/todos'
