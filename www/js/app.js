@@ -1,8 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', [
-  'ngRoute'
-]);
+var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
 
 /** Turn on/off the angular debugging; should be off when deployed */
 app.config(['$logProvider', function($logProvider){
@@ -13,10 +11,6 @@ app.config(['$logProvider', function($logProvider){
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider
-      //.when('/todos', {
-      //  templateUrl: 'partials/todos.html',
-      //  controller: 'TodosCtrl'
-      //})
       .when('/home', {
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
@@ -28,6 +22,10 @@ app.config(['$routeProvider', '$locationProvider',
       .when('/logout', {
         templateUrl: 'partials/logout.html',
         controller: 'SessionCtrl'
+      })
+      .when('/users/', {
+        templateUrl: 'partials/user.html',
+        controller: 'UsersCtrl'
       })
       .when('/projects', {
         templateUrl: 'partials/projects.html',
@@ -46,7 +44,7 @@ app.config(['$routeProvider', '$locationProvider',
         controller: 'TasksCtrl'
       })
       .otherwise({
-        redirectTo: '/todos'
+        redirectTo: '/login'
       });
     }
   ]);
