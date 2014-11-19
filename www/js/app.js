@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
+var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 
 /** Turn on/off the angular debugging; should be off when deployed */
 app.config(['$logProvider', function($logProvider){
