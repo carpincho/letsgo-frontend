@@ -7,7 +7,7 @@
       <h2>Login</h2>
       <p>
         Try usernames: John, Mary, Bob, Alice <br>
-        Password is always: secret
+        Password is always: secret <br>
       <p>
     </div>
   </div>
@@ -24,14 +24,12 @@
           <input type="password" class="form-control" ng-model="formData.password" id="userPassword" placeholder="Enter your password">
         </div>
 
-    	  <button ng-click="login(formData.username, formData.password)" class="btn btn-default">
-    	  	Login
-    	  </button>
+    	  <button ng-click="login(formData.username, formData.password)" class="btn btn-default">Login</button>
     	</form>
-	
+
       <div class="alert alert-success" role="alert" ng-show="successMsgVisible">Okay, you're now logged in.</div>
       <div class="alert alert-danger" role="alert" ng-show="errorMsgVisible">Username or password incorrect.</div>
     </div>
   </div>
 
-</div> 
+</div>
