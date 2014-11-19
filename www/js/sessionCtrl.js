@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('SessionCtrl', ['$scope', '$http', '$log', '$timeout',
-    function ($scope, $http, $log, $timeout) {
+  .controller('SessionCtrl', ['$scope', '$http', '$log', '$timeout','$cookieStore',
+    function ($scope, $http, $log, $timeout, $cookieStore) {
 
       // the model that we bind to the input box
       $scope.formData = {
@@ -10,6 +10,7 @@ angular.module('myApp')
         password: ''
       }
 
+      var logged = false;
       $scope.successMsgVisible = false;
       $scope.errorMsgVisible = false;
 
@@ -32,6 +33,7 @@ angular.module('myApp')
             $scope.successMsgVisible = true;
             // let the message dissapear after 2 secs
             $timeout(function() {$scope.successMsgVisible = false;}, 2000);
+            logged = true;
           })
           .error(function(data, status) {
             //$log.debug('Error while trying to login user.');
@@ -40,7 +42,6 @@ angular.module('myApp')
             $scope.errorMsgVisible = true;
             // let the message dissapear after 2 secs
             $timeout(function() {$scope.errorMsgVisible = false;}, 2000);
-
           });
       }
 
@@ -57,10 +58,19 @@ angular.module('myApp')
             $scope.successMsgVisible = true;
             // let the message dissapear after 2 secs
             $timeout(function() {$scope.successMsgVisible = false;}, 2000);
+            // remove session cookie
+
+            $cookieStore.remove("lets_go_session");
+            logged = false;
+
           })
           .error(function(data, status) {
             $log.debug('Error while logging out the user.');
           });
+      }
+
+      $scope.isLogged = function(){
+        return logged;
       }
     }
   ]);
