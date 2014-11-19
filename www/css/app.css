@@ -2,3 +2,12 @@ body{
   padding-top: 55px;
   padding-bottom: 75px;
 }
+
+/* for styling correctly ui.bootstrap dropdown */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
+.menu-dropdown-forceleft{
+  left: -87%;
+}
