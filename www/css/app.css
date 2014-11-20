@@ -8,6 +8,18 @@ body{
   cursor: pointer;
 }
 
-.menu-dropdown-forceleft{
+.menu-dropdown-forceleft {
   left: -87%;
+}
+
+.vertical-offset-100 {
+  margin-top: 100px;
+}
+
+.vertical-offset-150 {
+  margin-top: 150px;
+}
+
+.vertical-offset-200 {
+  margin-top: 200px;
 }
