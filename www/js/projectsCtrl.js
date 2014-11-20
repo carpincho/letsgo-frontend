@@ -4,21 +4,75 @@ angular.module('myApp')
   .controller('ProjectsCtrl', ['$scope', '$http', '$log',
     function ($scope, $http, $log) {
 
-      // we store all data in the data array
-      $scope.todos = [];
+      $scope.projects = [];
 
-      $scope.todoModel = {
-        description: ''
-      }
+      // hardcoded data for testing ----
+      var mySprint1 = { id: 1,
+                        project_id: 1,
+                        name: "Sprint 1",
+                        status: 0,
+                        start_date:"10/04/2014",
+                        end_date: "1/02/2015",
+                      };
 
-      // declaration !AND! call (see parenthesis at end of function)
-      // of a function that fetches the todos from the server
+      var mySprint2 = { id: 2,
+                        project_id: 1,
+                        name: "Sprint 2",
+                        status: 0,
+                        start_date:"10/04/2014",
+                        end_date: "1/02/2015",
+                      };
+
+      var mySprint3 = { id: 3,
+                        project_id: 3,
+                        name: "Sprint 1",
+                        status: 1,
+                        start_date:"10/04/2014",
+                        end_date: "1/02/2015",
+                      };
+
+      var myProject1 = { id: 1,
+                         name: "Project 1",
+                         description: "a brief description",
+                         owner: 1,
+                         status:"open",
+                         start_date: "10/04/2014",
+                         end_date: ""
+      };
+
+      var myProject2 = { id: 2,
+                         name: "Project 2",
+                         description: "another brief description",
+                         owner: 1,
+                         status:"open",
+                         start_date: "10/04/2014",
+                         end_date: ""
+      };
+
+      var myProject3 = { id: 3,
+                         name: "Project 3",
+                         description: "another brief description",
+                         owner: 2,
+                         status:"closed",
+                         start_date: "10/04/2014",
+                         end_date: "1/02/2015"
+      };
+
+      $scope.projects = [ myProject1, myProject2, myProject3 ];
+      $scope.sprints = [mySprint1, mySprint2, mySprint3];
+      // ------------------------
+
+
       var init = function() {
-        $http.get('/api/todos')
+        $http.get('/users/1/projects')
           .success(function(data, status, header, config) {
 
-            // the server should return a json array which contains all the todos
-            $scope.todos = data;
+            // the server json response
+            //$scope.projects = data; <!-- the real response -->
+            //console.log(JSON.stringify(data[0]));
+
+
+
           })
           .error(function(data, status) {
             $log.debug('Error while fetching todos from server');

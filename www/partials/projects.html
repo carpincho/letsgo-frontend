@@ -1,6 +1,94 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-<h3>Projects</h3>
+
+<div ng-controller="ProjectsCtrl">
+  <div class="container">
+
+    <div class="row">
+      <h3>
+        <ul class="nav nav-pills" role="tablist">
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#newProject" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Create Project</a></li>
+            </ul>
+          </li>
+        </ul>
+      </h3>
+
+
+      <!-- Projects -->
+      <div class="col-md-6">
+        <div ng-repeat="project in projects">
+          <!--  <ul>
+              <li> id: </li>
+              <li> name: {{ project.name }}</li>
+              <li> description: {{ project.description }}</li>
+              <li> owner: {{ project.owner }}</li>
+              <li> status: {{ project.status }}</li>
+              <li> start date: {{ project.start_date }}</li>
+              <li> end_date: {{ project.end_date }}</li>
+            </ul>-->
+
+            <div id="stream">
+              <!-- stream item -->
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ project.name }} (id: {{ project.id }})</span></li>
+                      <li><span class="item-content">Owner: {{ project.owner }}</span></li>
+                      <li><span class="item-content">Description: {{ project.description }}</span></li>
+                      <li>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ project.start_date }} - End Date: {{ project.end_date }} - Status: <strong class="item-status-{{project.status}}">{{project.status}}</strong></small></p> </li>
+                        <li>
+                          <div class="btn-group pull-right">
+                            <a href="#newSprint" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
+                            <a href="#projectMembers" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Members</a>
+                            <a href="#projectProperties" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                            <a href="#projectDelete" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                            <a href="#shareProject" class="btn btn-default btn-xs"  data-toggle="modal"><span class="glyphicon glyphicon-share"></span> Share</a>
+                          </div>
+                          <div class="clearfix"></div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- end stream-item -->
+          </div>
+      </div> <!-- end Projects -->
+
+      <!-- Sprints -->
+      <div class="col-md-6">
+        <div ng-repeat="sprint in sprints" >
+
+
+          </div>
+          <ul>
+            <li> id: {{ sprint.id }}</li>
+            <li> project id: {{ sprint.project_id }}</li>
+            <li> name: {{ sprint.name }}</li>
+            <li> start date: {{ sprint.start_date }}</li>
+            <li> end date: {{ sprint.end_date }}</li>
+            <li> status: {{ sprint.status }}</li>
+          </ul>
+        </div>
+      </div>
+    </div> <!-- end row -->
+  </div> <!-- end container -->
+</div> <!-- end ProjectCtrl -->
+
+
+
+
+
+
+
+
+
+
+<!--
 <div>
   <div class="container">
 
@@ -15,12 +103,12 @@
 		<table class="table">
 		  <tr>
 		    <th>Description</th>
-		    <th>User</th>
+		    <th>Name</th>
 		    <th>Action</th>
 		  </tr>
-		  <tr ng-repeat="todo in todos">
-		  	<td>{{todo.description}}</td>
-		  	<td>{{todo.name}}</td>
+		  <tr ng-repeat="project in projects">
+		  	<td>{{project.description}}</td>
+		  	<td>{{project.name}}</td>
 		  	<td><button ng-click="removeTodo(todo.todoId)">Remove</button></td>
 		  </tr>
 		</table>
@@ -43,5 +131,5 @@
     </div>
 
 
-  </div> <!-- end of container -->
-</div>
+  </div>
+</div> -->
