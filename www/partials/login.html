@@ -4,6 +4,11 @@
   <div class="row vertical-offset-100">
     <div class="col-md-4 col-md-offset-4">
 
+      <div>
+        <div class="alert alert-success" role="alert" ng-show="successMsgVisible">Okay, you're now logged in.</div>
+        <div class="alert alert-danger" role="alert" ng-show="errorMsgVisible">Username or password incorrect.</div>
+      </div>  
+
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Login</h3>
@@ -49,8 +54,7 @@
     	  <button ng-click="login(formData.username, formData.password)" class="btn btn-default">Login</button>
     	</form>
 
-      <div class="alert alert-success" role="alert" ng-show="successMsgVisible">Okay, you're now logged in.</div>
-      <div class="alert alert-danger" role="alert" ng-show="errorMsgVisible">Username or password incorrect.</div>
+
     </div>
   -->
   </div>
