@@ -20,15 +20,6 @@
       <!-- Projects -->
       <div class="col-md-6">
         <div ng-repeat="project in projects">
-          <!--  <ul>
-              <li> id: </li>
-              <li> name: {{ project.name }}</li>
-              <li> description: {{ project.description }}</li>
-              <li> owner: {{ project.owner }}</li>
-              <li> status: {{ project.status }}</li>
-              <li> start date: {{ project.start_date }}</li>
-              <li> end_date: {{ project.end_date }}</li>
-            </ul>-->
 
             <div id="stream">
               <!-- stream item -->
@@ -43,7 +34,8 @@
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ project.start_date }} - End Date: {{ project.end_date }} - Status: <strong class="item-status-{{project.status}}">{{project.status}}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
-                            <a href="#newSprint" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
+                            <!--<a href="#newSprint" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Sprint</a>-->
+                            <a ng-click="createProject()" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
                             <a href="#projectMembers" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Members</a>
                             <a href="#projectProperties" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span> Properties</a>
                             <a href="#projectDelete" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
@@ -56,15 +48,12 @@
                   </div>
                 </div>
                 <!-- end stream-item -->
-          </div>
+          </div> <!-- end stream -->
+        </div>       
       </div> <!-- end Projects -->
-
       <!-- Sprints -->
       <div class="col-md-6">
         <div ng-repeat="sprint in sprints" >
-
-
-          </div>
           <ul>
             <li> id: {{ sprint.id }}</li>
             <li> project id: {{ sprint.project_id }}</li>
@@ -75,6 +64,7 @@
           </ul>
         </div>
       </div>
+
     </div> <!-- end row -->
   </div> <!-- end container -->
 </div> <!-- end ProjectCtrl -->

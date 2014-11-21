@@ -58,7 +58,7 @@ angular.module('myApp')
                          end_date: "1/02/2015"
       };
 
-      $scope.projects = [ myProject1, myProject2, myProject3 ];
+      //$scope.projects = [ myProject1, myProject2, myProject3 ];
       $scope.sprints = [mySprint1, mySprint2, mySprint3];
       // ------------------------
 
@@ -70,7 +70,7 @@ angular.module('myApp')
             // the server json response
             //$scope.projects = data; <!-- the real response -->
             //console.log(JSON.stringify(data[0]));
-
+            $scope.projects = data;
 
 
           })
@@ -80,56 +80,132 @@ angular.module('myApp')
 
       }();
 
-      // function to remove a todo with the given id
-      $scope.removeTodo = function(todoId) {
-        $log.debug("Removing todo " + todoId);
-
-        // find the element in the data array and remove it
-        for(var i =0; i < $scope.todos.length; i++) {
-          if($scope.todos[i].todoId === todoId) {
-            $scope.todos.splice(i, 1);
-          }
-        }
-
-        $http.delete('/api/todos/' + todoId)
-          .success(function(data, status, header, config) {
-            $log.debug('Success removing todo item');
-          })
-          .error(function(data, status) {
-            $log.debug('Error while trying to remove todo item on server');
-          });
-      }
-
-
-      // Function to add a new todo to the list.
-      // Note: we provide the description and the user as parameters as this makes it easier to test
-      // the funciton. We could directly access the $scope.todoModel to get the same values.
-      // But then our unit-test would have account for that dependency.
-      $scope.addTodo = function(todoDescription) {
-
-        // construct the payload that we will send as part of the post request
+      $scope.createProject = function(newProject) {
+        //payload = newProject;
+        //dummy project
         var payload = {
-          description: todoDescription
-        }
+          name: "Project 5",
+          description: "this is a new project created",
+          owner: 1,
+          status:"closed",
+          start_date: "10/04/2014",
+          end_date: "1/02/2015"
+        };
 
-        $log.debug("Sending payload: " + JSON.stringify(payload));
+        $log.debug("Sending new project with payload: " + JSON.stringify(payload));
 
-        // send the payload to the server
-        $http.post('/api/todos', payload)
+        $http.post('/projects/', payload)
+        .success(function(data, status, header, config) {
+          //$log.debug('Success creating new project');
+          console.log('Success creating new project');
+        })
+        .error(function(data, status) {
+          //$log.debug('Error while trying to create a new project on server');
+          console.log('Error while trying to create a new project on server');
+        });
+      }
+
+
+      $scope.getProject = function(projectId) {
+        //var id = projectId;
+        var id = 1;
+
+        $log.debug("Sending id for getting a project: " + JSON.stringify(payload));
+
+        $http.get('/projects/' +  id)
+        .success(function(data, status, header, config) {
+          //$log.debug('Success getting a project');
+          console.log('Success getting a project');
+        })
+        .error(function(data, status) {
+          //$log.debug('Error while trying to getting a project on server');
+          console.log('Error while trying to getting a project on server');
+        });
+      }
+
+
+      $scope.updateProject = function(updateProject) {
+        // var payload = updateProject;
+        var payload = {
+          id: 3,
+          name: "Project 3",
+          description: "another brief description",
+          owner: 2,
+          status:"closed",
+          start_date: "10/04/2014",
+          end_date: "1/02/2015"
+        };
+
+        $log.debug("Updating project " + project.id);
+
+        $http.put('/projects/' + project.id, payload)
+        .success(function(data, status, header, config) {
+          //$log.debug('Success updating project');
+          console.log('Success updating project');
+        })
+        .error(function(data, status) {
+          //$log.debug('Error while trying to update project on server.');
+          console('Error while trying to update project on server.');
+        });
+      }
+
+
+      $scope.deleteProject = function(projectId) {
+        //var id = projectId;
+        var id = 2;
+
+        $log.debug("Deleting project " + id);
+
+        $http.delete('/projects/' + id)
           .success(function(data, status, header, config) {
-            // the server should return a json object that represents the new todo item
-            // we add the item to the list of todos
-            $log.debug('Success adding new todo');
-            // add the new todo to our list of todos
-            $scope.todos.push(data);
-            // reset the todoModel to not have a description (we keep the last selected user)
-            $scope.todoModel.description = '';
+            $log.debug('Success deleting project');
           })
           .error(function(data, status) {
-            $log.debug('Error while trying to add new todo item');
-
-            alert("You must login first.")
+            $log.debug('Error while trying to delete project on server');
           });
       }
+
+
+      $scope.inviteDevelopersToProject = function(developers) {
+        // var payload = developers;
+        var payload = {
+          devs: [1, 2]
+        };
+
+        $log.debug("Inviting developers to project...");
+
+        $http.put('/projects/', payload)
+        .success(function(data, status, header, config) {
+          //$log.debug('Success inviting developers to project');
+          console.log('Success inviting developers to project');
+        })
+        .error(function(data, status) {
+          //$log.debug('Error while trying to invite developers to project on server.');
+          console('Error while trying to invite developers to project on server.');
+        });
+      }
+
+
+      $scope.removeDevelopersFromProject = function(developers) {
+        // var payload = developers;
+        var payload = {
+          devs: [1, 2]
+        };
+
+        $log.debug("Removing developers from project...");
+
+        $http.put('/projects/', payload)
+        .success(function(data, status, header, config) {
+          //$log.debug('Success inviting developers to project');
+          console.log('Success inviting developers to project');
+        })
+        .error(function(data, status) {
+          //$log.debug('Error while trying to invite developers to project on server.');
+          console('Error while trying to invite developers to project on server.');
+        });
+      }
+
+
+
     }
   ]);
