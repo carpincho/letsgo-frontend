@@ -6,7 +6,7 @@ angular.module('myApp')
 
       // the model that we bind to the input box
       $scope.formData = {
-        username: '',
+        email: '',
         password: ''
       }
 
@@ -15,11 +15,11 @@ angular.module('myApp')
       $scope.errorMsgVisible = false;
 
       // the function to login
-      $scope.login = function(username, password) {
+      $scope.login = function(email, password) {
 
         // the payload is simple the json object that we used for binding to the input
         var payload = {
-          username: username,
+          email: email,
           password: password
         }
 
@@ -34,6 +34,8 @@ angular.module('myApp')
             // let the message dissapear after 2 secs
             $timeout(function() {$scope.successMsgVisible = false;}, 2000);
             logged = true;
+
+
           })
           .error(function(data, status) {
             //$log.debug('Error while trying to login user.');
@@ -52,20 +54,18 @@ angular.module('myApp')
         $http.delete('/sessions')
           .success(function(data, status, header, config) {
 
-            $log.debug('Success logging out the user');
-
+            //$log.debug('Success logging out the user');
+            console.log('Success logging out the user');
             // show a success message
             $scope.successMsgVisible = true;
             // let the message dissapear after 2 secs
             $timeout(function() {$scope.successMsgVisible = false;}, 2000);
-            // remove session cookie
-
-            $cookieStore.remove("lets_go_session");
             logged = false;
 
           })
           .error(function(data, status) {
-            $log.debug('Error while logging out the user.');
+            //$log.debug('Error while logging out the user.');
+            console.log('Error while logging out the user.');
           });
       }
 

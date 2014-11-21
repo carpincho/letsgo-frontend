@@ -7,7 +7,7 @@
       <div>
         <div class="alert alert-success" role="alert" ng-show="successMsgVisible">Okay, you're now logged in.</div>
         <div class="alert alert-danger" role="alert" ng-show="errorMsgVisible">Username or password incorrect.</div>
-      </div>  
+      </div>
 
       <div class="panel panel-primary">
         <div class="panel-heading">
@@ -18,7 +18,7 @@
             <fieldset>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email Address</label>
-                <input class="form-control" ng-model="formData.username" placeholder="example@domain.com" name="email" type="text">
+                <input class="form-control" ng-model="formData.email" placeholder="example@domain.com" name="email" type="text">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
@@ -35,7 +35,7 @@
                 <label><a href="">Forgot password?</a></label>
               </div>
 
-              <button ng-click="login(formData.username, formData.password)" class="btn btn-default pull-right">Login</button>
+              <button ng-click="login(formData.email, formData.password)" class="btn btn-default pull-right">Login</button>
             </fieldset>
           </form>
         </div>
