@@ -38,7 +38,7 @@ angular.module('myApp')
 
 
       var init = function() {
-        var get_all_projects_uri = '/users/1/projects';
+        var get_all_projects_uri = '/projects';
 
         $http.get(get_all_projects_uri)
           .success(function(data, status, header, config) {
@@ -65,7 +65,7 @@ angular.module('myApp')
           end_date: "1-02-2015"
         };
 
-        var create_project_uri = "/users/1/projects";
+        var create_project_uri = "/projects";
 
         $http.post(create_project_uri, payload)
         .success(function(data, status, header, config) {
@@ -83,13 +83,12 @@ angular.module('myApp')
         //var id = projectId;
         var id = 28;
 
-        var get_project_uri = "/users/1/projects/" +  id;
+        var get_project_uri = "/projects/" +  id;
 
         $http.get(get_project_uri)
         .success(function(data, status, header, config) {
           //$log.debug('Success getting a project');
           console.log('Success getting a project');
-          console.log(data)
           // save it $scope.projects
         })
         .error(function(data, status) {
@@ -103,17 +102,18 @@ angular.module('myApp')
         //var payload = updateProject;
 
         var payload = {
-          id: 30  ,
-          name: "Project tu madre",
+          id: 8,
+          name: "Keli tu madre",
           description: "another brief description",
           owner: 1,
           status: 1,
-          start_date: "10-04-2014",
-          end_date: "1-02-2015"
+          start_date: "2014-10-2",
+          end_date: "2015-02-22"
         };
 
-        var my_id = payload.id;
-        var update_project_uri = '/users/1/projects/' + my_id;
+        var my_id = 8;
+        var update_project_uri = '/projects/8';
+        //  /users/{user_id}/projects/{project_id} [ PUT ]
 
         $http.put(update_project_uri, payload)
         .success(function(data, status, header, config) {
@@ -123,17 +123,18 @@ angular.module('myApp')
         .error(function(data, status) {
           //$log.debug('Error while trying to update project on server.');
           console.log('Error while trying to update project on server.');
+          console.log(data);
         });
       }
 
 
       $scope.deleteProject = function(projectId) {
         var id = projectId;
-        var my_id = 30;
+        var my_id = 8;
 
         $log.debug("Deleting project " + my_id);
 
-        var delete_project_uri = "/users/1/projects/" + my_id;
+        var delete_project_uri = "/projects/" + my_id;
 
         $http.delete(delete_project_uri)
           .success(function(data, status, header, config) {
