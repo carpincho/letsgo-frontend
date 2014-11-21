@@ -38,8 +38,12 @@
                             <a ng-click="createProject()" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
                             <a href="#projectMembers" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Members</a>
                             <a href="#projectProperties" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                            <a href="#projectDelete" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                            <a ng-click='deleteProject(project.id);' class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                             <a href="#shareProject" class="btn btn-default btn-xs"  data-toggle="modal"><span class="glyphicon glyphicon-share"></span> Share</a>
+                            <a ng-click='updateProject(2);' class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> updaaaate</a>
+
+                            <a ng-click='getProject();' class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-ok"></span> get_project</a>
+
                           </div>
                           <div class="clearfix"></div>
                         </li>
@@ -49,7 +53,7 @@
                 </div>
                 <!-- end stream-item -->
           </div> <!-- end stream -->
-        </div>       
+        </div>
       </div> <!-- end Projects -->
       <!-- Sprints -->
       <div class="col-md-6">
