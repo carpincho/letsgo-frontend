@@ -31,32 +31,6 @@ angular.module('myApp')
                         end_date: "1/02/2015",
                       };
 
-      var myProject1 = { id: 1,
-                         name: "Project 1",
-                         description: "a brief description",
-                         owner: 1,
-                         status:"open",
-                         start_date: "10/04/2014",
-                         end_date: ""
-      };
-
-      var myProject2 = { id: 2,
-                         name: "Project 2",
-                         description: "another brief description",
-                         owner: 1,
-                         status:"open",
-                         start_date: "10/04/2014",
-                         end_date: ""
-      };
-
-      var myProject3 = { id: 3,
-                         name: "Project 3",
-                         description: "another brief description",
-                         owner: 2,
-                         status:"closed",
-                         start_date: "10/04/2014",
-                         end_date: "1/02/2015"
-      };
 
       //$scope.projects = [ myProject1, myProject2, myProject3 ];
       $scope.sprints = [mySprint1, mySprint2, mySprint3];
@@ -64,37 +38,36 @@ angular.module('myApp')
 
 
       var init = function() {
-        $http.get('/users/1/projects')
+        var get_all_projects_uri = '/users/1/projects';
+
+        $http.get(get_all_projects_uri)
           .success(function(data, status, header, config) {
-
-            // the server json response
-            //$scope.projects = data; <!-- the real response -->
-            //console.log(JSON.stringify(data[0]));
+            console.log('Fetching ' + data.length + ' projects from server...');
             $scope.projects = data;
-
-
           })
           .error(function(data, status) {
-            $log.debug('Error while fetching todos from server');
+            //$log.debug('Error while fetching projects from server');
+            console.log('Error while fetching projects from server');
           });
 
       }();
 
       $scope.createProject = function(newProject) {
         //payload = newProject;
+
         //dummy project
         var payload = {
-          name: "Project 5",
+          name: "Puto el que lee",
           description: "this is a new project created",
           owner: 1,
-          status:"closed",
-          start_date: "10/04/2014",
-          end_date: "1/02/2015"
+          status: 1,
+          start_date: "10-04-2014",
+          end_date: "1-02-2015"
         };
 
-        $log.debug("Sending new project with payload: " + JSON.stringify(payload));
+        var create_project_uri = "/users/1/projects";
 
-        $http.post('/projects/', payload)
+        $http.post(create_project_uri, payload)
         .success(function(data, status, header, config) {
           //$log.debug('Success creating new project');
           console.log('Success creating new project');
@@ -108,14 +81,16 @@ angular.module('myApp')
 
       $scope.getProject = function(projectId) {
         //var id = projectId;
-        var id = 1;
+        var id = 28;
 
-        $log.debug("Sending id for getting a project: " + JSON.stringify(payload));
+        var get_project_uri = "/users/1/projects/" +  id;
 
-        $http.get('/projects/' +  id)
+        $http.get(get_project_uri)
         .success(function(data, status, header, config) {
           //$log.debug('Success getting a project');
           console.log('Success getting a project');
+          console.log(data)
+          // save it $scope.projects
         })
         .error(function(data, status) {
           //$log.debug('Error while trying to getting a project on server');
@@ -125,43 +100,51 @@ angular.module('myApp')
 
 
       $scope.updateProject = function(updateProject) {
-        // var payload = updateProject;
+        //var payload = updateProject;
+
         var payload = {
-          id: 3,
-          name: "Project 3",
+          id: 30  ,
+          name: "Project tu madre",
           description: "another brief description",
-          owner: 2,
-          status:"closed",
-          start_date: "10/04/2014",
-          end_date: "1/02/2015"
+          owner: 1,
+          status: 1,
+          start_date: "10-04-2014",
+          end_date: "1-02-2015"
         };
 
-        $log.debug("Updating project " + project.id);
+        var my_id = payload.id;
+        var update_project_uri = '/users/1/projects/' + my_id;
 
-        $http.put('/projects/' + project.id, payload)
+        $http.put(update_project_uri, payload)
         .success(function(data, status, header, config) {
           //$log.debug('Success updating project');
           console.log('Success updating project');
         })
         .error(function(data, status) {
           //$log.debug('Error while trying to update project on server.');
-          console('Error while trying to update project on server.');
+          console.log('Error while trying to update project on server.');
         });
       }
 
 
       $scope.deleteProject = function(projectId) {
-        //var id = projectId;
-        var id = 2;
+        var id = projectId;
+        var my_id = 30;
 
-        $log.debug("Deleting project " + id);
+        $log.debug("Deleting project " + my_id);
 
-        $http.delete('/projects/' + id)
+        var delete_project_uri = "/users/1/projects/" + my_id;
+
+        $http.delete(delete_project_uri)
           .success(function(data, status, header, config) {
-            $log.debug('Success deleting project');
+            //$log.debug('Success deleting project');
+            console.log('Success deleting project');
+
           })
           .error(function(data, status) {
-            $log.debug('Error while trying to delete project on server');
+            //$log.debug('Error while trying to delete project on server');
+            console.log('Error while trying to delete project on server');
+            console.log(data)
           });
       }
 
@@ -174,14 +157,16 @@ angular.module('myApp')
 
         $log.debug("Inviting developers to project...");
 
-        $http.put('/projects/', payload)
+        var invite_developers_to_project_uri = '/projects/';
+
+        $http.put(invite_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
           //$log.debug('Success inviting developers to project');
           console.log('Success inviting developers to project');
         })
         .error(function(data, status) {
           //$log.debug('Error while trying to invite developers to project on server.');
-          console('Error while trying to invite developers to project on server.');
+          console.log('Error while trying to invite developers to project on server.');
         });
       }
 
@@ -194,14 +179,16 @@ angular.module('myApp')
 
         $log.debug("Removing developers from project...");
 
-        $http.put('/projects/', payload)
+        var remove_developers_to_project_uri = "/projects/";
+
+        $http.put(remove_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
           //$log.debug('Success inviting developers to project');
           console.log('Success inviting developers to project');
         })
         .error(function(data, status) {
           //$log.debug('Error while trying to invite developers to project on server.');
-          console('Error while trying to invite developers to project on server.');
+          console.log('Error while trying to invite developers to project on server.');
         });
       }
 
