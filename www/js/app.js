@@ -48,3 +48,35 @@ app.config(['$routeProvider', '$locationProvider',
       });
     }
   ]);
+
+app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService) {
+
+
+//  $rootScope.constants = [];
+//    $rootScope.restService.get('data/constants.json', function (data) {
+//      $rootScope.constants = data[0];
+//    }
+//  );
+  $rootScope.authService = AuthService;
+  $rootScope.restService = RESTService;
+
+//  $rootScope.$watch('authService.authorized()', function () {
+
+  // if never logged in, do nothing (otherwise bookmarks fail)
+  //if ($rootScope.authService.initialState()) {
+    // we are public browsing
+    //return;
+  //}
+  // when user logs in, redirect to home
+  //if ($rootScope.authService.authorized()) {
+  //  $location.path("/");
+  //}
+
+  // when user logs out, redirect to home
+  //if (!$rootScope.authService.authorized()) {
+  //  $location.path("/");
+  //}
+
+//}, true); // from the watch
+
+});
