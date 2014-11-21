@@ -19,30 +19,29 @@
       </div>
 
       <div ng-show="isLogged()">
-        <!--<ul class="nav navbar-nav navbar-right">-->
-          <!--<li>-->
+        <ul class="nav navbar-nav">
+          <li><a href="#/projects">Projects</a></li>
+        </ul>
 
-          <div class="nav navbar-form pull-right">
-            <div class="btn-group " dropdown is-open="status.isopen">
-              <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                 User <span class="fa fa-cogs"></span></span>
-              </button>
-              <ul class="dropdown-menu menu-dropdown-forceleft" role="menu">
-                <li class="pull-right"><a href="#/profile">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a></li>
-                <div class="clearfix"></div>
-                <li class="pull-right"><a href="#/password">Change Password <span class="fa fa-key"></span></a></li>
-                <div class="clearfix"></div>
-                <li class="divider"></li>
-                <div class="clearfix"></div>
-                <li class="pull-right"><a href="#/" ng-click="logout()">Log Out <span class="glyphicon glyphicon-log-out"></span></a></li>
-                <div class="clearfix"></div>
-              </ul>
-            </div>
-          <!--</li>-->
-        <!--</ul>-->
-      </div>
+        <div class="nav navbar-form pull-right">
+          <div class="btn-group " dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+               User <span class="fa fa-cog"></span></span>
+            </button>
+            <ul class="dropdown-menu menu-dropdown-forceleft" role="menu">
+              <li class="pull-right"><a href="#/profile">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a></li>
+              <div class="clearfix"></div>
+              <li class="pull-right"><a href="#/password">Change Password <span class="fa fa-key"></span></a></li>
+              <div class="clearfix"></div>
+              <li class="divider"></li>
+              <div class="clearfix"></div>
+              <li class="pull-right"><a href="#/" ng-click="logout()">Log Out <span class="glyphicon glyphicon-log-out"></span></a></li>
+              <div class="clearfix"></div>
+            </ul>
+          </div>
+        </div>
       </div>
 
-    </div> <!-- collapsable lis -->
+    </div> <!-- collapsable  -->
   </div> <!-- end container-fluid -->
 </nav>
