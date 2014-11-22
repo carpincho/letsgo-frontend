@@ -31,6 +31,10 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: 'partials/create_project.html',
         controller: 'ProjectsCtrl'
       })
+      .when('/project/edit/:projectId', {
+        templateUrl: 'partials/edit_project.html',
+        controller: 'ProjectsCtrl'
+      })
       .when('/projects', {
         templateUrl: 'partials/projects.html',
         controller: 'ProjectsCtrl'
