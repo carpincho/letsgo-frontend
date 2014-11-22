@@ -23,9 +23,9 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: 'partials/logout.html',
         controller: 'SessionCtrl'
       })
-      .when('/users/', {
+      .when('/user', {
         templateUrl: 'partials/user.html',
-        controller: 'UsersCtrl'
+        controller: 'UserCtrl'
       })
       .when('/project/create', {
         templateUrl: 'partials/create_project.html',
