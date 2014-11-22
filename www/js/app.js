@@ -58,13 +58,16 @@ app.config(['$routeProvider', '$locationProvider',
     }
   ]);
 
-app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService) {
+app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService, $cookieStore) {
 
 
   $rootScope.authService = AuthService;
   $rootScope.restService = RESTService;
 
   $rootScope.$watch('authService.authorized()', function () {
+
+
+    $rootScope.authService.setLoggedIn($cookieStore.get('lets_go_session2'));
 
     // if never logged in, do nothing (otherwise bookmarks fail)
     if ($rootScope.authService.initialState()) {

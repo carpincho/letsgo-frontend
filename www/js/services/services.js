@@ -34,7 +34,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
     },
     login:function (email, password) {
       currentUser = email;
-  // the payload is simple the json object that we used for binding to the input
+      // the payload is simple the json object that we used for binding to the input
       var payload = {
         email: email,
         password: password
@@ -53,6 +53,8 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         //logged = true;
         authorized = true;
         initialState = false;
+        $cookieStore.put( 'lets_go_session2', authorized );
+
         console.log("Logged in as " + email);
 
       })
@@ -64,16 +66,40 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         // let the message dissapear after 2 secs
         //  $timeout(function() {$scope.errorMsgVisible = false;}, 2000);
       });
-      
+
     },
     logout:function () {
-      currentUser = null;
-      authorized = false;
+
+
+      $http.delete('/sessions')
+      .success(function(data, status, header, config) {
+
+        console.debug('Success logging out the user');
+        currentUser = null;
+        authorized = false;
+        $cookieStore.remove('lets_go_session2');
+
+        // show a success message
+        //  $scope.successMsgVisible = true;
+        // let the message dissapear after 2 secs
+        //  $timeout(function() {$scope.successMsgVisible = false;}, 2000);
+      })
+      .error(function(data, status) {
+        console.debug('Error while logging out the user.');
+      });
+
+
+
+
     },
     isLoggedIn:function () {
       console.log("Is loggged? " + authorized);
 
       return authorized;
+
+    },
+    setLoggedIn:function (status_var) {
+      authorized=status_var;
 
     },
     currentUser:function () {
