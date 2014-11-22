@@ -34,7 +34,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
     },
     login:function (email, password) {
       currentUser = email;
-  // the payload is simple the json object that we used for binding to the input
+      // the payload is simple the json object that we used for binding to the input
       var payload = {
         email: email,
         password: password
@@ -58,30 +58,37 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
       })
       .error(function(data, status) {
         //$log.debug('Error while trying to login user.');
-        console.log('Error while trying to login user.');
-        // show a success message
-        //$scope.errorMsgVisible = true;
-        // let the message dissapear after 2 secs
-        //  $timeout(function() {$scope.errorMsgVisible = false;}, 2000);
-      });
-      
-    },
-    logout:function () {
-      currentUser = null;
-      authorized = false;
-    },
-    isLoggedIn:function () {
-      console.log("Is loggged? " + authorized);
 
-      return authorized;
+        $http.delete('/sessions')
+        .success(function(data, status, header, config) {
 
-    },
-    currentUser:function () {
-      return currentUser;
-    },
-    authorized:function () {
-      return authorized;
-    }
-  };
-}
+          console.debug('Success logging out the user');
+          currentUser = null;
+          authorized = false;
+
+          // show a success message
+          //$scope.errorMsgVisible = true;
+          // let the message dissapear after 2 secs
+          //  $timeout(function() {$scope.errorMsgVisible = false;}, 2000);
+        });
+
+      },
+      logout:function () {
+        currentUser = null;
+        authorized = false;
+      },
+      isLoggedIn:function () {
+        console.log("Is loggged? " + authorized);
+
+        return authorized;
+
+      },
+      currentUser:function () {
+        return currentUser;
+      },
+      authorized:function () {
+        return authorized;
+      }
+    };
+  }
 );
