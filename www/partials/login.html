@@ -34,25 +34,26 @@
                 <label><input name="remember" type="checkbox" value="Remember me">Remember me</label>
                 <label><a href="">Forgot password?</a></label>
               </div>
+            <a class="btn btn-primary" data-dismiss="modal" ng-click="authService.login(formData.email, formData.password)">Log in</a>
 
-              <button ng-click="login(formData.email, formData.password)" class="btn btn-default pull-right">Login</button>
+
             </fieldset>
           </form>
         </div>
       </div>
 
       <!--<form role="form">
-    	  <div class="form-group">
-    	    <label for="userName">Username</label>
-    	    <input type="text" class="form-control" ng-model="formData.username" id="userName" placeholder="Enter your username">
-    	  </div>
+        <div class="form-group">
+          <label for="userName">Username</label>
+          <input type="text" class="form-control" ng-model="formData.username" id="userName" placeholder="Enter your username">
+        </div>
         <div class="form-group">
           <label for="userPassword">Password</label>
           <input type="password" class="form-control" ng-model="formData.password" id="userPassword" placeholder="Enter your password">
         </div>
 
-    	  <button ng-click="login(formData.username, formData.password)" class="btn btn-default">Login</button>
-    	</form>
+        <button ng-click="login(formData.username, formData.password)" class="btn btn-default">Login</button>
+      </form>
 
 
     </div>
