@@ -27,10 +27,15 @@ app.config(['$routeProvider', '$locationProvider',
         templateUrl: 'partials/user.html',
         controller: 'UsersCtrl'
       })
+      .when('/project/create', {
+        templateUrl: 'partials/create_project.html',
+        controller: 'ProjectsCtrl'
+      })
       .when('/projects', {
         templateUrl: 'partials/projects.html',
         controller: 'ProjectsCtrl'
       })
+
       .when('/requirements', {
         templateUrl: 'partials/requirements.html',
         controller: 'RequirementsCtrl'
