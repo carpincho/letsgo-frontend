@@ -11,14 +11,14 @@
     </div>
 
     <div class="collapse navbar-collapse">
-      <div ng-show="!isLogged()">
+      <div ng-show="!authService.isLoggedIn()" >
         <div class="nav navbar-form pull-right">
           <a href="#/signup" role="button" class="btn btn-primary" data-toggle="modal">Sign Up</a>
           <a href="#/login" role="button" class="btn btn-primary">Log in</a>
         </div>
       </div>
 
-      <div ng-show="isLogged()">
+      <div ng-show="authService.isLoggedIn()">
         <ul class="nav navbar-nav">
           <li><a href="#/projects">Projects</a></li>
         </ul>
@@ -35,7 +35,7 @@
               <div class="clearfix"></div>
               <li class="divider"></li>
               <div class="clearfix"></div>
-              <li class="pull-right"><a href="#/logout" >Log Out <span class="glyphicon glyphicon-log-out"></span></a></li>
+              <li class="pull-right"><a href="#/" ng-click="logout()">Log Out <span class="glyphicon glyphicon-log-out"></span></a></li>
               <div class="clearfix"></div>
             </ul>
           </div>

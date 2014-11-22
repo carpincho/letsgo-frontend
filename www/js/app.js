@@ -61,31 +61,33 @@ app.config(['$routeProvider', '$locationProvider',
 app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService) {
 
 
-//  $rootScope.constants = [];
-//    $rootScope.restService.get('data/constants.json', function (data) {
-//      $rootScope.constants = data[0];
-//    }
-//  );
   $rootScope.authService = AuthService;
   $rootScope.restService = RESTService;
 
-//  $rootScope.$watch('authService.authorized()', function () {
+  $rootScope.$watch('authService.authorized()', function () {
 
-  // if never logged in, do nothing (otherwise bookmarks fail)
-  //if ($rootScope.authService.initialState()) {
-    // we are public browsing
-    //return;
-  //}
-  // when user logs in, redirect to home
-  //if ($rootScope.authService.authorized()) {
-  //  $location.path("/");
-  //}
+    // if never logged in, do nothing (otherwise bookmarks fail)
+    if ($rootScope.authService.initialState()) {
+      // we are public browsing
+      return;
+    }
 
-  // when user logs out, redirect to home
-  //if (!$rootScope.authService.authorized()) {
-  //  $location.path("/");
-  //}
+    // instantiate and initialize an auth notification manager
+    //  $rootScope.authNotifier = new NotificationManager($rootScope);
 
-//}, true); // from the watch
+    // when user logs in, redirect to home
+    if ($rootScope.authService.authorized()) {
+      $location.path("/projects");
+      //  $rootScope.authNotifier.notify('information', 'Welcome ' + $rootScope.authService.currentUser() + "!");
+    }
+
+    // when user logs out, redirect to home
+    if (!$rootScope.authService.authorized()) {
+      $location.path("/");
+      //$rootScope.authNotifier.notify('information', 'Thanks for visiting.  You have been signed out.');
+    }
+
+  }, true);
+
 
 });
