@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$http', '$log',
-    function ($scope, $http, $log) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log',
+    function ($scope, $location, $http, $log) {
 
       $scope.projects = [];
 
@@ -35,6 +35,11 @@ angular.module('myApp')
       //$scope.projects = [ myProject1, myProject2, myProject3 ];
       $scope.sprints = [mySprint1, mySprint2, mySprint3];
       // ------------------------
+      // this should be moved to constants
+      $scope.project_status_options = [
+        { label:'open', value: 0 },
+        { label:'closed', value: 1 },
+      ];
 
 
       var init = function() {
@@ -52,32 +57,42 @@ angular.module('myApp')
 
       }();
 
-      $scope.createProject = function(newProject) {
-        //payload = newProject;
 
-        //dummy project
-        var payload = {
-          name: "Puto el que lee",
-          description: "this is a new project created",
-          owner: 1,
-          status: 1,
-          start_date: "10-04-2014",
-          end_date: "1-02-2015"
-        };
+      $scope.cancelCreateProject = function(){
+        $location.path("/projects");
+      }
+
+      $scope.createProject = function(project_name, project_description, project_start_date, project_end_date, project_status) {
+        var payload = {};
+
+        // validate and use service api
+        var ownerId = 1; //get owner
 
         var create_project_uri = "/projects";
 
-        $http.post(create_project_uri, payload)
-        .success(function(data, status, header, config) {
-          //$log.debug('Success creating new project');
-          console.log('Success creating new project');
-        })
-        .error(function(data, status) {
-          //$log.debug('Error while trying to create a new project on server');
-          console.log('Error while trying to create a new project on server');
-        });
-      }
+        var createFormData = {
+          name: project_name,
+          description: project_description,
+          start_date: project_start_date,
+          end_date: project_end_date,
+          status: parseInt(project_status),
+          owner: ownerId,
+        }
 
+        payload = createFormData
+
+        $http.post(create_project_uri, payload)
+         .success(function(data, status, header, config) {
+           //$log.debug('Success creating new project');
+           console.log('Success creating new project');
+           $location.path("/projects");
+        })
+         .error(function(data, status) {
+           //$log.debug('Error while trying to create a new project on server');
+           console.log('Error while trying to create a new project on server');
+        });
+
+      }
 
       $scope.getProject = function(projectId) {
         //var id = projectId;
@@ -158,7 +173,7 @@ angular.module('myApp')
 
         $log.debug("Inviting developers to project...");
 
-        var invite_developers_to_project_uri = '/projects/';
+        var invite_developers_to_project_uri = '/projects/1/';
 
         $http.put(invite_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
@@ -180,7 +195,7 @@ angular.module('myApp')
 
         $log.debug("Removing developers from project...");
 
-        var remove_developers_to_project_uri = "/projects/";
+        var remove_developers_to_project_uri = "/projects/1/";
 
         $http.put(remove_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
