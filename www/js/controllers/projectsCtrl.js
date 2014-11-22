@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams',
-    function ($scope, $location, $http, $log, $routeParams) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService',
+    function ($scope, $location, $http, $log, $routeParams, RESTService) {
 
       $scope.projects = [];
 
@@ -32,16 +32,10 @@ angular.module('myApp')
         // put in a service
         var get_all_projects_uri = '/projects';
 
-        $http.get(get_all_projects_uri)
-          .success(function(data, status, header, config) {
-            console.log('Fetching ' + data.length + ' projects from server...');
-            $scope.projects = data;
-          })
-          .error(function(data, status) {
-            //$log.debug('Error while fetching projects from server');
-            console.log('Error while fetching projects from server');
-          });
-
+        RESTService.get(get_all_projects_uri, function(data){
+          console.log('Fetching ' + data.length + ' projects from server...');
+          $scope.projects = data;
+        });
       }
       // fetch the existing projects in the server
       getProjects();

@@ -7,7 +7,6 @@ function ($http) {
       return $http({method:'GET', url:url}).
       success(function (data, status, headers, config) {
         callback(data);
-        //console.log(data.json);
       }).
       error(function (data, status, headers, config) {
         console.log("failed to retrieve data");
