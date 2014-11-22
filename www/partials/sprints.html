@@ -1,45 +1,51 @@
 <div ng-include="'partials/navbar.html'"></div>
-<h3>Sprints</h3>
-<div>
+
+<div ng-controller="SprintsCtrl">
   <div class="container">
 
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <h2>All Todos</h2>
-      </div>
+      <span class="dropdown" dropdown on-toggle="toggled(open)">
+        <a href class="dropdown-toggle" dropdown-toggle>
+          <h3>Sprints <span class="caret"></span></h3>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#/sprint/create"><i class="fa fa-plus"></i> Create Sprints</a>
+          </li>
+        </ul>
+      </span>
     </div>
 
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-		<table class="table">
-		  <tr>
-		    <th>Description</th>
-		    <th>User</th>
-		    <th>Action</th>
-		  </tr>
-		  <tr ng-repeat="todo in todos">
-		  	<td>{{todo.description}}</td>
-		  	<td>{{todo.name}}</td>
-		  	<td><button ng-click="removeTodo(todo.todoId)">Remove</button></td>
-		  </tr>
-		</table>
-      </div>
-    </div>
+    <!-- Sprint  -->
+    <div class="col-md-6">
+      <div ng-repeat="sprint in sprints">
 
-    <div class="row">
-      <div class="col-md-5 col-md-offset-1">
-		<form role="form">
-		  <div class="form-group">
-		    <label for="todoInput">Add todo</label>
-		    <input type="text" class="form-control" ng-model="todoModel.description" id="todoInput" placeholder="Todo description">
-		  </div>
+        <div id="stream">
+          <!-- stream item -->
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">Sprint Title (id:)</span></li>
+                  <li><span class="item-content">Sprint Owner: </span></li>
+                  <li><span class="item-content">Sprint Description: </span></li>
+                  <li>
+                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Created: </p> </li>
+                      <li>
+                        <div class="btn-group pull-right">
+                          <a  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                          <a  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
 
-		  <button ng-click="addTodo(todoModel.description)" class="btn btn-default">
-		  	Add todo
-		  </button>
-		</form>
       </div>
-    </div>
+    </div> <!-- end Sprint -->
 
 
   </div> <!-- end of container -->
