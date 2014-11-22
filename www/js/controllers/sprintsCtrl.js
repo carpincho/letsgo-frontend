@@ -3,79 +3,57 @@
 angular.module('myApp')
   .controller('SprintsCtrl', ['$scope', '$http', '$log',
     function ($scope, $http, $log) {
+      $scope.projects = [];
 
-      // we store all data in the data array
-      $scope.todos = [];
+      // hardcoded data for testing ----
+      var mySprint1 = { id: 1,
+        project_id: 1,
+        name: "Sprint 1",
+        status: 0,
+        start_date:"10/04/2014",
+        end_date: "1/02/2015",
+      };
 
-      $scope.todoModel = {
-        description: ''
+      var mySprint2 = { id: 2,
+        project_id: 1,
+        name: "Sprint 2",
+        status: 0,
+        start_date:"10/04/2014",
+        end_date: "1/02/2015",
+      };
+
+      var mySprint3 = { id: 3,
+        project_id: 3,
+        name: "Sprint 1",
+        status: 1,
+        start_date:"10/04/2014",
+        end_date: "1/02/2015",
+      };
+      //----
+
+      //$scope.sprints = [mySprint1, mySprint2, mySprint3];
+
+      var getSprints = function() {
+        // put in a service
+        //var get_all_projects_uri = '/projects/:projectId/sprints';
+
+        var projectId = 1;
+        var get_all_projects_uri = '/projects/' + projectId + '/sprints';
+
+        $http.get(get_all_projects_uri)
+        .success(function(data, status, header, config) {
+          console.log('Fetching ' + data.length + ' sprints from server...');
+          $scope.sprints = data;
+        })
+        .error(function(data, status) {
+          //$log.debug('Error while fetching projects from server');
+          console.log('Error while fetching projects from server');
+        });
+
       }
-
-      // declaration !AND! call (see parenthesis at end of function)
-      // of a function that fetches the todos from the server
-      var init = function() {
-        $http.get('/api/todos')
-          .success(function(data, status, header, config) {
-
-            // the server should return a json array which contains all the todos
-            $scope.todos = data;
-          })
-          .error(function(data, status) {
-            $log.debug('Error while fetching todos from server');
-          });
-
-      }();
-
-      // function to remove a todo with the given id
-      $scope.removeTodo = function(todoId) {
-        $log.debug("Removing todo " + todoId);
-
-        // find the element in the data array and remove it
-        for(var i =0; i < $scope.todos.length; i++) {
-          if($scope.todos[i].todoId === todoId) {
-            $scope.todos.splice(i, 1);
-          }
-        }
-
-        $http.delete('/api/todos/' + todoId)
-          .success(function(data, status, header, config) {
-            $log.debug('Success removing todo item');
-          })
-          .error(function(data, status) {
-            $log.debug('Error while trying to remove todo item on server');
-          });
-      }
+      // fetch the existing projects in the server
+      getSprints();
 
 
-      // Function to add a new todo to the list.
-      // Note: we provide the description and the user as parameters as this makes it easier to test
-      // the funciton. We could directly access the $scope.todoModel to get the same values.
-      // But then our unit-test would have account for that dependency.
-      $scope.addTodo = function(todoDescription) {
-
-        // construct the payload that we will send as part of the post request
-        var payload = {
-          description: todoDescription
-        }
-
-        $log.debug("Sending payload: " + JSON.stringify(payload));
-
-        // send the payload to the server
-        $http.post('/api/todos', payload)
-          .success(function(data, status, header, config) {
-            // the server should return a json object that represents the new todo item
-            // we add the item to the list of todos
-            $log.debug('Success adding new todo');
-            // add the new todo to our list of todos
-            $scope.todos.push(data);
-            // reset the todoModel to not have a description (we keep the last selected user)
-            $scope.todoModel.description = '';
-          })
-          .error(function(data, status) {
-            $log.debug('Error while trying to add new todo item');
-
-            alert("You must login first.")
-          });
-      }
     }
   ]);
