@@ -33,26 +33,26 @@ angular.module('myApp')
 
       //$scope.sprints = [mySprint1, mySprint2, mySprint3];
 
-      var getSprints = function() {
-        // put in a service
-        //var get_all_projects_uri = '/projects/:projectId/sprints';
-
-        var projectId = 1;
-        var get_all_projects_uri = '/projects/' + projectId + '/sprints';
-
-        $http.get(get_all_projects_uri)
-        .success(function(data, status, header, config) {
-          console.log('Fetching ' + data.length + ' sprints from server...');
-          $scope.sprints = data;
-        })
-        .error(function(data, status) {
-          //$log.debug('Error while fetching projects from server');
-          console.log('Error while fetching projects from server');
-        });
-
-      }
-      // fetch the existing projects in the server
-      getSprints();
+      // var getSprints = function() {
+      //   // put in a service
+      //   //var get_all_projects_uri = '/projects/:projectId/sprints';
+      //
+      //   var projectId = 1;
+      //   var get_all_projects_uri = '/projects/' + projectId + '/sprints';
+      //
+      //   $http.get(get_all_projects_uri)
+      //   .success(function(data, status, header, config) {
+      //     console.log('Fetching ' + data.length + ' sprints from server...');
+      //     $scope.sprints = data;
+      //   })
+      //   .error(function(data, status) {
+      //     //$log.debug('Error while fetching projects from server');
+      //     console.log('Error while fetching projects from server');
+      //   });
+      //
+      // }
+      // // fetch the existing projects in the server
+      // getSprints();
 
 
     }
