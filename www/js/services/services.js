@@ -53,42 +53,61 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         //logged = true;
         authorized = true;
         initialState = false;
+        $cookieStore.put( 'lets_go_session2', authorized );
+
         console.log("Logged in as " + email);
 
       })
       .error(function(data, status) {
         //$log.debug('Error while trying to login user.');
+        console.log('Error while trying to login user.');
+        // show a success message
+        //$scope.errorMsgVisible = true;
+        // let the message dissapear after 2 secs
+        //  $timeout(function() {$scope.errorMsgVisible = false;}, 2000);
+      });
 
-        $http.delete('/sessions')
-        .success(function(data, status, header, config) {
+    },
+    logout:function () {
 
-          console.debug('Success logging out the user');
-          currentUser = null;
-          authorized = false;
 
-          // show a success message
-          //$scope.errorMsgVisible = true;
-          // let the message dissapear after 2 secs
-          //  $timeout(function() {$scope.errorMsgVisible = false;}, 2000);
-        });
+      $http.delete('/sessions')
+      .success(function(data, status, header, config) {
 
-      },
-      logout:function () {
+        console.debug('Success logging out the user');
         currentUser = null;
         authorized = false;
-      },
-      isLoggedIn:function () {
-        console.log("Is loggged? " + authorized);
+        $cookieStore.remove('lets_go_session2');
 
-        return authorized;
+        // show a success message
+        //  $scope.successMsgVisible = true;
+        // let the message dissapear after 2 secs
+        //  $timeout(function() {$scope.successMsgVisible = false;}, 2000);
+      })
+      .error(function(data, status) {
+        console.debug('Error while logging out the user.');
+      });
 
-      },
-      currentUser:function () {
-        return currentUser;
-      },
-      authorized:function () {
-        return authorized;
-      }
-    };
-  }
+
+
+
+    },
+    isLoggedIn:function () {
+      console.log("Is loggged? " + authorized);
+
+      return authorized;
+
+    },
+    setLoggedIn:function (status_var) {
+      authorized=status_var;
+
+    },
+    currentUser:function () {
+      return currentUser;
+    },
+    authorized:function () {
+      return authorized;
+    }
+  };
+}
 );
