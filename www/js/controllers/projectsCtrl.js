@@ -6,8 +6,6 @@ angular.module('myApp')
 
       $scope.projects = [];
 
-
-
       // ------------------------
       // this should be moved to constants
       $scope.project_status_options = [

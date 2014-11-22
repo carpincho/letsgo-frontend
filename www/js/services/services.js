@@ -24,8 +24,6 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
   var currentUser = null;
   var authorized = false;
 
-  // initMaybe it wasn't meant to work for mpm?ial state says we haven't logged in or out yet...
-  // this tells us we are in public browsing
   var initialState = true;
 
   return {
@@ -34,7 +32,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
     },
     login:function (email, password) {
       currentUser = email;
-      // the payload is simple the json object that we used for binding to the input
+
       var payload = {
         email: email,
         password: password
@@ -53,6 +51,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         //logged = true;
         authorized = true;
         initialState = false;
+
         $cookieStore.put( 'lets_go_session2', authorized );
 
         console.log("Logged in as " + email);
@@ -77,6 +76,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         console.debug('Success logging out the user');
         currentUser = null;
         authorized = false;
+
         $cookieStore.remove('lets_go_session2');
 
         // show a success message
@@ -93,8 +93,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
 
     },
     isLoggedIn:function () {
-      console.log("Is loggged? " + authorized);
-
+      //console.log("Is loggged? " + authorized);
       return authorized;
 
     },
