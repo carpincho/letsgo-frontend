@@ -1,6 +1,5 @@
 'use strict';
 
-// simple stub that could use a lot of work...
 app.factory('RESTService',
 function ($http) {
   return {
@@ -19,11 +18,9 @@ function ($http) {
 );
 
 
-// simple auth service that can use a lot of work...
 app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
   var currentUser = null;
   var authorized = false;
-
   var initialState = true;
 
   return {
