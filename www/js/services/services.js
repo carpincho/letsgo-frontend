@@ -30,6 +30,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
     initialState:function () {
       return initialState;
     },
+
     login:function (email, password) {
       currentUser = email;
 
@@ -53,8 +54,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         initialState = false;
 
         $cookieStore.put( 'lets_go_session2', authorized );
-
-        console.log("Logged in as " + email);
+        //console.log("Logged in as " + email);
 
       })
       .error(function(data, status) {
@@ -67,9 +67,8 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
       });
 
     },
+
     logout:function () {
-
-
       $http.delete('/sessions')
       .success(function(data, status, header, config) {
 
@@ -88,9 +87,6 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         console.debug('Error while logging out the user.');
       });
 
-
-
-
     },
     isLoggedIn:function () {
       //console.log("Is loggged? " + authorized);
@@ -101,9 +97,11 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
       authorized=status_var;
 
     },
+
     currentUser:function () {
       return currentUser;
     },
+
     authorized:function () {
       return authorized;
     }
