@@ -36,13 +36,9 @@
                           <div class="btn-group pull-right">
                             <a class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
                             <a href="#projectMembers" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Members</a>
-                            <a href="#projectProperties" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-cog"></span> Properties</a>
-                            <a ng-click='deleteProject(project.id);' class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                            <a href="#shareProject" class="btn btn-default btn-xs"  data-toggle="modal"><span class="glyphicon glyphicon-share"></span> Share</a>
-                            <a ng-click='updateProject();' class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> updaaaate</a>
-
-                            <a ng-click='getProject();' class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-ok"></span> get_project</a>
-                            <a ng-click='inviteDevelopersToProject();' class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> invite devps</a>
+                            <a ng-href="#/project/edit/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                            <a ng-click='deleteProject(project.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                            <a ng-click='inviteDevelopersToProject();' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
                           </div>
                           <div class="clearfix"></div>
                         </li>
