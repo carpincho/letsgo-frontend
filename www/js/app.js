@@ -9,51 +9,54 @@ app.config(['$logProvider', function($logProvider){
 
 /** Define the routes for the application; This routing is done by Angular */
 app.config(['$routeProvider', '$locationProvider',
-function($routeProvider, $locationProvider) {
-  $routeProvider
-  .when('/home', {
-    templateUrl: 'partials/home.html',
-    controller: 'HomeCtrl'
-  })
-  .when('/login', {
-    templateUrl: 'partials/login.html',
-    controller: 'SessionCtrl'
-  })
-  .when('/logout', {
-    templateUrl: 'partials/logout.html',
-    controller: 'SessionCtrl'
-  })
-  .when('/users/', {
-    templateUrl: 'partials/user.html',
-    controller: 'UsersCtrl'
-  })
-  .when('/project/create', {
-    templateUrl: 'partials/create_project.html',
-    controller: 'ProjectsCtrl'
-  })
-  .when('/projects', {
-    templateUrl: 'partials/projects.html',
-    controller: 'ProjectsCtrl'
-  })
+  function($routeProvider, $locationProvider) {
+    $routeProvider
+      .when('/home', {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'partials/login.html',
+        controller: 'SessionCtrl'
+      })
+      .when('/logout', {
+        templateUrl: 'partials/logout.html',
+        controller: 'SessionCtrl'
+      })
+      .when('/users/', {
+        templateUrl: 'partials/user.html',
+        controller: 'UsersCtrl'
+      })
+      .when('/project/create', {
+        templateUrl: 'partials/create_project.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/project/edit/:projectId', {
+        templateUrl: 'partials/edit_project.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/projects', {
+        templateUrl: 'partials/projects.html',
+        controller: 'ProjectsCtrl'
+      })
 
-  .when('/requirements', {
-    templateUrl: 'partials/requirements.html',
-    controller: 'RequirementsCtrl'
-  })
-  .when('/sprints', {
-    templateUrl: 'partials/sprints.html',
-    controller: 'SprintsCtrl'
-  })
-  .when('/tasks', {
-    templateUrl: 'partials/tasks.html',
-    controller: 'TasksCtrl'
-  })
-  .otherwise({
-    redirectTo: '/login'
-  });
-}
-]);
-
+      .when('/requirements', {
+        templateUrl: 'partials/requirements.html',
+        controller: 'RequirementsCtrl'
+      })
+      .when('/sprints', {
+        templateUrl: 'partials/sprints.html',
+        controller: 'SprintsCtrl'
+      })
+      .when('/tasks', {
+        templateUrl: 'partials/tasks.html',
+        controller: 'TasksCtrl'
+      })
+      .otherwise({
+        redirectTo: '/login'
+      });
+    }
+  ]);
 
 app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService) {
 

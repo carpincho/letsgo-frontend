@@ -9,7 +9,7 @@
           <div class="panel panel-primary">
 
             <div class="panel-heading">
-              <h3 class="panel-title">Create Project {{createFormData.project_name}}</h3>
+              <h3 class="panel-title">Edit Project {{ project_retrieved.name }}</h3>
             </div>
             <div class="panel-body">
               <form accept-charset="UTF-8" role="form">
@@ -17,31 +17,31 @@
 
                   <div class="form-group">
                     <label for="exampleInputProjectName1">Project Name (*)</label>
-                    <input class="form-control" ng-model="createFormData.project_name" placeholder="Project Name" name="project_name" type="text" required>
+                    <input class="form-control" ng-model="project_retrieved.name" placeholder="Project Name" name="project_name" type="text" required>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputProjectDescription">Project Description</label>
-                    <textarea class="form-control" ng-model="createFormData.project_description" name="project_description" placeholder="Project Description" rows="4"></textarea>
+                    <textarea class="form-control" ng-model="project_retrieved.description" name="project_description" placeholder="Project Description" rows="4"></textarea>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputStartDate">Start Date</label>
-                    <input class="form-control" ng-model="createFormData.project_start_date" placeholder="2013-2-1" name="start_date" type="text" required>
+                    <input class="form-control" ng-model="project_retrieved.start_date" placeholder="2013-2-1" name="start_date" type="text" required>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputStartDate">Completion Date</label>
-                    <input class="form-control" ng-model="createFormData.project_end_date" placeholder="2014-2-1" name="end_date" type="text" required>
+                    <input class="form-control" ng-model="project_retrieved.end_date" placeholder="2014-2-1" name="end_date" type="text" required>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleSelectLanguage1">Status</label>
-                    <select  class="form-control" ng-model="createFormData.project_status" ng-init="createFormData.project_status = project_status_options[0]" ng-options="option.label for option in project_status_options" required></select>
+                    <select  class="form-control" ng-model="option_selected" ng-options="option.label for option in project_status_options" required></select>
                   </div>
 
-                  <button ng-click="createProject(createFormData.project_name, createFormData.project_description, createFormData.project_start_date, createFormData.project_end_date, createFormData.project_status.value)" class="btn btn-primary">Create</button>
-                  <a ng-click="cancelCreateProject()" class="btn btn-default">Cancel</a>
+                  <button ng-click="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, option_selected.value)" class="btn btn-primary">Update</button>
+                  <a ng-click="cancelUpdateProject()" class="btn btn-default">Cancel</a>
 
                 </fieldset>
               </form>
