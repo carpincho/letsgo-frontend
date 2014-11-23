@@ -12,26 +12,42 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
       })
+
       .when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'SessionCtrl'
       })
+
       .when('/logout', {
         templateUrl: 'partials/logout.html',
         controller: 'SessionCtrl'
       })
+
+      .when('/user/edit/:userId', {
+        templateUrl: 'partials/edit_user.html',
+        controller: 'UserCtrl'
+      })
+
       .when('/user', {
         templateUrl: 'partials/user.html',
         controller: 'UserCtrl'
       })
-      .when('/project/create', {
-        templateUrl: 'partials/create_project.html',
-        controller: 'ProjectsCtrl'
-      })
+
       .when('/project/edit/:projectId', {
         templateUrl: 'partials/edit_project.html',
         controller: 'ProjectsCtrl'
       })
+
+      .when('/project/create', {
+        templateUrl: 'partials/create_project.html',
+        controller: 'ProjectsCtrl'
+      })
+
+      .when('/project/edit/:projectId', {
+        templateUrl: 'partials/edit_project.html',
+        controller: 'ProjectsCtrl'
+      })
+
       .when('/projects', {
         templateUrl: 'partials/projects.html',
         controller: 'ProjectsCtrl'
@@ -41,14 +57,17 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         templateUrl: 'partials/requirements.html',
         controller: 'RequirementsCtrl'
       })
+
       .when('/sprints', {
         templateUrl: 'partials/sprints.html',
         controller: 'SprintsCtrl'
       })
+
       .when('/tasks', {
         templateUrl: 'partials/tasks.html',
         controller: 'TasksCtrl'
       })
+
       .otherwise({
         redirectTo: '/login'
       });
