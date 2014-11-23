@@ -1,7 +1,6 @@
 'use strict';
 
-app.factory('RESTService',
-function ($http) {
+app.factory('RESTService', function ($http) {
   return {
     get: function (url, callback) {
       return $http({method:'GET', url:url})
@@ -43,12 +42,11 @@ function ($http) {
       })
     }
 
-
   };
 });
 
 
-app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore, RESTService) {
+app.factory('AuthService', function ($http, $log, $timeout, $cookieStore, RESTService) {
   var currentUser = null;
   var authorized = false;
   var initialState = true;
@@ -59,14 +57,15 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore, RESTSe
       return initialState;
     },
 
-    login: function (email, password) {
-
+    login: function (email, password, rememberMe) {
       currentUser = email;
 
       var payload = {
         email: email,
         password: password
       }
+
+      //rememberMe is true if setted, undefined if not
 
       RESTService.post(sessions_uri, payload, function(data){
         //$log.debug('Success logging in the user');
@@ -78,9 +77,9 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore, RESTSe
         $cookieStore.put( 'lets_go_session_client', authorized );
 
         // show a success message
-        // $scope.successMsgVisible = true;
+        //$scope.successMsgVisible = true;
         // let the message dissapear after 2 secs
-        // $timeout(function() {$scope.successMsgVisible = false;}, 2000);
+        //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
         // console.log("Logged in as " + email);
       });
 
@@ -98,26 +97,26 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore, RESTSe
         $cookieStore.remove('lets_go_session_client');
 
         // show a success message
-        // $scope.successMsgVisible = true;
+        //$scope.successMsgVisible = true;
         // let the message dissapear after 2 secs
-        // $timeout(function() {$scope.successMsgVisible = false;}, 2000);
+        //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
       });
 
     },
 
-    isLoggedIn:function () {
+    isLoggedIn: function () {
       return authorized;
     },
 
-    setLoggedIn:function (status_var) {
+    setLoggedIn: function (status_var) {
       authorized=status_var;
     },
 
-    currentUser:function () {
+    currentUser: function () {
       return currentUser;
     },
 
-    authorized:function () {
+    authorized: function () {
       return authorized;
     }
 
