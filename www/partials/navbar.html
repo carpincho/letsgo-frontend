@@ -24,22 +24,29 @@
         </ul>
 
         <div class="nav navbar-form pull-right">
-          <div class="btn-group " dropdown is-open="status.isopen">
+          <div class="btn-group" dropdown is-open="status.isopen">
             <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-               User <span class="fa fa-cog"></span>
+               {{ userInfo.email }} <span class="glyphicon glyphicon-user"></span>
             </button>
-            <ul class="dropdown-menu menu-dropdown-forceleft" role="menu">
-              <li class="pull-right"><a href="#/user/edit/1">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a></li>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <li class="pull-right">
+                <a href="#/user/edit/1">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a>
+              </li>
               <div class="clearfix"></div>
-              <li class="pull-right"><a href="#/password">Change Password <span class="fa fa-key"></span></a></li>
+              <li class="pull-right">
+                <a href="#/password">Change Password <span class="fa fa-key"></span></a>
+              </li>
               <div class="clearfix"></div>
               <li class="divider"></li>
               <div class="clearfix"></div>
-              <li class="pull-right"><a href="#/" ng-click="authService.logout()">Log Out <span class="glyphicon glyphicon-log-out"></span></a></li>
+              <li class="pull-right">
+                <a href="#/" ng-click="authService.logout()">Log Out <span class="glyphicon glyphicon-log-out"></span></a>
+              </li>
               <div class="clearfix"></div>
             </ul>
           </div>
         </div>
+
       </div>
 
     </div> <!-- collapsable  -->
