@@ -48,6 +48,7 @@ app.factory('RESTService', function ($http){
 
 app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTService){
   var currentUser = null;
+  var userInfo = null;
   var authorized = false;
   var initialState = true;
   var sessions_uri = '/sessions';
@@ -87,6 +88,7 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 
     logout: function () {
       var sessions_uri = '/sessions';
+
       RESTService.delete(sessions_uri, function(data){
         //console.debug('Success logging out the user');
         console.log('Success logging out the user');

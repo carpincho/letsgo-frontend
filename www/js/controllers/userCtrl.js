@@ -6,19 +6,20 @@ angular.module('myApp')
     var baseUsersUri = '/users'
     var userId = 1;
     var getUserUri = baseUsersUri + '/' + userId;
+    var updateUserUri = baseUsersUri + "/" + userId;
+    
     // -------------------------------------------------------
 
     var getUser = function(){
       RESTService.get(getUserUri, function(data){
         $scope.userInfo = data;
         //$log.debug(data)
-        //console.log(data);
+        console.log(data);
       });
     }
     getUser();
 
     $scope.editUser = function(email, firstname, lastname, password) {
-      var updateUserUri = baseUsersUri + "/" + userId;
 
       var payload = {
         id: userId,

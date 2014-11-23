@@ -25,12 +25,12 @@
 
         <div class="nav navbar-form pull-right">
           <div class="btn-group" dropdown is-open="status.isopen">
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
                {{ userInfo.email }} <span class="glyphicon glyphicon-user"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
               <li>
-                <a href="#/user/edit/1">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a>
+                <a ng-href="#/user/edit/{{ userInfo.id }}">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a>
               </li>
               <li class="divider"></li>
 
