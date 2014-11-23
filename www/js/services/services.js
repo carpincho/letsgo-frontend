@@ -1,23 +1,23 @@
 'use strict';
 
-app.factory('RESTService', function ($http) {
+app.factory('RESTService', function ($http){
   return {
     get: function (url, callback) {
       return $http({method:'GET', url:url})
-      .success(function (data, status, headers, config) {
+      .success(function (data, status, headers, config){
         callback(data);
       })
-      .error(function (data, status, headers, config) {
+      .error(function (data, status, headers, config){
         console.log("failed to get data");
       });
     },
 
     post: function(url, payload, callback){
       return $http({method:'POST', url:url, data:payload})
-      .success(function (data, status, headers, config) {
+      .success(function (data, status, headers, config){
         callback(data);
       })
-      .error(function (data, status, headers, config) {
+      .error(function (data, status, headers, config){
         console.log("failed to post data");
       });
     },
@@ -46,18 +46,18 @@ app.factory('RESTService', function ($http) {
 });
 
 
-app.factory('AuthService', function ($http, $log, $timeout, $cookieStore, RESTService) {
+app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTService){
   var currentUser = null;
   var authorized = false;
   var initialState = true;
   var sessions_uri = '/sessions';
 
   return {
-    initialState:function () {
+    initialState: function(){
       return initialState;
     },
 
-    login: function (email, password, rememberMe) {
+    login: function (email, password, rememberMe){
       currentUser = email;
 
       var payload = {
@@ -74,7 +74,7 @@ app.factory('AuthService', function ($http, $log, $timeout, $cookieStore, RESTSe
         authorized = true;
         initialState = false;
 
-        $cookieStore.put( 'lets_go_session_client', authorized );
+        $cookieStore.put( 'lets_go_session_client', authorized);
 
         // show a success message
         //$scope.successMsgVisible = true;
@@ -104,19 +104,19 @@ app.factory('AuthService', function ($http, $log, $timeout, $cookieStore, RESTSe
 
     },
 
-    isLoggedIn: function () {
+    isLoggedIn: function(){
       return authorized;
     },
 
-    setLoggedIn: function (status_var) {
+    setLoggedIn: function(status_var){
       authorized=status_var;
     },
 
-    currentUser: function () {
+    currentUser: function(){
       return currentUser;
     },
 
-    authorized: function () {
+    authorized: function(){
       return authorized;
     }
 

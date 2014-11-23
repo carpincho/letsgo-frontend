@@ -2,14 +2,11 @@
 
 var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 
-/** Turn on/off the angular debugging; should be off when deployed */
 app.config(['$logProvider', function($logProvider){
   $logProvider.debugEnabled(false);
 }]);
 
-/** Define the routes for the application; This routing is done by Angular */
-app.config(['$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/home', {
         templateUrl: 'partials/home.html',
@@ -58,36 +55,31 @@ app.config(['$routeProvider', '$locationProvider',
     }
   ]);
 
-app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService, $cookieStore) {
 
+app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService, $cookieStore) {
 
   $rootScope.authService = AuthService;
   $rootScope.restService = RESTService;
 
-  $rootScope.$watch('authService.authorized()', function () {
-
+  $rootScope.$watch('authService.authorized()', function(){
 
     $rootScope.authService.setLoggedIn($cookieStore.get('lets_go_session_client'));
 
     // if never logged in, do nothing (otherwise bookmarks fail)
-    if ($rootScope.authService.initialState()) {
+    if ($rootScope.authService.initialState()){
       // we are public browsing
       return;
     }
 
-    // instantiate and initialize an auth notification manager
-    //  $rootScope.authNotifier = new NotificationManager($rootScope);
-
     // when user logs in, redirect to home
-    if ($rootScope.authService.authorized()) {
+    if ($rootScope.authService.authorized()){
       $location.path("/projects");
       //  $rootScope.authNotifier.notify('information', 'Welcome ' + $rootScope.authService.currentUser() + "!");
     }
 
     // when user logs out, redirect to home
-    if (!$rootScope.authService.authorized()) {
+    if (!$rootScope.authService.authorized()){
       $location.path("/");
-      //$rootScope.authNotifier.notify('information', 'Thanks for visiting.  You have been signed out.');
     }
 
   }, true);
