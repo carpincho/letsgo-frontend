@@ -14,7 +14,7 @@
           <h3 class="panel-title">Login</h3>
         </div>
         <div class="panel-body">
-          <form accept-charset="UTF-8" role="form">
+          <form ng-submit="authService.login(formData.email, formData.password)" accept-charset="UTF-8" role="form">
             <fieldset>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email Address</label>
@@ -34,7 +34,7 @@
                 <label><input name="remember" type="checkbox" value="Remember me">Remember me</label>
                 <label><a href="">Forgot password?</a></label>
               </div>
-            <a class="btn btn-primary" data-dismiss="modal" ng-click="authService.login(formData.email, formData.password)">Log in</a>
+            <input type="submit" class="btn btn-primary" id="submit" value="Log in" />
 
 
             </fieldset>
