@@ -3,18 +3,49 @@
 app.factory('RESTService',
 function ($http) {
   return {
-    get:function (url, callback) {
-      return $http({method:'GET', url:url}).
-      success(function (data, status, headers, config) {
+    get: function (url, callback) {
+      return $http({method:'GET', url:url})
+      .success(function (data, status, headers, config) {
         callback(data);
-      }).
-      error(function (data, status, headers, config) {
-        console.log("failed to retrieve data");
+      })
+      .error(function (data, status, headers, config) {
+        console.log("failed to get data");
       });
+    },
+
+    post: function(url, payload, callback){
+      return $http({method:'POST', url:url, data:payload})
+      .success(function (data, status, headers, config) {
+        callback(data);
+      })
+      .error(function (data, status, headers, config) {
+        console.log("failed to post data");
+      });
+    },
+
+    put: function(url, payload, callback){
+      return $http({method:'PUT', url:url, data:payload})
+      .success(function(data, status, headers, config){
+        callback(data);
+      })
+      .error(function(data, status, headers, config){
+        console.log("failed to put data");
+      })
+    },
+
+    delete: function(url, callback){
+      return $http({method:'DELETE', url:url})
+      .success(function(data, status, headers, config){
+        callback(data);
+      })
+      .error(function(data, status, headers, config){
+        console.log("failed to delete data");
+      })
     }
+
+
   };
-}
-);
+});
 
 
 app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
