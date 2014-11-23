@@ -80,7 +80,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         authorized = true;
         initialState = false;
 
-        $cookieStore.put( 'lets_go_session2', authorized );
+        $cookieStore.put( 'lets_go_session_client', authorized );
         //console.log("Logged in as " + email);
 
       })
@@ -103,7 +103,7 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         currentUser = null;
         authorized = false;
 
-        $cookieStore.remove('lets_go_session2');
+        $cookieStore.remove('lets_go_session_client');
 
         // show a success message
         //  $scope.successMsgVisible = true;
