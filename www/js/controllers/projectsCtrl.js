@@ -49,8 +49,8 @@ angular.module('myApp')
       $scope.createProject = function(name, description, start_date, end_date, status) {
         // put in a service
         var create_project_uri = "/projects";
-
         var payload = {};
+
         // validate
         var ownerId = 1; //get owner
 
@@ -65,15 +65,10 @@ angular.module('myApp')
 
         payload = createFormData
 
-        $http.post(create_project_uri, payload)
-         .success(function(data, status, header, config) {
-           //$log.debug('Success creating new project');
-           console.log('Success creating new project');
-           $location.path("/projects");
-        })
-         .error(function(data, status) {
-           //$log.debug('Error while trying to create a new project on server');
-           console.log('Error while trying to create a new project on server');
+        RESTService.post(create_project_uri, payload, function(data){
+          //$log.debug('Success creating new project');
+          console.log('Success creating new project');
+          $location.path("/projects");
         });
 
       }
@@ -87,17 +82,12 @@ angular.module('myApp')
           return fetchedProject;
         }
 
-        $http.get(get_project_uri)
-        .success(function(data, status, header, config) {
+        RESTService.get(get_project_uri, function(data){
           //$log.debug('Success getting a project');
           console.log('Success getting a project');
           fetchedProject = data;
           $scope.project_retrieved = data;
           $scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
-        })
-        .error(function(data, status) {
-          //$log.debug('Error while trying to getting a project on server');
-          console.log('Error while trying to getting a project on server');
         });
       }
       // get project from url
@@ -128,17 +118,13 @@ angular.module('myApp')
 
         payload = updateFormData;
 
-         $http.put(update_project_uri, payload)
-         .success(function(data, status, header, config) {
-           //$log.debug('Success updating project');
-           console.log('Success updating project');
-           // put in a service
-           $location.path('/projects');
-         })
-         .error(function(data, status) {
-           //$log.debug('Error while trying to update project on server.');
-           console.log('Error while trying to update project on server.');
-         });
+        RESTService.put(update_project_uri, payload, function(data){
+          //$log.debug('Success getting a project');
+          console.log('Success updating a project');
+          // put in a service
+          $location.path('/projects');
+        });
+
       }
 
 
@@ -148,16 +134,11 @@ angular.module('myApp')
 
         $log.debug('Deleting project '  + projectId);
 
-        $http.delete(delete_project_uri)
-          .success(function(data, status, header, config) {
-            //$log.debug('Success deleting project');
-            console.log('Success deleting project');
-            getProjects();
-          })
-          .error(function(data, status) {
-            //$log.debug('Error while trying to delete project on server');
-            console.log('Error while trying to delete project on server');
-          });
+        RESTService.delete(delete_project_uri, function(data){
+          //$log.debug('Success deleting project');
+          console.log('Success deleting project');
+          getProjects();
+        });
       }
 
 
@@ -209,8 +190,5 @@ angular.module('myApp')
           console.log('Error while trying to invite developers to project on server.');
         });
       }
-
-
-
     }
   ]);
