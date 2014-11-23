@@ -74,7 +74,6 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     // when user logs in, redirect to home
     if ($rootScope.authService.authorized()){
       $location.path("/projects");
-      //  $rootScope.authNotifier.notify('information', 'Welcome ' + $rootScope.authService.currentUser() + "!");
     }
 
     // when user logs out, redirect to home
