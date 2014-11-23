@@ -48,17 +48,19 @@ function ($http) {
 });
 
 
-app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
+app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore, RESTService) {
   var currentUser = null;
   var authorized = false;
   var initialState = true;
+  var sessions_uri = '/sessions';
 
   return {
     initialState:function () {
       return initialState;
     },
 
-    login:function (email, password) {
+    login: function (email, password) {
+
       currentUser = email;
 
       var payload = {
@@ -66,63 +68,49 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
         password: password
       }
 
-      $http.post('/sessions', payload)
-      .success(function(data, status, header, config) {
-
+      RESTService.post(sessions_uri, payload, function(data){
         //$log.debug('Success logging in the user');
         console.log('Success logging in the user');
 
-        // show a success message
-        //$scope.successMsgVisible = true;
-        // let the message dissapear after 2 secs
-        //  $timeout(function() {$scope.successMsgVisible = false;}, 2000);
-        //logged = true;
         authorized = true;
         initialState = false;
 
         $cookieStore.put( 'lets_go_session_client', authorized );
-        //console.log("Logged in as " + email);
 
-      })
-      .error(function(data, status) {
-        //$log.debug('Error while trying to login user.');
-        console.log('Error while trying to login user.');
         // show a success message
-        //$scope.errorMsgVisible = true;
+        // $scope.successMsgVisible = true;
         // let the message dissapear after 2 secs
-        //  $timeout(function() {$scope.errorMsgVisible = false;}, 2000);
+        // $timeout(function() {$scope.successMsgVisible = false;}, 2000);
+        // console.log("Logged in as " + email);
       });
 
     },
 
-    logout:function () {
-      $http.delete('/sessions')
-      .success(function(data, status, header, config) {
+    logout: function () {
+      var sessions_uri = '/sessions';
+      RESTService.delete(sessions_uri, function(data){
+        //console.debug('Success logging out the user');
+        console.log('Success logging out the user');
 
-        console.debug('Success logging out the user');
         currentUser = null;
         authorized = false;
 
         $cookieStore.remove('lets_go_session_client');
 
         // show a success message
-        //  $scope.successMsgVisible = true;
+        // $scope.successMsgVisible = true;
         // let the message dissapear after 2 secs
-        //  $timeout(function() {$scope.successMsgVisible = false;}, 2000);
-      })
-      .error(function(data, status) {
-        console.debug('Error while logging out the user.');
+        // $timeout(function() {$scope.successMsgVisible = false;}, 2000);
       });
 
     },
-    isLoggedIn:function () {
-      //console.log("Is loggged? " + authorized);
-      return authorized;
 
+    isLoggedIn:function () {
+      return authorized;
     },
+
     setLoggedIn:function (status_var) {
       authorized=status_var;
-
     },
 
     currentUser:function () {
@@ -132,6 +120,6 @@ app.factory('AuthService',function ( $http, $log, $timeout, $cookieStore) {
     authorized:function () {
       return authorized;
     }
+
   };
-}
-);
+});
