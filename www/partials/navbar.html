@@ -29,20 +29,14 @@
                {{ userInfo.email }} <span class="glyphicon glyphicon-user"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-              <li class="pull-right">
+              <li>
                 <a href="#/user/edit/1">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a>
               </li>
-              <div class="clearfix"></div>
-              <li class="pull-right">
-                <a href="#/password">Change Password <span class="fa fa-key"></span></a>
-              </li>
-              <div class="clearfix"></div>
               <li class="divider"></li>
-              <div class="clearfix"></div>
-              <li class="pull-right">
+
+              <li>
                 <a href="#/" ng-click="authService.logout()">Log Out <span class="glyphicon glyphicon-log-out"></span></a>
               </li>
-              <div class="clearfix"></div>
             </ul>
           </div>
         </div>
