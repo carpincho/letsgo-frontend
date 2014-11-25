@@ -7,8 +7,38 @@ angular.module('myApp')
     var userId = 1;
     var getUserUri = baseUsersUri + '/' + userId;
     var updateUserUri = baseUsersUri + "/" + userId;
+    var passwordMinLenth = 6;
 
-    // -------------------------------------------------------
+    $scope.cancelSignUp = function(){
+      $location.path('/login');
+    }
+
+    $scope.signUp = function(email, firstname, lastname, password, confirmPassword){
+      $scope.passwordMatch = false;
+
+      var signupDataForm = {
+        email: email,
+        firstname: firstname,
+        lastname: lastname,
+        password: password
+      };
+
+      var payload = signupDataForm;
+
+      if (password == confirmPassword && password.length > passwordMinLenth) {
+        $scope.passwordMatch = true;
+
+        RESTService.post(baseUsersUri, payload, function(data){
+          //$log.debug('Success creating new project');
+          console.log('Success creating new user');
+          $location.path("/login");
+        });
+      }else{
+        $scope.passwordMatch = false;
+      }
+
+    }
+
 
     var getUser = function(){
       RESTService.get(getUserUri, function(data){
@@ -18,7 +48,7 @@ angular.module('myApp')
         console.log(data);
       });
     }
-    getUser();
+    //getUser();
 
     $scope.editUser = function(email, firstname, lastname, password) {
 

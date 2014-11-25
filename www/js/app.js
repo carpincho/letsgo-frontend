@@ -23,6 +23,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         controller: 'SessionCtrl'
       })
 
+      .when('/signup', {
+        templateUrl: 'partials/signup.html',
+        controller: 'UserCtrl'
+      })
+
       .when('/user/edit/:userId', {
         templateUrl: 'partials/edit_user.html',
         controller: 'UserCtrl'
