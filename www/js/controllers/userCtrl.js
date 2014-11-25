@@ -39,25 +39,13 @@ angular.module('myApp')
 
     }
 
-
-    var getUser = function(){
-      RESTService.get(getUserUri, function(data){
-        $scope.userInfo = data;
-        //$log.debug(data)
-        console.debug(data);
-        console.log(data);
-      });
-    }
-    //getUser();
-
-    $scope.editUser = function(email, firstname, lastname, password) {
+    $scope.editUser = function(email, firstname, lastname) {
 
       var payload = {
         id: userId,
         firstname: firstname,
         lastname: lastname,
         email: email,
-        password: password,
       }
 
       RESTService.put(updateUserUri, payload, function(data){
