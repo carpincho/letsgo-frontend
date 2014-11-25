@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse">
       <div ng-show="!authService.isLoggedIn()" >
         <div class="nav navbar-form pull-right">
-          <a href="#/signup" role="button" class="btn btn-primary" data-toggle="modal">Sign Up</a>
+          <a href="#/signup" role="button" class="btn btn-primary">Sign Up</a>
           <a href="#/login" role="button" class="btn btn-primary">Log in</a>
         </div>
       </div>
@@ -30,7 +30,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
               <li>
-                <a ng-href="#/user/edit/{{ userInfo.id }}">Edit Profile <span class="glyphicon glyphicon-pencil"></span></a>
+                <a ng-href="#/user">Profile <span class="glyphicon glyphicon-pencil"></span></a>
               </li>
               <li class="divider"></li>
 

@@ -59,7 +59,6 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
     },
 
     login: function (email, password, rememberMe){
-      currentUser = email;
 
       var payload = {
         email: email,
@@ -68,14 +67,20 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 
       //rememberMe is true if setted, undefined if not
 
-      RESTService.post(sessions_uri, payload, function(data){
+        RESTService.post(sessions_uri, payload, function(data){
         //$log.debug('Success logging in the user');
         console.log('Success logging in the user');
 
         authorized = true;
         initialState = false;
+        currentUser = email;
+        // check for data structure
+        // validate data structure
+        userInfo = data;
 
         $cookieStore.put( 'lets_go_session_client', authorized);
+        $cookieStore.put( 'lets_go_user_info',userInfo);
+
 
         // show a success message
         //$scope.successMsgVisible = true;
@@ -91,12 +96,13 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 
       RESTService.delete(sessions_uri, function(data){
         //console.debug('Success logging out the user');
-        console.log('Success logging out the user');
+      //  console.log('Success logging out the user');
 
         currentUser = null;
         authorized = false;
-
+        userInfo = null;
         $cookieStore.remove('lets_go_session_client');
+        $cookieStore.remove('lets_go_user_info');
 
         // show a success message
         //$scope.successMsgVisible = true;
@@ -110,8 +116,14 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
       return authorized;
     },
 
-    setLoggedIn: function(status_var){
-      authorized=status_var;
+    getUserInfo: function(){
+      return userInfo;
+    },
+
+    setLoggedIn: function(status_var,user_info){
+      authorized = status_var;
+      userInfo = user_info;
+
     },
 
     currentUser: function(){
