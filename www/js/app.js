@@ -91,6 +91,22 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
   var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
   $rootScope.authService.setLoggedIn(cookie_lets_go_session_client,cookie_lets_go_user_info);
 
+  var baseUsersUri = '/users'
+  var userId = cookie_lets_go_user_info;
+  var getUserUri = baseUsersUri + '/' + userId;
+
+
+//validate when is not defined userID  
+  var getUser = function(){
+    RESTService.get(getUserUri, function(data){
+      $rootScope.userInfo = data;
+      //$log.debug(data)
+      console.debug(data);
+      console.log(data);
+    });
+  }
+
+    getUser();
 
     // if never logged in, do nothing (otherwise bookmarks fail)
     if ($rootScope.authService.initialState()){
