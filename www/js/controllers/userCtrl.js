@@ -35,7 +35,6 @@ angular.module('myApp')
           console.log('Success creating new user');
           $location.path("/login");
         });
-        console.log("signup:" + signupDataForm );
       }else{
         $scope.passwordMatch = false;
       }
