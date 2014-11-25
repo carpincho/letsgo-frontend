@@ -66,6 +66,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       .when('/tasks', {
         templateUrl: 'partials/tasks.html',
         controller: 'TasksCtrl'
+      })          //For tests
+
+      .when('/projects/:projectID/sprints/:sprintID/stories/:storyID/tasks',{
+        templateUrl: 'partials/tasks.html',
+        controller: 'TasksCtrl'
+      })
+
+      .when('/projects/:projectID/sprints/:sprintID/stories/:storyID/tasks/create',{
+          templateUrl: 'partials/create_task.html',
+          controller: 'TasksCtrl'
       })
 
       .otherwise({

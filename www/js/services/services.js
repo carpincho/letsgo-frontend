@@ -124,3 +124,31 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 
   };
 });
+
+app.factory('taskService',['$http','RESTService',function ($http,RESTService){
+  return{
+    getAllTasks: function(projectId,sprintID,storyID){
+      var get_all_tasks_url ='/projects/'+projectId+'/sprints/'+sprintID+'/stories/'+storyID+'/tasks';
+
+      var fetchedProject = {};
+      var fetchedSprint = {};
+      var fetchedStory = {};
+      if(typeof(projectId) == 'undefined' || projectId == null) {
+        return fetchedProject;
+      }
+      if(typeof(sprintID) == 'undefined' || sprintID == null) {
+        return fetchedSprint;
+      }
+      if(typeof(storyID) == 'undefined' || storyID == null) {
+        return fetchedStory;
+      }
+
+      RESTService.get(get_all_tasks_url, function(data){
+        console.log('Fetching ' + data.length + ' tasks from server...');
+      });
+      return data;
+
+    }// fetch the existing projects in the server
+  }
+
+}]);
