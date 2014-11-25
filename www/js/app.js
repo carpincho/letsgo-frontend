@@ -82,7 +82,10 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
   $rootScope.$watch('authService.authorized()', function(){
 
-    $rootScope.authService.setLoggedIn($cookieStore.get('lets_go_session_client'));
+  var cookie_lets_go_session_client = $cookieStore.get('lets_go_session_client');
+  var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
+  $rootScope.authService.setLoggedIn(cookie_lets_go_session_client,cookie_lets_go_user_info);
+
 
     // if never logged in, do nothing (otherwise bookmarks fail)
     if ($rootScope.authService.initialState()){

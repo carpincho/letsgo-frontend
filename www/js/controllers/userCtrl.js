@@ -7,13 +7,14 @@ angular.module('myApp')
     var userId = 1;
     var getUserUri = baseUsersUri + '/' + userId;
     var updateUserUri = baseUsersUri + "/" + userId;
-    
+
     // -------------------------------------------------------
 
     var getUser = function(){
       RESTService.get(getUserUri, function(data){
         $scope.userInfo = data;
         //$log.debug(data)
+        console.debug(data);
         console.log(data);
       });
     }
