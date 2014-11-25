@@ -7,77 +7,77 @@ app.config(['$logProvider', function($logProvider){
 }]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
-    $routeProvider
-      .when('/home', {
-        templateUrl: 'partials/home.html',
-        controller: 'HomeCtrl'
-      })
+  $routeProvider
+  .when('/home', {
+    templateUrl: 'partials/home.html',
+    controller: 'HomeCtrl'
+  })
 
-      .when('/login', {
-        templateUrl: 'partials/login.html',
-        controller: 'SessionCtrl'
-      })
+  .when('/login', {
+    templateUrl: 'partials/login.html',
+    controller: 'SessionCtrl'
+  })
 
-      .when('/logout', {
-        templateUrl: 'partials/logout.html',
-        controller: 'SessionCtrl'
-      })
+  .when('/logout', {
+    templateUrl: 'partials/logout.html',
+    controller: 'SessionCtrl'
+  })
 
-      .when('/signup', {
-        templateUrl: 'partials/signup.html',
-        controller: 'UserCtrl'
-      })
+  .when('/signup', {
+    templateUrl: 'partials/signup.html',
+    controller: 'UserCtrl'
+  })
 
-      .when('/user/edit/:userId', {
-        templateUrl: 'partials/edit_user.html',
-        controller: 'UserCtrl'
-      })
+  .when('/user/edit/:userId', {
+    templateUrl: 'partials/edit_user.html',
+    controller: 'UserCtrl'
+  })
 
-      .when('/user', {
-        templateUrl: 'partials/user.html',
-        controller: 'UserCtrl'
-      })
+  .when('/user', {
+    templateUrl: 'partials/user.html',
+    controller: 'UserCtrl'
+  })
 
-      .when('/project/edit/:projectId', {
-        templateUrl: 'partials/edit_project.html',
-        controller: 'ProjectsCtrl'
-      })
+  .when('/project/edit/:projectId', {
+    templateUrl: 'partials/edit_project.html',
+    controller: 'ProjectsCtrl'
+  })
 
-      .when('/project/create', {
-        templateUrl: 'partials/create_project.html',
-        controller: 'ProjectsCtrl'
-      })
+  .when('/project/create', {
+    templateUrl: 'partials/create_project.html',
+    controller: 'ProjectsCtrl'
+  })
 
-      .when('/project/edit/:projectId', {
-        templateUrl: 'partials/edit_project.html',
-        controller: 'ProjectsCtrl'
-      })
+  .when('/project/edit/:projectId', {
+    templateUrl: 'partials/edit_project.html',
+    controller: 'ProjectsCtrl'
+  })
 
-      .when('/projects', {
-        templateUrl: 'partials/projects.html',
-        controller: 'ProjectsCtrl'
-      })
+  .when('/projects', {
+    templateUrl: 'partials/projects.html',
+    controller: 'ProjectsCtrl'
+  })
 
-      .when('/requirements', {
-        templateUrl: 'partials/requirements.html',
-        controller: 'RequirementsCtrl'
-      })
+  .when('/requirements', {
+    templateUrl: 'partials/requirements.html',
+    controller: 'RequirementsCtrl'
+  })
 
-      .when('/sprints', {
-        templateUrl: 'partials/sprints.html',
-        controller: 'SprintsCtrl'
-      })
+  .when('/sprints', {
+    templateUrl: 'partials/sprints.html',
+    controller: 'SprintsCtrl'
+  })
 
-      .when('/tasks', {
-        templateUrl: 'partials/tasks.html',
-        controller: 'TasksCtrl'
-      })
+  .when('/tasks', {
+    templateUrl: 'partials/tasks.html',
+    controller: 'TasksCtrl'
+  })
 
-      .otherwise({
-        redirectTo: '/login'
-      });
-    }
-  ]);
+  .otherwise({
+    redirectTo: '/login'
+  });
+}
+]);
 
 
 app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService, $cookieStore) {
@@ -87,24 +87,22 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
   $rootScope.$watch('authService.authorized()', function(){
 
-  var cookie_lets_go_session_client = $cookieStore.get('lets_go_session_client');
-  var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
-  $rootScope.authService.setLoggedIn(cookie_lets_go_session_client,cookie_lets_go_user_info);
+    var cookie_lets_go_session_client = $cookieStore.get('lets_go_session_client');
+    var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
+    $rootScope.authService.setLoggedIn(cookie_lets_go_session_client,cookie_lets_go_user_info);
 
-  var baseUsersUri = '/users'
-  var userId = cookie_lets_go_user_info;
-  var getUserUri = baseUsersUri + '/' + userId;
+    var baseUsersUri = '/users'
+    var userId = cookie_lets_go_user_info;
+    var getUserUri = baseUsersUri + '/' + userId;
 
 
-//validate when is not defined userID  
-  var getUser = function(){
-    RESTService.get(getUserUri, function(data){
-      $rootScope.userInfo = data;
-      //$log.debug(data)
-      console.debug(data);
-      console.log(data);
-    });
-  }
+    //validate when is not defined userID
+    var getUser = function(){
+      RESTService.get(getUserUri, function(data){
+        $rootScope.userInfo = data;
+        //$log.debug(data);
+      });
+    }
 
     getUser();
 
