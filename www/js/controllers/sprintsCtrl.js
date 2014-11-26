@@ -1,37 +1,41 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('SprintsCtrl', ['$scope', '$http', '$log',
-    function ($scope, $http, $log) {
-      $scope.projects = [];
+  .controller('SprintsCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
 
-      // hardcoded data for testing ----
-      var mySprint1 = { id: 1,
-        project_id: 1,
-        name: "Sprint 1",
-        status: 0,
-        start_date:"10/04/2014",
-        end_date: "1/02/2015",
-      };
+      $scope.sprints = [];
 
-      var mySprint2 = { id: 2,
-        project_id: 1,
-        name: "Sprint 2",
-        status: 0,
-        start_date:"10/04/2014",
-        end_date: "1/02/2015",
-      };
 
-      var mySprint3 = { id: 3,
-        project_id: 3,
-        name: "Sprint 1",
-        status: 1,
-        start_date:"10/04/2014",
-        end_date: "1/02/2015",
-      };
-      //----
 
-      //$scope.sprints = [mySprint1, mySprint2, mySprint3];
+      $scope.createSprint = function(project_id, name, start_date, end_date) {
+        var status = 0; // this is a bug in the api/database
+
+        var payload = {};
+
+        var createFormData = {
+          project_id: project_id,
+          name: name,
+          start_date: start_date,
+          end_date: end_date,
+          status: parseInt(status), // bug in api
+        }
+
+        payload = createFormData
+
+        RESTService.post(create_project_uri, payload, function(data){
+          $log.debug('Success creating new project');
+          $location.path("/projects");
+        });
+      }
+
+
+      $scope.cancelCreateSprint = function(){
+        $location.path("/projects");
+      }
+
+
+
+
 
       // var getSprints = function() {
       //   // put in a service
