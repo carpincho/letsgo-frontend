@@ -12,35 +12,35 @@
               <h3 class="panel-title">Create Project {{createFormData.project_name}}</h3>
             </div>
             <div class="panel-body">
-              <form accept-charset="UTF-8" role="form">
+              <form ng-submit="createProject(createFormData.project_name, createFormData.project_description, createFormData.project_start_date, createFormData.project_end_date, createFormData.project_status.value)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
-                    <label for="exampleInputProjectName1">Project Name (*)</label>
+                    <label for="project_name">Project Name (*)</label>
                     <input class="form-control" ng-model="createFormData.project_name" placeholder="Project Name" name="project_name" type="text" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputProjectDescription">Project Description</label>
+                    <label for="project_description">Project Description</label>
                     <textarea class="form-control" ng-model="createFormData.project_description" name="project_description" placeholder="Project Description" rows="4"></textarea>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputStartDate">Start Date</label>
+                    <label for="start_date">Start Date</label>
                     <input class="form-control" ng-model="createFormData.project_start_date" placeholder="2013-2-1" name="start_date" type="text" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputStartDate">Completion Date</label>
-                    <input class="form-control" ng-model="createFormData.project_end_date" placeholder="2014-2-1" name="end_date" type="text" required>
+                    <label for="end_date">Completion Date</label>
+                    <input class="form-control" ng-model="createFormData.project_end_date" placeholder="2014-2-1" name="end_date" type="text">
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleSelectLanguage1">Status</label>
-                    <select  class="form-control" ng-model="createFormData.project_status" ng-init="createFormData.project_status = project_status_options[0]" ng-options="option.label for option in project_status_options" required></select>
+                    <label for="project_status">Status</label>
+                    <select  class="form-control" ng-model="createFormData.project_status" name="project_status" ng-init="createFormData.project_status = project_status_options[0]" ng-options="option.label for option in project_status_options" required></select>
                   </div>
 
-                  <button ng-click="createProject(createFormData.project_name, createFormData.project_description, createFormData.project_start_date, createFormData.project_end_date, createFormData.project_status.value)" class="btn btn-primary">Create</button>
+                  <input type="submit" class="btn btn-primary" id="submit" value="Create" />
                   <a ng-click="cancelCreateProject()" class="btn btn-default">Cancel</a>
 
                 </fieldset>
