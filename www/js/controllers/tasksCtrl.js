@@ -12,12 +12,6 @@ angular.module('myApp')
 
       TaskService.getAllTasks();
 
-      $scope.cancelCreate = function(){
-        // put in a service
-        $location.path(TaskService.getTaskPath());
-      }
-
-
       $scope.createTask = function(description,nr) {
         // put in a service
         var create_task_uri = TaskService.getTaskPath();
@@ -42,6 +36,12 @@ angular.module('myApp')
 
       }
 
+
+      $scope.cancelCreateTasks = function(){
+        // put in a service
+        $location.path(TaskService.getTaskPath());
+      }
+  
 
     }
   ]);
