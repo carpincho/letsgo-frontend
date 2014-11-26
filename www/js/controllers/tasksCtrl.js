@@ -3,6 +3,7 @@
 angular.module('myApp')
   .controller('TasksCtrl', ['$scope', '$http', '$log', '$routeParams', '$location', 'TaskService', 'RESTService',
     function ($scope, $http, $log, $routeParams, $location, TaskService, RESTService) {
+
       $scope.currentStoryID = TaskService.getCurrentStoryID();
       $scope.currentStory = TaskService.getCurrentStory();
 
@@ -10,6 +11,7 @@ angular.module('myApp')
       $scope.tasks = TaskService.getAllTasks($routeParams.projectId,$routeParams.sprintID,$routeParams.sprintID);
 
       TaskService.getAllTasks();
+
       $scope.cancelCreate = function(){
         // put in a service
         $location.path(TaskService.getTaskPath());
@@ -34,8 +36,7 @@ angular.module('myApp')
         payload = createFormData
 
         RESTService.post(create_task_uri, payload, function(data){
-          //$log.debug('Success creating new task');
-          console.log('Success creating new task');
+          $log.debug('Success creating new task');
           $location.path(TaskService.getTaskPath());
         });
 
