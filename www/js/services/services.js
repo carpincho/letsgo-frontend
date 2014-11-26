@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('RESTService', function ($http){
+app.factory('RESTService', ['$http', '$log', function ($http, $log){
   return {
     get: function (url, callback) {
       return $http({method:'GET', url:url})
@@ -43,7 +43,7 @@ app.factory('RESTService', function ($http){
     }
 
   };
-});
+}]);
 
 
 app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTService){
