@@ -18,7 +18,7 @@
 
     <!-- Tasks -->
     <div class="col-md-6">
-      <!--<div ng-repeat="task in tasks">-->
+      <div ng-repeat="task in tasks">
 
       <div id="stream">
         <!-- stream item -->
@@ -26,9 +26,9 @@
           <div class="row">
             <div class="stream-panel credits">
               <ul class="stream-panel-ul">
-                <li><span class="item-title">Task Title (id:)</span></li>
-                <li><span class="item-content">Task Owner: </span></li>
-                <li><span class="item-content">Task Description: </span></li>
+                <li><span class="item-title">task id: {{ task.id }}</span></li>
+                <li><span class="item-content">Owner: {{ task.owner }} </span></li>
+                <li><span class="item-content">Task Description: {{ task.description }}</span></li>
                 <li>
                   <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Created: </p> </li>
                     <li>
@@ -43,7 +43,7 @@
               </div>
             </div> <!-- end stream-item -->
           </div> <!-- end stream -->
-          <!--</div>-->
+          </div>
 
         </div> <!-- end Tasks -->
 

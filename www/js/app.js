@@ -7,6 +7,7 @@ app.config(['$logProvider', function($logProvider){
 }]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+
   $routeProvider
   .when('/home', {
     templateUrl: 'partials/home.html',
@@ -78,6 +79,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'TasksCtrl'
   })
 
+  .when('/projects/:projectID/sprints/:sprintID/stories/:storyID/tasks',{
+    templateUrl: 'partials/tasks.html',
+    controller: 'TasksCtrl'
+  })
+
+  .when('/task/create',{
+    templateUrl: 'partials/create_task.html',
+    controller: 'TasksCtrl'
+  })
+
   .otherwise({
     redirectTo: '/login'
   });
@@ -108,11 +119,8 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
         //$log.debug(data);
       });
     }
-    if(userId != undefined){
-      // the user is not logged yet
-      getUser();
-    }
 
+    getUser();
 
     // if never logged in, do nothing (otherwise bookmarks fail)
     if ($rootScope.authService.initialState()){

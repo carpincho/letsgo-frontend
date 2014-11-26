@@ -1,0 +1,120 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+
+<div ng-controller="TasksCtrl">
+  <div class="container">
+    <div class="container">
+      <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-primary">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Create Task {{currentStoryID}}</h3>
+            </div>
+            <div class="panel-body">
+              <form accept-charset="UTF-8" role="form">
+                <fieldset>
+
+                  <div class="form-group">
+                    <label >Create Task in</label>
+                    <label class="form-control">{{currentStory}}</label>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputTaskDescription">Task Description</label>
+                    <textarea class="form-control" ng-model="createFormData.task_description" name="task_description" placeholder="Task Description" rows="4"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                  <label >Task Point: </label>
+                  <input class="form-control" ng-model="createFormData.task_nr" name="task_nr" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+                  </div>
+
+
+                  <!--<div class="form-group">
+                    <label>Project</label>
+                    <label>{{projectID}}</label>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Sprint</label>
+                    <label>{{sprint.id}}</label>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Story</label>
+                    <label>{{story.id}}</label>
+                  </div>-->
+
+                  <button ng-click="createTask(createFormData.task_description, createFormData.task_nr)" class="btn btn-primary">Create</button>
+                  <a ng-click="cancelCreate()" class="btn btn-default">Cancel</a>
+
+                </fieldset>
+              </form>
+            </div>
+            <div class="panel-footer">
+              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div> <!-- end container -->
+</div> <!-- end ProjectCtrl -->
+
+
+
+
+
+
+
+
+
+
+<!--
+<div>
+<div class="container">
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+<h2>All Todos</h2>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+<table class="table">
+<tr>
+<th>Description</th>
+<th>Name</th>
+<th>Action</th>
+</tr>
+<tr ng-repeat="project in projects">
+<td>{{project.description}}</td>
+<td>{{project.name}}</td>
+<td><button ng-click="removeTodo(todo.todoId)">Remove</button></td>
+</tr>
+</table>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-5 col-md-offset-1">
+<form role="form">
+<div class="form-group">
+<label for="todoInput">Add todo</label>
+<input type="text" class="form-control" ng-model="todoModel.description" id="todoInput" placeholder="Todo description">
+</div>
+
+<button ng-click="addTodo(todoModel.description)" class="btn btn-default">
+Add todo
+</button>
+</form>
+</div>
+</div>
+
+
+</div>
+</div> -->
