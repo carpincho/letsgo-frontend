@@ -120,8 +120,6 @@ angular.module('myApp')
       $scope.deleteProject = function(projectId) {
         var delete_project_uri = '/projects/' + projectId;
 
-        $log.debug('Deleting project '  + projectId);
-
         RESTService.delete(delete_project_uri, function(data){
           $log.debug('Success deleting project');
           getProjects();
@@ -135,13 +133,11 @@ angular.module('myApp')
         // put in a service
         var invite_developers_to_project_uri = '/projects/' + projectId + '/invite_devs';
 
-
         // var payload = developers;
         var payload = {
           devs: [1, 2]
         };
-
-        $log.debug('Inviting developers to project...');
+    
 
         $http.put(invite_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
