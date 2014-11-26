@@ -3,7 +3,7 @@
 var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 
 app.config(['$logProvider', function($logProvider){
-  $logProvider.debugEnabled(false);
+  $logProvider.debugEnabled(true);
 }]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
@@ -65,6 +65,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
   .when('/sprints', {
     templateUrl: 'partials/sprints.html',
+    controller: 'SprintsCtrl'
+  })
+
+  .when('/sprint/create', {
+    templateUrl: 'partials/create_sprint.html',
     controller: 'SprintsCtrl'
   })
 
