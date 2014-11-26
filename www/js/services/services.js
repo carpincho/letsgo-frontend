@@ -137,10 +137,32 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
   };
 });
 
-app.factory('taskService',['$http','RESTService',function ($http,RESTService){
+app.factory('TaskService',function ($http,RESTService){
+  var currentProjectID = 1;
+  var currentSprintID = 1;
+  var currentStoryID = 1;
+  var currentProjectName = "pro1";
+  var currentSprintName = "spr1";
+  var currentStoryName = "sto1";
+
   return{
+
+    getCurrentStory: function(){
+      var currentStory = currentProjectName+" > "+currentSprintName+" > "+currentStoryName;
+      return currentStory;
+    },
+
+    getCurrentStoryID:function(){
+      return currentStoryID;
+    },
+
+    getTaskPath: function(){
+      var taskPath = "/projects/" + currentProjectID + "/sprints/" + currentSprintID + "/stories/" + currentStoryID + "/tasks";
+      return taskPath;
+    },
+
     getAllTasks: function(projectId,sprintID,storyID){
-      var get_all_tasks_url ='/projects/'+projectId+'/sprints/'+sprintID+'/stories/'+storyID+'/tasks';
+      var get_all_tasks_url ='/projects/'+currentProjectID+'/sprints/'+currentSprintID+'/stories/'+currentStoryID+'/tasks';
 
       var fetchedProject = {};
       var fetchedSprint = {};
@@ -161,6 +183,5 @@ app.factory('taskService',['$http','RESTService',function ($http,RESTService){
       return data;
 
     }// fetch the existing projects in the server
-  }
-
-}]);
+  };
+});
