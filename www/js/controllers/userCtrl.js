@@ -11,10 +11,6 @@ angular.module('myApp')
 
     var passwordMinLenth = 6;
 
-    $scope.cancelSignUp = function(){
-      $location.path('/login');
-    }
-
     $scope.signUp = function(email, firstname, lastname, password, confirmPassword){
       $scope.passwordMatch = false;
 
@@ -31,18 +27,22 @@ angular.module('myApp')
         $scope.passwordMatch = true;
 
         RESTService.post(baseUsersUri, payload, function(data){
-          //$log.debug('Success creating new project');
-          console.log('Success creating new user');
+          $log.debug('Success creating new project');
           $location.path("/login");
         });
       }else{
+        $log.warn('Password doesn\'t match');
         $scope.passwordMatch = false;
       }
-
     }
 
-    $scope.editUser = function(email, firstname, lastname) {
+    $scope.cancelSignUp = function(){
+      $log.debug('Cancel sign up');
+      $location.path('/login');
+    }
 
+
+    $scope.editUser = function(email, firstname, lastname) {
       var payload = {
         id: userId,
         firstname: firstname,
@@ -51,21 +51,20 @@ angular.module('myApp')
       }
 
       RESTService.put(updateUserUri, payload, function(data){
-        //$log.debug('Success getting a project');
-        console.log('Success editing user');
+        $log.debug('Success editing user');
         $location.path('/user');
       });
     }
 
     $scope.cancelEditUser = function(){
+      $log.debug('Cancel edit user');
       $location.path('/user');
     }
 
     $scope.deleteUser = function(){
       console.log("delete user" + deleteUserUri);
       RESTService.delete(deleteUserUri, function(data){
-        //$log.debug('Success deleting user');
-        console.log('Success deleting user');
+        $log.debug('Success deleting user');
         AuthService.logout();
         $location.path('/home');
       });
