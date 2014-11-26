@@ -120,8 +120,11 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
       });
     }
 
-    getUser();
-
+    if(userId != undefined){
+      // the user is not logged yet
+      getUser();
+    }
+    
     // if never logged in, do nothing (otherwise bookmarks fail)
     if ($rootScope.authService.initialState()){
       // we are public browsing
