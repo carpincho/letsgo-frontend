@@ -133,7 +133,7 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
   };
 });
 
-app.factory('TaskService',function ($http,RESTService){
+app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService){
   var currentProjectID = 1;
   var currentSprintID = 1;
   var currentStoryID = 1;
@@ -180,4 +180,4 @@ app.factory('TaskService',function ($http,RESTService){
 
     }// fetch the existing projects in the server
   };
-});
+}]);
