@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService',
-    function ($scope, $location, $http, $log, $routeParams, RESTService) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService) {
+      var get_all_projects_uri = '/projects';
+      var create_project_uri = "/projects";
 
+
+      var ownerId = AuthService.getUserInfo();
       $scope.projects = [];
 
       // ------------------------
@@ -29,11 +32,8 @@ angular.module('myApp')
       // ------------------------
 
       var getProjects = function() {
-        // put in a service
-        var get_all_projects_uri = '/projects';
-
         RESTService.get(get_all_projects_uri, function(data){
-          console.log('Fetching ' + data.length + ' projects from server...');
+          $log.debug('Fetching ' + data.length + ' projects from server...');
           $scope.projects = data;
         });
       }
@@ -41,18 +41,8 @@ angular.module('myApp')
       getProjects();
 
 
-      $scope.cancelCreateProject = function(){
-        // put in a service
-        $location.path("/projects");
-      }
-
       $scope.createProject = function(name, description, start_date, end_date, status) {
-        // put in a service
-        var create_project_uri = "/projects";
         var payload = {};
-
-        // validate
-        var ownerId = 1; //get owner
 
         var createFormData = {
           name: name,
@@ -66,15 +56,18 @@ angular.module('myApp')
         payload = createFormData
 
         RESTService.post(create_project_uri, payload, function(data){
-          //$log.debug('Success creating new project');
-          console.log('Success creating new project');
+          $log.debug('Success creating new project');
           $location.path("/projects");
         });
-
       }
 
+
+      $scope.cancelCreateProject = function(){
+        $location.path("/projects");
+      }
+
+
       var getProject = function(projectId) {
-        // put in a service
         var get_project_uri = "/projects/" +  projectId;
 
         var fetchedProject = {};
@@ -83,8 +76,7 @@ angular.module('myApp')
         }
 
         RESTService.get(get_project_uri, function(data){
-          //$log.debug('Success getting a project');
-          console.log('Success getting a project');
+          $log.debug('Success getting a project');
           fetchedProject = data;
           $scope.project_retrieved = data;
           $scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
@@ -94,16 +86,10 @@ angular.module('myApp')
       getProject($routeParams.projectId);
 
 
-      $scope.cancelUpdateProject = function(){
-        // put in a service
-        $location.path("/projects");
-      }
-
       $scope.updateProject = function(projectId, name, description, start_date, end_date, status) {
         // put in a service
         var update_project_uri = '/projects/' + projectId;
 
-        var ownerId = 1; //get owner
         var payload;
 
         var updateFormData = {
@@ -119,24 +105,25 @@ angular.module('myApp')
         payload = updateFormData;
 
         RESTService.put(update_project_uri, payload, function(data){
-          //$log.debug('Success getting a project');
-          console.log('Success updating a project');
-          // put in a service
+          $log.debug('Success updating a project');
           $location.path('/projects');
         });
 
       }
 
 
+      $scope.cancelUpdateProject = function(){
+        $location.path("/projects");
+      }
+
+
       $scope.deleteProject = function(projectId) {
-        // put in a service
         var delete_project_uri = '/projects/' + projectId;
 
         $log.debug('Deleting project '  + projectId);
 
         RESTService.delete(delete_project_uri, function(data){
-          //$log.debug('Success deleting project');
-          console.log('Success deleting project');
+          $log.debug('Success deleting project');
           getProjects();
         });
       }
@@ -158,12 +145,10 @@ angular.module('myApp')
 
         $http.put(invite_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
-          //$log.debug('Success inviting developers to project');
-          console.log('Success inviting developers to project');
+          $log.debug('Success inviting developers to project');
         })
         .error(function(data, status) {
-          //$log.debug('Error while trying to invite developers to project on server.');
-          console.log('Error while trying to invite developers to project on server.');
+          $log.debug('Error while trying to invite developers to project on server');
         });
       }
 
@@ -178,16 +163,13 @@ angular.module('myApp')
           devs: [1, 2]
         };
 
-        $log.debug('Removing developers from project...');
 
         $http.put(remove_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
-          //$log.debug('Success inviting developers to project');
-          console.log('Success inviting developers to project');
+          $log.debug('Success removing developers from project...');
         })
         .error(function(data, status) {
-          //$log.debug('Error while trying to invite developers to project on server.');
-          console.log('Error while trying to invite developers to project on server.');
+          $log.debug('Error while trying to remove invited developers to project');
         });
       }
     }
