@@ -73,7 +73,6 @@ angular.module('myApp')
 
         var sprintId = $routeParams.sprintId;
         var projectId = $routeParams.projectId;
-        $log.error(sprintId + " - " + projectId );
 
         if(sprintId != undefined && projectId != undefined){
           var update_sprint_uri = '/projects/' + projectId + '/sprints/' + sprintId;
