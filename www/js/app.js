@@ -69,8 +69,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'SprintsCtrl'
   })
 
-  .when('/sprint/create', {
+  .when('/sprint/create/:projectId', {
     templateUrl: 'partials/create_sprint.html',
+    controller: 'SprintsCtrl'
+  })
+
+  .when('/projects/:projectId/sprints/edit/:sprintId', {
+    templateUrl: 'partials/edit_sprint.html',
     controller: 'SprintsCtrl'
   })
 
@@ -124,7 +129,7 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
       // the user is not logged yet
       getUser();
     }
-    
+
     // if never logged in, do nothing (otherwise bookmarks fail)
     if ($rootScope.authService.initialState()){
       // we are public browsing
