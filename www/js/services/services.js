@@ -133,6 +133,26 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
   };
 });
 
+app.factory('SharedProjectSprintService', function($rootScope){
+
+  var sharedService = {
+      projectId: -1,
+  };
+
+  sharedService.prepForBroadcast = function(projectId){
+    this.projectId = projectId;
+    this.broadcastItem();
+  };
+
+  sharedService.broadcastItem = function(){
+    $rootScope.$broadcast('eventGetRelatedSprints');
+  }
+
+  return sharedService;
+});
+
+
+
 app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService){
   var currentProjectID = 1;
   var currentSprintID = 1;
