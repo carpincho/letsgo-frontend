@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService, ProjectService) {
       var get_all_projects_uri = '/projects';
       var create_project_uri = "/projects";
 
@@ -32,7 +32,7 @@ angular.module('myApp')
       // ------------------------
 
       var getProjects = function() {
-        RESTService.get(get_all_projects_uri, function(data){
+        ProjectService.getAllProjects(function(data){
           $log.debug('Fetching ' + data.length + ' projects from server...');
           $scope.projects = data;
         });
@@ -41,21 +41,18 @@ angular.module('myApp')
       getProjects();
 
 
-      $scope.createProject = function(name, description, start_date, end_date, status) {
-        var payload = {};
+      $scope.createProject = function(name, description, startDate, endDate, status) {
 
         var createFormData = {
           name: name,
           description: description,
-          start_date: start_date,
-          end_date: end_date,
+          start_date: startDate,
+          end_date: endDate,
           status: parseInt(status),
           owner: ownerId,
         }
 
-        payload = createFormData
-
-        RESTService.post(create_project_uri, payload, function(data){
+        ProjectService.createProject(createFormData, function(data){
           $log.debug('Success creating new project');
           $location.path("/projects");
         });
@@ -67,30 +64,22 @@ angular.module('myApp')
       }
 
 
-      var getProject = function(projectId) {
-        var get_project_uri = "/projects/" +  projectId;
+      var getProjectById = function(projectId) {
 
-        var fetchedProject = {};
-        if(typeof(projectId) == 'undefined' || projectId == null) {
-          return fetchedProject;
+        if(projectId != 'undefined' && projectId != null) {
+
+          ProjectService.getProjectById(projectId, function(data){
+            $log.debug('Success getting a project');
+            $scope.project_retrieved = data;
+            $scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
+          });
         }
-
-        RESTService.get(get_project_uri, function(data){
-          $log.debug('Success getting a project');
-          fetchedProject = data;
-          $scope.project_retrieved = data;
-          $scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
-        });
       }
       // get project from url
-      getProject($routeParams.projectId);
+      getProjectById($routeParams.projectId);
 
 
       $scope.updateProject = function(projectId, name, description, start_date, end_date, status) {
-        // put in a service
-        var update_project_uri = '/projects/' + projectId;
-
-        var payload;
 
         var updateFormData = {
           id: projectId,
@@ -102,13 +91,10 @@ angular.module('myApp')
           owner: ownerId,
         }
 
-        payload = updateFormData;
-
-        RESTService.put(update_project_uri, payload, function(data){
+        ProjectService.editProject(projectId, updateFormData, function(){
           $log.debug('Success updating a project');
           $location.path('/projects');
         });
-
       }
 
 
@@ -118,9 +104,7 @@ angular.module('myApp')
 
 
       $scope.deleteProject = function(projectId) {
-        var delete_project_uri = '/projects/' + projectId;
-
-        RESTService.delete(delete_project_uri, function(data){
+        ProjectService.deleteProject(projectId, function(data){
           $log.debug('Success deleting project');
           getProjects();
         });
