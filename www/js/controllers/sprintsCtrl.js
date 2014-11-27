@@ -67,34 +67,31 @@ angular.module('myApp')
       }
 
 
-      $scope.updateSprint = function(projectId, name, start_date, end_date, status) {
+      $scope.updateSprint = function(name, start_date, end_date, status) {
         // put in a service
         // projects/:projectId/sprint/edit/:projectId', {
 
         var sprintId = $routeParams.sprintId;
         var projectId = $routeParams.projectId;
+        $log.error(sprintId + " - " + projectId );
 
         if(sprintId != undefined && projectId != undefined){
           var update_sprint_uri = '/projects/' + projectId + '/sprints/' + sprintId;
           var updateFormData = {
-            id: projectId,
+            id: parseInt(projectId),
             name: name,
             start_date: start_date,
             end_date: end_date,
-            status: status,
+            status: parseInt(status),
           }
 
-          $log.debug("puto el que lee" + updateFormData);
+          $log.debug(updateFormData);
+          RESTService.put(update_sprint_uri, updateFormData, function(data){
+            $log.debug('Success updating a sprint');
+            $location.path('/projects');
+          });
+
         }
-
-
-
-
-      //  RESTService.put(update_sprint_uri, updateFormData, function(data){
-      //    $log.debug('Success updating a sprint');
-      //    $location.path('/projects');
-      //  });
-
       }
 
 
