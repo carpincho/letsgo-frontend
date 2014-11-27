@@ -3,7 +3,7 @@
 var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
 
 app.config(['$logProvider', function($logProvider){
-  $logProvider.debugEnabled(false);
+  $logProvider.debugEnabled(true);
 }]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
@@ -69,6 +69,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'SprintsCtrl'
   })
 
+  .when('/sprint/create', {
+    templateUrl: 'partials/create_sprint.html',
+    controller: 'SprintsCtrl'
+  })
+
   .when('/tasks', {
     templateUrl: 'partials/tasks.html',
     controller: 'TasksCtrl'
@@ -120,8 +125,11 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
       });
     }
 
-    getUser();
-
+    if(userId != undefined){
+      // the user is not logged yet
+      getUser();
+    }
+    
     // if never logged in, do nothing (otherwise bookmarks fail)
     if ($rootScope.authService.initialState()){
       // we are public browsing

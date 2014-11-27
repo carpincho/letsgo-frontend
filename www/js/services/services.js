@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('RESTService', function ($http){
+app.factory('RESTService', ['$http', '$log', function ($http, $log){
   return {
     get: function (url, callback) {
       return $http({method:'GET', url:url})
@@ -8,7 +8,7 @@ app.factory('RESTService', function ($http){
         callback(data);
       })
       .error(function (data, status, headers, config){
-        console.log("failed to get data");
+        $log.error("failed to get data");
       });
     },
 
@@ -18,7 +18,7 @@ app.factory('RESTService', function ($http){
         callback(data);
       })
       .error(function (data, status, headers, config){
-        console.log("failed to post data");
+        $log.error("failed to post data");
       });
     },
 
@@ -28,7 +28,7 @@ app.factory('RESTService', function ($http){
         callback(data);
       })
       .error(function(data, status, headers, config){
-        console.log("failed to put data");
+        $log.error("failed to put data");
       })
     },
 
@@ -38,12 +38,12 @@ app.factory('RESTService', function ($http){
         callback(data);
       })
       .error(function(data, status, headers, config){
-        console.log("failed to delete data");
+        $log.error("failed to delete data");
       })
     }
 
   };
-});
+}]);
 
 
 app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTService){
@@ -66,10 +66,8 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
       }
 
       //rememberMe is true if setted, undefined if not
-
-        RESTService.post(sessions_uri, payload, function(data){
-        //$log.debug('Success logging in the user');
-        console.log('Success logging in the user');
+      RESTService.post(sessions_uri, payload, function(data){
+        $log.debug('Success logging in the user');
 
         authorized = true;
         initialState = false;
@@ -92,15 +90,13 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
     },
 
     logout: function () {
-      var sessions_uri = '/sessions';
-
       RESTService.delete(sessions_uri, function(data){
-        //console.debug('Success logging out the user');
-      //  console.log('Success logging out the user');
+        $log.debug('Success logging out the user');
 
         currentUser = null;
         authorized = false;
         userInfo = null;
+
         $cookieStore.remove('lets_go_session_client');
         $cookieStore.remove('lets_go_user_info');
 
@@ -137,7 +133,7 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
   };
 });
 
-app.factory('TaskService',function ($http,RESTService){
+app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService){
   var currentProjectID = 1;
   var currentSprintID = 1;
   var currentStoryID = 1;
@@ -170,4 +166,4 @@ app.factory('TaskService',function ($http,RESTService){
       return currentTasks;
     }*/
   };
-});
+}]);

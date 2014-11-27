@@ -50,7 +50,8 @@
           </div>
 
           <div class="panel-footer">
-            <a ng-href="#/user/edit/{{ userInfo.id }}" class="btn btn-primary">Edit</a>
+            <a ng-href="#/user/edit/{{ userInfo.id }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            <a ng-click="deleteUser()" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
           </div>
 
         </div>

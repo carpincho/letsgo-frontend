@@ -3,9 +3,11 @@
 angular.module('myApp')
   .controller('TasksCtrl', ['$scope', '$http', '$log', '$routeParams', '$location', 'TaskService', 'RESTService',
     function ($scope, $http, $log, $routeParams, $location, TaskService, RESTService) {
+
       $scope.currentStoryID = TaskService.getCurrentStoryID();
       $scope.currentStory = TaskService.getCurrentStory();
       $scope.tasks = [];
+
 
       var getTasks = function() {
         // put in a service
@@ -25,6 +27,8 @@ angular.module('myApp')
         $location.path(TaskService.getTaskPath());
       }
 
+      TaskService.getAllTasks();
+
       $scope.createTask = function(description,nr) {
         // put in a service
         var create_task_uri = TaskService.getTaskPath();
@@ -43,8 +47,7 @@ angular.module('myApp')
         payload = createFormData;
 
         RESTService.post(create_task_uri, payload, function(data){
-          //$log.debug('Success creating new task');
-          console.log('Success creating new task');
+          $log.debug('Success creating new task');
           $location.path(TaskService.getTaskPath());
         });
       }
@@ -110,6 +113,12 @@ angular.module('myApp')
           getTasks();
         });
       }
+
+      $scope.cancelCreateTasks = function(){
+        // put in a service
+        $location.path(TaskService.getTaskPath());
+      }
+
 
     }
   ]);
