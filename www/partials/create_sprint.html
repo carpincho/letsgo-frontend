@@ -11,8 +11,8 @@
             <div class="panel-heading">
               <h3 class="panel-title">Create Sprint {{ createFormData.sprint_name }}</h3>
             </div>
-            <div class="panel-body">
-              <form ng-submit="createProject(createFormData.name, createFormData.start_date, createFormData.end_date)" accept-charset="UTF-8" role="form">
+            <div class="panel-body"><h2>{{ projectId}}</h2>
+              <form ng-submit="createSprint(createFormData.sprint_name, createFormData.start_date, createFormData.end_date)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
