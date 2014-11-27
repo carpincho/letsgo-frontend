@@ -10,11 +10,10 @@ angular.module('myApp')
 
 
       var getTasks = function() {
-        // put in a service
         var get_all_tasks_uri = TaskService.getTaskPath();
 
         RESTService.get(get_all_tasks_uri, function(data){
-          console.log('Fetching ' + data.length + ' projects from server...');
+          $log.debug('Fetching ' + data.length + ' projects from server...');
           $scope.tasks = data;
         });
       }
@@ -23,14 +22,12 @@ angular.module('myApp')
       getTasks();
 
       $scope.cancelCreateTask = function(){
-        // put in a service
         $location.path(TaskService.getTaskPath());
       }
 
       TaskService.getAllTasks();
 
       $scope.createTask = function(description,nr) {
-        // put in a service
         var create_task_uri = TaskService.getTaskPath();
         var payload = {};
 
@@ -53,8 +50,6 @@ angular.module('myApp')
       }
 
       var getTask = function(taskId) {
-        // put in a service
-
         var get_task_uri = TaskService.getTaskPath() +"/" + taskId;
         var fetchedTask = {};
         if(typeof(taskId) == 'undefined' || taskId == null) {
@@ -63,8 +58,7 @@ angular.module('myApp')
 
 
         RESTService.get(get_task_uri, function(data){
-          //$log.debug('Success getting a project');
-          console.log('Success getting a task');
+          $log.debug('Success getting a task');
           fetchedTask = data;
           $scope.task_retrieved = data;
           //$scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
@@ -80,7 +74,6 @@ angular.module('myApp')
 
       $scope.updateTask = function(taskId, description, nr) {
 
-        // put in a service
         var update_task_uri = TaskService.getTaskPath() +"/" + taskId;
 
         var ownerId = 1; //get owner
@@ -95,9 +88,7 @@ angular.module('myApp')
         payload = updateFormData;
 
         RESTService.put(update_task_uri, payload, function(data){
-          //$log.debug('Success getting a task');
-          console.log('Success updating a task');
-          // put in a service
+          $log.debug('Success updating a task');
           $location.path(TaskService.getTaskPath());
         });
       }
@@ -108,14 +99,12 @@ angular.module('myApp')
         $log.debug('Deleting task ' + taskId +'from ' + TaskService.getTaskPath());
 
         RESTService.delete(delete_project_uri, function(data){
-          //$log.debug('Success deleting project');
-          console.log('Success deleting task');
+          $log.debug('Success deleting task');
           getTasks();
         });
       }
 
       $scope.cancelCreateTasks = function(){
-        // put in a service
         $location.path(TaskService.getTaskPath());
       }
 
