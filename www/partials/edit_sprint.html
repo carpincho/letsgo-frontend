@@ -1,0 +1,116 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+
+<div ng-controller="ProjectsCtrl">
+  <div class="container">
+    <div class="container">
+      <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-primary">
+
+            <div class="panel-heading">{{ sprint }}
+              <h3 class="panel-title">Edit Sprint {{ updateFormData.sprint_name }}</h3>
+            </div>
+            <div class="panel-body">
+              <form ng-submit="updateSprint(projectId, 1, updateFormData.sprint_name, updateFormData.start_date, updateFormData.end_date, updateFormData.status)"accept-charset="UTF-8" role="form">
+                <fieldset>
+
+                  <div class="form-group">
+                    <label for="sprint_name">Sprint Name (*)</label>
+                    <input class="form-control" ng-model="updateFormData.sprint_name" placeholder="Sprint Name" name="sprint_name" type="text" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="start_date">Start Date (*)</label>
+                    <input class="form-control" ng-model="updateFormData.start_date" placeholder="2013-2-1" name="start_date" type="text" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="end_date">Completion Date (*)</label>
+                    <input class="form-control" ng-model="updateFormData.end_date" placeholder="2014-2-1" name="end_date" type="text" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="status">Status</label>
+                    <!--<select  class="form-control" ng-model="option_selected" ng-options="option.label for option in project_status_options" required name="status"></select>-->
+                      <select class="form-control" name="status" ng-model="updateFormData.status">
+                        <option value="0" selected>Future</option>
+                        <option value="1">Planned</option>
+                        <option value="2">In Progress</option>
+                        <option value="3">Closed</option>
+                      </select>
+                  </div>
+
+
+                  <input type="submit" class="btn btn-primary" id="submit" value="Update" />
+                  <a ng-click="cancelUpdateSprint()" class="btn btn-default">Cancel</a>
+
+                </fieldset>
+              </form>
+            </div>
+            <div class="panel-footer">
+              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div> <!-- end container -->
+</div> <!-- end ProjectCtrl -->
+
+
+
+
+
+
+
+
+
+
+<!--
+<div>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <h2>All Todos</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+		<table class="table">
+		  <tr>
+		    <th>Description</th>
+		    <th>Name</th>
+		    <th>Action</th>
+		  </tr>
+		  <tr ng-repeat="project in projects">
+		  	<td>{{project.description}}</td>
+		  	<td>{{project.name}}</td>
+		  	<td><button ng-click="removeTodo(todo.todoId)">Remove</button></td>
+		  </tr>
+		</table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+		<form role="form">
+		  <div class="form-group">
+		    <label for="todoInput">Add todo</label>
+		    <input type="text" class="form-control" ng-model="todoModel.description" id="todoInput" placeholder="Todo description">
+		  </div>
+
+		  <button ng-click="addTodo(todoModel.description)" class="btn btn-default">
+		  	Add todo
+		  </button>
+		</form>
+      </div>
+    </div>
+
+
+  </div>
+</div> -->
