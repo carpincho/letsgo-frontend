@@ -84,7 +84,7 @@ angular.module('myApp')
             status: status,
           }
 
-          $log.debug("puto el que lee" + updateFromData);
+          $log.debug("puto el que lee" + updateFormData);
         }
 
 
