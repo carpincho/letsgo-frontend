@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService) {
       var get_all_projects_uri = '/projects';
       var create_project_uri = "/projects";
 
@@ -137,7 +137,7 @@ angular.module('myApp')
         var payload = {
           devs: [1, 2]
         };
-    
+
 
         $http.put(invite_developers_to_project_uri, payload)
         .success(function(data, status, header, config) {
@@ -168,5 +168,11 @@ angular.module('myApp')
           $log.debug('Error while trying to remove invited developers to project');
         });
       }
+
+      $scope.sendEventProjectId = function(projectId){
+        SharedProjectSprintService.prepForBroadcast(projectId);
+      };
+
+
     }
   ]);
