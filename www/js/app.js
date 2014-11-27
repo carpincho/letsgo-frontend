@@ -94,6 +94,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'TasksCtrl'
   })
 
+  .when('/task/edit/:taskId', {
+    templateUrl: 'partials/edit_task.html',
+    controller: 'TasksCtrl'
+  })
+
   .otherwise({
     redirectTo: '/login'
   });

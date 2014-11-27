@@ -1,0 +1,49 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+
+<div ng-controller="TasksCtrl">
+  <div class="container">
+    <div class="container">
+      <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-primary">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Edit Task {{ task_retrieved.id }}</h3>
+            </div>
+            <div class="panel-body">
+              <form accept-charset="UTF-8" role="form">
+                <fieldset>
+
+                  <div class="form-group">
+                    <label >{{currentStory}} > Task {{task_retrieved.id}}</label>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputTaskDescription">Task Description</label>
+                    <textarea class="form-control" ng-model="task_retrieved.description" name="task_description" placeholder="task_retrieved.description" rows="4"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label >Task Point: </label>
+                    <input class="form-control" ng-model="task_retrieved.nr" name="task_nr" placeholder="task_retrieved.nr" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+                  </div>
+
+
+                  <button ng-click="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr)" class="btn btn-primary">Update</button>
+                  <a ng-click="cancelUpdateTask()" class="btn btn-default">Cancel</a>
+
+                </fieldset>
+              </form>
+            </div>
+            <div class="panel-footer">
+              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div> <!-- end container -->
+</div> <!-- end TaskCtrl -->

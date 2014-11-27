@@ -157,10 +157,9 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
   var currentProjectID = 1;
   var currentSprintID = 1;
   var currentStoryID = 1;
-  var currentProjectName = "pro1";
-  var currentSprintName = "spr1";
-  var currentStoryName = "sto1";
-
+  var currentProjectName = "someProject";
+  var currentSprintName = "someSprint";
+  var currentStoryName = "SomeStory";
   return{
 
     getCurrentStory: function(){
@@ -177,27 +176,14 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
       return taskPath;
     },
 
-    getAllTasks: function(projectId,sprintID,storyID){
-      var get_all_tasks_url ='/projects/'+currentProjectID+'/sprints/'+currentSprintID+'/stories/'+currentStoryID+'/tasks';
-
-      var fetchedProject = {};
-      var fetchedSprint = {};
-      var fetchedStory = {};
-      if(typeof(projectId) == 'undefined' || projectId == null) {
-        return fetchedProject;
-      }
-      if(typeof(sprintID) == 'undefined' || sprintID == null) {
-        return fetchedSprint;
-      }
-      if(typeof(storyID) == 'undefined' || storyID == null) {
-        return fetchedStory;
-      }
-
+    /*getAllTasks: function(currentTaskPath){
+      var get_all_tasks_url =currentTaskPath;
+      var currentTasks = [];
       RESTService.get(get_all_tasks_url, function(data){
         console.log('Fetching ' + data.length + ' tasks from server...');
+        currentTasks = data;
       });
-      return data;
-
-    }// fetch the existing projects in the server
+      return currentTasks;
+    }*/
   };
 }]);
