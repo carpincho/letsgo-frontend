@@ -114,7 +114,7 @@ angular.module('myApp')
         };
 
         ProjectService.inviteDevelopersToProject(projectId, payload, function(){
-          $log.debug('Success inviting developers to project');
+          $log.debug('Success removing developers to project');
         });
 
 
