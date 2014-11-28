@@ -68,7 +68,7 @@
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date }} - End Date: {{ sprint.end_date }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
-                            <a ng-click="sendEventProjectId(project.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Stories</a>
+                            <a ng-href="#/projects/{{projectId}}/sprints/{{sprint.id}}/stories"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Stories</a>
                             <a ng-href="#/projects/{{projectId}}/sprints/edit/{{sprint.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
 
                             <a ng-click='deleteSprint(projectId, sprint.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
