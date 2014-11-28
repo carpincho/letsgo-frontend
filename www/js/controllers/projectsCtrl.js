@@ -6,7 +6,7 @@ angular.module('myApp')
       var create_project_uri = "/projects";
 
 
-      var ownerId = AuthService.getUserInfo();
+      var userId = AuthService.getUserInfo();
       $scope.project_status_options = ProjectService.getProjectStatusOptions();
       $scope.projects = [];
 
@@ -28,7 +28,7 @@ angular.module('myApp')
           start_date: startDate,
           end_date: endDate,
           status: parseInt(status),
-          owner: ownerId,
+          owner: userId,
         }
 
         ProjectService.createProject(createFormData, function(data){
@@ -67,7 +67,7 @@ angular.module('myApp')
           start_date: start_date,
           end_date: end_date,
           status: parseInt(status),
-          owner: ownerId,
+          owner: userId,
         }
 
         ProjectService.editProject(projectId, updateFormData, function(){
@@ -93,43 +93,31 @@ angular.module('myApp')
       $scope.inviteDevelopersToProject = function(developers) {
         var projectId = 67;
 
-        // put in a service
-        var invite_developers_to_project_uri = '/projects/' + projectId + '/invite_devs';
-
         // var payload = developers;
         var payload = {
           devs: [1, 2]
         };
 
-
-        $http.put(invite_developers_to_project_uri, payload)
-        .success(function(data, status, header, config) {
+        ProjectService.inviteDevelopersToProject(projectId, payload, function(){
           $log.debug('Success inviting developers to project');
-        })
-        .error(function(data, status) {
-          $log.debug('Error while trying to invite developers to project on server');
         });
+
       }
 
 
       $scope.removeDevelopersFromProject = function(developers) {
         var projectId = 67;
-        // put in a service
-        var remove_developers_to_project_uri = '/projects/' + projectId + '/remove_devs';
 
         // var payload = developers;
         var payload = {
           devs: [1, 2]
         };
 
-
-        $http.put(remove_developers_to_project_uri, payload)
-        .success(function(data, status, header, config) {
-          $log.debug('Success removing developers from project...');
-        })
-        .error(function(data, status) {
-          $log.debug('Error while trying to remove invited developers to project');
+        ProjectService.inviteDevelopersToProject(projectId, payload, function(){
+          $log.debug('Success inviting developers to project');
         });
+
+
       }
 
       $scope.sendEventProjectId = function(projectId){
