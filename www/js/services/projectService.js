@@ -8,10 +8,10 @@ app.factory('ProjectService', ['$log', '$http', 'RESTService', function($log, $h
   return {
 
     getOptionByValue: function (value){
-      var i = 0;
+      var i=0;
       var foundOption = {};
 
-      for (i=0; i < projectStatusOptions.length; i++){
+      for (i=0; i<projectStatusOptions.length; i++){
         if(projectStatusOptions[i].value == value){
           foundOption = projectStatusOptions[i]
           break;
