@@ -12,7 +12,7 @@
               <h3 class="panel-title">Edit Project {{ project_retrieved.name }}</h3>
             </div>
             <div class="panel-body">
-              <form accept-charset="UTF-8" role="form">
+              <form ng-submit="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, project_option_selected.value)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
@@ -37,10 +37,10 @@
 
                   <div class="form-group">
                     <label for="exampleSelectLanguage1">Status</label>
-                    <select  class="form-control" ng-model="option_selected" ng-options="option.label for option in project_status_options" required></select>
+                    <select name="status" class="form-control" ng-model="project_option_selected" ng-options="option.label for option in project_status_options" required></select>
                   </div>
 
-                  <button ng-click="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, option_selected.value)" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                   <a ng-click="cancelUpdateProject()" class="btn btn-default">Cancel</a>
 
                 </fieldset>

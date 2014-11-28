@@ -45,7 +45,7 @@ angular.module('myApp')
           ProjectService.getProjectById(projectId, function(data){
             $log.debug('Success getting a project');
             $scope.project_retrieved = data;
-            $scope.option_selected = ProjectService.getOptionByValue($scope.project_status_options, data.status)
+            $scope.project_option_selected = ProjectService.getOptionByValue(data.status)
           });
         }
       }

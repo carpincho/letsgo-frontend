@@ -7,7 +7,6 @@ angular.module('myApp')
       $scope.sprint_status_options = SprintService.getSprintStatusOptions();
       var projectId;
 
-
       $scope.$on('eventGetRelatedSprints', function(){
         $scope.projectId = SharedProjectSprintService.projectId;
         $scope.sprint = getSprintsByProjectId(SharedProjectSprintService.projectId);
@@ -16,6 +15,7 @@ angular.module('myApp')
 
       var getSprintsByProjectId = function(projectId){
         if (projectId != undefined){
+
           SprintService.getSprintsByProjectId(projectId, function(data){
             $log.debug('Success getting a sprints');
             $scope.sprints = data;
@@ -23,6 +23,17 @@ angular.module('myApp')
         }
       }
 
+      var getSprintBySprintId = function(projectId, sprintId){
+        if(projectId != undefined && sprintId != undefined){
+
+          SprintService.getSprintBySprintId(projectId, sprintId, function(data){
+            $log.debug('Success getting a sprint');
+            $scope.sprint_retrieved = data;
+            $scope.sprint_option_selected = SprintService.getOptionByValue(data.status)
+          });
+        }
+      }
+      getSprintBySprintId($routeParams.projectId, $routeParams.sprintId);
 
       $scope.createSprint = function(name, start_date, end_date, status){
         var projectId = $routeParams.projectId;

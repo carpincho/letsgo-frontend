@@ -1,24 +1,34 @@
 app.factory('SprintService', ['$log', '$http', 'RESTService', function($log, $http, RESTService){
   var baseUrl = '/projects';
   var sprintStatusOptions = [
-    { label:'future', value: 0 },
-    { label:'closed', value: 1 },
-    { label:'in progress', value: 2 },
-    { label:'planned', value: 3 },
+    { label:'Future', value: 0 },
+    { label:'Closed', value: 1 },
+    { label:'In-progress', value: 2 },
+    { label:'Planned', value: 3 },
   ];
 
   return {
     getOptionByValue: function (value){
-      var i=0;
       var foundOption={};
 
-      for (i=0; i<sprintStatusOptions.length; i++){
+      for (var i=0; i<sprintStatusOptions.length; i++){
         if(sprintStatusOptions[i].value == value){
           foundOption = sprintStatusOptions[i]
           break;
         }
       }
       return foundOption;
+    },
+
+    getLabelFromValue: function(value){
+     var label = '';
+     for (var i=0; i<sprintStatusOptions.length; i++){
+       if(sprintStatusOptions[i].value == value){
+         label = sprintStatusOptions[i].label;
+         break;
+       }
+     }
+     return label;
     },
 
     getSprintStatusOptions: function(){

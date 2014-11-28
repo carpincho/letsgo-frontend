@@ -1,8 +1,8 @@
 app.factory('ProjectService', ['$log', '$http', 'RESTService', function($log, $http, RESTService){
   var baseUrl = '/projects';
   var projectStatusOptions = [
-  { label:'open', value: 0 },
-  { label:'closed', value: 1 },
+    { label:'Open', value: 0 },
+    { label:'Closed', value: 1 },
   ];
 
   return {
@@ -18,6 +18,17 @@ app.factory('ProjectService', ['$log', '$http', 'RESTService', function($log, $h
         }
       }
       return foundOption;
+    },
+
+    getLabelFromValue: function(value){
+      var label = '';
+      for (var i=0; i<projectStatusOptions.length; i++){
+        if(projectStatusOptions[i].value == value){
+          label = projectStatusOptions[i].label;
+          break;
+        }
+      }
+      return label;
     },
 
     getProjectStatusOptions: function(){
