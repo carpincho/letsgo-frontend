@@ -3,6 +3,7 @@
 
 
 angular.module('myApp')
+
 .controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,StoryService) {
 
 
@@ -21,8 +22,7 @@ angular.module('myApp')
       $scope.stories = data;
     });
   }
-  // fetch the existing stories in the server
-  getStories();
+   getStories();
 
 
 var getStorybyStoryId = function(projectId, sprintId,storyId){
