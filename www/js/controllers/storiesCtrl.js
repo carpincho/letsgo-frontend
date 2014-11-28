@@ -13,6 +13,8 @@ angular.module('myApp')
 
     var projectID = $routeParams.projectID;
     var sprintID = $routeParams.sprintID;
+    $scope.projectId = projectID;
+    $scope.sprintId = sprintID;
 
     var get_all_stories_uri = '/projects/'+projectID+'/sprints/'+sprintID+'/stories';
 
@@ -23,6 +25,37 @@ angular.module('myApp')
   }
   // fetch the existing stories in the server
   getStories();
+
+
+$scope.createStory = function(story_title, story_description,story_notes, story_points) {
+
+var sprintID = $routeParams.sprintID;
+var projectID = $routeParams.projectID;
+
+
+  if (sprintID != undefined && projectID != undefined ){
+    var create_story_uri = '/projects/'+ projectID + '/sprints/'+sprintID+'/stories';
+
+
+    var createFormData = {
+      description: story_description,
+      title: story_title,
+      notes:story_notes,
+      points: story_points,
+      sprint_id: sprintID,
+    }
+
+    RESTService.post(create_story_uri, createFormData, function(data){
+      $log.debug('Success creating new Story');
+      $location.path('/projects/'+$routeParams.projectID+'/sprints/'+$routeParams.sprintID+'/stories');
+    });
+
+  }
+}
+
+$scope.cancelCreateStory = function(){
+  $location.path('/projects/'+$routeParams.projectID+'/sprints/'+$routeParams.sprintID+'/stories');
+}
 
 
 }
