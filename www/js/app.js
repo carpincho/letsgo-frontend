@@ -59,9 +59,18 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'ProjectsCtrl'
   })
 
-  .when('/requirements', {
-    templateUrl: 'partials/requirements.html',
-    controller: 'RequirementsCtrl'
+  .when('/projects/:projectID/sprints/:sprintID/stories/', {
+    templateUrl: 'partials/stories.html',
+    controller: 'StoriesCtrl'
+  })
+
+  .when('/projects/:projectID/sprints/:sprintID/stories/create', {
+    templateUrl: 'partials/create_story.html',
+    controller: 'StoriesCtrl'
+  })
+  .when('/projects/:projectID/sprints/:sprintID/stories/edit/:storyID', {
+    templateUrl: 'partials/edit_story.html',
+    controller: 'StoriesCtrl'
   })
 
   .when('/sprints', {

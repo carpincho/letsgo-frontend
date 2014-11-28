@@ -1,53 +1,56 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('SprintsCtrl', ['$location', '$scope', '$http', '$log', '$routeParams', 'RESTService', 'SharedProjectSprintService', function ($location, $scope, $http, $log, $routeParams, RESTService, SharedProjectSprintService) {
+  .controller('SprintsCtrl', ['$location', '$scope', '$log', '$routeParams', 'SharedProjectSprintService', 'SprintService', function ($location, $scope, $log, $routeParams, SharedProjectSprintService, SprintService) {
 
       $scope.sprints = [];
+      $scope.sprint_status_options = SprintService.getSprintStatusOptions();
       var projectId;
-
 
       $scope.$on('eventGetRelatedSprints', function(){
         $scope.projectId = SharedProjectSprintService.projectId;
-        $scope.sprint = getSprints(SharedProjectSprintService.projectId);
+        $scope.sprint = getSprintsByProjectId(SharedProjectSprintService.projectId);
       });
 
 
-      var getSprints = function(projectId) {
-       // put in a service
-
+      var getSprintsByProjectId = function(projectId){
         if (projectId != undefined){
-          var get_all_sprints_uri = '/projects/' + projectId + '/sprints';
 
-          RESTService.get(get_all_sprints_uri, function(data){
+          SprintService.getSprintsByProjectId(projectId, function(data){
             $log.debug('Success getting a sprints');
             $scope.sprints = data;
           });
-
         }
       }
-      // fetch the existing projects in the server
 
-      $scope.createSprint = function(name, start_date, end_date) {
-        var status = 0; // this is a bug in the api/database
+      var getSprintBySprintId = function(projectId, sprintId){
+        if(projectId != undefined && sprintId != undefined){
+
+          SprintService.getSprintBySprintId(projectId, sprintId, function(data){
+            $log.debug('Success getting a sprint');
+            $scope.sprint_retrieved = data;
+            $scope.sprint_option_selected = SprintService.getOptionByValue(data.status)
+          });
+        }
+      }
+      getSprintBySprintId($routeParams.projectId, $routeParams.sprintId);
+
+      $scope.createSprint = function(name, start_date, end_date, status){
         var projectId = $routeParams.projectId;
 
         if (projectId != undefined){
-          var create_sprint_uri = '/projects/'+ projectId + '/sprints'
-
           var createFormData = {
-            project_id: projectId,
+            project_id: parseInt(projectId),
             name: name,
             start_date: start_date,
             end_date: end_date,
-            status: parseInt(status), // bug in api
+            status: parseInt(status),
           }
 
-          RESTService.post(create_sprint_uri, createFormData, function(data){
+          SprintService.createSprint(projectId, createFormData, function(data){
             $log.debug('Success creating new project');
             $location.path("/projects");
           });
-
         }
       }
 
@@ -58,24 +61,24 @@ angular.module('myApp')
 
 
       $scope.deleteSprint = function(projectId, sprintId) {
-        var delete_project_uri = '/projects/' + projectId + '/sprints/' + sprintId;
+        if(projectId != undefined && sprintId != undefined){
+          SprintService.deleteSprint(projectId, sprintId, function(data){
+            $log.debug('Success deleting project');
+            getSprintsByProjectId(projectId);
+          });
 
-        RESTService.delete(delete_project_uri, function(data){
-          $log.debug('Success deleting project');
-          getSprints(projectId);
-        });
+        }else{
+          $log.error('Error deleting sprint: projectId and sprintId are not defined!');
+        }
+
       }
 
 
-      $scope.updateSprint = function(name, start_date, end_date, status) {
-        // put in a service
-        // projects/:projectId/sprint/edit/:projectId', {
-
+      $scope.updateSprint = function(name, start_date, end_date, status){
         var sprintId = $routeParams.sprintId;
         var projectId = $routeParams.projectId;
 
         if(sprintId != undefined && projectId != undefined){
-          var update_sprint_uri = '/projects/' + projectId + '/sprints/' + sprintId;
           var updateFormData = {
             id: parseInt(projectId),
             name: name,
@@ -84,25 +87,19 @@ angular.module('myApp')
             status: parseInt(status),
           }
 
-          $log.debug(updateFormData);
-          RESTService.put(update_sprint_uri, updateFormData, function(data){
+          SprintService.editSprint(projectId, sprintId, updateFormData, function(data){
             $log.debug('Success updating a sprint');
             $location.path('/projects');
           });
 
+        }else{
+          $log.error('Error updating sprint: projectId and sprintId are not defined!');
         }
       }
-
-
 
 
       $scope.cancelEditSprint = function(){
         $location.path("/projects");
       }
-
-
-
-
-
     }
   ]);

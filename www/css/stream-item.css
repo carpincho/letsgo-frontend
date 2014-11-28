@@ -1,4 +1,3 @@
-
 #stream {
   list-style: none;
   position: relative;
@@ -6,7 +5,6 @@
 #stream .stream-item {
   padding: 5px 5px;
 }
-
 
 #stream .stream-item .stream-panel {
   border: 1px solid #d4d4d4;
@@ -44,11 +42,23 @@
 }
 
 #stream .stream-item .stream-panel.credits .stream-panel-ul li p small strong.item-status-open {
-  color: green;
+  color: #468c1f;
 }
 
 #stream .stream-item .stream-panel.credits .stream-panel-ul li p small strong.item-status-closed {
-  color: red;
+  color: #e2001a;
+}
+
+#stream .stream-item .stream-panel.credits .stream-panel-ul li p small strong.item-status-planned {
+  color: #ae627d;
+}
+
+#stream .stream-item .stream-panel.credits .stream-panel-ul li p small strong.item-status-future {
+  color: #651f8c;
+}
+
+#stream .stream-item .stream-panel.credits .stream-panel-ul li p small strong.item-status-in-progress {
+  color: #24b5b8;
 }
 
 #stream .stream-item .stream-panel.debits .stream-panel-ul {

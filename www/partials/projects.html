@@ -21,7 +21,7 @@
       <div class="col-md-6">
         <div ng-repeat="project in projects">
 
-            <div id="stream">
+            <div ng-click="sendEventProjectId(project.id)" id="stream">
               <!-- stream item -->
               <div class="stream-item">
                 <div class="row">
@@ -31,7 +31,7 @@
                       <li><span class="item-content">Owner: {{ project.owner }}</span></li>
                       <li><span class="item-content">Description: {{ project.description }}</span></li>
                       <li>
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ project.start_date }} - End Date: {{ project.end_date }} - Status: <strong class="item-status-{{project.status}}">{{project.status}}</strong></small></p> </li>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ project.start_date }} - End Date: {{ project.end_date }} - Status: <strong class="item-status-{{ project.status|projectStatusFromValue }}">{{project.status|projectStatusFromValue}}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
                             <a ng-href="#/sprint/create/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
@@ -47,7 +47,8 @@
                     </div>
                   </div>
                 </div> <!-- end stream-item -->
-          </div> <!-- end stream -->
+              </div> <!-- end stream -->
+
         </div>
 
       </div> <!-- end Projects -->
@@ -55,7 +56,6 @@
       <div ng-controller="SprintsCtrl">
         <!-- Sprints -->
         <div class="col-md-6">
-
           <div ng-repeat="sprint in sprints" >
             <div id="stream">
               <!-- stream item -->
@@ -65,10 +65,10 @@
                     <ul class="stream-panel-ul">
                       <li><span class="item-title">{{ sprint.name }} (id: {{ projectId }})</span></li>
                       <li>
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date }} - End Date: {{ sprint.end_date }} - Status: <strong class="item-status-{{ sprint.status }}">{{ sprint.status }}</strong></small></p> </li>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date }} - End Date: {{ sprint.end_date }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
-                            <a ng-click="sendEventProjectId(project.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Stories</a>
+                            <a ng-href="#/projects/{{projectId}}/sprints/{{sprint.id}}/stories"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Stories</a>
                             <a ng-href="#/projects/{{projectId}}/sprints/edit/{{sprint.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
 
                             <a ng-click='deleteSprint(projectId, sprint.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>

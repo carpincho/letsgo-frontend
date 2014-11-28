@@ -1,0 +1,54 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div ng-controller="StoriesCtrl">
+  <div class="container">
+
+    <div class="row">
+      <span class="dropdown" dropdown on-toggle="toggled(open)">
+        <a href class="dropdown-toggle" dropdown-toggle>
+          <h3>Stories <span class="caret"></span></h3>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/create"><i class="fa fa-plus"></i> Create Story</a>
+          </li>
+        </ul>
+      </span>
+    </div>
+
+    <!-- Stories -->
+    <div class="col-md-6">
+      <div ng-repeat="story in stories">
+
+        <div id="stream">
+          <!-- stream item -->
+          <div class="stream-item">
+            <div class="row">
+              <div class="stream-panel credits">
+                <ul class="stream-panel-ul">
+                  <li><span class="item-title">{{ story.title }} (id: {{story.id}})</span></li>
+                  <li><span class="item-content">Description: {{story.description}} </span></li>
+                  <li><span class="item-content">Points: {{story.points}}</span></li>
+                  <li><span class="item-content">Notes: {{story.notes}}</span></li>
+                  <li><span class="item-content">Task: {{story.tasks}}</span></li>
+                  <li>
+
+                     <li>
+                      <div class="btn-group pull-right">
+                        <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                        <a ng-click='deleteStory(projectId,sprintId,story.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                      </div>
+                      <div class="clearfix"></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> <!-- end stream-item -->
+          </div> <!-- end stream -->
+        </div>
+
+      </div> <!-- end Stories -->
+
+
+  </div> <!-- end of container -->
+</div>
