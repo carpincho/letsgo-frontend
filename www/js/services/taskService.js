@@ -5,6 +5,7 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
   var currentProjectName = "someProject";
   var currentSprintName = "someSprint";
   var currentStoryName = "SomeStory";
+  var taskPath = "/projects/" + currentProjectID + "/sprints/" + currentSprintID + "/stories/" + currentStoryID + "/tasks";
   return{
 
     getCurrentStory: function(){
@@ -17,18 +18,28 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
     },
 
     getTaskPath: function(){
-      var taskPath = "/projects/" + currentProjectID + "/sprints/" + currentSprintID + "/stories/" + currentStoryID + "/tasks";
       return taskPath;
     },
+    getAllTasks: function(callback){
+    var url =taskPath;
+    RESTService.get(url, callback);
+    },
+    createTask: function(payload, callback){
+      var url = taskPath;
+      RESTService.post(url, payload, callback);
+    },
+    getTaskById: function (taskId, callback) {
+      var url = taskPath + "/" + taskId;
+      RESTService.get(url, callback);
+    },
+    editTask: function(taskId, payload, callback){
+      var url = taskPath + "/" + taskId;
+      RESTService.put(url, payload, callback);
+    },
+    deleteTask: function(taskId, callback){
+      var url = taskPath + "/" + taskId;
+      RESTService.delete(url, callback);
+    }
 
-    /*getAllTasks: function(currentTaskPath){
-    var get_all_tasks_url =currentTaskPath;
-    var currentTasks = [];
-    RESTService.get(get_all_tasks_url, function(data){
-    console.log('Fetching ' + data.length + ' tasks from server...');
-    currentTasks = data;
-  });
-  return currentTasks;
-}*/
 };
 }]);
