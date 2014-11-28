@@ -57,6 +57,10 @@
   color: #651f8c;
 }
 
+#stream .stream-item .stream-panel.credits .stream-panel-ul li p small strong.item-status-in-progress {
+  color: #24b5b8;
+}
+
 #stream .stream-item .stream-panel.debits .stream-panel-ul {
   text-align: left;
 }
