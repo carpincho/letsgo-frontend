@@ -21,7 +21,7 @@
       <div class="col-md-6">
         <div ng-repeat="project in projects">
 
-            <div id="stream">
+            <div ng-click="sendEventProjectId(project.id)" id="stream">
               <!-- stream item -->
               <div class="stream-item">
                 <div class="row">
@@ -47,7 +47,8 @@
                     </div>
                   </div>
                 </div> <!-- end stream-item -->
-          </div> <!-- end stream -->
+              </div> <!-- end stream -->
+
         </div>
 
       </div> <!-- end Projects -->
