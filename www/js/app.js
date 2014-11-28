@@ -29,6 +29,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'UserCtrl'
   })
 
+  .when('/user/password/', {
+    templateUrl: 'partials/change_password.html',
+    controller: 'UserCtrl'
+  })
+
   .when('/user/edit/:userId', {
     templateUrl: 'partials/edit_user.html',
     controller: 'UserCtrl'
