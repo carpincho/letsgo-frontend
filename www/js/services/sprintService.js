@@ -30,35 +30,26 @@ app.factory('SprintService', ['$log', '$http', 'RESTService', function($log, $ht
       RESTService.get(url, callback);
     },
 
-    // getProjectById: function (projectId, callback) {
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.get(url, callback);
-    // },
+    getSprintBySprintId: function (projectId, sprintId, callback) {
+      var url = baseUrl + "/" + projectId + "/sprints/" + sprintId;
+       RESTService.get(url, callback);
+    },
 
     createSprint: function(projectId, payload, callback){
       var url = baseUrl + "/" + projectId + "/sprints";
       RESTService.post(url, payload, callback);
     },
 
-    // editProject: function(projectId, payload, callback){
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.put(url, payload, callback);
-    // },
-    //
+    editSprint: function(projectId, sprintId, payload, callback){
+       var url = baseUrl + "/" + projectId + "/sprints/" + sprintId;
+       RESTService.put(url, payload, callback);
+     },
+
     deleteSprint: function(projectId, sprintId, callback){
       var url = baseUrl + "/" + projectId + "/sprints/" + sprintId;
       RESTService.delete(url, callback);
     },
-    //
-    // inviteDevelopersToProject: function(projectId, developers, callback){
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.put(url, payload, callback);
-    // },
-    //
-    // removeDevelopersFromProject: function(projectId, developers, callback){
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.put(url, payload, callback);
-    // },
+
   }
 
 }]);

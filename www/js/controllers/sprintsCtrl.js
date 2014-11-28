@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('SprintsCtrl', ['$location', '$scope', '$http', '$log', '$routeParams', 'RESTService', 'SharedProjectSprintService', 'SprintService', function ($location, $scope, $http, $log, $routeParams, RESTService, SharedProjectSprintService, SprintService) {
+  .controller('SprintsCtrl', ['$location', '$scope', '$log', '$routeParams', 'SharedProjectSprintService', 'SprintService', function ($location, $scope, $log, $routeParams, SharedProjectSprintService, SprintService) {
 
       $scope.sprints = [];
       $scope.sprint_status_options = SprintService.getSprintStatusOptions();
@@ -31,6 +31,7 @@ angular.module('myApp')
         //      4) save it in createFormData
         //      5/ delete harcoded status var
         var status = 0; // this is a bug in the api/database
+
         var projectId = $routeParams.projectId;
 
         if (projectId != undefined){
@@ -70,14 +71,10 @@ angular.module('myApp')
 
 
       $scope.updateSprint = function(name, start_date, end_date, status) {
-        // put in a service
-        // projects/:projectId/sprint/edit/:projectId', {
-
         var sprintId = $routeParams.sprintId;
         var projectId = $routeParams.projectId;
 
         if(sprintId != undefined && projectId != undefined){
-          var update_sprint_uri = '/projects/' + projectId + '/sprints/' + sprintId;
           var updateFormData = {
             id: parseInt(projectId),
             name: name,
@@ -86,25 +83,19 @@ angular.module('myApp')
             status: parseInt(status),
           }
 
-          $log.debug(updateFormData);
-          RESTService.put(update_sprint_uri, updateFormData, function(data){
+          SprintService.editSprint(projectId, sprintId, updateFormData, function(data){
             $log.debug('Success updating a sprint');
             $location.path('/projects');
           });
 
+        }else{
+          $log.error('Error updating sprint: projectId and sprintId are not defined!');
         }
       }
-
-
 
 
       $scope.cancelEditSprint = function(){
         $location.path("/projects");
       }
-
-
-
-
-
     }
   ]);
