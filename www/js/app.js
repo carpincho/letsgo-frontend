@@ -64,16 +64,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'ProjectsCtrl'
   })
 
-  .when('/projects/:projectID/sprints/:sprintID/stories/', {
+  .when('/projects/:projectId/sprints/:sprintId/stories/', {
     templateUrl: 'partials/stories.html',
     controller: 'StoriesCtrl'
   })
 
-  .when('/projects/:projectID/sprints/:sprintID/stories/create', {
+  .when('/projects/:projectId/sprints/:sprintId/stories/create', {
     templateUrl: 'partials/create_story.html',
     controller: 'StoriesCtrl'
   })
-  .when('/projects/:projectID/sprints/:sprintID/stories/edit/:storyID', {
+  .when('/projects/:projectId/sprints/:sprintId/stories/edit/:storyId', {
     templateUrl: 'partials/edit_story.html',
     controller: 'StoriesCtrl'
   })
