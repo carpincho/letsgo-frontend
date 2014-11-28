@@ -134,9 +134,9 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 });
 
 app.factory('SharedProjectSprintService', function($rootScope){
-
+  var projectId;
   var sharedService = {
-      projectId: -1,
+      projectId: projectId,
   };
 
   sharedService.prepForBroadcast = function(projectId){

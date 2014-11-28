@@ -79,6 +79,7 @@ angular.module('myApp')
       $scope.deleteProject = function(projectId) {
         ProjectService.deleteProject(projectId, function(data){
           $log.debug('Success deleting project');
+          $scope.sendEventProjectId();
           getProjects();
         });
       }

@@ -9,17 +9,21 @@ angular.module('myApp')
 
       $scope.$on('eventGetRelatedSprints', function(){
         $scope.projectId = SharedProjectSprintService.projectId;
-        $scope.sprint = getSprintsByProjectId(SharedProjectSprintService.projectId);
+        if($scope.projectId != undefined){
+          $scope.sprint = getSprintsByProjectId(SharedProjectSprintService.projectId);
+        }
+
       });
 
 
       var getSprintsByProjectId = function(projectId){
         if (projectId != undefined){
-
           SprintService.getSprintsByProjectId(projectId, function(data){
             $log.debug('Success getting a sprints');
             $scope.sprints = data;
           });
+        }else{
+          $scope.sprints = {};
         }
       }
 
