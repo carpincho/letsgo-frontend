@@ -12,7 +12,7 @@
               <h3 class="panel-title">Edit Sprint {{ updateFormData.sprint_name }}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="updateSprint(updateFormData.sprint_name, updateFormData.start_date, updateFormData.end_date, updateFormData.status)"accept-charset="UTF-8" role="form">
+              <form ng-submit="updateSprint(updateFormData.sprint_name, updateFormData.start_date, updateFormData.end_date, updateFormData.status.value)"accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
@@ -32,15 +32,8 @@
 
                   <div class="form-group">
                     <label for="status">Status</label>
-                    <!--<select  class="form-control" ng-model="option_selected" ng-options="option.label for option in project_status_options" required name="status"></select>-->
-                      <select class="form-control" name="status" ng-model="updateFormData.status">
-                        <option value="0" selected>Future</option>
-                        <option value="1">Planned</option>
-                        <option value="2">In Progress</option>
-                        <option value="3">Closed</option>
-                      </select>
+                    <select class="form-control" ng-model="updateFormData.status" ng-options="option.label for option in sprint_status_options" required name="status"></select>
                   </div>
-
 
                   <input type="submit" class="btn btn-primary" id="submit" value="Update" />
                   <a ng-click="cancelUpdateSprint()" class="btn btn-default">Cancel</a>

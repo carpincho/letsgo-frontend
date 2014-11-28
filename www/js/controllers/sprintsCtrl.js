@@ -14,7 +14,7 @@ angular.module('myApp')
       });
 
 
-      var getSprintsByProjectId = function(projectId) {
+      var getSprintsByProjectId = function(projectId){
         if (projectId != undefined){
           SprintService.getSprintsByProjectId(projectId, function(data){
             $log.debug('Success getting a sprints');
@@ -24,23 +24,16 @@ angular.module('myApp')
       }
 
 
-      $scope.createSprint = function(name, start_date, end_date) {
-        //TODO: 1) render sprint_status_options in form
-        //      2) submit in the form
-        //      3) read it in this function
-        //      4) save it in createFormData
-        //      5/ delete harcoded status var
-        var status = 0; // this is a bug in the api/database
-
+      $scope.createSprint = function(name, start_date, end_date, status){
         var projectId = $routeParams.projectId;
 
         if (projectId != undefined){
           var createFormData = {
-            project_id: projectId,
+            project_id: parseInt(projectId),
             name: name,
             start_date: start_date,
             end_date: end_date,
-            status: parseInt(status), // bug in api
+            status: parseInt(status),
           }
 
           SprintService.createSprint(projectId, createFormData, function(data){
@@ -70,7 +63,7 @@ angular.module('myApp')
       }
 
 
-      $scope.updateSprint = function(name, start_date, end_date, status) {
+      $scope.updateSprint = function(name, start_date, end_date, status){
         var sprintId = $routeParams.sprintId;
         var projectId = $routeParams.projectId;
 
