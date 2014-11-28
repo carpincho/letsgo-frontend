@@ -40,7 +40,7 @@ angular.module('myApp')
 
 
       var getProjectById = function(projectId) {
-        if(projectId != 'undefined' && projectId != null) {
+        if(projectId != undefined && projectId != null) {
 
           ProjectService.getProjectById(projectId, function(data){
             $log.debug('Success getting a project');
