@@ -21,7 +21,7 @@
       <div class="col-md-6">
         <div ng-repeat="project in projects">
 
-            <div ng-click="sendEventProjectId(project.id)" id="stream">
+            <div ng-click="sendEventProjectId(project.id)" id="stream" fade-in>
               <!-- stream item -->
               <div class="stream-item">
                 <div class="row">
@@ -56,14 +56,14 @@
       <div ng-controller="SprintsCtrl">
         <!-- Sprints -->
         <div class="col-md-6">
-          <div ng-repeat="sprint in sprints" >
-            <div id="stream">
+          <div ng-repeat="sprint in sprints">
+            <div id="stream" fade-in>
               <!-- stream item -->
               <div class="stream-item">
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-title">{{ sprint.name }} (id: {{ projectId }})</span></li>
+                      <li><span class="item-title">{{ sprint.name }}</span></li>
                       <li>
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date }} - End Date: {{ sprint.end_date }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
                         <li>
