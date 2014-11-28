@@ -56,10 +56,38 @@ angular.module('myApp')
       });
     }
 
+
     $scope.cancelEditUser = function(){
       $log.debug('Cancel edit user');
       $location.path('/user');
     }
+
+
+    $scope.changePassword = function(password, confirmPassword) {
+      //check same password also here
+      // validate fields
+      if(password != undefined && confirmPassword != undefined){
+
+        var payload = {
+          id: userId,
+          password: password,
+        }
+        $log.debug(payload)
+
+        RESTService.put(updateUserUri, payload, function(data){
+          $log.debug('Success changing password!');
+          $location.path('/');
+        });
+      }
+
+    }
+
+
+    $scope.cancelChangePassword = function(){
+      $log.debug('Cancel change password');
+      $location.path('/projects');
+    }
+
 
     $scope.deleteUser = function(){
       RESTService.delete(deleteUserUri, function(data){
