@@ -10,27 +10,18 @@ angular.module('myApp')
 
 
       var getTasks = function() {
-        var get_all_tasks_uri = TaskService.getTaskPath();
-
-        RESTService.get(get_all_tasks_uri, function(data){
-          $log.debug('Fetching ' + data.length + ' projects from server...');
+        TaskService.getAllTasks(function(data){
+          $log.debug('Fetching ' + data.length + ' tasks from server...');
           $scope.tasks = data;
         });
       }
-
-      // fetch the existing projects in the server
       getTasks();
 
       $scope.cancelCreateTask = function(){
         $location.path(TaskService.getTaskPath());
       }
 
-      TaskService.getAllTasks();
-
       $scope.createTask = function(description,nr) {
-        var create_task_uri = TaskService.getTaskPath();
-        var payload = {};
-
         // validate
         var ownerId = 1; //get owner
         var story_id = $scope.currentStoryID;
@@ -40,10 +31,7 @@ angular.module('myApp')
           owner: ownerId,
           story_id: story_id
         }
-
-        payload = createFormData;
-
-        RESTService.post(create_task_uri, payload, function(data){
+        TaskService.createTask(createFormData, function(data){
           $log.debug('Success creating new task');
           $location.path(TaskService.getTaskPath());
         });
@@ -64,6 +52,17 @@ angular.module('myApp')
           //$scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
         });
       }
+
+      var getTaskById = function(tasktId) {
+        if(tasktId != undefined && tasktId != null) {
+
+          TaskService.getTaskById(tasktId, function(data){
+            $log.debug('Success getting a task');
+            $scope.task_retrieved = data;
+            //$scope.project_option_selected = ProjectService.getOptionByValue(data.status)
+          });
+        }
+      }
       // get project from url
       getTask($routeParams.taskId);
 
@@ -73,32 +72,21 @@ angular.module('myApp')
       }
 
       $scope.updateTask = function(taskId, description, nr) {
-
-        var update_task_uri = TaskService.getTaskPath() +"/" + taskId;
-
         var ownerId = 1; //get owner
-        var payload;
 
         var updateFormData = {
           description: description,
           nr: nr,
           owner: ownerId
         }
-
-        payload = updateFormData;
-
-        RESTService.put(update_task_uri, payload, function(data){
+        TaskService.editTask(taskId, updateFormData, function(){
           $log.debug('Success updating a task');
           $location.path(TaskService.getTaskPath());
         });
       }
+
       $scope.deleteTask = function(taskId) {
-        // put in a service
-        var delete_project_uri = TaskService.getTaskPath() +"/" + taskId;
-
-        $log.debug('Deleting task ' + taskId +'from ' + TaskService.getTaskPath());
-
-        RESTService.delete(delete_project_uri, function(data){
+        TaskService.deleteTask(taskId, function(data){
           $log.debug('Success deleting task');
           getTasks();
         });
