@@ -2,9 +2,6 @@
 
 angular.module('myApp')
   .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $http, $log, $routeParams, AuthService, SharedProjectSprintService, ProjectService) {
-      var get_all_projects_uri = '/projects';
-      var create_project_uri = "/projects";
-
 
       var userId = AuthService.getUserInfo();
       $scope.project_status_options = ProjectService.getProjectStatusOptions();
@@ -16,12 +13,11 @@ angular.module('myApp')
           $scope.projects = data;
         });
       }
-      // fetch the existing projects in the server
+      // fetch the existing projects as init
       getProjects();
 
 
       $scope.createProject = function(name, description, startDate, endDate, status) {
-
         var createFormData = {
           name: name,
           description: description,
@@ -44,7 +40,6 @@ angular.module('myApp')
 
 
       var getProjectById = function(projectId) {
-
         if(projectId != 'undefined' && projectId != null) {
 
           ProjectService.getProjectById(projectId, function(data){
@@ -59,7 +54,6 @@ angular.module('myApp')
 
 
       $scope.updateProject = function(projectId, name, description, start_date, end_date, status) {
-
         var updateFormData = {
           id: projectId,
           name: name,
@@ -92,7 +86,6 @@ angular.module('myApp')
 
       $scope.inviteDevelopersToProject = function(developers) {
         var projectId = 67;
-
         // var payload = developers;
         var payload = {
           devs: [1, 2]
@@ -101,13 +94,11 @@ angular.module('myApp')
         ProjectService.inviteDevelopersToProject(projectId, payload, function(){
           $log.debug('Success inviting developers to project');
         });
-
       }
 
 
       $scope.removeDevelopersFromProject = function(developers) {
         var projectId = 67;
-
         // var payload = developers;
         var payload = {
           devs: [1, 2]
@@ -116,8 +107,6 @@ angular.module('myApp')
         ProjectService.inviteDevelopersToProject(projectId, payload, function(){
           $log.debug('Success removing developers to project');
         });
-
-
       }
 
       $scope.sendEventProjectId = function(projectId){
