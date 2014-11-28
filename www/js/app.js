@@ -59,9 +59,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'ProjectsCtrl'
   })
 
-  .when('/requirements', {
-    templateUrl: 'partials/requirements.html',
-    controller: 'RequirementsCtrl'
+  .when('/stories', {
+    templateUrl: 'partials/stories.html',
+    controller: 'StoriesCtrl'
   })
 
   .when('/sprints', {
