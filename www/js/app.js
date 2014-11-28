@@ -113,6 +113,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'TasksCtrl'
   })
 
+  .when('/taskboard/project/:projectId/sprint/:sprintId', {
+    templateUrl: 'partials/taskboard.html',
+    controller: 'TaskboardCtrl'
+  })
+
   .otherwise({
     redirectTo: '/login'
   });
