@@ -68,6 +68,35 @@ angular.module('myApp')
   }
 
 
+  $scope.updateStory = function(story_title, story_description,story_notes, story_points,id) {
+
+    var sprintID = $routeParams.sprintID;
+    var projectID = $routeParams.projectID;
+    var storyID = $routeParams.storyID;
+
+
+    if (sprintID != undefined && projectID != undefined  && storyID != undefined ){
+      var create_story_uri = '/projects/'+ projectID + '/sprints/'+sprintID+'/stories/'+storyID;
+
+      var createFormData = {
+        description: story_description,
+        title: story_title,
+        notes:story_notes,
+        points: story_points,
+        sprint_id: sprintID,
+      }
+
+      RESTService.put(create_story_uri, createFormData, function(data){
+        $log.debug('Success Updating new Story');
+        $location.path('/projects/'+$routeParams.projectID+'/sprints/'+$routeParams.sprintID+'/stories');
+      });
+
+    }
+  }
+
+
+
+
 }
 
 ]);
