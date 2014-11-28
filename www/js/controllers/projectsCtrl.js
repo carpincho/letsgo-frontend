@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $http, $log, $routeParams, AuthService, SharedProjectSprintService, ProjectService) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$routeParams', '$http', '$log', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $routeParams, $http, $log, AuthService, SharedProjectSprintService, ProjectService) {
 
       var userId = AuthService.getUserInfo();
       $scope.project_status_options = ProjectService.getProjectStatusOptions();

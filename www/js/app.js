@@ -118,6 +118,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'TaskboardCtrl'
   })
 
+
   .otherwise({
     redirectTo: '/login'
   });

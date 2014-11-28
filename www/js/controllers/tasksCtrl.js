@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('TasksCtrl', ['$scope', '$http', '$log', '$routeParams', '$location', 'TaskService', 'RESTService',
-    function ($scope, $http, $log, $routeParams, $location, TaskService, RESTService) {
+  .controller('TasksCtrl', ['$scope', '$http', '$log', '$location', 'TaskService', 'RESTService',
+    function ($scope, $http, $log, $location, TaskService, RESTService) {
 
       $scope.currentStoryID = TaskService.getCurrentStoryID();
       $scope.currentStory = TaskService.getCurrentStory();

@@ -3,7 +3,7 @@
 
 
 angular.module('myApp')
-.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService) {
+.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', 'RESTService', 'AuthService', 'SharedProjectSprintService',  function ($scope, $location, $http, $log, RESTService, AuthService, SharedProjectSprintService) {
 
 
   var ownerId = AuthService.getUserInfo();
