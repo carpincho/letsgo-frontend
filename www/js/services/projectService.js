@@ -62,12 +62,12 @@ app.factory('ProjectService', ['$log', '$http', 'RESTService', function($log, $h
 
     inviteDevelopersToProject: function(projectId, developers, callback){
       var url = baseUrl + "/" + projectId;
-      RESTService.put(url, payload, callback);
+      RESTService.put(url, developers, callback);
     },
 
     removeDevelopersFromProject: function(projectId, developers, callback){
       var url = baseUrl + "/" + projectId;
-      RESTService.put(url, payload, callback);
+      RESTService.put(url, developers, callback);
     },
   }
 
