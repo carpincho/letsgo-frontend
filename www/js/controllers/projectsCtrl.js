@@ -1,35 +1,14 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService, ProjectService) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $http, $log, $routeParams, AuthService, SharedProjectSprintService, ProjectService) {
       var get_all_projects_uri = '/projects';
       var create_project_uri = "/projects";
 
 
       var ownerId = AuthService.getUserInfo();
+      $scope.project_status_options = ProjectService.getProjectStatusOptions();
       $scope.projects = [];
-
-      // ------------------------
-      // this should be moved to constants
-      $scope.project_status_options = [
-        { label:'open', value: 0 },
-        { label:'closed', value: 1 },
-      ];
-
-      var getOptionByValue = function (options, value){
-        var i = 0;
-        var foundOption = {};
-
-        for (i=0; i < options.length; i++){
-          if(options[i].value == value){
-            foundOption = options[i]
-            break;
-          }
-        }
-        return foundOption;
-      }
-
-      // ------------------------
 
       var getProjects = function() {
         ProjectService.getAllProjects(function(data){
@@ -71,7 +50,7 @@ angular.module('myApp')
           ProjectService.getProjectById(projectId, function(data){
             $log.debug('Success getting a project');
             $scope.project_retrieved = data;
-            $scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
+            $scope.option_selected = ProjectService.getOptionByValue($scope.project_status_options, data.status)
           });
         }
       }

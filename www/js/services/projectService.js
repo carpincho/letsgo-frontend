@@ -20,7 +20,7 @@ app.factory('ProjectService', ['$log', '$http', 'RESTService', function($log, $h
       return foundOption;
     },
 
-    getprojectStatusOptions: function(){
+    getProjectStatusOptions: function(){
       return projectStatusOptions;
     },
 
