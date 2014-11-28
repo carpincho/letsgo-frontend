@@ -1,7 +1,7 @@
 <div ng-include="'partials/navbar.html'"></div>
 
 
-<div ng-controller="ProjectsCtrl">
+<div ng-controller="StoriesCtrl">
   <div class="container">
     <div class="container">
       <div class="row vertical-offset-100">
@@ -9,39 +9,39 @@
           <div class="panel panel-primary">
 
             <div class="panel-heading">
-              <h3 class="panel-title">Edit Project {{ project_retrieved.name }}</h3>
+              <h3 class="panel-title">Create Story {{createFormData.story_title}}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, project_option_selected.value)" accept-charset="UTF-8" role="form">
+              <form ng-submit="createStory(createFormData.story_title, createFormData.story_description, createFormData.story_notes, createFormData.story_points, createFormData.story.sprint_id)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
-                    <label for="exampleInputProjectName1">Project Name (*)</label>
-                    <input class="form-control" ng-model="project_retrieved.name" placeholder="Project Name" name="project_name" type="text" required>
+                    <label for="story_title">Story Title (*)</label>
+                    <input class="form-control" ng-model="createFormData.story_title" placeholder="Project Title" name="story_title" type="text" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputProjectDescription">Project Description</label>
-                    <textarea class="form-control" ng-model="project_retrieved.description" name="project_description" placeholder="Project Description" rows="4"></textarea>
+                    <label for="story_description">Story Description</label>
+                    <textarea class="form-control" ng-model="createFormData.story_description" name="story_description" placeholder="Story Description" rows="4"></textarea>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputStartDate">Start Date</label>
-                    <input class="form-control" ng-model="project_retrieved.start_date" placeholder="2013-2-1" name="start_date" type="text" required>
+                    <label for="story_notes">Story Notes</label>
+                    <textarea class="form-control" ng-model="createFormData.story_notes" name="story_notes" placeholder="Story Notes" rows="4"></textarea>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputStartDate">Completion Date</label>
-                    <input class="form-control" ng-model="project_retrieved.end_date" placeholder="2014-2-1" name="end_date" type="text" required>
+                    <label for="story_points">Story Points</label>
+                    <input class="form-control" ng-model="createFormData.story_points" placeholder="Story Points" name="story_points" type="text">
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleSelectLanguage1">Status</label>
-                    <select name="status" class="form-control" ng-model="project_option_selected" ng-options="option.label for option in project_status_options" required></select>
+                    <label for="sprint_id">Sprint:</label>
+                     {{sprintId}}
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Update</button>
-                  <a ng-click="cancelUpdateProject()" class="btn btn-default">Cancel</a>
+                  <input type="submit" class="btn btn-primary" id="submit" value="Create" />
+                  <a ng-click="cancelCreateStory()" class="btn btn-default">Cancel</a>
 
                 </fieldset>
               </form>

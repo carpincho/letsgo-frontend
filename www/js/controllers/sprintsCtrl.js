@@ -1,31 +1,61 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('SprintsCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
+  .controller('SprintsCtrl', ['$location', '$scope', '$log', '$routeParams', 'SharedProjectSprintService', 'SprintService', function ($location, $scope, $log, $routeParams, SharedProjectSprintService, SprintService) {
 
       $scope.sprints = [];
+      $scope.sprint_status_options = SprintService.getSprintStatusOptions();
+      var projectId;
 
-
-
-      $scope.createSprint = function(project_id, name, start_date, end_date) {
-        var status = 0; // this is a bug in the api/database
-
-        var payload = {};
-
-        var createFormData = {
-          project_id: project_id,
-          name: name,
-          start_date: start_date,
-          end_date: end_date,
-          status: parseInt(status), // bug in api
+      $scope.$on('eventGetRelatedSprints', function(){
+        $scope.projectId = SharedProjectSprintService.projectId;
+        if($scope.projectId != undefined){
+          $scope.sprint = getSprintsByProjectId(SharedProjectSprintService.projectId);
         }
 
-        payload = createFormData
+      });
 
-        RESTService.post(create_project_uri, payload, function(data){
-          $log.debug('Success creating new project');
-          $location.path("/projects");
-        });
+
+      var getSprintsByProjectId = function(projectId){
+        if (projectId != undefined){
+          SprintService.getSprintsByProjectId(projectId, function(data){
+            $log.debug('Success getting a sprints');
+            $scope.sprints = data;
+          });
+        }else{
+          $scope.sprints = {};
+        }
+      }
+
+      var getSprintBySprintId = function(projectId, sprintId){
+        if(projectId != undefined && sprintId != undefined){
+
+          SprintService.getSprintBySprintId(projectId, sprintId, function(data){
+            $log.debug('Success getting a sprint');
+            $scope.sprint_retrieved = data;
+            $scope.sprint_option_selected = SprintService.getOptionByValue(data.status)
+          });
+        }
+      }
+      getSprintBySprintId($routeParams.projectId, $routeParams.sprintId);
+
+      $scope.createSprint = function(name, start_date, end_date, status){
+        var projectId = $routeParams.projectId;
+
+        if (projectId != undefined){
+          var createFormData = {
+            project_id: parseInt(projectId),
+            name: name,
+            start_date: start_date,
+            end_date: end_date,
+            status: parseInt(status),
+          }
+
+          SprintService.createSprint(projectId, createFormData, function(data){
+            $log.debug('Success creating new project');
+            $location.path("/projects");
+          });
+        }
       }
 
 
@@ -34,30 +64,46 @@ angular.module('myApp')
       }
 
 
+      $scope.deleteSprint = function(projectId, sprintId) {
+        if(projectId != undefined && sprintId != undefined){
+          SprintService.deleteSprint(projectId, sprintId, function(data){
+            $log.debug('Success deleting project');
+            getSprintsByProjectId(projectId);
+          });
+
+        }else{
+          $log.error('Error deleting sprint: projectId and sprintId are not defined!');
+        }
+
+      }
 
 
+      $scope.updateSprint = function(name, start_date, end_date, status){
+        var sprintId = $routeParams.sprintId;
+        var projectId = $routeParams.projectId;
 
-      // var getSprints = function() {
-      //   // put in a service
-      //   //var get_all_projects_uri = '/projects/:projectId/sprints';
-      //
-      //   var projectId = 1;
-      //   var get_all_projects_uri = '/projects/' + projectId + '/sprints';
-      //
-      //   $http.get(get_all_projects_uri)
-      //   .success(function(data, status, header, config) {
-      //     console.log('Fetching ' + data.length + ' sprints from server...');
-      //     $scope.sprints = data;
-      //   })
-      //   .error(function(data, status) {
-      //     //$log.debug('Error while fetching projects from server');
-      //     console.log('Error while fetching projects from server');
-      //   });
-      //
-      // }
-      // // fetch the existing projects in the server
-      // getSprints();
+        if(sprintId != undefined && projectId != undefined){
+          var updateFormData = {
+            id: parseInt(projectId),
+            name: name,
+            start_date: start_date,
+            end_date: end_date,
+            status: parseInt(status),
+          }
+
+          SprintService.editSprint(projectId, sprintId, updateFormData, function(data){
+            $log.debug('Success updating a sprint');
+            $location.path('/projects');
+          });
+
+        }else{
+          $log.error('Error updating sprint: projectId and sprintId are not defined!');
+        }
+      }
 
 
+      $scope.cancelEditSprint = function(){
+        $location.path("/projects");
+      }
     }
   ]);

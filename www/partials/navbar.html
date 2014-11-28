@@ -29,11 +29,9 @@
                {{ userInfo.email }} <span class="glyphicon glyphicon-user"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-              <li>
-                <a ng-href="#/user">Profile <span class="glyphicon glyphicon-pencil"></span></a>
-              </li>
+              <li><a ng-href="#/user">View my Profile <span class="glyphicon glyphicon-pencil"></span></a> </li>
+              <li><a ng-href="#/user/password">Change Password <span class="glyphicon glyphicon-lock"></span></a> </li>
               <li class="divider"></li>
-
               <li>
                 <a href="#/" ng-click="authService.logout()">Log Out <span class="glyphicon glyphicon-log-out"></span></a>
               </li>
