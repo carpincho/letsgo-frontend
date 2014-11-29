@@ -1,20 +1,20 @@
 app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService){
-  var currentProjectID = 1;
-  var currentSprintID = 1;
-  var currentStoryID = 1;
+  var currentProjectId = 1;
+  var currentSprintId = 1;
+  var currentStoryId = 1;
   var currentProjectName = "someProject";
   var currentSprintName = "someSprint";
   var currentStoryName = "SomeStory";
-  var taskPath = "/projects/" + currentProjectID + "/sprints/" + currentSprintID + "/stories/" + currentStoryID + "/tasks";
+  var taskPath = "/projects/" + currentProjectId + "/sprints/" + currentSprintId + "/stories/" + currentStoryId + "/tasks";
   return{
 
-    getCurrentStory: function(){
-      var currentStory = currentProjectName+" > "+currentSprintName+" > "+currentStoryName;
+    getCurrentStoryPath: function(){
+      var currentStory = "/projects/" + currentProjectId + "/sprints/" + currentSprintId + "/stories/" + currentStoryId;
       return currentStory;
     },
 
-    getCurrentStoryID:function(){
-      return currentStoryID;
+    getCurrentStoryId:function(){
+      return currentStoryId;
     },
 
     getTaskPath: function(){
@@ -39,6 +39,14 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
     deleteTask: function(taskId, callback){
       var url = taskPath + "/" + taskId;
       RESTService.delete(url, callback);
+    },
+    assignDevelopersToTask: function(taskId, payload, callback){
+      var url = taskPath + "/" + taskId + "/assign_devs";
+      RESTService.put(url, payload, callback);
+    },
+    unassignDevelopersToTask: function(taskId, payload, callback){
+      var url = taskPath + "/" + taskId + "/unassign_devs";
+      RESTService.put(url, payload, callback);
     }
 
 };

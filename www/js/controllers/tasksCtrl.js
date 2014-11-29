@@ -1,18 +1,20 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('TasksCtrl', ['$scope', '$http', '$log', '$routeParams', '$location', 'TaskService', 'RESTService',
-    function ($scope, $http, $log, $routeParams, $location, TaskService, RESTService) {
+  .controller('TasksCtrl', ['$scope', '$http', '$log', '$routeParams', '$location', 'ProjectService', 'TaskService', 'RESTService',
+    function ($scope, $http, $log, $routeParams, $location, ProjectService, TaskService, RESTService) {
 
-      $scope.currentStoryID = TaskService.getCurrentStoryID();
-      $scope.currentStory = TaskService.getCurrentStory();
+      $scope.currentStoryId = TaskService.getCurrentStoryId();
+      $scope.CurrentStoryPath = TaskService.getCurrentStoryPath();
       $scope.tasks = [];
-
-
+      $scope.allAvailables = [];
+      $scope.assigned_devs = [];
+      $scope.availables = [];
       var getTasks = function() {
         TaskService.getAllTasks(function(data){
           $log.debug('Fetching ' + data.length + ' tasks from server...');
           $scope.tasks = data;
+
         });
       }
       getTasks();
@@ -22,34 +24,18 @@ angular.module('myApp')
       }
 
       $scope.createTask = function(description,nr) {
-        // validate
+        // valIdate
         var ownerId = 1; //get owner
-        var story_id = $scope.currentStoryID;
+        var story_Id = $scope.currentStoryId;
         var createFormData = {
           description: description,
           nr: nr,
           owner: ownerId,
-          story_id: story_id
+          story_Id: story_Id
         }
         TaskService.createTask(createFormData, function(data){
           $log.debug('Success creating new task');
           $location.path(TaskService.getTaskPath());
-        });
-      }
-
-      var getTask = function(taskId) {
-        var get_task_uri = TaskService.getTaskPath() +"/" + taskId;
-        var fetchedTask = {};
-        if(typeof(taskId) == 'undefined' || taskId == null) {
-          return fetchedTask;
-        }
-
-
-        RESTService.get(get_task_uri, function(data){
-          $log.debug('Success getting a task');
-          fetchedTask = data;
-          $scope.task_retrieved = data;
-          //$scope.option_selected = getOptionByValue($scope.project_status_options, data.status)
         });
       }
 
@@ -59,12 +45,14 @@ angular.module('myApp')
           TaskService.getTaskById(tasktId, function(data){
             $log.debug('Success getting a task');
             $scope.task_retrieved = data;
+            $scope.assigned_devs = data.assigned_devs;
+            $log.debug(data);
             //$scope.project_option_selected = ProjectService.getOptionByValue(data.status)
           });
         }
       }
       // get project from url
-      getTask($routeParams.taskId);
+      getTaskById($routeParams.taskId);
 
 
       $scope.cancelUpdateTask = function(){
@@ -96,6 +84,59 @@ angular.module('myApp')
         $location.path(TaskService.getTaskPath());
       }
 
+      var getInvitedDevelopers = function(projectId){
+        ProjectService.getProjectById(projectId, function(data){
+          $scope.availables = data.invited_devs;
+          for(var i=0;i<$scope.assigned_devs.length;i++){
+            for(var j=0;j<i<$scope.availables.length;i++){
+              if($scope.assigned_devs[i] == $scope.availables[j]){
+                $scope.availables.splice(j,1);
+                break;
+              }
+            }
+          }
+        });
 
+
+
+      }
+      getInvitedDevelopers($routeParams.projectId);
+
+
+
+
+      $scope.assignDevelopersToTask = function(developers) {
+        // var payload = developers;
+        var payload = {
+          devs: [developers]
+        };
+        $scope.assigned_devs.push(developers)
+        for(var i=0;i<$scope.availables.length;i++){
+          if ($scope.availables[i]==developers){
+            $scope.availables.splice(i,1);
+            break;
+          }
+        }
+        TaskService.assignDevelopersToTask($routeParams.taskId, payload, function(){
+          $log.debug('Success assigned developers to task');
+        });
+      }
+
+      $scope.unassignDevelopersToTask = function(developers) {
+        // var payload = developers;
+        var payload = {
+          devs: [developers]
+        };
+        $scope.availables.push(developers)
+        for(var i=0;i<$scope.assigned_devs.length;i++){
+          if ($scope.assigned_devs[i]==developers){
+            $scope.assigned_devs.splice(i,1);
+            break;
+          }
+        }
+        TaskService.unassignDevelopersToTask($routeParams.taskId, payload, function(){
+          $log.debug('Success unassigned developers to task');
+        });
+      }
     }
   ]);

@@ -16,7 +16,7 @@
                 <fieldset>
 
                   <div class="form-group">
-                    <label >{{currentStory}} > Task {{task_retrieved.id}}</label>
+                    <h3 >Task: {{task_retrieved.id}}</h3>
                   </div>
 
                   <div class="form-group">
@@ -28,8 +28,20 @@
                     <label >Task Point: </label>
                     <input class="form-control" ng-model="task_retrieved.nr" name="task_nr" placeholder="task_retrieved.nr" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
                   </div>
-
-
+                  <div class="form-group">
+                    <div class ="row">
+                      <div class="col-md-6">
+                        <div ng-repeat = "available in availables">
+                          <a ng-click="assignDevelopersToTask(available)"><span class="glyphicon glyphicon-plus-sign"</span></a> {{available}}
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div ng-repeat = "assigned_dev in task_retrieved.assigned_devs">
+                            <a ng-click="unassignDevelopersToTask(assigned_dev)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{assigned_dev}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   <button ng-click="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr)" class="btn btn-primary">Update</button>
                   <a ng-click="cancelUpdateTask()" class="btn btn-default">Cancel</a>
 
