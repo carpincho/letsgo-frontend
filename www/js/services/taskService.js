@@ -1,11 +1,9 @@
 app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService){
-  var currentProjectID = 1;
-  var currentSprintID = 1;
-  var currentStoryID = 1;
+
   var currentProjectName = "someProject";
   var currentSprintName = "someSprint";
   var currentStoryName = "SomeStory";
-  var taskPath = "/projects/" + currentProjectID + "/sprints/" + currentSprintID + "/stories/" + currentStoryID + "/tasks";
+  var taskPath = "/projects/";
 
   return{
 
@@ -18,32 +16,32 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
       return currentStoryID;
     },
 
-    getTaskPath: function(){
-      return taskPath;
+    getTaskPath: function(projectId, sprintId, storyId){
+      return "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks";;
     },
 
-    getAllTasks: function(callback){
-      var url = taskPath;
+    getAllTasks: function(projectId, sprintId, storyId,callback){
+      var url  = "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks";
       RESTService.get(url, callback);
     },
 
-    createTask: function(payload, callback){
-      var url = taskPath;
+    createTask: function(projectId, sprintId, storyId,payload, callback){
+      var url = "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks";
       RESTService.post(url, payload, callback);
     },
 
     getTaskById: function (taskId, callback) {
-      var url = taskPath + "/" + taskId;
+      var url  = "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks" + "/" + taskId;
       RESTService.get(url, callback);
     },
 
     editTask: function(taskId, payload, callback){
-      var url = taskPath + "/" + taskId;
+      var url  = "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks" + "/" + taskId;
       RESTService.put(url, payload, callback);
     },
 
     deleteTask: function(taskId, callback){
-      var url = taskPath + "/" + taskId;
+      var url  = "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks" + "/" + taskId;
       RESTService.delete(url, callback);
     }
 
