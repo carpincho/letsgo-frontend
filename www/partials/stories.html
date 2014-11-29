@@ -35,6 +35,8 @@
 
                      <li>
                       <div class="btn-group pull-right">
+
+                        <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{story.id}}/tasks"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-glass"></span> Task</a>
                         <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
                         <a ng-click='deleteStory(projectId,sprintId,story.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                       </div>

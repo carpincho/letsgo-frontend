@@ -98,12 +98,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'TasksCtrl'
   })
 
-  .when('/projects/:projectID/sprints/:sprintID/stories/:storyID/tasks',{
+  .when('/projects/:projectId/sprints/:sprintId/stories/:storyId/tasks',{
     templateUrl: 'partials/tasks.html',
     controller: 'TasksCtrl'
   })
 
-  .when('/task/create',{
+ 
+  .when('/projects/:projectId/sprints/:sprintId/stories/:storyId/tasks/create',{
     templateUrl: 'partials/create_task.html',
     controller: 'TasksCtrl'
   })

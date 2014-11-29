@@ -7,6 +7,8 @@ angular.module('myApp')
 .controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,StoryService) {
 
   var ownerId = AuthService.getUserInfo();
+
+  console.log("usuario en storia"+ownerId);
   $scope.stories = [];
 
   var getStories = function() {

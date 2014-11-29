@@ -122,6 +122,8 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
       authorized = status_var;
       userInfo = user_info;
 
+      console.log('setea usuario');
+
     },
 
     currentUser: function(){
