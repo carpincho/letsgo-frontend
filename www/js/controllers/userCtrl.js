@@ -9,7 +9,6 @@ angular.module('myApp')
     var updateUserUri = baseUsersUri + "/" + userId;
     var deleteUserUri = baseUsersUri + "/" + userId;
 
-    var passwordMinLenth = 6;
 
     $scope.signUp = function(email, firstname, lastname, password, confirmPassword){
       $scope.passwordMatch = false;
@@ -23,7 +22,7 @@ angular.module('myApp')
 
       var payload = signupDataForm;
 
-      if (password == confirmPassword && password.length > passwordMinLenth) {
+      if (password == confirmPassword) {
         $scope.passwordMatch = true;
 
         RESTService.post(baseUsersUri, payload, function(data){

@@ -65,6 +65,7 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
         password: password
       }
 
+
       if (email != undefined && password != undefined){
         //rememberMe is true if setted, undefined if not
         RESTService.post(sessions_uri, payload, function(data){
