@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp')
-.controller('TasksCtrl', ['$scope', '$http', '$log', '$location', 'TaskService', 'RESTService','$routeParams','AuthService',
-function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,AuthService) {
+.controller('TasksCtrl', ['$scope', '$http', '$log', '$location', 'TaskService', 'RESTService','$routeParams','AuthService','SharedStoryTaskService',
+function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,AuthService,SharedStoryTaskService) {
 
   $scope.tasks = [];
 
@@ -12,17 +12,30 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
   var storyId = $routeParams.storyId;
   var ownerId = AuthService.getUserInfo();
 
-  $scope.projectId = projectId;
-  $scope.sprintId = sprintId;
-  $scope.storyId =  storyId;
+  $scope.$on('eventGetRelatedStory', function(){
+    $scope.projectId = SharedStoryTaskService.projectId;
+    $scope.sprintId = SharedStoryTaskService.sprintId;
+    $scope.storyId =  SharedStoryTaskService.storyId;
 
-  var getTasks = function() {
+    var projectId = $scope.projectId;
+    var sprintId  = $scope.sprintId;
+    var storyId = $scope.storyId;
+    var ownerId = AuthService.getUserInfo();
+
+    if($scope.projectId != undefined){
+      getTasks(projectId, sprintId, storyId);
+    }
+
+  });
+
+
+  var getTasks = function(projectId, sprintId, storyId) {
     TaskService.getAllTasks(projectId, sprintId, storyId,function(data){
       $log.debug('Fetching ' + data.length + ' tasks from server...');
       $scope.tasks = data;
     });
   }
-  getTasks();
+
 
   $scope.cancelCreateTask = function(){
     $location.path(TaskService.getTaskPath());
@@ -71,7 +84,7 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
     }
   }
   // get project from url
-  getTaskById($routeParams.taskId);
+  //  getTaskById($routeParams.taskId);
 
 
   $scope.cancelUpdateTask = function(){

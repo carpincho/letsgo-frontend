@@ -4,11 +4,10 @@
 
 angular.module('myApp')
 
-.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,StoryService) {
+.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService','SharedStoryTaskService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,SharedStoryTaskService,StoryService) {
 
   var ownerId = AuthService.getUserInfo();
 
-  console.log("usuario en storia"+ownerId);
   $scope.stories = [];
 
   var getStories = function() {
@@ -100,6 +99,13 @@ getStorybyStoryId($routeParams.projectId, $routeParams.sprintId, $routeParams.st
 
     }
   }
+
+
+  $scope.sendEventStoryId = function(projectId,sprintId,StoryId){
+    SharedStoryTaskService.prepForBroadcast(projectId,sprintId,StoryId);
+  };
+
+
 }
 
 ]);

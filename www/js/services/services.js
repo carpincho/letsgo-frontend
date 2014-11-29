@@ -122,8 +122,6 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
       authorized = status_var;
       userInfo = user_info;
 
-      console.log('setea usuario');
-
     },
 
     currentUser: function(){
@@ -150,6 +148,31 @@ app.factory('SharedProjectSprintService', function($rootScope){
 
   sharedService.broadcastItem = function(){
     $rootScope.$broadcast('eventGetRelatedSprints');
+  }
+
+  return sharedService;
+});
+
+
+app.factory('SharedStoryTaskService', function($rootScope){
+  var projectId;
+  var sprintId;
+  var storyId;
+  var sharedService = {
+      projectId: projectId,
+      sprintId: sprintId,
+      storyId: storyId,
+  };
+
+  sharedService.prepForBroadcast = function(projectId,sprintId,storyId){
+    this.projectId = projectId;
+    this.sprintId = sprintId;
+    this.storyId = storyId;
+    this.broadcastItem();
+  };
+
+  sharedService.broadcastItem = function(){
+    $rootScope.$broadcast('eventGetRelatedStory');
   }
 
   return sharedService;
