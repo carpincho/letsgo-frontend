@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', function ($scope, $location, $log, RESTService, AuthService) {
+  .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', function ($scope, $location, $log, RESTService, AuthService, $timeout) {
 
     var baseUsersUri = '/users'
     var userId = AuthService.getUserInfo();
@@ -26,12 +26,13 @@ angular.module('myApp')
         $scope.passwordMatch = true;
 
         RESTService.post(baseUsersUri, payload, function(data){
-          $log.debug('Success creating new project');
+          $log.debug('Success creating new user');
+
+          $timeout(function() {
+            $scope.successMsgVisible = true;
+          }, 30000);
           $location.path("/login");
         });
-      }else{
-        $log.warn('Password doesn\'t match');
-        $scope.passwordMatch = false;
       }
     }
 
@@ -63,19 +64,18 @@ angular.module('myApp')
 
 
     $scope.changePassword = function(password, confirmPassword) {
-      //check same password also here
-      // validate fields
       if(password != undefined && confirmPassword != undefined){
 
         var payload = {
           id: userId,
           password: password,
         }
-        $log.debug(payload)
-
         RESTService.put(updateUserUri, payload, function(data){
           $log.debug('Success changing password!');
-          $location.path('/');
+          $scope.successMsgVisible = true;
+          $timeout(function(){
+            $location.path('/projects');
+          }, 1000);
         });
       }
 
