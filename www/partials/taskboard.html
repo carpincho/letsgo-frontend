@@ -7,18 +7,17 @@
       <h3>Project: {{ project.name }} | Sprint: {{ sprint.name }} | <a href="">Burndown Chart <span class="glyphicon glyphicon-stats"></span></a></h3>
     </div>
 
-    <div class="row vertical-offset">
-      <div ng-repeat="userStory in userStories track by $index">
-
-        <div class="col-md-12">
+    <div ng-repeat="userStoryTasks in storiesTasks track by $index">
+      <div class="row vertical-offset">
+        <div class="col-md-2">
           <h4>User Story</h4>
           <div id="stream">
             <div class="stream-item">
               <div class="row">
                 <div class="stream-panel credits">
                   <ul class="stream-panel-ul">
-                    <li><span class="item-title">{{ userStory.title }}</span></li>
-                    <li><span class="item-content">{{ userStory.description }}.</span></li>
+                    <li><span class="item-title">{{ userStoryTasks.story.title }}</span></li>
+                    <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
                     <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
                     <li>
                       <div class="btn-group">
@@ -31,14 +30,117 @@
                 </div>
               </div>
             </div> <!-- end stream-item -->
-          </div>
-        </div>
+          </div> <!-- end stream -->
+        </div> <!-- end collumn -->
 
-      </div>
+        <div ng-repeat="task in userStoryTasks track by $index">
 
-    </div> <!-- end container -->
-  </div>
-</div>
+          <div class="col-md-2">
+            <h4>Not Started</h4>
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ userStoryTasks.task.title }}</span></li>
+                      <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+          </div> <!-- end collumn -->
+
+          <div class="col-md-2">
+            <h4>In-Progress</h4>
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ userStoryTasks.task.title }}</span></li>
+                      <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+          </div> <!-- end collumn -->
+
+          <div class="col-md-2">
+            <h4>In-Progress</h4>
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ userStoryTasks.task.title }}</span></li>
+                      <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+          </div> <!-- end collumn -->
+
+
+
+          <div class="col-md-2">
+            <h4>In-Progress</h4>
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ userStoryTasks.task.title }}</span></li>
+                      <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+          </div> <!-- end collumn -->
+
+
+
+        </div> <!-- end repeat tasks -->
+      </div> <!-- end story repeat -->
+
+    </div> <!-- end row -->
+  </div> <!-- end container -->
+</div> <!-- end Taskboard -->
 
 <!--
   <div class="col-md-2">
@@ -58,8 +160,8 @@
             </ul>
           </div>
         </div>
-      </div> <!-- end stream-item -->
-<!--
+      </div>
+
       <div class="stream-item">
         <div class="row">
           <div class="stream-panel credits">

@@ -65,28 +65,29 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
         password: password
       }
 
-      //rememberMe is true if setted, undefined if not
-      RESTService.post(sessions_uri, payload, function(data){
-        $log.debug('Success logging in the user');
+      if (email != undefined && password != undefined){
+        //rememberMe is true if setted, undefined if not
+        RESTService.post(sessions_uri, payload, function(data){
+          $log.debug('Success logging in the user');
 
-        authorized = true;
-        initialState = false;
-        currentUser = email;
-        // check for data structure
-        // validate data structure
-        userInfo = data;
+          authorized = true;
+          initialState = false;
+          currentUser = email;
+          // check for data structure
+          // validate data structure
+          userInfo = data;
 
-        $cookieStore.put( 'lets_go_session_client', authorized);
-        $cookieStore.put( 'lets_go_user_info',userInfo);
+          $cookieStore.put( 'lets_go_session_client', authorized);
+          $cookieStore.put( 'lets_go_user_info',userInfo);
 
 
-        // show a success message
-        //$scope.successMsgVisible = true;
-        // let the message dissapear after 2 secs
-        //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
-        // console.log("Logged in as " + email);
-      });
-
+          // show a success message
+          //$scope.successMsgVisible = true;
+          // let the message dissapear after 2 secs
+          //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
+          // console.log("Logged in as " + email);
+        });
+      }
     },
 
     logout: function () {
