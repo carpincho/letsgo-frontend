@@ -6,7 +6,6 @@ angular.module('myApp')
 
 .controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,StoryService) {
 
-
   var ownerId = AuthService.getUserInfo();
   $scope.stories = [];
 
@@ -99,10 +98,6 @@ getStorybyStoryId($routeParams.projectId, $routeParams.sprintId, $routeParams.st
 
     }
   }
-
-
-
-
 }
 
 ]);

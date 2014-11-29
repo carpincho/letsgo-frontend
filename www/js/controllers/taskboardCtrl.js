@@ -20,6 +20,10 @@ angular.module('myApp')
                 };
 
   var tasks = [task, task, task]
+  var storiesTasks = [{story: userStory, tasksNotStarted: tasks, Task: tasks},
+                      {story: userStory, tasks: tasks},
+                      {story: userStory, tasks: tasks}]
+
     //-----end----
 
     if (projectId != undefined && sprintId != undefined){
@@ -37,7 +41,7 @@ angular.module('myApp')
       $scope.userStories = userStories;
       // get tasks from user stories
       $scope.taks = tasks;
-
+      $scope.storiesTasks = storiesTasks;
     }
 
   }
