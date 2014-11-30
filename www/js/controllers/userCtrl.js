@@ -3,15 +3,9 @@
 angular.module('myApp')
   .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', function ($scope, $location, $log, RESTService, AuthService, $timeout, UserService) {
 
-    var baseUsersUri = '/users'
     var userId = AuthService.getUserInfo();
-    var getUserUri = baseUsersUri + '/' + userId;
-    var updateUserUri = baseUsersUri + "/" + userId;
-    var deleteUserUri = baseUsersUri + "/" + userId;
-
 
     $scope.signUp = function(email, firstname, lastname, password, confirmPassword){
-      $scope.passwordMatch = false;
 
       var signupDataForm = {
         email: email,
@@ -20,12 +14,9 @@ angular.module('myApp')
         password: password
       };
 
-      var payload = signupDataForm;
-
       if (password == confirmPassword) {
-        $scope.passwordMatch = true;
 
-        UserService.createUser(payload, function(data){
+        UserService.createUser(signupDataForm, function(data){
           $log.debug('Success creating new user');
 
           $timeout(function() { $scope.successMsgVisible = true;}, 30000);

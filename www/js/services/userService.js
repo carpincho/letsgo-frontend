@@ -29,35 +29,7 @@ app.factory('UserService', ['$log', '$http', 'RESTService', function($log, $http
       RESTService.delete(url, callback);
     },
 
-    // getProjectById: function (projectId, callback) {
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.get(url, callback);
-    // },
-    //
-    // createProject: function(payload, callback){
-    //   var url = baseUrl;
-    //   RESTService.post(url, payload, callback);
-    // },
-    //
-    // editProject: function(projectId, payload, callback){
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.put(url, payload, callback);
-    // },
-    //
-    // deleteProject: function(projectId, callback){
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.delete(url, callback);
-    // },
-    //
-    // inviteDevelopersToProject: function(projectId, developers, callback){
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.put(url, developers, callback);
-    // },
-    //
-    // removeDevelopersFromProject: function(projectId, developers, callback){
-    //   var url = baseUrl + "/" + projectId;
-    //   RESTService.put(url, developers, callback);
-    // },
+
   }
 
 }]);
