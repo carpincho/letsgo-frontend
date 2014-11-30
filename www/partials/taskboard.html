@@ -54,7 +54,7 @@
               </li>
             </ul>
           </span>
-          <div ng-repeat="task in userStoryTasks.tasks">
+          <div ng-repeat="task in userStoryTasks.task_Not_Started">
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
@@ -90,7 +90,7 @@
               </li>
             </ul>
           </span>
-          <div ng-repeat="task in userStoryTasks.tasks">
+          <div ng-repeat="task in userStoryTasks.task_In_Progress">
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
@@ -129,7 +129,7 @@
             </ul>
           </span>
 
-          <div ng-repeat="task in userStoryTasks.tasks">
+          <div ng-repeat="task in userStoryTasks.task_Completed">
 
             <div id="stream">
               <div class="stream-item">
@@ -170,7 +170,7 @@
           </span>
 
 
-          <div ng-repeat="task in userStoryTasks.tasks">
+          <div ng-repeat="task in userStoryTasks.task_Blocked">
 
             <div id="stream">
               <div class="stream-item">

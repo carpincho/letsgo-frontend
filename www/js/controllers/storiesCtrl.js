@@ -61,8 +61,17 @@ getStorybyStoryId($routeParams.projectId, $routeParams.sprintId, $routeParams.st
 
   }
 
-  $scope.cancelCreateStory = function(){
+  $scope.cancelCreateStory = function(url){
+/*
+    if(url == undefined ){
     $location.path('/projects/'+$routeParams.projectId+'/sprints/'+$routeParams.sprintId+'/stories');
+  } else {
+
+    $location.path(url);
+
+  }*/
+
+   window.history.back();
   }
 
 
@@ -94,7 +103,7 @@ getStorybyStoryId($routeParams.projectId, $routeParams.sprintId, $routeParams.st
 
       StoryService.editStory(projectId, sprintId,storyId, updateFormData, function(data){
         $log.debug('Success Updating new Story');
-        $location.path('/projects/'+$routeParams.projectId+'/sprints/'+$routeParams.sprintId+'/stories');
+        $location.path(window.history.back());
       });
 
     }

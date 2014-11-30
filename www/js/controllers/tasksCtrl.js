@@ -38,7 +38,7 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
 
 
   $scope.cancelCreateTask = function(){
-    $location.path(TaskService.getTaskPath());
+    $location.path( window.history.back());
   }
 
   $scope.createTask = function(description,nr) {
@@ -48,12 +48,14 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
       description: description,
       nr: nr,
       owner: ownerId,
-      story_id: story_id
+      story_id: story_id,
+      status:0,
+      comment:"",
     }
 
     TaskService.createTask(projectId, sprintId, storyId,createFormData, function(data){
       $log.debug('Success creating new task');
-      $location.path(TaskService.getTaskPath(projectId, sprintId, storyId));
+      $location.path(window.history.back());
     });
   }
 
