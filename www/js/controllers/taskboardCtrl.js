@@ -42,10 +42,7 @@
 
 
             angular.forEach($scope.stories, function(value, key) {
-              console.log(key + 'ID historia ' + value.id);
-
-
-
+              
               TaskService.getAllTasks(projectId, sprintId, value.id,function(data){
 
                 $log.debug('Fetching ' + data.length + ' tasks from server...');

@@ -140,7 +140,7 @@ function ($scope, $rootScope, $http, $log, $location, TaskService, RESTService,$
           devs: [developers]
         };
 
-        console.log($rootScope.assigned_devs);
+        
         $rootScope.availables.push($rootScope.assigned_devs[developers])
         for(var i=0;i<$rootScope.assigned_devs.length;i++){
           if ($rootScope.assigned_devs[i].id==developers){
