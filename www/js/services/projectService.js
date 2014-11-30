@@ -1,4 +1,4 @@
-app.factory('ProjectService', ['$log', '$http', 'RESTService', function($log, $http, RESTService){
+app.factory('ProjectService', ['$log', '$http', '$rootScope', 'RESTService', function($log, $http, $rootScope,RESTService){
   var baseUrl = '/projects';
   var projectStatusOptions = [
     { label:'Open', value: 0 },
@@ -68,7 +68,9 @@ app.factory('ProjectService', ['$log', '$http', 'RESTService', function($log, $h
     removeDevelopersFromProject: function(projectId, developers, callback){
       var url = baseUrl + "/" + projectId;
       RESTService.put(url, developers, callback);
-    },
+
+    }
+
   }
 
 }]);

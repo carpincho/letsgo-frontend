@@ -57,7 +57,7 @@
         <!-- Sprints -->
         <div class="col-md-6">
           <div ng-repeat="sprint in sprints">
-            <div id="stream" fade-in>
+            <div ng-click="redirectTo(projectId,sprint.id)" id="stream" fade-in>
               <!-- stream item -->
               <div class="stream-item">
                 <div class="row">

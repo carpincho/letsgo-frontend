@@ -124,8 +124,9 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 
     },
 
-    currentUser: function(){
-      return currentUser;
+    getUserById: function (userId, callback) {
+      var url = "/users/" + userId;
+      RESTService.get(url, callback);
     },
 
     authorized: function(){

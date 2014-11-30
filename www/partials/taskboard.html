@@ -6,25 +6,33 @@
     <div class="row">
       <h3>Project: {{ project.name }} | Sprint: {{ sprint.name }} | <a href="">Burndown Chart <span class="glyphicon glyphicon-stats"></span></a></h3>
     </div>
-
     <div ng-repeat="userStoryTasks in storiesTasks">
       <div class="row vertical-offset">
         <div class="col-md-2">
-          <h4>User Story</h4>
-          <div id="stream">
+          <span class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+              <h3>Stories <span class="caret"></span></h3>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/create"><i class="fa fa-plus"></i> Create Story</a>
+              </li>
+            </ul>
+          </span>          <div id="stream">
             <div class="stream-item">
               <div class="row">
                 <div class="stream-panel credits">
                   <ul class="stream-panel-ul">
                     <li><span class="item-title">{{ userStoryTasks.story.title }}</span></li>
                     <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
-                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                    <li><span class="item-content">Points: {{userStoryTasks.story.points}}</span></li>
+                    <li><span class="item-content">Notes: {{userStoryTasks.story.notes}}</span></li>
                     <li>
                       <div class="btn-group">
-                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                      </div>
+                        <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{userStoryTasks.story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                        <a ng-click='deleteStory(projectId,sprintId,userStoryTasks.story.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+
+                    </div>
                     </li>
                   </ul>
                 </div>
@@ -36,22 +44,29 @@
 
 
         <div class="col-md-2">
-          <h4>Not Started</h4>
+          <span class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+              <h3>Not Started <span class="caret"></span></h3>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
+              </li>
+            </ul>
+          </span>
 
-          <div ng-repeat="task in userStoryTasks.tasks">
-
+          <div ng-repeat="task in userStoryTasks.task_Not_Started">
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-title">{{ task.description }}</span></li>
-                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
+                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
                       <li>
                         <div class="btn-group">
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)'  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>
@@ -59,31 +74,34 @@
                 </div>
               </div> <!-- end stream-item -->
             </div> <!-- end stream -->
-
-
 
           </div> <!-- end row -->
         </div> <!-- end container -->
 
 
-
         <div class="col-md-2">
-          <h4>In Progress</h4>
-
-          <div ng-repeat="task in userStoryTasks.tasks">
-
+          <span class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+              <h3>In Progress <span class="caret"></span></h3>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
+              </li>
+            </ul>
+          </span>
+          <div ng-repeat="task in userStoryTasks.task_In_Progress">
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-title">{{ task.description }}</span></li>
-                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
+                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
                       <li>
                         <div class="btn-group">
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
                           <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>
@@ -99,22 +117,31 @@
 
 
         <div class="col-md-2">
-          <h4>Completed</h4>
 
-          <div ng-repeat="task in userStoryTasks.tasks">
+          <span class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+              <h3>Completed<span class="caret"></span></h3>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
+              </li>
+            </ul>
+          </span>
+
+          <div ng-repeat="task in userStoryTasks.task_Completed">
 
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-title">{{ task.description }}</span></li>
-                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
+                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
                       <li>
                         <div class="btn-group">
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
                           <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>
@@ -130,22 +157,32 @@
 
 
         <div class="col-md-2">
-          <h4>Blocked</h4>
 
-          <div ng-repeat="task in userStoryTasks.tasks">
+          <span class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+              <h3>Blocked<span class="caret"></span></h3>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+          <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
+              </li>
+            </ul>
+          </span>
+
+
+          <div ng-repeat="task in userStoryTasks.task_Blocked">
 
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-title">{{ task.description }}</span></li>
-                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
+                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
                       <li>
                         <div class="btn-group">
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
                           <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>
