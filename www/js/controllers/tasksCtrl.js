@@ -40,13 +40,19 @@ function ($scope, $rootScope, $http, $log, $location, TaskService, RESTService,$
 
 
 
+  $scope.cancelCreateTask = function(){
+    $location.path( window.history.back());
+  }
+
   $scope.createTask = function(description,nr) {
     // validate
     var createFormData = {
       description: description,
       nr: nr,
       owner: ownerId,
-      story_id: storyId
+      story_id: storyId,
+      status:0,
+      comment:"",
     }
 
     TaskService.createTask(projectId, sprintId, storyId,createFormData, function(data){
@@ -181,12 +187,5 @@ function ($scope, $rootScope, $http, $log, $location, TaskService, RESTService,$
     });
   }
 
-  $scope.cancelCreateTasks = function(){
-    var projectId = $scope.projectId;
-    var sprintId  = $scope.sprintId;
-    var storyId = $scope.storyId;
-    var ownerId = $scope.ownerId;
-    $location.path(window.history.back());
-  }
 }
 ]);
