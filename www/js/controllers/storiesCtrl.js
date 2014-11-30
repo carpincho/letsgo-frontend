@@ -55,7 +55,7 @@ getStorybyStoryId($routeParams.projectId, $routeParams.sprintId, $routeParams.st
 
     StoryService.createStory(projectId,sprintId, createFormData, function(data){
       $log.debug('Success creating new Story');
-      $location.path('/projects/'+projectId+'/sprints/'+sprintId+'/stories');
+      $location.path(window.history.back());
     });
 
 

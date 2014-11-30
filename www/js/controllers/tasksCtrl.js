@@ -172,8 +172,8 @@ function ($scope, $rootScope, $http, $log, $location, TaskService, RESTService,$
     });
   }
 
-  $scope.deleteTask = function(taskId) {
- 
+  $scope.deleteTask = function(projectId, sprintId, storyId, taskId) {
+
     TaskService.deleteTask(projectId, sprintId, storyId, taskId, function(data){
       $log.debug('Success deleting task');
       getTasks(projectId, sprintId, storyId);
