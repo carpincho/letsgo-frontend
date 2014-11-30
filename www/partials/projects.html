@@ -65,7 +65,7 @@
                     <ul class="stream-panel-ul">
                       <li><span class="item-title">{{ sprint.name }}</span></li>
                       <li>
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date }} - End Date: {{ sprint.end_date }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date|date:'yyyy/MM/dd' }} - End Date: {{ sprint.end_date|date:'yyyy/MM/dd' }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
 
