@@ -22,19 +22,18 @@
 
                   <div class="form-group">
                     <label for="start_date">Start Date</label>
-                    <input class="form-control" ng-model="createFormData.start_date" placeholder="2013-2-1" name="start_date" type="text" required>
+                    <input class="form-control" ng-model="createFormData.start_date" ng-click="open_start_date($event)" datepicker-popup="{{format}}" placeholder="2013-2-1" name="start_date" type="text"  is-open="start_date_opened" close-text="Close" required>
                   </div>
 
                   <div class="form-group">
                     <label for="end_date">Completion Date</label>
-                    <input class="form-control" ng-model="createFormData.end_date" placeholder="2014-2-1" name="end_date" type="text" required>
+                    <input class="form-control" ng-model="createFormData.end_date" ng-click="open_end_date($event)" datepicker-popup="{{format}}" placeholder="2014-2-1" name="end_date" type="text" is-open="end_date_opened" close-text="Close" required>
                   </div>
 
                   <div class="form-group">
                     <label for="status">Status</label>
                     <select class="form-control" ng-model="updateFormData.status" ng-init="updateFormData.status = sprint_status_options[0]" ng-options="option.label for option in sprint_status_options" required name="status"></select>
                   </div>
-
 
                   <input type="submit" class="btn btn-primary" id="submit" value="Create" />
                   <a ng-click="cancelCreateSprint()" class="btn btn-default">Cancel</a>
