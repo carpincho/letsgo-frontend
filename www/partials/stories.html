@@ -35,6 +35,7 @@
 
                      <li>
                       <div class="btn-group pull-right">
+                        <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{story.id}}/tasks/create" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Task</a>
 
                         <a ng-click='sendEventStoryId(projectId,sprintId,story.id)'  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-glass"></span> Task</a>
                         <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
@@ -54,6 +55,7 @@
 
 
 <div ng-controller="TasksCtrl">
+
   <!-- Sprints -->
   <div class="col-md-6">
     <div ng-repeat="task in tasks">
