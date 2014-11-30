@@ -46,7 +46,7 @@
         <div class="col-md-2">
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
-              <h3>Not Started<span class="caret"></span></h3>
+              <h3>Not Started <span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -54,6 +54,7 @@
               </li>
             </ul>
           </span>
+
           <div ng-repeat="task in userStoryTasks.task_Not_Started">
             <div id="stream">
               <div class="stream-item">
@@ -78,11 +79,10 @@
         </div> <!-- end container -->
 
 
-
         <div class="col-md-2">
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
-              <h3>In Progress<span class="caret"></span></h3>
+              <h3>In Progress <span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
               <li>
