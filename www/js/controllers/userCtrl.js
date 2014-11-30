@@ -83,7 +83,7 @@ angular.module('myApp')
 
 
     $scope.deleteUser = function(){
-      RESTService.delete(deleteUserUri, function(data){
+      UserService.deleteUser(userId, function(data){
         $log.debug('Success deleting user');
         AuthService.logout();
         $location.path('/home');

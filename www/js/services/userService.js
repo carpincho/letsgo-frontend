@@ -22,7 +22,12 @@ app.factory('UserService', ['$log', '$http', 'RESTService', function($log, $http
     changePassword: function(userId, payload, callback){
       var url = baseUrl + "/" + userId;
       RESTService.put(url, payload, callback);
-    }
+    },
+
+    deleteUser: function(userId, callback){
+      var url = baseUrl + "/" + userId;
+      RESTService.delete(url, callback);
+    },
 
     // getProjectById: function (projectId, callback) {
     //   var url = baseUrl + "/" + projectId;
