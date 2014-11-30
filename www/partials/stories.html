@@ -20,7 +20,7 @@
     <div class="col-md-6">
       <div ng-repeat="story in stories">
 
-        <div id="stream">
+        <div ng-click="sendEventStoryId(projectId,sprintId,story.id)" id="stream" fade-in>
           <!-- stream item -->
           <div class="stream-item">
             <div class="row">
