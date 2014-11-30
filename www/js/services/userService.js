@@ -19,7 +19,10 @@ app.factory('UserService', ['$log', '$http', 'RESTService', function($log, $http
       RESTService.put(url, payload, callback);
     },
 
-    
+    changePassword: function(userId, payload, callback){
+      var url = baseUrl + "/" + userId;
+      RESTService.put(url, payload, callback);
+    }
 
     // getProjectById: function (projectId, callback) {
     //   var url = baseUrl + "/" + projectId;

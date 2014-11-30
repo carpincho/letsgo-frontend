@@ -64,15 +64,12 @@ angular.module('myApp')
       if(password != undefined && confirmPassword != undefined){
 
         var payload = {
-          id: userId,
           password: password,
         }
-        RESTService.put(updateUserUri, payload, function(data){
+        UserService.changePassword(userId, payload, function(data){
           $log.debug('Success changing password!');
           $scope.successMsgVisible = true;
-          $timeout(function(){
-            $location.path('/projects');
-          }, 1000);
+          $timeout(function(){ $location.path('/projects');}, 1000);
         });
       }
 
