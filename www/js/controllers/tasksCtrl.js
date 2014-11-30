@@ -1,15 +1,17 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('TasksCtrl', ['$scope', '$http', '$log', '$routeParams', '$location', 'ProjectService', 'TaskService', 'RESTService',
-    function ($scope, $http, $log, $routeParams, $location, ProjectService, TaskService, RESTService) {
+  .controller('TasksCtrl', ['$scope', '$http', '$log', '$routeParams', '$rootScope', '$location', 'ProjectService', 'TaskService', 'RESTService', 'AuthService',
+    function ($scope, $http, $log, $routeParams, $rootScope, $location, ProjectService, TaskService, RESTService, AuthService) {
 
       $scope.currentStoryId = TaskService.getCurrentStoryId();
       $scope.CurrentStoryPath = TaskService.getCurrentStoryPath();
       $scope.tasks = [];
-      $scope.allAvailables = [];
-      $scope.assigned_devs = [];
-      $scope.availables = [];
+      //$scope.allAvailables = [];
+      $rootScope.assigned_devs = [];
+      $rootScope.availables = [];
+      //$scope.availablesNames = [];
+      //$scope.assigned_devs_names = [];
       var getTasks = function() {
         TaskService.getAllTasks(function(data){
           $log.debug('Fetching ' + data.length + ' tasks from server...');
@@ -45,8 +47,14 @@ angular.module('myApp')
           TaskService.getTaskById(tasktId, function(data){
             $log.debug('Success getting a task');
             $scope.task_retrieved = data;
-            $scope.assigned_devs = data.assigned_devs;
-            $log.debug(data);
+            for(var i=0;i<data.assigned_devs.length;i++){
+              $rootScope.assigned_devs.push({id:data.assigned_devs[i], name:""});
+              AuthService.getUserById($rootScope.assigned_devs[i].id, function(data){
+                $rootScope.assigned_devs[i].name = data.firstname+" "+data.lastname;
+              });
+            }
+
+
             //$scope.project_option_selected = ProjectService.getOptionByValue(data.status)
           });
         }
@@ -86,34 +94,35 @@ angular.module('myApp')
 
       var getInvitedDevelopers = function(projectId){
         ProjectService.getProjectById(projectId, function(data){
-          $scope.availables = data.invited_devs;
-          for(var i=0;i<$scope.assigned_devs.length;i++){
-            for(var j=0;j<i<$scope.availables.length;i++){
-              if($scope.assigned_devs[i] == $scope.availables[j]){
-                $scope.availables.splice(j,1);
+          for(var i=0;i<data.invited_devs.length;i++){
+            $rootScope.availables.push({id:data.invited_devs[i], name:""});
+            console.log($rootScope.availables);
+            AuthService.getUserById($rootScope.availables[i].id, function(data){
+              $rootScope.availables[i].name = data.firstname+" "+data.lastname;
+            });
+          }
+          for(var i=0;i<$rootScope.assigned_devs.length;i++){
+            for(var j=0;j<$rootScope.availables.length;j++){
+              if($rootScope.assigned_devs[i].id == $rootScope.availables[j].id){
+                $rootScope.availables.splice(j,1);
                 break;
               }
             }
           }
+          console.log($rootScope.availables);
         });
-
-
-
       }
       getInvitedDevelopers($routeParams.projectId);
-
-
-
 
       $scope.assignDevelopersToTask = function(developers) {
         // var payload = developers;
         var payload = {
           devs: [developers]
         };
-        $scope.assigned_devs.push(developers)
-        for(var i=0;i<$scope.availables.length;i++){
-          if ($scope.availables[i]==developers){
-            $scope.availables.splice(i,1);
+        $rootScope.assigned_devs.push($rootScope.availables[developers])
+        for(var i=0;i<$rootScope.availables.length;i++){
+          if ($rootScope.availables[i].id==developers){
+            $rootScope.availables.splice(i,1);
             break;
           }
         }
@@ -127,10 +136,10 @@ angular.module('myApp')
         var payload = {
           devs: [developers]
         };
-        $scope.availables.push(developers)
-        for(var i=0;i<$scope.assigned_devs.length;i++){
-          if ($scope.assigned_devs[i]==developers){
-            $scope.assigned_devs.splice(i,1);
+        $rootScope.availables.push($rootScope.assigned_devs[developers])
+        for(var i=0;i<$rootScope.assigned_devs.length;i++){
+          if ($rootScope.assigned_devs[i].id==developers){
+            $rootScope.assigned_devs[i].splice(i,1);
             break;
           }
         }

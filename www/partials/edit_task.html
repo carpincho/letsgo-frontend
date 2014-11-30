@@ -32,12 +32,12 @@
                     <div class ="row">
                       <div class="col-md-6">
                         <div ng-repeat = "available in availables">
-                          <a ng-click="assignDevelopersToTask(available)"><span class="glyphicon glyphicon-plus-sign"</span></a> {{available}}
+                          <a ng-click="assignDevelopersToTask(available.id)"><span class="glyphicon glyphicon-plus-sign"</span></a> {{available.name}}
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <div ng-repeat = "assigned_dev in task_retrieved.assigned_devs">
-                            <a ng-click="unassignDevelopersToTask(assigned_dev)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{assigned_dev}}
+                          <div ng-repeat = "assigned_dev in assigned_devs">
+                            <a ng-click="unassignDevelopersToTask(assigned_dev.id)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{assigned_dev.name}}
                           </div>
                         </div>
                       </div>
