@@ -28,9 +28,7 @@ angular.module('myApp')
         UserService.createUser(payload, function(data){
           $log.debug('Success creating new user');
 
-          $timeout(function() {
-            $scope.successMsgVisible = true;
-          }, 30000);
+          $timeout(function() { $scope.successMsgVisible = true;}, 30000);
           $location.path("/login");
         });
       }
@@ -44,13 +42,12 @@ angular.module('myApp')
 
     $scope.editUser = function(email, firstname, lastname) {
       var payload = {
-        id: userId,
         firstname: firstname,
         lastname: lastname,
         email: email,
       }
 
-      RESTService.put(updateUserUri, payload, function(data){
+      UserService.editUser(userId, payload, function(data){
         $log.debug('Success editing user');
         $location.path('/user');
       });
