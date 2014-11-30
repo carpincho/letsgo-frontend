@@ -153,22 +153,18 @@ function ($scope, $rootScope, $http, $log, $location, TaskService, RESTService,$
         });
       }
   $scope.cancelUpdateTask = function(){
-    var projectId = $scope.projectId;
-    var sprintId  = $scope.sprintId;
-    var storyId = $scope.storyId;
-    var ownerId = $scope.ownerId;
+
     $location.path(window.history.back());
   }
 
-  $scope.updateTask = function(taskId, description, nr) {
-    var projectId = $scope.projectId;
-    var sprintId  = $scope.sprintId;
-    var storyId = $scope.storyId;
-    var ownerId = $scope.ownerId;
+  $scope.updateTask = function(taskId, description, nr,status,comment) {
+
     var updateFormData = {
       description: description,
       nr: nr,
-      owner: ownerId
+      owner: ownerId,
+      status:status,
+      comment:comment,
     }
     TaskService.editTask(projectId, sprintId, storyId, taskId, updateFormData, function(){
       $log.debug('Success updating a task');
@@ -177,10 +173,7 @@ function ($scope, $rootScope, $http, $log, $location, TaskService, RESTService,$
   }
 
   $scope.deleteTask = function(taskId) {
-    var projectId = $scope.projectId;
-    var sprintId  = $scope.sprintId;
-    var storyId = $scope.storyId;
-    var ownerId = $scope.ownerId;
+ 
     TaskService.deleteTask(projectId, sprintId, storyId, taskId, function(data){
       $log.debug('Success deleting task');
       getTasks(projectId, sprintId, storyId);
