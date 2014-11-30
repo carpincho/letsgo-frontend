@@ -31,7 +31,7 @@
                       <li><span class="item-content">Owner: {{ project.owner }}</span></li>
                       <li><span class="item-content">Description: {{ project.description }}</span></li>
                       <li>
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ project.start_date }} - End Date: {{ project.end_date }} - Status: <strong class="item-status-{{ project.status|projectStatusFromValue }}">{{project.status|projectStatusFromValue}}</strong></small></p> </li>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ project.start_date|date:'yyyy/MM/dd' }} - End Date: {{ project.end_date|date:'yyyy/MM/dd' }} - Status: <strong class="item-status-{{ project.status|projectStatusFromValue }}">{{project.status|projectStatusFromValue}}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
                             <a ng-href="#/sprint/create/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
@@ -65,10 +65,12 @@
                     <ul class="stream-panel-ul">
                       <li><span class="item-title">{{ sprint.name }}</span></li>
                       <li>
-                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date }} - End Date: {{ sprint.end_date }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date|date:'yyyy/MM/dd' }} - End Date: {{ sprint.end_date|date:'yyyy/MM/dd' }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
-                            <a ng-href="#/projects/{{projectId}}/sprints/{{sprint.id}}/stories"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Stories</a>
+
+                            <a ng-href="#/projects/{{projectId}}/sprints/{{sprint.id}}/stories"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-glass"></span> Stories</a>
+                            <a ng-href="#/taskboard/project/{{projectId}}/sprint/{{sprint.id}}"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Taskboard</a>
                             <a ng-href="#/projects/{{projectId}}/sprints/edit/{{sprint.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
 
                             <a ng-click='deleteSprint(projectId, sprint.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>

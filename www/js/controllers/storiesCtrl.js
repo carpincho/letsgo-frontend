@@ -3,65 +3,72 @@
 
 
 angular.module('myApp')
-.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService) {
 
+.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService','SharedStoryTaskService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,SharedStoryTaskService,StoryService) {
 
   var ownerId = AuthService.getUserInfo();
+
   $scope.stories = [];
 
   var getStories = function() {
 
-    var projectID = $routeParams.projectID;
-    var sprintID = $routeParams.sprintID;
-    $scope.projectId = projectID;
-    $scope.sprintId = sprintID;
+    var projectId = $routeParams.projectId;
+    var sprintId  = $routeParams.sprintId;
+    $scope.projectId = projectId;
+    $scope.sprintId = sprintId;
 
-    var get_all_stories_uri = '/projects/'+projectID+'/sprints/'+sprintID+'/stories';
-
-    RESTService.get(get_all_stories_uri, function(data){
+    StoryService.getStoriesBySprintId(projectId,sprintId, function(data){
       $log.debug('Fetching ' + data.length + ' stories from server...');
       $scope.stories = data;
     });
   }
-  // fetch the existing stories in the server
-  getStories();
+   getStories();
+
+
+var getStorybyStoryId = function(projectId, sprintId,storyId){
+  if(projectId != undefined && sprintId != undefined && storyId != undefined){
+
+    StoryService.getStoryByStoryId(projectId, sprintId, storyId, function(data){
+      $log.debug('Success getting a storybyID');
+      $log.debug(data);
+      $scope.story_retrieved = data;
+
+    });
+  }
+}
+getStorybyStoryId($routeParams.projectId, $routeParams.sprintId, $routeParams.storyId);
 
 
   $scope.createStory = function(story_title, story_description,story_notes, story_points) {
 
-    var sprintID = $routeParams.sprintID;
-    var projectID = $routeParams.projectID;
+    var sprintId = $routeParams.sprintId;
+    var projectId = $routeParams.projectId;
 
 
-    if (sprintID != undefined && projectID != undefined ){
-      var create_story_uri = '/projects/'+ projectID + '/sprints/'+sprintID+'/stories';
-
-
-      var createFormData = {
-        description: story_description,
-        title: story_title,
-        notes:story_notes,
-        points: story_points,
-        sprint_id: sprintID,
-      }
-
-      RESTService.post(create_story_uri, createFormData, function(data){
-        $log.debug('Success creating new Story');
-        $location.path('/projects/'+$routeParams.projectID+'/sprints/'+$routeParams.sprintID+'/stories');
-      });
-
+    var createFormData = {
+      description: story_description,
+      title: story_title,
+      notes:story_notes,
+      points: story_points,
+      sprint_id: sprintId,
     }
+
+    StoryService.createStory(projectId,sprintId, createFormData, function(data){
+      $log.debug('Success creating new Story');
+      $location.path('/projects/'+projectId+'/sprints/'+sprintId+'/stories');
+    });
+
+
   }
 
   $scope.cancelCreateStory = function(){
-    $location.path('/projects/'+$routeParams.projectID+'/sprints/'+$routeParams.sprintID+'/stories');
+    $location.path('/projects/'+$routeParams.projectId+'/sprints/'+$routeParams.sprintId+'/stories');
   }
 
 
 
-  $scope.deleteStory = function(projectID,sprintID,StoryId) {
-    var delete_story_uri = '/projects/'+ projectID + '/sprints/'+sprintID+'/stories/'+StoryId;
-    RESTService.delete(delete_story_uri, function(data){
+  $scope.deleteStory = function(projectId,sprintId,StoryId) {
+    StoryService.deleteStory(projectId, sprintId,StoryId, function(data){
       $log.debug('Success deleting story');
       getStories();
     });
@@ -70,31 +77,33 @@ angular.module('myApp')
 
   $scope.updateStory = function(story_title, story_description,story_notes, story_points,id) {
 
-    var sprintID = $routeParams.sprintID;
-    var projectID = $routeParams.projectID;
-    var storyID = $routeParams.storyID;
+    var sprintId = $routeParams.sprintId;
+    var projectId = $routeParams.projectId;
+    var storyId = $routeParams.storyId;
 
 
-    if (sprintID != undefined && projectID != undefined  && storyID != undefined ){
-      var create_story_uri = '/projects/'+ projectID + '/sprints/'+sprintID+'/stories/'+storyID;
+    if (sprintId != undefined && projectId != undefined  && storyId != undefined ){
 
-      var createFormData = {
+      var updateFormData = {
         description: story_description,
         title: story_title,
         notes:story_notes,
         points: story_points,
-        sprint_id: sprintID,
+        sprint_id: sprintId,
       }
 
-      RESTService.put(create_story_uri, createFormData, function(data){
+      StoryService.editStory(projectId, sprintId,storyId, updateFormData, function(data){
         $log.debug('Success Updating new Story');
-        $location.path('/projects/'+$routeParams.projectID+'/sprints/'+$routeParams.sprintID+'/stories');
+        $location.path('/projects/'+$routeParams.projectId+'/sprints/'+$routeParams.sprintId+'/stories');
       });
 
     }
   }
 
 
+  $scope.sendEventStoryId = function(projectId,sprintId,StoryId){
+    SharedStoryTaskService.prepForBroadcast(projectId,sprintId,StoryId);
+  };
 
 
 }

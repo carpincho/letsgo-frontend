@@ -64,16 +64,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'ProjectsCtrl'
   })
 
-  .when('/projects/:projectID/sprints/:sprintID/stories/', {
+  .when('/projects/:projectId/sprints/:sprintId/stories/', {
     templateUrl: 'partials/stories.html',
     controller: 'StoriesCtrl'
   })
 
-  .when('/projects/:projectID/sprints/:sprintID/stories/create', {
+  .when('/projects/:projectId/sprints/:sprintId/stories/create', {
     templateUrl: 'partials/create_story.html',
     controller: 'StoriesCtrl'
   })
-  .when('/projects/:projectID/sprints/:sprintID/stories/edit/:storyID', {
+  .when('/projects/:projectId/sprints/:sprintId/stories/edit/:storyId', {
     templateUrl: 'partials/edit_story.html',
     controller: 'StoriesCtrl'
   })
@@ -103,7 +103,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'TasksCtrl'
   })
 
-  .when('/projects/:projectId/sprints/:sprintId/stories/:storyId/task/create',{
+  .when('/projects/:projectId/sprints/:sprintId/stories/:storyId/tasks/create',{
     templateUrl: 'partials/create_task.html',
     controller: 'TasksCtrl'
   })
@@ -112,6 +112,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     templateUrl: 'partials/edit_task.html',
     controller: 'TasksCtrl'
   })
+
+  .when('/taskboard/project/:projectId/sprint/:sprintId', {
+    templateUrl: 'partials/taskboard.html',
+    controller: 'TaskboardCtrl'
+  })
+
 
   .otherwise({
     redirectTo: '/login'

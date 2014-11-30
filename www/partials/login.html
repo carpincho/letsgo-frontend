@@ -11,30 +11,51 @@
 
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">Login</h3>
+          <h2 class="panel-title">Login</h2>
         </div>
         <div class="panel-body">
-          <form ng-submit="authService.login(formData.email, formData.password, formData.rememberMe)" accept-charset="UTF-8" role="form">
+          <form ng-submit="authService.login(formData.email, formData.password, formData.rememberMe)" accept-charset="UTF-8" name="loginForm" role="form">
             <fieldset>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email Address</label>
-                <input class="form-control" ng-model="formData.email" placeholder="example@domain.com" name="email" type="text">
+
+              <div class="form-group" show-errors>
+                <label for="email">Email Address</label>
+                <input class="form-control" ng-model="formData.email" placeholder="example@domain.com" name="email" type="email" required ng-minlength="6" ng-maxlength="30">
+                <p ng-show="loginForm.email.$dirty && loginForm.email.$error.email" class="text-danger">
+                  this is not an email 
+                </p>
+                <p ng-show="loginForm.email.$dirty && loginForm.email.$error.required" class="text-danger">
+                  This Field is Required!
+                </p>
+                <p ng-show="loginForm.email.$error.minlength || loginForm.email.$error.maxlength" class="text-danger">
+                  Email must be between 6 and 30 characters!
+                </p>
+
               </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input class="form-control" ng-model="formData.password" placeholder="******" name="password" type="password" value="">
+              <div class="form-group" show-errors>
+                <label for="password">Password</label>
+                <input class="form-control" ng-model="formData.password" placeholder="******" name="password" type="password" value="" required ng-minlength="6" ng-maxlength="30">
+                <p ng-show="loginForm.password.$dirty && loginForm.password.$error.required" class="text-danger">
+                  This Field is Required!
+                </p>
+                <p ng-show="loginForm.password.$error.minlength || loginForm.password.$error.maxlength" class="text-danger">
+                  Password must be between 6 and 30 characters!
+                </p>
               </div>
-              <div class="form-group">
-                <label for="exampleSelectLanguage1">Language</label>
+
+              <!--<div class="form-group">
+                <label for="language">Language</label>
                 <select name="language" class="form-control">
                   <option value="english">English</option>
                 </select>
-              </div>
+              </div>-->
+
               <div class="checkbox">
                 <label><input name="remember" ng-model="formData.rememberMe" type="checkbox" value="Remember me">Remember me</label>
                 <label><a href="">Forgot password?</a></label>
               </div>
-              <input type="submit" class="btn btn-primary" id="submit" value="Log in" />
+
+              <input type="submit" class="btn btn-primary btn-block" id="submit" value="Log in" />
+
             </fieldset>
           </form>
         </div>

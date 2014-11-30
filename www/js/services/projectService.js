@@ -68,7 +68,9 @@ app.factory('ProjectService', ['$log', '$http', '$rootScope', 'RESTService', fun
     removeDevelopersFromProject: function(projectId, developers, callback){
       var url = baseUrl + "/" + projectId;
       RESTService.put(url, developers, callback);
+
     }
+
   }
 
 }]);

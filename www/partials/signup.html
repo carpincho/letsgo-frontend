@@ -12,32 +12,61 @@
               <h3 class="panel-title">Sign Up</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="signUp(signupDataForm.email, signupDataForm.firstname, signupDataForm.lastname, signupDataForm.password, signupDataForm.confirmPassword)" accept-charset="UTF-8" role="form">
+              <form name="signUpForm" ng-submit="signUp(signupDataForm.email, signupDataForm.firstname, signupDataForm.lastname, signupDataForm.password, signupDataForm.confirmPassword)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
-                  <div class="form-group">
+                  <div class="form-group" show-errors>
                     <label for="email">Email (*)</label>
-                    <input class="form-control" ng-model="signupDataForm.email" placeholder="example@domain.com" name="email" type="text" required>
+                    <input class="form-control" ng-model="signupDataForm.email" placeholder="example@domain.com" name="email" type="text" required ng-minlength="6" ng-maxlength="30">
+                    <p ng-show="signUpForm.email.$dirty && signUpForm.email.$error.required" class="text-danger">
+                      This Field is Required!
+                    </p>
+                    <p ng-show="signUpForm.email.$error.minlength || signUpForm.email.$error.maxlength" class="text-danger">
+                      Email Address must be between 6 and 30 characters!
+                    </p>
+                  </div>
+
+                  <div class="form-group" show-errors>
+                    <label for="firstname">First name (*)</label>
+                    <input class="form-control" ng-model="signupDataForm.firstname" placeholder="first name" name="firstname" type="text" required ng-minlength="6" ng-maxlength="30">
+                    <p ng-show="signUpForm.firstname.$dirty && signUpForm.firstname.$error.required" class="text-danger">
+                      This Field is Required!
+                    </p>
+                    <p ng-show="signUpForm.firstname.$error.minlength || signUpForm.firstname.$error.maxlength" class="text-danger">
+                      First name must be between 6 and 30 characters!
+                    </p>
                   </div>
 
                   <div class="form-group">
-                    <label for="firstname">Firstname</label>
-                    <input class="form-control" ng-model="signupDataForm.firstname" placeholder="first name" name="firstname" type="text">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="lastname">Lastname</label>
+                    <label for="lastname">Last name</label>
                     <input class="form-control" ng-model="signupDataForm.lastname" placeholder="last name" name="lastname" type="text">
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" show-errors>
                     <label for="password">Password (*)</label>
-                    <input class="form-control" ng-model="signupDataForm.password" placeholder="******" name="password" type="password" required>
+                    <input id="password" class="form-control" ng-model="signupDataForm.password" placeholder="******" name="password" type="password" required ng-minlength="6" ng-maxlength="30">
+                    <p ng-show="signUpForm.password.$dirty && signUpForm.password.$error.required" class="text-danger">
+                      This Field is Required!
+                    </p>
+                    <p ng-show="signUpForm.password.$error.minlength || signUpForm.password.$error.maxlength" class="text-danger">
+                      Password must be between 6 and 30 characters!
+                    </p>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" show-errors>
                     <label for="confirmPassword">Confirm Password (*)</label>
-                    <input class="form-control" ng-model="signupDataForm.confirmPassword" placeholder="******" name="confirmPassword" type="password" required>
+                    <input id="confirmPassword" class="form-control" ng-model="signupDataForm.confirmPassword" placeholder="******" name="confirmPassword" type="password" required ng-minlength="6" ng-maxlength="30" pw-check="password">
+                    <p ng-show="signUpForm.confirmPassword.$dirty && signUpForm.confirmPassword.$error.required" class="text-danger">
+                      This Field is Required!
+                    </p>
+                    <p ng-show="signUpForm.confirmPassword.$error.minlength || signUpForm.confirmPassword.$error.maxlength" class="text-danger">
+                      Confirmation password must be between 6 and 30 characters!
+                    </p>
+
+                    <p class="text-danger" ng-show="signUpForm.confirmPassword.$error.pwmatch">
+                      Passwords don't match!
+                    </p>
+
                   </div>
 
                   <input type="submit" class="btn btn-primary" id="submit" value="Sign Up">

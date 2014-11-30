@@ -1,0 +1,168 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div ng-controller="TaskboardCtrl">
+  <div class="container">
+
+    <div class="row">
+      <h3>Project: {{ project.name }} | Sprint: {{ sprint.name }} | <a href="">Burndown Chart <span class="glyphicon glyphicon-stats"></span></a></h3>
+    </div>
+
+    <div ng-repeat="userStoryTasks in storiesTasks">
+      <div class="row vertical-offset">
+        <div class="col-md-2">
+          <h4>User Story</h4>
+          <div id="stream">
+            <div class="stream-item">
+              <div class="row">
+                <div class="stream-panel credits">
+                  <ul class="stream-panel-ul">
+                    <li><span class="item-title">{{ userStoryTasks.story.title }}</span></li>
+                    <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
+                    <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                    <li>
+                      <div class="btn-group">
+                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                        <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> <!-- end stream-item -->
+          </div> <!-- end stream -->
+        </div> <!-- end collumn -->
+
+
+
+        <div class="col-md-2">
+          <h4>Not Started</h4>
+
+          <div ng-repeat="task in userStoryTasks.tasks">
+
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+
+
+
+          </div> <!-- end row -->
+        </div> <!-- end container -->
+
+
+
+        <div class="col-md-2">
+          <h4>In Progress</h4>
+
+          <div ng-repeat="task in userStoryTasks.tasks">
+
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+
+
+
+          </div> <!-- end row -->
+        </div>
+
+
+        <div class="col-md-2">
+          <h4>Completed</h4>
+
+          <div ng-repeat="task in userStoryTasks.tasks">
+
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+
+
+
+          </div> <!-- end row -->
+        </div>
+
+
+        <div class="col-md-2">
+          <h4>Blocked</h4>
+
+          <div ng-repeat="task in userStoryTasks.tasks">
+
+            <div id="stream">
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date 10/5/2014 - End Date: 12/5/2014</small></p></li>
+                      <li>
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div> <!-- end stream-item -->
+            </div> <!-- end stream -->
+
+
+
+          </div> <!-- end row -->
+        </div>
+
+
+      </div>
+
+    </div> <!-- end Taskboard -->
+
+  </div>
+</div>

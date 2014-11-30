@@ -65,28 +65,30 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
         password: password
       }
 
-      //rememberMe is true if setted, undefined if not
-      RESTService.post(sessions_uri, payload, function(data){
-        $log.debug('Success logging in the user');
 
-        authorized = true;
-        initialState = false;
-        currentUser = email;
-        // check for data structure
-        // validate data structure
-        userInfo = data;
+      if (email != undefined && password != undefined){
+        //rememberMe is true if setted, undefined if not
+        RESTService.post(sessions_uri, payload, function(data){
+          $log.debug('Success logging in the user');
 
-        $cookieStore.put( 'lets_go_session_client', authorized);
-        $cookieStore.put( 'lets_go_user_info',userInfo);
+          authorized = true;
+          initialState = false;
+          currentUser = email;
+          // check for data structure
+          // validate data structure
+          userInfo = data;
+
+          $cookieStore.put( 'lets_go_session_client', authorized);
+          $cookieStore.put( 'lets_go_user_info',userInfo);
 
 
-        // show a success message
-        //$scope.successMsgVisible = true;
-        // let the message dissapear after 2 secs
-        //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
-        // console.log("Logged in as " + email);
-      });
-
+          // show a success message
+          //$scope.successMsgVisible = true;
+          // let the message dissapear after 2 secs
+          //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
+          // console.log("Logged in as " + email);
+        });
+      }
     },
 
     logout: function () {
@@ -147,6 +149,31 @@ app.factory('SharedProjectSprintService', function($rootScope){
 
   sharedService.broadcastItem = function(){
     $rootScope.$broadcast('eventGetRelatedSprints');
+  }
+
+  return sharedService;
+});
+
+
+app.factory('SharedStoryTaskService', function($rootScope){
+  var projectId;
+  var sprintId;
+  var storyId;
+  var sharedService = {
+      projectId: projectId,
+      sprintId: sprintId,
+      storyId: storyId,
+  };
+
+  sharedService.prepForBroadcast = function(projectId,sprintId,storyId){
+    this.projectId = projectId;
+    this.sprintId = sprintId;
+    this.storyId = storyId;
+    this.broadcastItem();
+  };
+
+  sharedService.broadcastItem = function(){
+    $rootScope.$broadcast('eventGetRelatedStory');
   }
 
   return sharedService;

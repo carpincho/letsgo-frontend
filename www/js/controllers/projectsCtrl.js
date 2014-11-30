@@ -1,12 +1,31 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('ProjectsCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $http, $log, $routeParams, AuthService, SharedProjectSprintService, ProjectService) {
+  .controller('ProjectsCtrl', ['$scope', '$location', '$routeParams', '$http', '$log', 'AuthService', 'SharedProjectSprintService', 'ProjectService', function ($scope, $location, $routeParams, $http, $log, AuthService, SharedProjectSprintService, ProjectService) {
 
       var userId = AuthService.getUserInfo();
       $scope.project_status_options = ProjectService.getProjectStatusOptions();
       $scope.projects = [];
 
+      //--- datepicker config
+
+      $scope.open_start_date  = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.start_date_opened = true;
+      };
+
+      $scope.open_end_date = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.end_date_opened = true;
+      };
+
+      $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy'];
+      $scope.format = $scope.formats[1];
+      //---end config
+
+      
       var getProjects = function() {
         ProjectService.getAllProjects(function(data){
           $log.debug('Fetching ' + data.length + ' projects from server...');
