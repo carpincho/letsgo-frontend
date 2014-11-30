@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', function ($scope, $location, $log, RESTService, AuthService, $timeout) {
+  .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', function ($scope, $location, $log, RESTService, AuthService, $timeout, UserService) {
 
     var baseUsersUri = '/users'
     var userId = AuthService.getUserInfo();
@@ -25,7 +25,7 @@ angular.module('myApp')
       if (password == confirmPassword) {
         $scope.passwordMatch = true;
 
-        RESTService.post(baseUsersUri, payload, function(data){
+        UserService.createUser(payload, function(data){
           $log.debug('Success creating new user');
 
           $timeout(function() {
