@@ -7,6 +7,25 @@ angular.module('myApp')
       $scope.project_status_options = ProjectService.getProjectStatusOptions();
       $scope.projects = [];
 
+      //--- datepicker config
+
+      $scope.open_start_date  = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.start_date_opened = true;
+      };
+
+      $scope.open_end_date = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.end_date_opened = true;
+      };
+
+      $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy'];
+      $scope.format = $scope.formats[1];
+      //---end config
+
+      
       var getProjects = function() {
         ProjectService.getAllProjects(function(data){
           $log.debug('Fetching ' + data.length + ' projects from server...');
