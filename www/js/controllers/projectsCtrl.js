@@ -25,7 +25,7 @@ angular.module('myApp')
       $scope.format = $scope.formats[1];
       //---end config
 
-      
+
       var getProjects = function() {
         ProjectService.getAllProjects(function(data){
           $log.debug('Fetching ' + data.length + ' projects from server...');
@@ -133,6 +133,14 @@ angular.module('myApp')
       $scope.sendEventProjectId = function(projectId){
         SharedProjectSprintService.prepForBroadcast(projectId);
       };
+
+
+      $scope.redirectTo = function (projectId,sprintId)
+      {
+
+        var path = '/projects/'+projectId+'/sprints/'+sprintId+'/stories'
+        $location.path(path);
+      }
 
 
     }
