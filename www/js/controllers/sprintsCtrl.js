@@ -8,8 +8,6 @@ angular.module('myApp')
     var projectId;
 
     //---datepicker config
-    $scope.dt = ""
-
     $scope.open_start_date  = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
