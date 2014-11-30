@@ -1,13 +1,12 @@
 app.factory('UserService', ['$log', '$http', 'RESTService', function($log, $http, RESTService){
   var baseUrl = '/users'
 
-  //var userId = AuthService.getUserInfo();
-//  var getUserUri = baseUrl + '/' + userId;
-//  var updateUserUri = baseUrl + "/" + userId;
-//  var deleteUserUri = baseUrl + "/" + userId;
-
-
   return {
+
+    getUserById: function(userId, callback){
+      var url = baseUrl + "/" + userId;
+      RESTService.get(url, callback);
+  },
 
     createUser: function(payload, callback){
       var url = baseUrl;
