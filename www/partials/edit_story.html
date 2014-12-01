@@ -32,7 +32,7 @@
 
                   <div class="form-group">
                     <label for="story_points">Story Points</label>
-                    <input class="form-control" ng-model="story_retrieved.points" placeholder="{{story_retrieved.points}}" name="story_points" type="text">
+                    <input class="form-control"  type="number"   min="0" max="99"  ng-model="story_retrieved.points" placeholder="{{story_retrieved.points}}" name="story_points" type="text">
                   </div>
 
                   <div class="form-group">
