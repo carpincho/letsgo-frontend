@@ -78,6 +78,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'StoriesCtrl'
   })
 
+  .when('/projects/share/:projectId/', {
+    templateUrl: 'partials/share_project.html',
+    controller: 'ProjectCtrl'
+  })
+
   .when('/sprints', {
     templateUrl: 'partials/sprints.html',
     controller: 'SprintsCtrl'
