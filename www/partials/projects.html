@@ -21,21 +21,23 @@
       <div class="col-md-6">
         <div ng-repeat="project in projects">
 
-            <div ng-click="sendEventProjectId(project.id)" id="stream" fade-in>
+            <div  id="stream" fade-in>
               <!-- stream item -->
               <div class="stream-item">
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
+                      <div ng-click="sendEventProjectId(project.id)">
                       <li><span class="item-title">{{ project.name }}</span></li>
                       <li><span class="item-content">Owner: {{ project.owner }}</span></li>
                       <li><span class="item-content">Description: {{ project.description }}</span></li>
                       <li>
+                      </div>
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ project.start_date|date:'yyyy/MM/dd' }} - End Date: {{ project.end_date|date:'yyyy/MM/dd' }} - Status: <strong class="item-status-{{ project.status|projectStatusFromValue }}">{{project.status|projectStatusFromValue}}</strong></small></p> </li>
                         <li>
                           <div class="btn-group pull-right">
                             <a ng-href="#/sprint/create/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
-                            <a ng-click="sendEventProjectId(project.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list"></span> Sprints</a>
+                            <!--a ng-click="sendEventProjectId(project.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list"></span> Sprints</a-->
                             <a href="#projectMembers" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Members</a>
                             <a ng-href="#/project/edit/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
                             <a ng-click='deleteProject(project.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
@@ -55,7 +57,8 @@
 
       <div ng-controller="SprintsCtrl">
         <!-- Sprints -->
-        <div class="col-md-6">
+
+         <div class="col-md-6">
           <div ng-repeat="sprint in sprints">
             <div id="stream" fade-in> <!-- ng-click="redirectTo(projectId,sprint.id)"-->
               <!-- stream item -->
@@ -63,9 +66,11 @@
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
+                      <div ng-click="redirectTo(projectId,sprint.id)">
                       <li><span class="item-title">{{ sprint.name }}</span></li>
                       <li>
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Start Date: {{ sprint.start_date|date:'yyyy/MM/dd' }} - End Date: {{ sprint.end_date|date:'yyyy/MM/dd' }} - Status: <strong class="item-status-{{ sprint.status|sprintStatusFromValue }}">{{ sprint.status|sprintStatusFromValue }}</strong></small></p> </li>
+                      </div>
                         <li>
                           <div class="btn-group pull-right">
 
