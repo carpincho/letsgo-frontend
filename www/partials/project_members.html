@@ -1,0 +1,39 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+
+<div ng-controller="ProjectsCtrl">
+  <div class="container">
+    <div class="container">
+      <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-primary">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Project {{ project_retrieved.name }}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label for="exampleInputProjectDescription"> </label> {{project_retrieved.description}}
+              </div>
+              <div class="form-group">
+                <label for="exampleSelectLanguage1">Status:</label>  {{project_option_selected.label}}
+              </div>
+
+
+              <div class="form-group">
+                <label for="exampleInputStartDate">Developers:</label>
+              </div>
+              <div ng-repeat="dev in inviteDevelopersToProjectNames">
+                <h4>  {{dev}} </h4>
+              </div>
+
+              <a ng-click="cancelUpdateProject()" class="btn btn-default">Accept</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div> <!-- end container -->
+  </div> <!-- end ProjectCtrl -->

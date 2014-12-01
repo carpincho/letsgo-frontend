@@ -59,6 +59,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'ProjectsCtrl'
   })
 
+  .when('/project/project_members/:projectId', {
+    templateUrl: 'partials/project_members.html',
+    controller: 'ProjectsCtrl'
+  })
+
   .when('/projects', {
     templateUrl: 'partials/projects.html',
     controller: 'ProjectsCtrl'

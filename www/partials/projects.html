@@ -37,8 +37,8 @@
                         <li>
                           <div class="btn-group pull-right">
                             <a ng-href="#/sprint/create/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
-                            <!--a ng-click="sendEventProjectId(project.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list"></span> Sprints</a-->
-                            <a href="#projectMembers" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Members</a>
+                            <a ng-click="sendEventProjectId(project.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list"></span> Sprints</a>
+                            <a ng-href="#/project/project_members/{{project.id}}" class="btn btn-default btn-xs" ><span class="glyphicon glyphicon-user"></span> Members</a>
                             <a ng-href="#/project/edit/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
                             <a ng-click='deleteProject(project.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                             <a ng-click='inviteDevelopersToProject();' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
