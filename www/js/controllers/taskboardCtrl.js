@@ -8,11 +8,10 @@
     $scope.projectId = projectId;
     $scope.sprintId = sprintId;
     $scope.stories= [];
-    $scope.storiesTasks = [];
     $scope.taskboard =[];
     var allprojects = [];
     var storiesTask = [];
-
+    $scope.storiesTasks = [];
     $scope.task_Not_Started  = [];
     $scope.task_In_Progress  = [];
     $scope.task_Completed  = [];
@@ -20,6 +19,7 @@
 
     var gettaskboard = function() {
 
+      $scope.storiesTasks = [];
 
       if (projectId != undefined && sprintId != undefined){
 
@@ -39,15 +39,16 @@
             var log = [];
             $scope.storiesTasks = [];
 
-            angular.forEach($scope.stories, function(value, key) {
-              console.log(key + 'ID historia ' + value.id);
 
+
+            angular.forEach($scope.stories, function(value, key) {
+              
               TaskService.getAllTasks(projectId, sprintId, value.id,function(data){
 
                 $log.debug('Fetching ' + data.length + ' tasks from server...');
                 $scope.tasks = data;
 
-                angular.forEach($scope.tasks , function(value, key) {
+                angular.forEach(data , function(value, key) {
 
                   if(value.status==0)
                     {
@@ -71,7 +72,10 @@
                         }, log);
 
                         $scope.storiesTasks.push({story:value,tasks:$scope.tasks,task_Not_Started:$scope.task_Not_Started,task_In_Progress:$scope.task_In_Progress,task_Completed:$scope.task_Completed,task_Blocked:$scope.task_Blocked});
-
+                        $scope.task_Not_Started  = [];
+                        $scope.task_In_Progress  = [];
+                        $scope.task_Completed  = [];
+                        $scope.task_Blocked= [];
                       });
                     }, log);
 
@@ -91,6 +95,15 @@
             $scope.deleteStory = function(projectId,sprintId,StoryId) {
               StoryService.deleteStory(projectId, sprintId,StoryId, function(data){
                 $log.debug('Success deleting story');
+                gettaskboard();
+              });
+            }
+
+
+            $scope.deleteTask = function(projectId, sprintId, storyId,taskId) {
+
+              TaskService.deleteTask(projectId, sprintId, storyId, taskId, function(data){
+                $log.debug('Success deleting task');
                 gettaskboard();
               });
             }

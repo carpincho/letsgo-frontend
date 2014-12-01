@@ -18,7 +18,8 @@
                 <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/create"><i class="fa fa-plus"></i> Create Story</a>
               </li>
             </ul>
-          </span>          <div id="stream">
+          </span>
+          <div id="stream">
             <div class="stream-item">
               <div class="row">
                 <div class="stream-panel credits">
@@ -46,7 +47,7 @@
         <div class="col-md-2">
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
-              <h3>Not Started<span class="caret"></span></h3>
+              <h3>Not Started <span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -54,6 +55,7 @@
               </li>
             </ul>
           </span>
+
           <div ng-repeat="task in userStoryTasks.task_Not_Started">
             <div id="stream">
               <div class="stream-item">
@@ -64,8 +66,8 @@
                       <li><span class="item-content">Task Point: {{task.nr}}</span></li>
                       <li>
                         <div class="btn-group">
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a ng-click='deleteTask(task.id)'  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)'  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>
@@ -78,11 +80,10 @@
         </div> <!-- end container -->
 
 
-
         <div class="col-md-2">
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
-              <h3>In Progress<span class="caret"></span></h3>
+              <h3>In Progress <span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -101,7 +102,7 @@
                       <li>
                         <div class="btn-group">
                           <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>
@@ -141,7 +142,7 @@
                       <li>
                         <div class="btn-group">
                           <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>
@@ -182,7 +183,7 @@
                       <li>
                         <div class="btn-group">
                           <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                          <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                          <a ng-click='deleteTask(projectId,sprintId,userStoryTasks.story.id,task.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </div>
                       </li>
                     </ul>

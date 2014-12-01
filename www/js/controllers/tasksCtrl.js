@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp')
-.controller('TasksCtrl', ['$scope', '$http', '$log', '$location', 'TaskService', 'RESTService','$routeParams','AuthService','SharedStoryTaskService', 'ProjectService',
-function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,AuthService,SharedStoryTaskService,ProjectService) {
+.controller('TasksCtrl', ['$scope', '$http', '$log', '$location', 'TaskService', 'RESTService','$routeParams','AuthService','SharedStoryTaskService', 'ProjectService', 'UserService',
+function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,AuthService,SharedStoryTaskService,ProjectService, UserService) {
 
   $scope.tasks = [];
   $scope.task_retrieved = [];
@@ -80,8 +80,7 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
           this.push({id:value, name:""});
         },$scope.assigned_devs);
         angular.forEach($scope.assigned_devs, function(value, key) {
-
-          AuthService.getUserById(value.id, function(data){
+            UserService.getUserById(value.id, function(data){
             value.name = data.firstname+" "+data.lastname ;
           });
         });
@@ -109,7 +108,7 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
             }
           }
           angular.forEach($scope.availables, function(value, key) {
-            AuthService.getUserById(value.id, function(data){
+              UserService.getUserById(value.id, function(data){
               value.name = data.firstname+" "+data.lastname ;
             });
           });
@@ -155,11 +154,14 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
     $location.path(window.history.back());
   }
 
-  $scope.updateTask = function(taskId, description, nr) {
+
+  $scope.updateTask = function(taskId, description, nr,status,comment) {
     var updateFormData = {
       description: description,
       nr: nr,
-      owner: ownerId
+      owner: ownerId,
+      status:status,
+      comment:comment,
     }
     TaskService.editTask(projectId, sprintId, storyId, taskId, updateFormData, function(){
       $log.debug('Success updating a task');
@@ -167,7 +169,8 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
     });
   }
 
-  $scope.deleteTask = function(taskId) {
+  $scope.deleteTask = function(projectId, sprintId, storyId, taskId) {
+
     TaskService.deleteTask(projectId, sprintId, storyId, taskId, function(data){
       $log.debug('Success deleting task');
       getTasks(projectId, sprintId, storyId);

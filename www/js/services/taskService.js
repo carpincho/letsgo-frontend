@@ -24,7 +24,6 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
 
     getTaskById: function (projectId, sprintId, storyId, taskId, callback) {
       var url  = "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks" + "/" + taskId;
-      console.log(url);
       RESTService.get(url, callback);
     },
 

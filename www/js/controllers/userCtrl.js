@@ -1,17 +1,11 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', function ($scope, $location, $log, RESTService, AuthService, $timeout) {
+  .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', function ($scope, $location, $log, RESTService, AuthService, $timeout, UserService) {
 
-    var baseUsersUri = '/users'
     var userId = AuthService.getUserInfo();
-    var getUserUri = baseUsersUri + '/' + userId;
-    var updateUserUri = baseUsersUri + "/" + userId;
-    var deleteUserUri = baseUsersUri + "/" + userId;
-
 
     $scope.signUp = function(email, firstname, lastname, password, confirmPassword){
-      $scope.passwordMatch = false;
 
       var signupDataForm = {
         email: email,
@@ -20,17 +14,12 @@ angular.module('myApp')
         password: password
       };
 
-      var payload = signupDataForm;
-
       if (password == confirmPassword) {
-        $scope.passwordMatch = true;
 
-        RESTService.post(baseUsersUri, payload, function(data){
+        UserService.createUser(signupDataForm, function(data){
           $log.debug('Success creating new user');
 
-          $timeout(function() {
-            $scope.successMsgVisible = true;
-          }, 30000);
+          $timeout(function() { $scope.successMsgVisible = true;}, 30000);
           $location.path("/login");
         });
       }
@@ -44,13 +33,12 @@ angular.module('myApp')
 
     $scope.editUser = function(email, firstname, lastname) {
       var payload = {
-        id: userId,
         firstname: firstname,
         lastname: lastname,
         email: email,
       }
 
-      RESTService.put(updateUserUri, payload, function(data){
+      UserService.editUser(userId, payload, function(data){
         $log.debug('Success editing user');
         $location.path('/user');
       });
@@ -67,15 +55,12 @@ angular.module('myApp')
       if(password != undefined && confirmPassword != undefined){
 
         var payload = {
-          id: userId,
           password: password,
         }
-        RESTService.put(updateUserUri, payload, function(data){
+        UserService.changePassword(userId, payload, function(data){
           $log.debug('Success changing password!');
           $scope.successMsgVisible = true;
-          $timeout(function(){
-            $location.path('/projects');
-          }, 1000);
+          $timeout(function(){ $location.path('/projects');}, 1000);
         });
       }
 
@@ -89,7 +74,7 @@ angular.module('myApp')
 
 
     $scope.deleteUser = function(){
-      RESTService.delete(deleteUserUri, function(data){
+      UserService.deleteUser(userId, function(data){
         $log.debug('Success deleting user');
         AuthService.logout();
         $location.path('/home');
