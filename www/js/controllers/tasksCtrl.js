@@ -15,7 +15,9 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
   var storyId = $routeParams.storyId;
   var ownerId = AuthService.getUserInfo();
 
-  $scope.$on('eventGetRelatedStory', function(){
+$scope.task_status_options = TaskService.getTaskStatusOptions();
+
+    $scope.$on('eventGetRelatedStory', function(){
     $scope.projectId = SharedStoryTaskService.projectId;
     $scope.sprintId = SharedStoryTaskService.sprintId;
     $scope.storyId =  SharedStoryTaskService.storyId;
@@ -70,12 +72,7 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
         $log.debug('Success getting a task');
         $scope.task_retrieved = data;
 
-
-
-        //for(var i=0;i<data.assigned_devs.length;i++){
-        //  $scope.assigned_devs.push({id:data.assigned_devs[i], name:""});
-        //}
-
+        $scope.task_option_selected = TaskService.getOptionByValue(data.status)
         angular.forEach(data.assigned_devs, function(value, key) {
           this.push({id:value, name:""});
         },$scope.assigned_devs);
