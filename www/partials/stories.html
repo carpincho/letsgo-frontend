@@ -40,7 +40,7 @@
                         <a ng-click='sendEventStoryId(projectId,sprintId,story.id)'  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-glass"></span> Task</a>
                         <a ng-href="#/taskboard/project/{{projectId}}/sprint/{{sprintId}}"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Taskboard</a>
 
-                        <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                        <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
                         <a ng-click='deleteStory(projectId,sprintId,story.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                       </div>
                       <div class="clearfix"></div>
@@ -73,7 +73,7 @@
           <li><span class="item-content">Task Description: {{task.description}}</span></li>
               <li>
                 <div class="btn-group pull-right">
-                  <a  ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{storyId}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                  <a  ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{storyId}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
                   <a  ng-click='deleteTask(projectId,sprintId,storyId,task.id )' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                 </div>
                 <div class="clearfix"></div>

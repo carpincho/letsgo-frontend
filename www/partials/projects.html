@@ -39,7 +39,7 @@
                             <a ng-href="#/sprint/create/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Sprint</a>
                             <!--a ng-click="sendEventProjectId(project.id)"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list"></span> Sprints</a-->
                             <a href="#projectMembers" class="btn btn-default btn-xs" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Members</a>
-                            <a ng-href="#/project/edit/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                            <a ng-href="#/project/edit/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
                             <a ng-click='deleteProject(project.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                             <a ng-click='inviteDevelopersToProject();' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
                           </div>
@@ -76,7 +76,7 @@
 
                             <a ng-href="#/projects/{{projectId}}/sprints/{{sprint.id}}/stories"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-th-list"></span> Stories</a>
                             <a ng-href="#/taskboard/project/{{projectId}}/sprint/{{sprint.id}}"  class="btn btn-default btn-xs"><span class="glyphicon glyphicon-list-alt"></span> Taskboard</a>
-                            <a ng-href="#/projects/{{projectId}}/sprints/edit/{{sprint.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Properties</a>
+                            <a ng-href="#/projects/{{projectId}}/sprints/edit/{{sprint.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
 
                             <a ng-click='deleteSprint(projectId, sprint.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                           </div>
