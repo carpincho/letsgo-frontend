@@ -9,23 +9,26 @@
           <div class="panel panel-primary">
 
             <div class="panel-heading">
-              <h3 class="panel-title">Create Task {{ currentStoryId }}</h3>
+              <h3 class="panel-title">Create Task</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="createTask(createFormData.task_description, createFormData.task_nr)" accept-charset="UTF-8" role="form">
+              <form ng-submit="createTask(createFormData.task_description, createFormData.task_nr, createFormData.task_comment)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
-                    <label for="task_description">Task Description:</label>
+                    <label for="task_description">Task Description(*):</label>
                     <textarea class="form-control" ng-model="createFormData.task_description" name="task_description" placeholder="Task Description"></textarea>
                   </div>
 
                   <div class="form-group">
-                  <label for="task_nr">Task Number:</label>
+                  <label for="task_nr">Task Number(*):</label>
                   <input ng-model="createFormData.task_nr" name="task_nr" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
                   </div>
 
-
+                  <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea class="form-control" ng-model="createFormData.task_comment" name="task_comment" rows="3"></textarea>
+                  </div>
 
                   <button type="submit" class="btn btn-primary">Create</button>
                   <a ng-click="cancelCreateTask()" class="btn btn-default">Cancel</a>

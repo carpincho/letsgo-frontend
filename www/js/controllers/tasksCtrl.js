@@ -45,7 +45,7 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
     $location.path( window.history.back());
   }
 
-  $scope.createTask = function(description,nr) {
+  $scope.createTask = function(description,nr,comment) {
     // validate
     var createFormData = {
       description: description,
@@ -53,10 +53,10 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
       owner: ownerId,
       story_id: storyId,
       status:0,
-      comment:"",
+      comment:comment
     }
 
-    TaskService.createTask(projectId, sprintId, storyId,createFormData, function(data){
+    TaskService.createTask(projectId, sprintId, storyId, createFormData, function(data){
       $log.debug('Success creating new task');
       $location.path(window.history.back());
     });

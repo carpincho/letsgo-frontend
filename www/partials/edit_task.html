@@ -12,7 +12,7 @@
               <h3 class="panel-title">Edit Task {{ task_retrieved.id }}</h3>
             </div>
             <div class="panel-body">
-              <form accept-charset="UTF-8" role="form">
+              <form ng-submit="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr,task_retrieved.status,task_retrieved.comment)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
@@ -50,7 +50,7 @@
                         </div>
                       </div>
                     </div>
-                  <button ng-click="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr,task_retrieved.status,task_retrieved.comment)" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                   <a ng-click="cancelUpdateTask()" class="btn btn-default">Cancel</a>
 
                 </fieldset>
