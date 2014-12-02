@@ -32,13 +32,6 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 
           $cookieStore.put( 'lets_go_session_client', authorized);
           $cookieStore.put( 'lets_go_user_info',userInfo);
-
-
-          // show a success message
-          //$scope.successMsgVisible = true;
-          // let the message dissapear after 2 secs
-          //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
-          // console.log("Logged in as " + email);
         });
       }
     },
@@ -53,11 +46,6 @@ app.factory('AuthService', function($http, $log, $timeout, $cookieStore, RESTSer
 
         $cookieStore.remove('lets_go_session_client');
         $cookieStore.remove('lets_go_user_info');
-
-        // show a success message
-        //$scope.successMsgVisible = true;
-        // let the message dissapear after 2 secs
-        //$timeout(function() {$scope.successMsgVisible = false;}, 2000);
       });
 
     },
