@@ -28,6 +28,13 @@ angular.module('myApp')
     ProjectService.getAllProjects(function(data){
       $log.debug('Fetching ' + data.length + ' projects from server...');
       $scope.projects = data;
+
+      angular.forEach($scope.projects,function(project, key){
+        UserService.getUserById(project.owner, function(data){
+          project.ownerName = data.firstname + " " + data.lastname;
+        });
+      })
+
     });
   }
   // fetch the existing projects as init
