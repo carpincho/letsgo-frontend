@@ -2,50 +2,60 @@
 
 app.factory('RESTService', ['$http', '$log', function ($http, $log){
   return {
-    get: function (url, callback) {
-      return $http({method:'GET', url:url})
+    get: function (url, callback, callback_error) {
+      return $http({ method:'GET', url:url })
       .success(function (data, status, headers, config){
         callback(data);
       })
       .error(function (data, status, headers, config){
-        $log.error("failed to get data");
+        if (!angular.isUndefined(callback_error)){
+          callback_error(data);
+        }
+        $log.error("failed to GET data!");
       });
     },
 
-    post: function(url, payload, callback){
-      return $http({method:'POST', url:url, data:payload})
+    post: function(url, payload, callback, callback_error){
+      return $http({ method:'POST', url:url, data:payload })
       .success(function (data, status, headers, config){
         callback(data);
       })
       .error(function (data, status, headers, config){
-        $log.error("failed to post data");
+        if (!angular.isUndefined(callback_error)){
+          callback_error(data);
+        }
+        $log.error("failed to POST data!");
       });
     },
 
-    put: function(url, payload, callback){
-      return $http({method:'PUT', url:url, data:payload})
+    put: function(url, payload, callback, callback_error){
+      return $http({ method:'PUT', url:url, data:payload })
       .success(function(data, status, headers, config){
         callback(data);
       })
       .error(function(data, status, headers, config){
-        $log.error("failed to put data");
+        if (!angular.isUndefined(callback_error)){
+          callback_error(data);
+        }
+        $log.error("failed to PUT data!");
       })
     },
 
-    delete: function(url, callback){
-      return $http({method:'DELETE', url:url})
+    delete: function(url, callback, callback_error){
+      return $http({ method:'DELETE', url:url })
       .success(function(data, status, headers, config){
         callback(data);
       })
       .error(function(data, status, headers, config){
-        $log.error("failed to delete data");
+        if (!angular.isUndefined(callback_error)){
+          callback_error(data);
+        }
+        $log.error("failed to DELETE data!");
       })
     }
 
   };
 }]);
-
-
 
 app.factory('SharedProjectSprintService', function($rootScope){
   var projectId;
