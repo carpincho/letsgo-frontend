@@ -8,7 +8,6 @@ angular.module('myApp')
   $scope.projects = [];
 
   //--- datepicker config
-
   $scope.open_start_date  = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -25,7 +24,6 @@ angular.module('myApp')
   $scope.format = $scope.formats[1];
   //---end config
 
-
   var getProjects = function() {
     ProjectService.getAllProjects(function(data){
       $log.debug('Fetching ' + data.length + ' projects from server...');
@@ -34,7 +32,6 @@ angular.module('myApp')
   }
   // fetch the existing projects as init
   getProjects();
-
 
   $scope.createProject = function(name, description, startDate, endDate, status) {
     var createFormData = {
@@ -52,11 +49,9 @@ angular.module('myApp')
     });
   }
 
-
   $scope.cancelCreateProject = function(){
     $location.path("/projects");
   }
-
 
   var getProjectById = function(projectId) {
     if(projectId != undefined && projectId != null) {
@@ -92,11 +87,9 @@ angular.module('myApp')
     });
   }
 
-
   $scope.cancelUpdateProject = function(){
     $location.path("/projects");
   }
-
 
   $scope.deleteProject = function(projectId) {
     ProjectService.deleteProject(projectId, function(data){
@@ -105,7 +98,6 @@ angular.module('myApp')
       getProjects();
     });
   }
-
 
   $scope.inviteDevelopersToProject = function(developers) {
     var projectId = 67;
@@ -118,7 +110,6 @@ angular.module('myApp')
       $log.debug('Success inviting developers to project');
     });
   }
-
 
   $scope.removeDevelopersFromProject = function(developers) {
     var projectId = 67;
@@ -137,28 +128,19 @@ angular.module('myApp')
   };
 
 
-  $scope.redirectTo = function (projectId,sprintId)
-  {
-
+  $scope.redirectTo = function (projectId,sprintId){
     var path = '/projects/'+projectId+'/sprints/'+sprintId+'/stories'
     $location.path(path);
   }
 
-
   $scope.getInvitedDevelopersByProject = function(data){
-
     $scope.inviteDevelopersToProjectNames = [];
     angular.forEach(data.invited_devs, function(value, key) {
       UserService.getUserById(value, function(data){
         $scope.inviteDevelopersToProjectNames.push(data.firstname+" "+data.lastname );
-
-
       });
     });
-
-
   }
-
 
 }
 ]);
