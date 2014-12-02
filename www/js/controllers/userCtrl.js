@@ -5,6 +5,12 @@ angular.module('myApp')
 
     var userId = AuthService.getUserInfo();
 
+    $scope.login = function(email, password, rememberMe){
+      AuthService.login(email, password, rememberMe, function(data){
+      });
+    };
+
+
     $scope.signUp = function(email, firstname, lastname, password, confirmPassword){
 
       var signupDataForm = {
@@ -15,7 +21,6 @@ angular.module('myApp')
       };
 
       if (password == confirmPassword) {
-
         UserService.createUser(signupDataForm, function(data){
           $log.debug('Success creating new user');
 
