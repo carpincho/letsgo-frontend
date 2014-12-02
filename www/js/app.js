@@ -156,7 +156,6 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     var getUser = function(){
       RESTService.get(getUserUri, function(data){
         $rootScope.userInfo = data;
-        //$log.debug(data);
       });
     }
 
