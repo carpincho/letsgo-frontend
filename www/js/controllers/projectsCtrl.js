@@ -69,7 +69,6 @@ angular.module('myApp')
   // get project from url
   getProjectById($routeParams.projectId);
 
-
   $scope.updateProject = function(projectId, name, description, start_date, end_date, status) {
     var updateFormData = {
       id: projectId,
@@ -126,7 +125,6 @@ angular.module('myApp')
   $scope.sendEventProjectId = function(projectId){
     SharedProjectSprintService.prepForBroadcast(projectId);
   };
-
 
   $scope.redirectTo = function (projectId,sprintId){
     var path = '/projects/'+projectId+'/sprints/'+sprintId+'/stories'

@@ -24,7 +24,6 @@ angular.module('myApp')
     $scope.format = $scope.formats[1];
     //---end config
 
-
     $scope.$on('eventGetRelatedSprints', function(){
       $scope.projectId = SharedProjectSprintService.projectId;
       if($scope.projectId != undefined){
@@ -32,7 +31,6 @@ angular.module('myApp')
       }
 
     });
-
 
     var getSprintsByProjectId = function(projectId){
       if (projectId != undefined){
@@ -95,7 +93,6 @@ angular.module('myApp')
 
     }
 
-
     $scope.updateSprint = function(name, start_date, end_date, status){
       var sprintId = $routeParams.sprintId;
       var projectId = $routeParams.projectId;
@@ -118,7 +115,6 @@ angular.module('myApp')
         $log.error('Error updating sprint: projectId and sprintId are not defined!');
       }
     }
-
 
     $scope.cancelEditSprint = function(){
       $location.path("/projects");
