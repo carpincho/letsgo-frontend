@@ -59,7 +59,6 @@ app.factory('SprintService', ['$log', '$http', 'RESTService', function($log, $ht
       var url = baseUrl + "/" + projectId + "/sprints/" + sprintId;
       RESTService.delete(url, callback);
     },
-
   }
 
 }]);

@@ -1,4 +1,4 @@
-app.factory('UserService', ['$log', '$http', 'RESTService', function($log, $http, RESTService){
+app.factory('UserService', ['RESTService', function(RESTService){
   var baseUrl = '/users'
 
   return {
@@ -27,8 +27,6 @@ app.factory('UserService', ['$log', '$http', 'RESTService', function($log, $http
       var url = baseUrl + "/" + userId;
       RESTService.delete(url, callback);
     },
-
-
   }
 
 }]);

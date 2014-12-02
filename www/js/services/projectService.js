@@ -70,9 +70,6 @@ app.factory('ProjectService', ['$log', '$http', '$rootScope', 'RESTService', fun
       RESTService.put(url, developers, callback);
 
     },
-
-     
-
   }
 
 }]);

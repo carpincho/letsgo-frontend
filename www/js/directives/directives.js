@@ -34,7 +34,6 @@ app.directive('showErrors', function() {
   }
 });
 
-
 app.directive('pwCheck', [function () {
   return {
     require: 'ngModel',

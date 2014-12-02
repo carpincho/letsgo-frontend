@@ -30,7 +30,6 @@ angular.module('myApp')
       $location.path('/login');
     }
 
-
     $scope.editUser = function(email, firstname, lastname) {
       var payload = {
         firstname: firstname,
@@ -44,12 +43,10 @@ angular.module('myApp')
       });
     }
 
-
     $scope.cancelEditUser = function(){
       $log.debug('Cancel edit user');
       $location.path('/user');
     }
-
 
     $scope.changePassword = function(password, confirmPassword) {
       if(password != undefined && confirmPassword != undefined){
@@ -66,12 +63,10 @@ angular.module('myApp')
 
     }
 
-
     $scope.cancelChangePassword = function(){
       $log.debug('Cancel change password');
       $location.path('/projects');
     }
-
 
     $scope.deleteUser = function(){
       UserService.deleteUser(userId, function(data){
@@ -79,7 +74,6 @@ angular.module('myApp')
         AuthService.logout();
         $location.path('/home');
       });
-
     }
 
   }

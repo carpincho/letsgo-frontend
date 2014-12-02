@@ -4,15 +4,14 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
   var currentProjectName = "someProject";
   var currentSprintName = "someSprint";
   var currentStoryName = "SomeStory";
-var taskStatusOptions = [
-  { label:'Not Started ', value: 0 },
-  { label:'In Progress', value: 1 },
-  { label:'Completed', value: 2 },
-  { label:'Blocked', value: 3 },
-];
+  var taskStatusOptions = [
+    { label:'Not Started ', value: 0 },
+    { label:'In Progress', value: 1 },
+    { label:'Completed', value: 2 },
+    { label:'Blocked', value: 3 },
+  ];
+
   return{
-
-
 
     getOptionByValue: function (value){
       var i=0;
@@ -77,6 +76,6 @@ var taskStatusOptions = [
       var url = "/projects/" + projectId + "/sprints/" + sprintId + "/stories/" + storyId + "/tasks" + "/" + taskId + "/unassign_devs";
       RESTService.put(url, payload, callback);
     }
-
   };
+
 }]);

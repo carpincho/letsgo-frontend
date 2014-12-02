@@ -1,4 +1,4 @@
-app.factory('StoryService', ['$log', '$http', 'RESTService', function($log, $http, RESTService){
+app.factory('StoryService', ['$log', 'RESTService', function($log, RESTService){
   var baseUrl = '/projects';
 
 
@@ -31,9 +31,7 @@ app.factory('StoryService', ['$log', '$http', 'RESTService', function($log, $htt
        var url = baseUrl + "/" + projectId + "/sprints/" + sprintId+'/stories/'+storyId;
        RESTService.put(url, payload, callback);
 
-
-     },
-
+    },
   }
 
 }]);
