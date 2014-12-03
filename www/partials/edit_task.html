@@ -12,7 +12,7 @@
               <h3 class="panel-title">Edit Task {{ task_retrieved.id }}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr,task_option_selected.value,task_retrieved.comment)" accept-charset="UTF-8" role="form">
+              <form name="editTaskForm" ng-submit="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr,task_option_selected.value,task_retrieved.comment)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
@@ -20,13 +20,19 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputTaskDescription">Task Description</label>
-                    <textarea class="form-control" ng-model="task_retrieved.description" name="task_description" placeholder="task_retrieved.description" rows="4"></textarea>
+                    <label for="exampleInputTaskDescription">Task Description(*)</label>
+                    <textarea class="form-control" ng-model="task_retrieved.description" name="task_description"  rows="4" required></textarea>
+                    <p ng-show="editTaskForm.task_description.$dirty && editTaskForm.task_description.$error.required" class="text-danger">
+                      Please enter task description!
+                    </p>
                   </div>
 
-                  <div class="form-group">
-                    <label >Task Point: </label>
-                    <input class="form-control" ng-model="task_retrieved.nr" name="task_nr" placeholder="task_retrieved.nr" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+                  <div class="form-group" show-errors>
+                    <label >Task Point(*): </label>
+                    <input class="form-control" ng-model="task_retrieved.nr" name="task_nr" type = "number" required ng-pattern = "/^[0-9]+$/">
+                    <p ng-show="editTaskForm.task_nr.$invalid" class="text-danger">
+                      Please enter an integer over 0!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -36,7 +42,7 @@
 
                   <div class="form-group">
                     <label for="comment">Comment</label>
-                    <textarea class="form-control" ng-model="task_retrieved.comment" name="task_comment" placeholder="task_retrieved.comment" rows="4"></textarea>
+                    <textarea class="form-control" ng-model="task_retrieved.comment" name="task_comment" placeholder="Comment" rows="4"></textarea>
                   </div>
                   <div class="form-group">
                     <div class ="row">
@@ -52,7 +58,7 @@
                         </div>
                       </div>
                     </div>
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary" ng-disabled="editTaskForm.$invalid" >Update</button>
                   <a ng-click="cancelUpdateTask()" class="btn btn-default">Cancel</a>
 
                 </fieldset>
