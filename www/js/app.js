@@ -141,11 +141,11 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
   $rootScope.authService = AuthService;
   $rootScope.restService = RESTService;
 
-  $rootScope.$watch('authService.authorized()', function(){
+  $rootScope.$watch('AuthService.authorized()', function(){
 
     var cookie_lets_go_session_client = $cookieStore.get('lets_go_session_client');
     var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
-    $rootScope.authService.setLoggedIn(cookie_lets_go_session_client,cookie_lets_go_user_info);
+    AuthService.setLoggedIn(cookie_lets_go_session_client,cookie_lets_go_user_info);
 
     var baseUsersUri = '/users'
     var userId = cookie_lets_go_user_info;
@@ -155,7 +155,7 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     //validate when is not defined userID
     var getUser = function(){
       RESTService.get(getUserUri, function(data){
-        $rootScope.userInfo = data;
+        AuthService.setUserInfo(data);
       });
     }
 
@@ -165,18 +165,18 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     }
 
     // if never logged in, do nothing (otherwise bookmarks fail)
-    if ($rootScope.authService.initialState()){
+    if (AuthService.initialState()){
       // we are public browsing
       return;
     }
 
     // when user logs in, redirect to home
-    if ($rootScope.authService.authorized()){
+    if (AuthService.authorized()){
       $location.path("/projects");
     }
 
     // when user logs out, redirect to home
-    if (!$rootScope.authService.authorized()){
+    if (!AuthService.authorized()){
       $location.path("/");
     }
 

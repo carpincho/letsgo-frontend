@@ -1,14 +1,39 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('UserCtrl', ['$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', function ($scope, $location, $log, RESTService, AuthService, $timeout, UserService) {
+  .controller('UserCtrl', ['$rootScope', '$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', '$cookieStore', function ($rootScope, $scope, $location, $log, RESTService, AuthService, $timeout, UserService, $cookieStore) {
 
     var userId = AuthService.getUserInfo();
 
     $scope.login = function(email, password, rememberMe){
-      AuthService.login(email, password, rememberMe, function(data){
+
+      // validate inputs
+      // do something with rememberMe
+      var payload = {
+        email: email,
+        password: password
+      };
+
+      AuthService.login(payload, function(data){
+        $log.debug("Success on login!");
+
+        AuthService.setLoggedIn(true, data);
+        AuthService.setInitialState(false);
+        AuthService.setCurrentUser(email);
+
+        $cookieStore.put( 'lets_go_session_client', AuthService.authorized());
+        $cookieStore.put( 'lets_go_user_info', AuthService.getUserInfo());
+
+      }, function(data){
+        $log.error("Error on login!");
+        // show the message
       });
     };
+
+    $scope.logout = function(){
+        $scope.puto = "putiti";
+    }
+
 
 
     $scope.signUp = function(email, firstname, lastname, password, confirmPassword){

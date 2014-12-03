@@ -23,8 +23,9 @@ app.factory('RESTService', ['$http', '$log', function ($http, $log){
       .error(function (data, status, headers, config){
         if (!angular.isUndefined(callback_error)){
           callback_error(data);
+          console.log(status);
+          //$log.error("failed to POST data!");
         }
-        $log.error("failed to POST data!");
       });
     },
 
