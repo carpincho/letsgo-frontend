@@ -4,6 +4,19 @@ angular.module('myApp')
   .controller('UserCtrl', ['$rootScope', '$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', '$cookieStore', function ($rootScope, $scope, $location, $log, RESTService, AuthService, $timeout, UserService, $cookieStore) {
 
     var userId = AuthService.getUserInfo();
+    console.log("user Id: " + userId);
+    $scope.isLoggedIn = AuthService.isLoggedIn();
+    console.log("is logged: "+ AuthService.isLoggedIn());
+
+    if (!angular.isUndefined(userId) && AuthService.isLoggedIn()){
+        console.log("esta mierda no funciona")
+        console.log(AuthService.isLoggedIn())
+
+      UserService.getUserById(userId, function(userInfo){
+        $scope.userInfo = userInfo;
+      });
+    }
+
 
     $scope.login = function(email, password, rememberMe){
 
@@ -23,6 +36,7 @@ angular.module('myApp')
 
         $cookieStore.put( 'lets_go_session_client', AuthService.authorized());
         $cookieStore.put( 'lets_go_user_info', AuthService.getUserInfo());
+        $location.path("/projects")
 
       }, function(data){
         $log.error("Error on login!");
@@ -31,8 +45,30 @@ angular.module('myApp')
     };
 
     $scope.logout = function(){
-        $scope.puto = "putiti";
-    }
+      AuthService.logout(function(data){
+        $log.debug('Success logging out!');
+
+        AuthService.setCurrentUser(null);
+        AuthService.setLoggedIn(false, null);
+
+        $cookieStore.remove('lets_go_session_client');
+        $cookieStore.remove('lets_go_user_info');
+
+        //function(data){
+        //  $log.debug('Success logging out the user');
+
+        //  currentUser = null;
+        //  authorized = false;
+        //  userInfo = null;
+
+        //  $cookieStore.remove('lets_go_session_client');
+        //  $cookieStore.remove('lets_go_user_info');
+        //}
+      }, function(data){
+        $log.error('Failed logging out!');
+      });
+
+    };
 
 
 

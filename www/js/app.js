@@ -130,7 +130,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 
   .otherwise({
-    redirectTo: '/login'
+    redirectTo: '/login' // should redirect to a 404 static page
   });
 }
 ]);
@@ -145,7 +145,7 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
     var cookie_lets_go_session_client = $cookieStore.get('lets_go_session_client');
     var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
-    AuthService.setLoggedIn(cookie_lets_go_session_client,cookie_lets_go_user_info);
+    AuthService.setLoggedIn(cookie_lets_go_session_client, cookie_lets_go_user_info);
 
     var baseUsersUri = '/users'
     var userId = cookie_lets_go_user_info;
@@ -155,6 +155,7 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     //validate when is not defined userID
     var getUser = function(){
       RESTService.get(getUserUri, function(data){
+
         AuthService.setUserInfo(data);
       });
     }
@@ -164,19 +165,23 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
       getUser();
     }
 
+    // when user logs in, redirect to home
+    if (AuthService.authorized()){
+      console.log("redirect if  authorized")
+      $location.path("/projects");
+
+    }
+
+
     // if never logged in, do nothing (otherwise bookmarks fail)
     if (AuthService.initialState()){
       // we are public browsing
       return;
     }
 
-    // when user logs in, redirect to home
-    if (AuthService.authorized()){
-      $location.path("/projects");
-    }
-
     // when user logs out, redirect to home
     if (!AuthService.authorized()){
+      console.log("redirect if not authorized")
       $location.path("/");
     }
 

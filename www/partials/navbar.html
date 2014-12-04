@@ -1,46 +1,51 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+<div ng-controller="UserCtrl">
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#/">Lets GO!</a>
-    </div>
 
-    <div class="collapse navbar-collapse">
-      <div ng-show="!authService.isLoggedIn()" >
-        <div class="nav navbar-form pull-right">
-          <a href="#/signup" role="button" class="btn btn-primary">Sign Up</a>
-          <a href="#/login" role="button" class="btn btn-primary">Log in</a>
-        </div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#/">Lets GO!</a>
       </div>
 
-      <div ng-show="authService.isLoggedIn()">
-        <ul class="nav navbar-nav">
-          <li><a href="#/projects">Projects</a></li>
-        </ul>
-
-        <div class="nav navbar-form pull-right">
-          <div class="btn-group" dropdown is-open="status.isopen">
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
-               {{ userInfo.firstname }} <span class="glyphicon glyphicon-user"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-              <li><a ng-href="#/user"><span class="fa fa-pencil-square-o"></span> View my Profile</a> </li>
-              <li><a ng-href="#/user/password"> <span class="fa fa-unlock"></span> Change Password</a></li>
-              <li class="divider"></li>
-              <li>
-                <a href="#/" ng-click="logout()"><span class="fa fa-sign-out"></span> Log Out</a>
-              </li>
-            </ul>
+      <div class="collapse navbar-collapse">
+        <div ng-show="!isLoggedIn" >
+          <div class="nav navbar-form pull-right">
+            <a href="#/signup" role="button" class="btn btn-primary">Sign Up</a>
+            <a href="#/login" role="button" class="btn btn-primary">Log in</a>
           </div>
         </div>
 
-      </div>
+        <div ng-show="isLoggedIn">
+          <ul class="nav navbar-nav">
+            <li><a href="#/projects">Projects</a></li>
+          </ul>
+          <h1>{{isLoggedIn}}</h1>
+          <div class="nav navbar-form pull-right">
+            <div class="btn-group" dropdown is-open="status.isopen">
+              <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                {{ userInfo.firstname }} <span class="glyphicon glyphicon-user"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                <li><a ng-href="#/user"><span class="fa fa-pencil-square-o"></span> View my Profile</a> </li>
+                <li><a ng-href="#/user/password"> <span class="fa fa-unlock"></span> Change Password</a></li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#/" ng-click="logout()"><span class="fa fa-sign-out"></span> Log Out</a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-    </div> <!-- collapsable  -->
-  </div> <!-- end container-fluid -->
-</nav>
+        </div>
+
+      </div> <!-- collapsable  -->
+    </div> <!-- end container-fluid -->
+  </nav>
+
+</div> <!-- end UserCtrl -->
