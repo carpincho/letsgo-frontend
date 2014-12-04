@@ -3,6 +3,9 @@
 angular.module('myApp')
   .controller('UserCtrl', ['$rootScope', '$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', '$cookieStore', function ($rootScope, $scope, $location, $log, RESTService, AuthService, $timeout, UserService, $cookieStore) {
 
+if (AuthService.isLoggedIn()){
+
+  console.log("Entra al control usarios login");
     var userId = AuthService.getUserInfo();
     console.log("user Id: " + userId);
     $scope.isLoggedIn = AuthService.isLoggedIn();
@@ -16,6 +19,8 @@ angular.module('myApp')
         $scope.userInfo = userInfo;
       });
     }
+
+  }
 
 
     $scope.login = function(email, password, rememberMe){
@@ -45,25 +50,18 @@ angular.module('myApp')
     };
 
     $scope.logout = function(){
+
+      $scope.isLoggedIn =false;
+      console.log("Logout scope "+$scope.isLoggedIn);
+      AuthService.setCurrentUser(null);
+      AuthService.setLoggedIn(false, null);
+      console.log("Authorize variable "+AuthService.isLoggedIn());
+
+      $cookieStore.remove('lets_go_session_client');
+      $cookieStore.remove('lets_go_user_info');
+
       AuthService.logout(function(data){
-        $log.debug('Success logging out!');
-
-        AuthService.setCurrentUser(null);
-        AuthService.setLoggedIn(false, null);
-
-        $cookieStore.remove('lets_go_session_client');
-        $cookieStore.remove('lets_go_user_info');
-
-        //function(data){
-        //  $log.debug('Success logging out the user');
-
-        //  currentUser = null;
-        //  authorized = false;
-        //  userInfo = null;
-
-        //  $cookieStore.remove('lets_go_session_client');
-        //  $cookieStore.remove('lets_go_user_info');
-        //}
+        $log.debug('API Success logging out!');
       }, function(data){
         $log.error('Failed logging out!');
       });
