@@ -136,7 +136,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 ]);
 
 
-app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService, $cookieStore) {
+app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService, $cookieStore, UserService) {
 
   $rootScope.authService = AuthService;
   $rootScope.restService = RESTService;
@@ -145,22 +145,33 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
     var cookie_lets_go_session_client = $cookieStore.get('lets_go_session_client');
     var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
+
+  console.log("cookie"+cookie_lets_go_session_client);
+  if( !angular.isUndefined(cookie_lets_go_session_client)  && !angular.isUndefined(cookie_lets_go_user_info) ){
     AuthService.setLoggedIn(cookie_lets_go_session_client, cookie_lets_go_user_info);
 
-    var baseUsersUri = '/users'
+
+  }
+
     var userId = cookie_lets_go_user_info;
-    var getUserUri = baseUsersUri + '/' + userId;
 
 
     //validate when is not defined userID
     var getUser = function(){
-      RESTService.get(getUserUri, function(data){
 
-        AuthService.setUserInfo(data);
-      });
+    UserService.getUserById (userId, function(data){
+    AuthService.setUserInfo(data);
+
+    }, function(data){
+      console.log("User delete from database ")
+
+
+    } );
+
+
     }
 
-    if(userId != undefined){
+    if(!angular.isUndefined(userId)){
       // the user is not logged yet
       getUser();
     }
@@ -172,17 +183,16 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
     }
 
+    // when user logs out, redirect to home
+    if (!AuthService.authorized()){
+      console.log("redirect if not authorized")
+      $location.path("/login");
+    }
 
     // if never logged in, do nothing (otherwise bookmarks fail)
     if (AuthService.initialState()){
       // we are public browsing
       return;
-    }
-
-    // when user logs out, redirect to home
-    if (!AuthService.authorized()){
-      console.log("redirect if not authorized")
-      $location.path("/");
     }
 
   }, true);
