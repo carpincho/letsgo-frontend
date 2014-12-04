@@ -44,10 +44,8 @@ angular.module('myApp')
   $scope.logout = function(){
 
     $scope.isLoggedIn =false;
-    console.log("Logout scope "+$scope.isLoggedIn);
     AuthService.setCurrentUser(null);
     AuthService.setLoggedIn(false, null);
-    console.log("Authorize variable "+AuthService.isLoggedIn());
 
     $cookieStore.remove('lets_go_session_client');
     $cookieStore.remove('lets_go_user_info');
