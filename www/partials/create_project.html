@@ -12,12 +12,15 @@
               <h3 class="panel-title">Create Project {{createFormData.project_name}}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="createProject(createFormData.project_name, createFormData.project_description, createFormData.project_start_date, createFormData.project_end_date, createFormData.project_status.value)" accept-charset="UTF-8" role="form">
+              <form name="createProjectForm" ng-submit="createProject(createFormData.project_name, createFormData.project_description, createFormData.project_start_date, createFormData.project_end_date, createFormData.project_status.value)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
                     <label for="project_name">Project Name (*)</label>
                     <input class="form-control" ng-model="createFormData.project_name" placeholder="Project Name" name="project_name" type="text" required>
+                    <p ng-show="createProjectForm.project_name.$dirty &&createProjectForm.project_name.$invalid" class="text-danger">
+                      Please name your project!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -26,8 +29,11 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="start_date">Start Date</label>
+                    <label for="start_date">Start Date(*)</label>
                     <input class="form-control" ng-model="createFormData.project_start_date" placeholder="2013-2-1" name="start_date" type="text" ng-click="open_start_date($event)" datepicker-popup="{{format}}" is-open="start_date_opened" close-text="Close" required>
+                    <p ng-show="createProjectForm.start_date.$dirty &&createProjectForm.start_date.$invalid" class="text-danger">
+                      Please choose your project start date!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -36,8 +42,11 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="project_status">Status</label>
+                    <label for="project_status">Status(*)</label>
                     <select  class="form-control" ng-model="createFormData.project_status" name="project_status" ng-init="createFormData.project_status = project_status_options[0]" ng-options="option.label for option in project_status_options" required></select>
+                    <p ng-show="createProjectForm.project_status.$dirty &&createProjectForm.project_status.$invalid" class="text-danger">
+                      Please choose your project status!
+                    </p>
                   </div>
 
                   <input type="submit" class="btn btn-primary" id="submit" value="Create" />

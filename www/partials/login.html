@@ -21,26 +21,17 @@
 
               <div class="form-group" show-errors>
                 <label for="email">Email Address</label>
-                <input class="form-control" ng-model="formData.email" placeholder="example@domain.com" name="email" type="email" required ng-minlength="6" ng-maxlength="30">
-                <p ng-show="loginForm.email.$dirty && loginForm.email.$error.email" class="text-danger">
-                  This is not an email!
-                </p>
-                <p ng-show="loginForm.email.$dirty && loginForm.email.$error.required" class="text-danger">
-                  This Field is Required!
-                </p>
-                <p ng-show="loginForm.email.$error.minlength || loginForm.email.$error.maxlength" class="text-danger">
-                  Email must be between 6 and 30 characters!
+                <input class="form-control" ng-model="formData.email" placeholder="example@domain.com" name="email" type="email" required>
+                <p ng-show="loginForm.email.$dirty && loginForm.email.$invalid" class="text-danger">
+                  Please enter your email
                 </p>
 
               </div>
               <div class="form-group" show-errors>
                 <label for="password">Password</label>
                 <input class="form-control" ng-model="formData.password" placeholder="******" name="password" type="password" value="" required ng-minlength="6" ng-maxlength="30">
-                <p ng-show="loginForm.password.$dirty && loginForm.password.$error.required" class="text-danger">
-                  This Field is Required!
-                </p>
-                <p ng-show="loginForm.password.$error.minlength || loginForm.password.$error.maxlength" class="text-danger">
-                  Password must be between 6 and 30 characters!
+                <p ng-show="loginForm.password.$dirty && loginForm.password.$invalid" class="text-danger">
+                  Please enter your password!
                 </p>
               </div>
 

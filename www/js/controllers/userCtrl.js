@@ -73,7 +73,7 @@ angular.module('myApp')
 
 
     $scope.signUp = function(email, firstname, lastname, password, confirmPassword){
-
+      if(lastname==undefined){lastname = "";}
       var signupDataForm = {
         email: email,
         firstname: firstname,
