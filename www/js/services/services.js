@@ -99,3 +99,34 @@ app.factory('SharedStoryTaskService', function($rootScope){
 
   return sharedService;
 });
+
+
+app.factory('BurndownService', function(){
+  var totalDays = 0;
+  var totalPoints = 0;
+
+  var sharedService = {
+    totalDays: totalDays,
+    totalPoints: totalPoints,
+  };
+
+  sharedService.setTotalDays = function(totalDays){
+    totalDays = totalDays;
+  }
+
+  sharedService.setTotalPoints = function(totalPoints){
+    totalPoints = totalPoints;
+  }
+
+  sharedService.getTotalDays = function(){
+    return totalDays;
+  }
+
+  sharedService.getTotalPoints = function(){
+    return totalPoints;
+  }
+
+
+
+  return sharedService;
+});
