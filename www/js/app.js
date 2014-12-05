@@ -169,13 +169,11 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
     // when user logs in, redirect to home
     if (AuthService.authorized()){
-      console.log("redirect if  authorized")
       $location.path("/projects");
     }
 
     // when user logs out, redirect to home
     if (!AuthService.authorized()){
-      console.log("redirect if not authorized")
       $location.path("/login");
     }
 
