@@ -35,10 +35,7 @@ angular.module('myApp')
             storyTotalPoints = storyTotalPoints + story.points;
           });
           BurndownService.prepForBroadcast(storyTotalPoints, totalDays);
-
         });
-
-
       });
 
 
@@ -49,15 +46,27 @@ angular.module('myApp')
   guideLine();
 
   $scope.$on('eventGotTotalPoints', function(){
-    console.log("merd" + BurndownService.totalPoints + BurndownService.totalDays);
-  });
+    $scope.totalPoints = BurndownService.totalPoints;
+    $scope.totalDays = BurndownService.totalDays;
+
+    var mylabels = [];
+    var mydata = [];
+
+    for (var i=0; i < $scope.totalPoints; i++){
+      mydata[i] = $scope.totalPoints-i;
+    }
+
+    for (var i=0; i < $scope.totalDays; i++){
+      mylabels[i]= String(i);
+    }
+    //mydata[i] = $scope.totalPoints-i;
 
 
+    //$scope.mylabels = mylabels;
 
-
-  var data = {
-    labels: ["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"],
-    datasets: [
+    var data = {
+      labels: mylabels,//["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"],
+      datasets: [
       {
         label: "Target",
         fillColor: "rgba(220,220,220,0.2)",
@@ -66,7 +75,7 @@ angular.module('myApp')
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgba(220,220,220,1)",
-        data: [65, 59, 80, 81, 56, 55, 81, 56, 55, 81, 56, 55, 81, 56, 55,]
+        data: mydata, //[65, 59, 80, 81, 56, 55, 81, 56, 55, 81, 56, 55, 81, 56, 55,]
       },
 
       {
@@ -77,12 +86,19 @@ angular.module('myApp')
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgba(151,187,205,1)",
-        data: [28, 48, 40, 19, 86, 27, 90]
+        data: mydata, //[28, 48, 40, 19, 86, 27, 90]
       }
-    ]
-  };
+      ]
+    };
+    $scope.myData = data;
 
-  $scope.myData = data;
+  });
+
+
+
+
+
+  //$scope.myData = data;
 
   $scope.myOptions =  {
     // Chart.js options can go here.
