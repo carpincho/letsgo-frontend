@@ -52,13 +52,14 @@ angular.module('myApp')
     var mylabels = [];
     var mydata = [];
 
-    for (var i=0; i < $scope.totalPoints; i++){
-      mydata[i] = $scope.totalPoints-i;
+    for (var i=0; i <= $scope.totalDays; i++){
+      mydata[i] = ($scope.totalPoints/$scope.totalDays)*i;
     }
 
-    for (var i=0; i < $scope.totalDays; i++){
+    for (var i=0; i <= $scope.totalDays; i++){
       mylabels[i]= String(i);
     }
+    console.log(mylabels);
     //mydata[i] = $scope.totalPoints-i;
 
 
