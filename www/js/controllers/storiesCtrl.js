@@ -1,13 +1,9 @@
 'use strict';
 
-
-
 angular.module('myApp')
-
 .controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService','SharedStoryTaskService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,SharedStoryTaskService,StoryService) {
 
   var ownerId = AuthService.getUserInfo();
-
   $scope.stories = [];
 
   var getStories = function() {
@@ -74,8 +70,9 @@ angular.module('myApp')
     var sprintId = $routeParams.sprintId;
     var projectId = $routeParams.projectId;
     var storyId = $routeParams.storyId;
-    if(story_description==undefined){story_description = "";}
-    if(story_notes==undefined){story_notes = "";}
+
+    if(story_description == undefined){story_description = "";}
+    if(story_notes == undefined){story_notes = "";}
     if (sprintId != undefined && projectId != undefined  && storyId != undefined ){
 
       var updateFormData = {
@@ -90,7 +87,6 @@ angular.module('myApp')
         $log.debug('Success Updating new Story');
         $location.path(window.history.back());
       });
-
     }
   }
 

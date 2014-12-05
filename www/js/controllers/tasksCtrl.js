@@ -15,9 +15,9 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
   var storyId = $routeParams.storyId;
   var ownerId = AuthService.getUserInfo();
 
-$scope.task_status_options = TaskService.getTaskStatusOptions();
+  $scope.task_status_options = TaskService.getTaskStatusOptions();
 
-    $scope.$on('eventGetRelatedStory', function(){
+  $scope.$on('eventGetRelatedStory', function(){
     $scope.projectId = SharedStoryTaskService.projectId;
     $scope.sprintId = SharedStoryTaskService.sprintId;
     $scope.storyId =  SharedStoryTaskService.storyId;
@@ -48,71 +48,71 @@ $scope.task_status_options = TaskService.getTaskStatusOptions();
   $scope.createTask = function(description,nr,comment) {
     // validate
     if(comment==undefined){comment="";}
-    var createFormData = {
-      description: description,
-      nr: nr,
-      owner: ownerId,
-      story_id: storyId,
-      status:0,
-      comment:comment
+      var createFormData = {
+        description: description,
+        nr: nr,
+        owner: ownerId,
+        story_id: storyId,
+        status:0,
+        comment:comment
+      }
+
+      TaskService.createTask(projectId, sprintId, storyId, createFormData, function(data){
+        $log.debug('Success creating new task');
+        $location.path(window.history.back());
+      });
     }
 
-    TaskService.createTask(projectId, sprintId, storyId, createFormData, function(data){
-      $log.debug('Success creating new task');
-      $location.path(window.history.back());
-    });
-  }
+    var getTaskById = function(projectId, sprintId, storyId, tasktId) {
+      if(tasktId != undefined && tasktId != null) {
+        TaskService.getTaskById(projectId, sprintId, storyId, tasktId, function(data){
+          $log.debug('Success getting a task');
+          $scope.task_retrieved = data;
 
-  var getTaskById = function(projectId, sprintId, storyId, tasktId) {
-    if(tasktId != undefined && tasktId != null) {
-      TaskService.getTaskById(projectId, sprintId, storyId, tasktId, function(data){
-        $log.debug('Success getting a task');
-        $scope.task_retrieved = data;
-
-        $scope.task_option_selected = TaskService.getOptionByValue(data.status)
-        angular.forEach(data.assigned_devs, function(value, key) {
-          this.push({id:value, name:""});
-        },$scope.assigned_devs);
-        angular.forEach($scope.assigned_devs, function(value, key) {
+          $scope.task_option_selected = TaskService.getOptionByValue(data.status)
+          angular.forEach(data.assigned_devs, function(value, key) {
+            this.push({id:value, name:""});
+          },$scope.assigned_devs);
+          angular.forEach($scope.assigned_devs, function(value, key) {
             UserService.getUserById(value.id, function(data){
+              value.name = data.firstname+" "+data.lastname ;
+            });
+          });
+        });
+      }
+    }
+    getTaskById(projectId, sprintId, storyId, $routeParams.taskId);
+
+    var getInvitedDevelopers = function(projectId){
+      ProjectService.getProjectById(projectId, function(data){
+        //$scope.availables =[];
+        for(var i=0;i<data.invited_devs.length;i++){
+          $scope.availables.push({id:data.invited_devs[i], name:""});
+        }
+
+        for(var i=0;i<$scope.assigned_devs.length;i++){
+          for(var j=0;j<$scope.availables.length;j++){
+            if($scope.assigned_devs[i].id == $scope.availables[j].id){
+              $scope.availables.splice(j,1);
+              break;
+            }
+          }
+        }
+        angular.forEach($scope.availables, function(value, key) {
+          UserService.getUserById(value.id, function(data){
             value.name = data.firstname+" "+data.lastname ;
           });
         });
       });
     }
-  }
-  getTaskById(projectId, sprintId, storyId, $routeParams.taskId);
+    getInvitedDevelopers(projectId);
 
-  var getInvitedDevelopers = function(projectId){
-    ProjectService.getProjectById(projectId, function(data){
-    //$scope.availables =[];
-      for(var i=0;i<data.invited_devs.length;i++){
-        $scope.availables.push({id:data.invited_devs[i], name:""});
-      }
+    $scope.assignDevelopersToTask = function(developer) {
+      var payload = {
+        devs: [developer.id]
+      };
 
-      for(var i=0;i<$scope.assigned_devs.length;i++){
-        for(var j=0;j<$scope.availables.length;j++){
-          if($scope.assigned_devs[i].id == $scope.availables[j].id){
-            $scope.availables.splice(j,1);
-            break;
-          }
-        }
-      }
-      angular.forEach($scope.availables, function(value, key) {
-        UserService.getUserById(value.id, function(data){
-          value.name = data.firstname+" "+data.lastname ;
-        });
-      });
-    });
-  }
-  getInvitedDevelopers(projectId);
-
-  $scope.assignDevelopersToTask = function(developer) {
-    var payload = {
-      devs: [developer.id]
-    };
-
-    $scope.assigned_devs.push(developer)
+      $scope.assigned_devs.push(developer)
       for(var i=0;i<$scope.availables.length;i++){
         if ($scope.availables[i].id==developer.id){
           $scope.availables.splice(i,1);
@@ -123,50 +123,49 @@ $scope.task_status_options = TaskService.getTaskStatusOptions();
         $log.debug('Success assigned developers to task');
       });
     }
-      $scope.unassignDevelopersToTask = function(developer) {
-        var payload = {
-          devs: [developer.id]
-        };
-        $scope.availables.push(developer)
-        for(var i=0;i<$scope.assigned_devs.length;i++){
-          if ($scope.assigned_devs[i].id==developer.id){
-            $scope.assigned_devs.splice(i,1);
-            break;
-          }
+    $scope.unassignDevelopersToTask = function(developer) {
+      var payload = {
+        devs: [developer.id]
+      };
+      $scope.availables.push(developer)
+      for(var i=0;i<$scope.assigned_devs.length;i++){
+        if ($scope.assigned_devs[i].id==developer.id){
+          $scope.assigned_devs.splice(i,1);
+          break;
         }
-        TaskService.unassignDevelopersToTask(projectId, sprintId, storyId, $routeParams.taskId, payload, function(){
-          $log.debug('Success unassigned developers to task');
+      }
+      TaskService.unassignDevelopersToTask(projectId, sprintId, storyId, $routeParams.taskId, payload, function(){
+        $log.debug('Success unassigned developers to task');
+      });
+    }
+
+    $scope.cancelUpdateTask = function(){
+      $location.path(window.history.back());
+    }
+
+
+    $scope.updateTask = function(taskId, description, nr,status,comment) {
+      if(comment==undefined){comment="";}
+        var updateFormData = {
+          description: description,
+          nr: nr,
+          owner: ownerId,
+          status:status,
+          comment:comment,
+        }
+        TaskService.editTask(projectId, sprintId, storyId, taskId, updateFormData, function(){
+          $log.debug('Success updating a task');
+          $location.path(window.history.back());
         });
       }
 
-  $scope.cancelUpdateTask = function(){
+      $scope.deleteTask = function(projectId, sprintId, storyId, taskId) {
 
-    $location.path(window.history.back());
-  }
+        TaskService.deleteTask(projectId, sprintId, storyId, taskId, function(data){
+          $log.debug('Success deleting task');
+          getTasks(projectId, sprintId, storyId);
+        });
+      }
 
-
-  $scope.updateTask = function(taskId, description, nr,status,comment) {
-    if(comment==undefined){comment="";}
-    var updateFormData = {
-      description: description,
-      nr: nr,
-      owner: ownerId,
-      status:status,
-      comment:comment,
     }
-    TaskService.editTask(projectId, sprintId, storyId, taskId, updateFormData, function(){
-      $log.debug('Success updating a task');
-      $location.path(window.history.back());
-    });
-  }
-
-  $scope.deleteTask = function(projectId, sprintId, storyId, taskId) {
-
-    TaskService.deleteTask(projectId, sprintId, storyId, taskId, function(data){
-      $log.debug('Success deleting task');
-      getTasks(projectId, sprintId, storyId);
-    });
-  }
-
-}
-]);
+    ]);
