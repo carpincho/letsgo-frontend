@@ -135,7 +135,7 @@ angular.module('myApp')
     SharedProjectSprintService.prepForBroadcast(projectId);
   };
 
-  $scope.redirectTo = function (projectId,sprintId){
+  $scope.redirectTo = function (projectId, sprintId){
     var path = '/projects/'+projectId+'/sprints/'+sprintId+'/stories'
     $location.path(path);
   }

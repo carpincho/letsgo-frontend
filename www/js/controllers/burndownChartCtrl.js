@@ -27,24 +27,33 @@ angular.module('myApp')
 
       SprintService.getSprintBySprintId(projectId, sprintId, function(sprint){
         totalDays = diffDays(sprint.start_date, sprint.end_date);
-        BurndownService.setTotalDays(totalDays);
-      });
 
-      StoryService.getStoriesBySprintId(projectId, sprintId, function(stories){
-        storyTotalPoints = 0;
+        StoryService.getStoriesBySprintId(projectId, sprintId, function(stories){
+          storyTotalPoints = 0;
 
-        angular.forEach(stories, function(story, key) {
-          storyTotalPoints = storyTotalPoints + story.points;
+          angular.forEach(stories, function(story, key) {
+            storyTotalPoints = storyTotalPoints + story.points;
+          });
+          BurndownService.prepForBroadcast(storyTotalPoints, totalDays);
+
         });
-        BurndownService.setTotalPoints(storyTotalPoints);
-        // mierda
+
 
       });
+
+
+
 
     }
   };
   guideLine();
-  console.log("ahogar" + BurndownService.getTotalPoints());
+
+  $scope.$on('eventGotTotalPoints', function(){
+    console.log("merd" + BurndownService.totalPoints + BurndownService.totalDays);
+  });
+
+
+
 
   var data = {
     labels: ["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"],
