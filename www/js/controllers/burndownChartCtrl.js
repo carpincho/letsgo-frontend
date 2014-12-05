@@ -50,47 +50,42 @@ angular.module('myApp')
     $scope.totalDays = BurndownService.totalDays;
 
     var mylabels = [];
-    var mydata = [];
-
-    for (var i=0; i <= $scope.totalDays; i++){
-      mydata[i] = ($scope.totalPoints/$scope.totalDays)*i;
-    }
+    var idealData = [];
+    var m = (0 - $scope.totalPoints)/($scope.totalDays - 0)
 
     for (var i=0; i <= $scope.totalDays; i++){
       mylabels[i]= String(i);
+      idealData[i] = (i*m) + $scope.totalPoints;
     }
-    console.log(mylabels);
-    //mydata[i] = $scope.totalPoints-i;
-
-
-    //$scope.mylabels = mylabels;
 
     var data = {
-      labels: mylabels,//["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"],
+      labels: mylabels,
       datasets: [
       {
-        label: "Target",
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
-        pointColor: "rgba(220,220,220,1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(220,220,220,1)",
-        data: mydata, //[65, 59, 80, 81, 56, 55, 81, 56, 55, 81, 56, 55, 81, 56, 55,]
-      },
-
-      {
-        label: "Task Remaining",
-        fillColor: "rgba(155, 208, 161,0.2)",
+        label: "Ideal Performance",
+        fillColor: "rgba(155, 208, 161, 0.2)",
         strokeColor: "rgba(155, 208, 161, 1)",
         pointColor: "rgba(155, 208, 161, 1)",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: idealData,
+      },
+
+      /*{
+        label: "Task Remaining",
+        //fillColor: "rgba(155, 208, 161,0.2)",
+        //strokeColor: "rgba(155, 208, 161, 1)",
+        //pointColor: "rgba(155, 208, 161, 1)",
+        //pointStrokeColor: "#fff",
+        //pointHighlightFill: "#fff",
+        //pointHighlightStroke: "rgba(151,187,205,1)",
         data: mydata, //[28, 48, 40, 19, 86, 27, 90]
-      }
+      }*/
       ]
     };
+
+    // expose the data to plot
     $scope.myData = data;
 
   });
