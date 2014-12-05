@@ -43,8 +43,8 @@ app.factory('AuthService', function($http, $log, $timeout, $location, $cookieSto
       currentUser = email;
     },
 
-    setUserInfo: function(userInfo){
-      userInfo = userInfo;
+    setUserInfo: function(value){
+      userInfo = value;
     },
 
     currentUser: function(){

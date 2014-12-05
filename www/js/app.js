@@ -162,17 +162,12 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
     //validate when is not defined userID
     var getUser = function(){
+      UserService.getUserById (userId, function(data){
+      AuthService.setUserInfo(data.id);
 
-    UserService.getUserById (userId, function(data){
-    AuthService.setUserInfo(data);
-
-    }, function(data){
-      console.log("User delete from database ")
-
-
-    } );
-
-
+      }, function(data){
+        console.log("User delete from database ")
+      });
     }
 
     if(!angular.isUndefined(userId)){
@@ -184,7 +179,6 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     if (AuthService.authorized()){
       console.log("redirect if  authorized")
       $location.path("/projects");
-
     }
 
     // when user logs out, redirect to home

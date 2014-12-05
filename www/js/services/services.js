@@ -110,12 +110,13 @@ app.factory('BurndownService', function(){
     totalPoints: totalPoints,
   };
 
-  sharedService.setTotalDays = function(totalDays){
-    totalDays = totalDays;
+  sharedService.setTotalDays = function(value){
+    totalDays = value;
   }
 
-  sharedService.setTotalPoints = function(totalPoints){
-    totalPoints = totalPoints;
+  sharedService.setTotalPoints = function(value){
+    totalPoints = value;
+
   }
 
   sharedService.getTotalDays = function(){
@@ -125,8 +126,6 @@ app.factory('BurndownService', function(){
   sharedService.getTotalPoints = function(){
     return totalPoints;
   }
-
-
 
   return sharedService;
 });
