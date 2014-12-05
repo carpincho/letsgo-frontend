@@ -12,12 +12,15 @@
               <h3 class="panel-title">Edit Project {{ project_retrieved.name }}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, project_option_selected.value)" accept-charset="UTF-8" role="form">
+              <form name="editProjectForm"ng-submit="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, project_option_selected.value)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
                     <label for="exampleInputProjectName1">Project Name (*)</label>
                     <input class="form-control" ng-model="project_retrieved.name" placeholder="Project Name" name="project_name" type="text" required>
+                    <p ng-show="editProjectForm.project_name.$dirty &&editProjectForm.project_name.$invalid" class="text-danger">
+                      Please name your project!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -26,13 +29,22 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputStartDate">Start Date</label>
+                    <label for="exampleInputStartDate">Start Date(*)</label>
                     <input class="form-control" ng-model="project_retrieved.start_date" placeholder="2013-2-1" name="start_date" type="text" ng-click="open_start_date($event)" datepicker-popup="{{format}}" is-open="start_date_opened" close-text="Close" required>
+                    <p ng-show="editProjectForm.start_date.$dirty &&editProjectForm.start_date.$invalid" class="text-danger">
+                      Please set your project start date!
+                    </p>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputStartDate">Completion Date</label>
-                    <input class="form-control" ng-model="project_retrieved.end_date" placeholder="2014-2-1" name="end_date" type="text" ng-click="open_end_date($event)" datepicker-popup="{{format}}" is-open="end_date_opened" close-text="Close" required>
+                    <label for="exampleInputStartDate">Completion Date(*)</label>
+                    <input class="form-control" ng-model="project_retrieved.end_date" placeholder="2014-2-1" name="end_date" type="text" ng-click="open_end_date($event)" datepicker-popup="{{format}}" is-open="end_date_opened" close-text="Close" required date-lower-than="{{project_retrieved.start_date|date:'yyyy/MM/dd'}}">
+                    <p ng-show="editProjectForm.end_date.$dirty &&editProjectForm.end_date.$error.dateLowerThan" class="text-danger">
+                      Invalid end date !
+                    </p>
+                    <p ng-show="(editProjectForm.start_date.$dirty||editProjectForm.end_date.$dirty) &&editProjectForm.end_date.$error.required" class="text-danger">
+                      Please set your project end date!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -40,7 +52,7 @@
                     <select name="status" class="form-control" ng-model="project_option_selected" ng-options="option.label for option in project_status_options" required></select>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary" ng-disabled="editProjectForm.$invalid">Update</button>
                   <a ng-click="cancelUpdateProject()" class="btn btn-default">Cancel</a>
 
                 </fieldset>

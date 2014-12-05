@@ -40,7 +40,7 @@
                     <label for="password">Password (*)</label>
                     <input id="password" class="form-control" ng-model="signupDataForm.password" placeholder="******" name="password" type="password" required ng-minlength="6" ng-maxlength="30">
                     <p ng-show="signUpForm.password.$dirty && signUpForm.password.$error.required" class="text-danger">
-                      This Field is Required!
+                      Please enter a password!
                     </p>
                     <p ng-show="signUpForm.password.$error.minlength || signUpForm.password.$error.maxlength" class="text-danger">
                       Password must be between 6 and 30 characters!

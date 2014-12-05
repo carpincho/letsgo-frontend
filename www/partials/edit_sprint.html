@@ -12,30 +12,46 @@
               <h3 class="panel-title">Edit Sprint {{ sprint_retrieved.name }}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="updateSprint(sprint_retrieved.name, sprint_retrieved.start_date, sprint_retrieved.end_date, sprint_option_selected.value)"accept-charset="UTF-8" role="form">
+              <form name="editSprintForm" ng-submit="updateSprint(sprint_retrieved.name, sprint_retrieved.start_date, sprint_retrieved.end_date, sprint_option_selected.value)"accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
                     <label for="sprint_name">Sprint Name (*)</label>
                     <input class="form-control" ng-model="sprint_retrieved.name" placeholder="Sprint Name" name="sprint_name" type="text" required>
+                    <p ng-show="editSprintForm.sprint_name.$dirty &&editSprintForm.sprint_name.$invalid" class="text-danger">
+                      Please name your sprint!
+                    </p>
                   </div>
 
                   <div class="form-group">
                     <label for="start_date">Start Date (*)</label>
-                    <input class="form-control" ng-model="sprint_retrieved.start_date" placeholder="2013-2-1" ng-click="open_start_date($event)" datepicker-popup="{{format}}" name="start_date" type="text" is-open="start_date_opened" close-text="Close" required>
+                    <input class="form-control" ng-model="sprint_retrieved.start_date" placeholder="2013-2-1" ng-click="open_start_date($event)" datepicker-popup="{{format}}" name="start_date" type="text" is-open="start_date_opened" close-text="Close" required date-lower-than="{{projectStartDate|date:'yyyy/MM/dd'}}" date-greater-than = "{{projectEndDate|date:'yyyy/MM/dd'}}">
+                    <p ng-show="editSprintForm.start_date.$dirty &&(editSprintForm.start_date.$error.dateLowerThan||editSprintForm.start_date.$error.dateGreaterThan)" class="text-danger">
+                      Please set sprint date within project date: {{projectStartDate|date:'yyyy/MM/dd'}} - {{projectEndDate|date:'yyyy/MM/dd'}}
+                    </p>
+                    <p ng-show="editSprintForm.start_date.$dirty &&editSprintForm.start_date.$error.required" class="text-danger">
+                      Please set your sprint start date!
+                    </p>
                   </div>
 
                   <div class="form-group">
                     <label for="end_date">Completion Date (*)</label>
-                    <input class="form-control" ng-model="sprint_retrieved.end_date" ng-click="open_end_date($event)" datepicker-popup="{{format}}" placeholder="2014-2-1" name="end_date" type="text" is-open="end_date_opened" close-text="Close" required>
+                    <input class="form-control" ng-model="sprint_retrieved.end_date" ng-click="open_end_date($event)" datepicker-popup="{{format}}" placeholder="2014-2-1" name="end_date" type="text" is-open="end_date_opened" close-text="Close" required date-lower-than="{{sprint_retrieved.start_date|date:'yyyy/MM/dd'}}" date-greater-than = "{{projectEndDate|date:'yyyy/MM/dd'}}">
+                    <p ng-show="(editSprintForm.start_date.$dirty||editSprintForm.end_date.$dirty) &&(editSprintForm.end_date.$error.dateLowerThan||editSprintForm.end_date.$error.dateGreaterThan)" class="text-danger">
+                      Invalid end date!
+                      Project date: {{projectStartDate|date:'yyyy/MM/dd'}} - {{projectEndDate|date:'yyyy/MM/dd'}}
+                    </p>
+                    <p ng-show="editSprintForm.end_date.$dirty &&editSprintForm.end_date.$error.required" class="text-danger">
+                      Please set your sprint end date!
+                    </p>
                   </div>
 
                   <div class="form-group">
-                    <label for="status">Status</label>
+                    <label for="status">Status(*)</label>
                     <select class="form-control" ng-model="sprint_option_selected" ng-options="option.label for option in sprint_status_options" required name="status"></select>
                   </div>
 
-                  <input type="submit" class="btn btn-primary" id="submit" value="Update" />
+                  <input type="submit" class="btn btn-primary" id="submit" value="Update" ng-disabled="editSprintForm.$invalid"/>
                   <a ng-click="cancelUpdateSprint()" class="btn btn-default">Cancel</a>
 
                 </fieldset>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('SprintsCtrl', ['$location', '$scope', '$log', '$routeParams', 'SharedProjectSprintService', 'SprintService', function ($location, $scope, $log, $routeParams, SharedProjectSprintService, SprintService) {
+  .controller('SprintsCtrl', ['$location', '$scope', '$log', '$routeParams', 'SharedProjectSprintService', 'SprintService', 'ProjectService', function ($location, $scope, $log, $routeParams, SharedProjectSprintService, SprintService, ProjectService) {
 
     $scope.sprints = [];
     $scope.sprint_status_options = SprintService.getSprintStatusOptions();
@@ -76,7 +76,7 @@ angular.module('myApp')
 
 
     $scope.cancelCreateSprint = function(){
-      $location.path("/projects");
+      $location.path(window.history.back());
     }
 
 
@@ -116,9 +116,19 @@ angular.module('myApp')
       }
     }
 
-    $scope.cancelEditSprint = function(){
-      $location.path("/projects");
+    $scope.cancelUpdateSprint = function(){
+      $location.path(window.history.back());
     }
+
+    var getProjectStartDate = function(projectId){
+      if(projectId != undefined){
+        ProjectService.getProjectById(projectId, function(data){
+          $scope.projectStartDate = data.start_date;
+          $scope.projectEndDate = data.end_date;
+        });
+      }
+    }
+    getProjectStartDate($routeParams.projectId);
 
   }
 ]);

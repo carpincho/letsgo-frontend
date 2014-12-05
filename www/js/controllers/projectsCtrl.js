@@ -41,6 +41,7 @@ angular.module('myApp')
   getProjects();
 
   $scope.createProject = function(name, description, startDate, endDate, status) {
+    if(description==undefined){description="";}
     var createFormData = {
       name: name,
       description: description,
@@ -57,7 +58,7 @@ angular.module('myApp')
   }
 
   $scope.cancelCreateProject = function(){
-    $location.path("/projects");
+    $location.path(window.history.back());
   }
 
   var getProjectById = function(projectId) {
@@ -77,6 +78,7 @@ angular.module('myApp')
   getProjectById($routeParams.projectId);
 
   $scope.updateProject = function(projectId, name, description, start_date, end_date, status) {
+    if(description==undefined){description="";}
     var updateFormData = {
       id: projectId,
       name: name,
@@ -94,7 +96,7 @@ angular.module('myApp')
   }
 
   $scope.cancelUpdateProject = function(){
-    $location.path("/projects");
+    $location.path(window.history.back());
   }
 
   $scope.deleteProject = function(projectId) {
@@ -146,6 +148,7 @@ angular.module('myApp')
       });
     });
   }
+
 
 }
 ]);

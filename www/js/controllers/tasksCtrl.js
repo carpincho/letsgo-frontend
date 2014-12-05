@@ -47,6 +47,7 @@ $scope.task_status_options = TaskService.getTaskStatusOptions();
 
   $scope.createTask = function(description,nr,comment) {
     // validate
+    if(comment==undefined){comment="";}
     var createFormData = {
       description: description,
       nr: nr,
@@ -145,6 +146,7 @@ $scope.task_status_options = TaskService.getTaskStatusOptions();
 
 
   $scope.updateTask = function(taskId, description, nr,status,comment) {
+    if(comment==undefined){comment="";}
     var updateFormData = {
       description: description,
       nr: nr,

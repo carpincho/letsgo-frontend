@@ -12,12 +12,15 @@
               <h3 class="panel-title">Create Story {{createFormData.story_title}}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="createStory(createFormData.story_title, createFormData.story_description, createFormData.story_notes, createFormData.story_points, createFormData.story.sprint_id)" accept-charset="UTF-8" role="form">
+              <form name="createStoryForm" ng-submit="createStory(createFormData.story_title, createFormData.story_description, createFormData.story_notes, createFormData.story_points, createFormData.story.sprint_id)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
                     <label for="story_title">Story Title (*)</label>
                     <input class="form-control" ng-model="createFormData.story_title" placeholder="Story Title" name="story_title" type="text" required>
+                    <p ng-show="createStoryForm.story_title.$dirty && createStoryForm.story_title.$error.required" class="text-danger">
+                      Please enter a Story Title!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -31,8 +34,11 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="story_points">Story Points</label>
-                    <input class="form-control" type="number"   min="0" max="99" ng-model="createFormData.story_points" placeholder="Story Points" name="story_points" >
+                    <label for="story_points">Story Points(*)</label>
+                    <input class="form-control" type="number"   min="0" ng-model="createFormData.story_points" placeholder="Story Points" name="story_points" required ng-pattern="/^[0-9]+$/">
+                    <p ng-show="createStoryForm.story_points.$dirty && createStoryForm.story_points.$invalid" class="text-danger">
+                      Please enter an integer over 0!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -40,7 +46,7 @@
                      {{sprintId}}
                   </div>
 
-                  <input type="submit" class="btn btn-primary" id="submit" value="Create" />
+                  <input type="submit" class="btn btn-primary" id="submit" value="Create" ng-disabled="createStoryForm.$invalid" />
                   <a ng-click="cancelCreateStory()" class="btn btn-default">Cancel</a>
 
                 </fieldset>

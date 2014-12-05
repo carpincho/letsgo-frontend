@@ -12,12 +12,15 @@
               <h3 class="panel-title">Edit Story {{story_retrieved.title}}</h3>
             </div>
             <div class="panel-body">
-              <form ng-submit="updateStory(story_retrieved.title, story_retrieved.description,story_retrieved.notes, story_retrieved.points)" accept-charset="UTF-8" role="form">
+              <form name="editStoryForm" ng-submit="updateStory(story_retrieved.title, story_retrieved.description,story_retrieved.notes, story_retrieved.points)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
                     <label for="story_title">Story Title (*)</label>
                     <input class="form-control" ng-model="story_retrieved.title"  placeholder="{{story_retrieved.title}}" name="story_title" type="text" required>
+                    <p ng-show="editStoryForm.story_title.$dirty && editStoryForm.story_title.$error.required" class="text-danger">
+                      Please enter a Story Title!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -31,8 +34,11 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="story_points">Story Points</label>
-                    <input class="form-control"  type="number"   min="0" max="99"  ng-model="story_retrieved.points" placeholder="{{story_retrieved.points}}" name="story_points" type="text">
+                    <label for="story_points">Story Points(*)</label>
+                    <input class="form-control"  type="number"   min="0" ng-model="story_retrieved.points" placeholder="{{story_retrieved.points}}" name="story_points" ng-pattern="/^[0-9]+$/">
+                    <p ng-show="editStoryForm.story_points.$dirty && editStoryForm.story_points.$invalid" class="text-danger">
+                      Please enter an integer over 0!
+                    </p>
                   </div>
 
                   <div class="form-group">
@@ -40,7 +46,7 @@
                      {{story_retrieved.sprintId}}
                   </div>
 
-                  <input type="submit" class="btn btn-primary" id="submit" value="Update" />
+                  <input type="submit" class="btn btn-primary" id="submit" value="Update" ng-disabled="editStoryForm.$invalid"/>
                   <a ng-click="cancelCreateStory()" class="btn btn-default">Cancel</a>
 
                 </fieldset>

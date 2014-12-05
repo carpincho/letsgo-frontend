@@ -39,7 +39,8 @@ angular.module('myApp')
   getStorybyStoryId($routeParams.projectId, $routeParams.sprintId, $routeParams.storyId);
 
   $scope.createStory = function(story_title, story_description,story_notes, story_points) {
-
+    if(story_description==undefined){story_description = "";}
+    if(story_notes==undefined){story_notes = "";}
     var sprintId = $routeParams.sprintId;
     var projectId = $routeParams.projectId;
 
@@ -57,17 +58,8 @@ angular.module('myApp')
     });
   }
 
-  $scope.cancelCreateStory = function(url){
-    /*
-      if(url == undefined ){
-      $location.path('/projects/'+$routeParams.projectId+'/sprints/'+$routeParams.sprintId+'/stories');
-      } else {
-
-      $location.path(url);
-
-    }*/
-
-   window.history.back();
+  $scope.cancelCreateStory = function(){
+    $location.path(window.history.back());
   }
 
   $scope.deleteStory = function(projectId,sprintId,StoryId) {
@@ -82,7 +74,8 @@ angular.module('myApp')
     var sprintId = $routeParams.sprintId;
     var projectId = $routeParams.projectId;
     var storyId = $routeParams.storyId;
-
+    if(story_description==undefined){story_description = "";}
+    if(story_notes==undefined){story_notes = "";}
     if (sprintId != undefined && projectId != undefined  && storyId != undefined ){
 
       var updateFormData = {
