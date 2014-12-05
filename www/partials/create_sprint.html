@@ -12,12 +12,12 @@
               <h3 class="panel-title">Create Sprint {{ createFormData.sprint_name }}</h3>
             </div>
             <div class="panel-body"><h2>{{ projectId}}</h2>
-              <form name="createSprintForm"ng-submit="createSprint(createFormData.sprint_name, createFormData.start_date, createFormData.end_date, updateFormData.status.value)" accept-charset="UTF-8" role="form">
+              <form name="createSprintForm"ng-submit="createSprint(createFormData.sprint_name, createFormData.start_date, createFormData.end_date)" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">
                     <label for="sprint_name">Sprint Name (*)</label>
-                    <input class="form-control" ng-model="createFormData.sprint_name" placeholder="Sprint Name" name="sprint_name" type="text" required>
+                    <input class="form-control" ng-model="createFormData.sprint_name" placeholder="Sprint Name" name="sprint_name" type="text" required ng-maxlength="30">
                     <p ng-show="createSprintForm.sprint_name.$dirty &&createSprintForm.sprint_name.$invalid" class="text-danger">
                       Please name your sprint!
                     </p>
@@ -44,11 +44,6 @@
                     <p ng-show="createSprintForm.end_date.$dirty &&createSprintForm.end_date.$error.required" class="text-danger">
                       Please set your sprint end date!
                     </p>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="status">Status(*)</label>
-                    <select class="form-control" ng-model="updateFormData.status" ng-init="updateFormData.status = sprint_status_options[0]" ng-options="option.label for option in sprint_status_options" required name="status"></select>
                   </div>
 
                   <input type="submit" class="btn btn-primary" id="submit" value="Create" ng-disabled="createSprintForm.$invalid"/>

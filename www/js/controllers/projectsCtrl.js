@@ -40,14 +40,14 @@ angular.module('myApp')
   // fetch the existing projects as init
   getProjects();
 
-  $scope.createProject = function(name, description, startDate, endDate, status) {
+  $scope.createProject = function(name, description, startDate, endDate) {
     if(description==undefined){description="";}
     var createFormData = {
       name: name,
       description: description,
       start_date: startDate,
       end_date: endDate,
-      status: parseInt(status),
+      status: 0,
       owner: userId,
     }
 

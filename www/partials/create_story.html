@@ -17,7 +17,7 @@
 
                   <div class="form-group">
                     <label for="story_title">Story Title (*)</label>
-                    <input class="form-control" ng-model="createFormData.story_title" placeholder="Story Title" name="story_title" type="text" required>
+                    <input class="form-control" ng-model="createFormData.story_title" placeholder="Story Title" name="story_title" type="text" required ng-maxlength="30">
                     <p ng-show="createStoryForm.story_title.$dirty && createStoryForm.story_title.$error.required" class="text-danger">
                       Please enter a Story Title!
                     </p>
