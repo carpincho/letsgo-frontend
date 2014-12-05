@@ -17,7 +17,7 @@
 
                   <div class="form-group">
                     <label for="exampleInputProjectName1">Project Name (*)</label>
-                    <input class="form-control" ng-model="project_retrieved.name" placeholder="Project Name" name="project_name" type="text" required>
+                    <input class="form-control" ng-model="project_retrieved.name" placeholder="Project Name" name="project_name" type="text" required ng-maxlength="30">
                     <p ng-show="editProjectForm.project_name.$dirty &&editProjectForm.project_name.$invalid" class="text-danger">
                       Please name your project!
                     </p>

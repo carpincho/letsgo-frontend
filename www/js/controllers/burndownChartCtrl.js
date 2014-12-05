@@ -89,7 +89,6 @@ angular.module('myApp')
       idealData[i] = (i*m) + $scope.totalTasks;
     }
 
-
     var data = {
       labels: mylabels,
       datasets: [

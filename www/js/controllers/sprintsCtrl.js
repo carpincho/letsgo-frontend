@@ -55,7 +55,7 @@ angular.module('myApp')
     }
     getSprintBySprintId($routeParams.projectId, $routeParams.sprintId);
 
-    $scope.createSprint = function(name, start_date, end_date, status){
+    $scope.createSprint = function(name, start_date, end_date){
       var projectId = $routeParams.projectId;
 
       if (projectId != undefined){
@@ -64,7 +64,7 @@ angular.module('myApp')
           name: name,
           start_date: start_date,
           end_date: end_date,
-          status: parseInt(status),
+          status: 0,
         }
 
         SprintService.createSprint(projectId, createFormData, function(data){
