@@ -26,6 +26,17 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
       return foundOption;
     },
 
+    getValueFromLabel: function(label){
+      var value = '';
+      for (var i=0; i<taskStatusOptions.length; i++){
+        if(taskStatusOptions[i].label == label){
+          value = taskStatusOptions[i].value;
+          break;
+        }
+      }
+      return value;
+    },
+
     getLabelFromValue: function(value){
       var label = '';
       for (var i=0; i<taskStatusOptions.length; i++){
@@ -36,6 +47,11 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
       }
       return label;
     },
+
+
+  
+
+
     getTaskStatusOptions: function(){
       return taskStatusOptions;
     },

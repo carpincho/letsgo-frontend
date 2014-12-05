@@ -96,7 +96,7 @@ app.factory('SharedStoryTaskService', function($rootScope){
   sharedService.broadcastItem = function(){
     $rootScope.$broadcast('eventGetRelatedStory');
   }
-  
+
   return sharedService;
 });
 
@@ -104,20 +104,45 @@ app.factory('SharedStoryTaskService', function($rootScope){
 app.factory('BurndownService', function($rootScope){
   var _totalPoints;
   var _totalDays;
+  var _totalTasks;
+  var _totalTasksDone;
 
   var sharedService = {
     totalPoints: _totalPoints,
     totaDays: _totalDays,
+    totalTasks: _totalTasks,
+    totalTasksDone: _totalTasksDone,
   };
 
-  sharedService.prepForBroadcast = function(v1, v2){
+  sharedService.prepForBroadcast = function(v1, v2, v3){
     this.totalPoints = v1;
     this.totalDays = v2;
+    this.totalTasks = v3;
     this.broadcastItem();
   };
 
   sharedService.broadcastItem = function(){
-    $rootScope.$broadcast('eventGotTotalPoints');
+    $rootScope.$broadcast('eventCoreInfoBurndown');
+  }
+
+  return sharedService;
+});
+
+
+app.factory('BurndownTaskDoneService', function($rootScope){
+  var _totalTasksDone;
+
+  var sharedService = {
+    totalTasksDone: _totalTasksDone,
+  };
+
+  sharedService.prepForBroadcast = function(v1){
+    this.totalTasksDone = v1;
+    this.broadcastItem();
+  };
+
+  sharedService.broadcastItem = function(){
+    $rootScope.$broadcast('eventCoreInfoTaskDownBurndown');
   }
 
   return sharedService;
