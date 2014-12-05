@@ -1,72 +1,62 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('UserCtrl', ['$rootScope', '$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', '$cookieStore', function ($rootScope, $scope, $location, $log, RESTService, AuthService, $timeout, UserService, $cookieStore) {
+.controller('UserCtrl', ['$rootScope', '$scope', '$location', '$log', 'RESTService', 'AuthService', '$timeout', 'UserService', '$cookieStore', function ($rootScope, $scope, $location, $log, RESTService, AuthService, $timeout, UserService, $cookieStore) {
 
-if (AuthService.isLoggedIn()){
-
-  console.log("Entra al control usarios login");
+  if (AuthService.isLoggedIn()){
     var userId = AuthService.getUserInfo();
-    console.log("user Id: " + userId);
     $scope.isLoggedIn = AuthService.isLoggedIn();
-    console.log("is logged: "+ AuthService.isLoggedIn());
 
     if (!angular.isUndefined(userId) && AuthService.isLoggedIn()){
-        console.log("esta mierda no funciona")
-        console.log(AuthService.isLoggedIn())
-
       UserService.getUserById(userId, function(userInfo){
         $scope.userInfo = userInfo;
       });
     }
-
   }
 
 
-    $scope.login = function(email, password, rememberMe){
+  $scope.login = function(email, password, rememberMe){
 
-      // validate inputs
-      // do something with rememberMe
-      var payload = {
-        email: email,
-        password: password
-      };
-
-      AuthService.login(payload, function(data){
-        $log.debug("Success on login!");
-
-        AuthService.setLoggedIn(true, data);
-        AuthService.setInitialState(false);
-        AuthService.setCurrentUser(email);
-
-        $cookieStore.put( 'lets_go_session_client', AuthService.authorized());
-        $cookieStore.put( 'lets_go_user_info', AuthService.getUserInfo());
-        $location.path("/projects")
-
-      }, function(data){
-        $log.error("Error on login!");
-        // show the message
-      });
+    // validate inputs
+    // do something with rememberMe
+    var payload = {
+      email: email,
+      password: password
     };
 
-    $scope.logout = function(){
+    AuthService.login(payload, function(data){
+      $log.debug("Success on login!");
 
-      $scope.isLoggedIn =false;
-      console.log("Logout scope "+$scope.isLoggedIn);
-      AuthService.setCurrentUser(null);
-      AuthService.setLoggedIn(false, null);
-      console.log("Authorize variable "+AuthService.isLoggedIn());
+      AuthService.setLoggedIn(true, data);
+      AuthService.setInitialState(false);
+      AuthService.setCurrentUser(email);
 
-      $cookieStore.remove('lets_go_session_client');
-      $cookieStore.remove('lets_go_user_info');
+      $cookieStore.put( 'lets_go_session_client', AuthService.authorized());
+      $cookieStore.put( 'lets_go_user_info', AuthService.getUserInfo());
+      $location.path("/projects")
 
-      AuthService.logout(function(data){
-        $log.debug('API Success logging out!');
-      }, function(data){
-        $log.error('Failed logging out!');
-      });
+    }, function(data){
+      $log.error("Error on login!");
+      // show the message
+    });
+  };
 
-    };
+  $scope.logout = function(){
+
+    $scope.isLoggedIn =false;
+    AuthService.setCurrentUser(null);
+    AuthService.setLoggedIn(false, null);
+
+    $cookieStore.remove('lets_go_session_client');
+    $cookieStore.remove('lets_go_user_info');
+
+    AuthService.logout(function(data){
+      $log.debug('API Success logging out!');
+    }, function(data){
+      $log.error('Failed logging out!');
+    });
+  };
+
 
 
 
@@ -78,20 +68,19 @@ if (AuthService.isLoggedIn()){
         lastname: lastname,
         password: password
       };
-
       if (password == confirmPassword) {
         UserService.createUser(signupDataForm, function(data){
           $log.debug('Success creating new user');
-
-          $timeout(function() { $scope.successMsgVisible = true;}, 30000);
-          $location.path("/login");
+        $timeout(function() { $scope.successMsgVisible = true;}, 30000);
+        $location.path("/login");
         });
       }
     }
 
+
     $scope.cancelSignUp = function(){
-      $log.debug('Cancel sign up');
-      $location.path('/login');
+    $log.debug('Cancel sign up');
+    $location.path('/login');
     }
 
     $scope.editUser = function(email, firstname, lastname) {
@@ -102,15 +91,10 @@ if (AuthService.isLoggedIn()){
         email: email,
       }
 
-      UserService.editUser(userId, payload, function(data){
-        $log.debug('Success editing user');
-        $location.path('/user');
+        UserService.editUser(userId, payload, function(data){
+          $log.debug('Success editing user');
+          $location.path('/user');
       });
-    }
-
-    $scope.cancelEditUser = function(){
-      $log.debug('Cancel edit user');
-      $location.path('/user');
     }
 
     $scope.changePassword = function(password, confirmPassword) {
@@ -125,7 +109,11 @@ if (AuthService.isLoggedIn()){
           $timeout(function(){ $location.path(window.history.back());}, 1000);
         });
       }
+    }
 
+    $scope.cancelEditUser = function(){
+      $log.debug('Cancel edit user');
+      $location.path('/user');
     }
 
     $scope.cancelChangePassword = function(){

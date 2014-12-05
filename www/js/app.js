@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ui.bootstrap']);
+var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ui.bootstrap', 'tc.chartjs']);
 
 app.config(['$logProvider', function($logProvider){
   $logProvider.debugEnabled(true);
@@ -128,6 +128,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'TaskboardCtrl'
   })
 
+  .when('/burndownchart/project/:projectId/sprint/:sprintId', {
+    templateUrl: 'partials/burndownChart.html',
+    controller: 'BurndownChartCtrl'
+  })
 
   .otherwise({
     redirectTo: '/login' // should redirect to a 404 static page
