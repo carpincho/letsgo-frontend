@@ -78,6 +78,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     templateUrl: 'partials/create_story.html',
     controller: 'StoriesCtrl'
   })
+
   .when('/projects/:projectId/sprints/:sprintId/stories/edit/:storyId', {
     templateUrl: 'partials/edit_story.html',
     controller: 'StoriesCtrl'
@@ -134,7 +135,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   })
 
   .otherwise({
-    redirectTo: '/login' // should redirect to a 404 static page
+    redirectTo: '/login'
   });
 }
 ]);
@@ -150,23 +151,14 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     var cookie_lets_go_session_client = $cookieStore.get('lets_go_session_client');
     var cookie_lets_go_user_info = $cookieStore.get('lets_go_user_info');
 
-  console.log("cookie"+cookie_lets_go_session_client);
-  if( !angular.isUndefined(cookie_lets_go_session_client)  && !angular.isUndefined(cookie_lets_go_user_info) ){
+  if(!angular.isUndefined(cookie_lets_go_session_client)  && !angular.isUndefined(cookie_lets_go_user_info) ){
     AuthService.setLoggedIn(cookie_lets_go_session_client, cookie_lets_go_user_info);
-
-
   }
-
     var userId = cookie_lets_go_user_info;
 
-
-    //validate when is not defined userID
     var getUser = function(){
       UserService.getUserById (userId, function(data){
       AuthService.setUserInfo(data.id);
-
-      }, function(data){
-        console.log("User delete from database ")
       });
     }
 
@@ -177,13 +169,11 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
 
     // when user logs in, redirect to home
     if (AuthService.authorized()){
-      console.log("redirect if  authorized")
       $location.path("/projects");
     }
 
     // when user logs out, redirect to home
     if (!AuthService.authorized()){
-      console.log("redirect if not authorized")
       $location.path("/login");
     }
 
@@ -194,6 +184,4 @@ app.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTServi
     }
 
   }, true);
-
-
 });

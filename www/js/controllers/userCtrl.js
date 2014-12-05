@@ -37,7 +37,6 @@ angular.module('myApp')
 
     }, function(data){
       $log.error("Error on login!");
-      // show the message
     });
   };
 
@@ -79,21 +78,21 @@ angular.module('myApp')
 
 
     $scope.cancelSignUp = function(){
-    $log.debug('Cancel sign up');
-    $location.path('/login');
+      $log.debug('Cancel sign up');
+      $location.path('/login');
     }
 
     $scope.editUser = function(email, firstname, lastname) {
-      if(lastname==undefined){lastname="";}
+      if(lastname == undefined){lastname="";}
       var payload = {
         firstname: firstname,
         lastname: lastname,
         email: email,
       }
 
-        UserService.editUser(userId, payload, function(data){
-          $log.debug('Success editing user');
-          $location.path('/user');
+      UserService.editUser(userId, payload, function(data){
+        $log.debug('Success editing user');
+        $location.path('/user');
       });
     }
 
@@ -128,6 +127,5 @@ angular.module('myApp')
         $location.path('/home');
       });
     }
-
   }
 ]);
