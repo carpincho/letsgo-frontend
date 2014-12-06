@@ -26,7 +26,7 @@ angular.module('myApp')
 
     AuthService.login(payload, function(data){
       $log.debug("Success on login!");
-
+      $scope.successMsgVisible = true;
       AuthService.setLoggedIn(true, data);
       AuthService.setInitialState(false);
       AuthService.setCurrentUser(email);
@@ -37,6 +37,7 @@ angular.module('myApp')
 
     }, function(data){
       $log.error("Error on login!");
+      $scope.errorMsgVisible = true;
     });
   };
 
@@ -52,7 +53,7 @@ angular.module('myApp')
     AuthService.logout(function(data){
       $log.debug('API Success logging out!');
     }, function(data){
-      $log.error('Failed logging out!');
+      $log.error('API Failed logging out!');
     });
   };
 
