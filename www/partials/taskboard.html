@@ -6,9 +6,9 @@
     <div class="row">
       <h3>Project: {{ project.name }} - Sprint: {{ sprint.name }}</h3>
     </div>
-    
+
     <div ng-repeat="userStoryTasks in storiesTasks">
-      <div class="row vertical-offset">
+      <div class="row">
         <div class="col-md-2">
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
@@ -25,9 +25,9 @@
                 <div class="stream-panel credits">
                   <ul class="stream-panel-ul">
                     <li><span class="item-title">{{ userStoryTasks.story.title }}</span></li>
-                    <li><span class="item-content">{{ userStoryTasks.story.description }}.</span></li>
-                    <li><span class="item-content">Points: {{userStoryTasks.story.points}}</span></li>
-                    <li><span class="item-content">Notes: {{userStoryTasks.story.notes}}</span></li>
+                    <li><span class="item-content">{{ userStoryTasks.story.description }}</span></li>
+                    <li><span class="item-content">Points: {{ userStoryTasks.story.points }}</span></li>
+                    <li><span class="item-content">Notes: {{ userStoryTasks.story.notes }}</span></li>
                     <li>
                       <div class="btn-group">
                         <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{userStoryTasks.story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
@@ -57,8 +57,8 @@
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
-                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><span class="item-content">Task Point: {{ task.nr }}</span></li>
                       <li>
                         <div class="btn-group">
                           <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
@@ -89,8 +89,8 @@
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
-                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><span class="item-content">Task Point: {{ task.nr }}</span></li>
                       <li>
                         <div class="btn-group">
                           <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
@@ -121,8 +121,8 @@
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
-                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><span class="item-content">Task Point: {{ task.nr }}</span></li>
                       <li>
                         <div class="btn-group">
                           <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
@@ -153,8 +153,8 @@
                 <div class="row">
                   <div class="stream-panel credits">
                     <ul class="stream-panel-ul">
-                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
-                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
+                      <li><span class="item-title">{{ task.description }}</span></li>
+                      <li><span class="item-content">Task Point: {{ task.nr }}</span></li>
                       <li>
                         <div class="btn-group">
                           <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
