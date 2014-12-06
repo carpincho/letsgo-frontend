@@ -32,7 +32,7 @@
                   <li><span class="item-content">Notes: {{story.notes}}</span></li>
                   <li>
 
-                     <li>
+                    <li>
                       <div class="btn-group pull-right">
                         <a ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{story.id}}/tasks/create" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Task</a>
 
@@ -50,47 +50,38 @@
             </div> <!-- end stream-item -->
           </div> <!-- end stream -->
         </div>
-
       </div> <!-- end Stories -->
 
+      <div ng-controller="TasksCtrl">
+        <!-- Sprints -->
+        <div class="col-md-6">
+          <div ng-repeat="task in tasks">
+            <div id="stream" fade-in>
 
-
-<div ng-controller="TasksCtrl">
-
-  <!-- Sprints -->
-  <div class="col-md-6">
-    <div ng-repeat="task in tasks">
-      <div id="stream" fade-in>
-        <!-- stream item -->
-
-  <div class="stream-item">
-    <div class="row">
-      <div class="stream-panel credits">
-        <ul class="stream-panel-ul">
-          <li><span class="item-title">Task Id: {{task.id}}</span></li>
-          <li><span class="item-content">Task Point: {{task.nr}}</span></li>
-          <li><span class="item-content">Task Description: {{task.description}}</span></li>
-              <li>
-                <div class="btn-group pull-right">
-                  <a  ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{storyId}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
-                  <a  ng-click='deleteTask(projectId,sprintId,storyId,task.id )' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+              <!-- stream item -->
+              <div class="stream-item">
+                <div class="row">
+                  <div class="stream-panel credits">
+                    <ul class="stream-panel-ul">
+                      <li><span class="item-title">Task Id: {{task.id}}</span></li>
+                      <li><span class="item-content">Task Point: {{task.nr}}</span></li>
+                      <li><span class="item-content">Task Description: {{task.description}}</span></li>
+                      <li>
+                        <div class="btn-group pull-right">
+                          <a  ng-href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{storyId}}/task/edit/{{task.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
+                          <a  ng-click='deleteTask(projectId,sprintId,storyId,task.id )' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="clearfix"></div>
-              </li>
-            </ul>
+              </div> <!-- end stream-item -->
+            </div>
           </div>
         </div>
-      </div> <!-- end stream-item -->
+        <!-- end Sprints -->
 
       </div>
-
-    </div>
-
+    </div> <!-- end of container -->
   </div>
-  <!-- end Sprints -->
-
-</div>
-
-
-  </div> <!-- end of container -->
-</div>
