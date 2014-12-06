@@ -7,43 +7,35 @@
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
 
-          <h3>Create Project {{createFormData.project_name}}</h3>
+          <h3>Create Project</h3>
           <div class="panel panel-default">
             <div class="panel-body">
               <form name="createProjectForm" ng-submit="createProject(createFormData.project_name, createFormData.project_description, createFormData.project_start_date, createFormData.project_end_date)" accept-charset="UTF-8" class="equal-margins" role="form">
                 <fieldset>
                   <div class="form-group">
-                    <label for="project_name">Project Name (*)</label>
-                    <input class="form-control" ng-model="createFormData.project_name" placeholder="Project Name" name="project_name" type="text" required ng-maxlength="30">
+                    <input class="form-control" ng-model="createFormData.project_name" placeholder="Project Name (*)" name="project_name" type="text" required ng-maxlength="30">
                     <p ng-show="createProjectForm.project_name.$dirty &&createProjectForm.project_name.$invalid" class="text-danger">
                       Please name your project!
                     </p>
                   </div>
-
                   <div class="form-group">
-                    <label for="project_description">Project Description</label>
                     <textarea class="form-control" ng-model="createFormData.project_description" name="project_description" placeholder="Project Description" rows="4"></textarea>
                   </div>
-
                   <div class="form-group">
-                    <label for="start_date">Start Date(*)</label>
-                    <input class="form-control" ng-model="createFormData.project_start_date" placeholder="2013-2-1" name="start_date" type="text" ng-click="open_start_date($event)" datepicker-popup="{{format}}" is-open="start_date_opened" close-text="Close" required>
+                    <input class="form-control" ng-model="createFormData.project_start_date" placeholder="Start Date (*)" name="start_date" type="text" ng-click="open_start_date($event)" datepicker-popup="{{format}}" is-open="start_date_opened" close-text="Close" required>
                     <p ng-show="createProjectForm.start_date.$dirty &&createProjectForm.start_date.$invalid" class="text-danger">
                       Please set your project start date!
                     </p>
                   </div>
-
                   <div class="form-group">
-                    <label for="end_date">Completion Date(*)</label>
-                    <input class="form-control" ng-model="createFormData.project_end_date" placeholder="2014-2-1" name="end_date" type="text" ng-click="open_end_date($event)" datepicker-popup="{{format}}" is-open="end_date_opened" close-text="Close" required date-lower-than="{{createFormData.project_start_date|date:'yyyy/MM/dd'}}">
+                    <input class="form-control" ng-model="createFormData.project_end_date" placeholder="Completion Date (*)" name="end_date" type="text" ng-click="open_end_date($event)" datepicker-popup="{{format}}" is-open="end_date_opened" close-text="Close" required date-lower-than="{{createFormData.project_start_date|date:'yyyy/MM/dd'}}">
                     <p ng-show="createProjectForm.end_date.$dirty &&createProjectForm.end_date.$error.dateLowerThan" class="text-danger">
-                      Invalid end date!
+                      Invalid End date!
                     </p>
                     <p ng-show="createProjectForm.end_date.$dirty &&createProjectForm.end_date.$error.required" class="text-danger">
                       Please set your project end date!
                     </p>
                   </div>
-
                   <input type="submit" class="btn btn-primary" id="submit" value="Create" ng-disabled="createProjectForm.$invalid"/>
                   <a ng-click="cancelCreateProject()" class="btn btn-default">Cancel</a>
 
@@ -51,7 +43,7 @@
               </form>
             </div>
             <div class="panel-footer">
-              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+              <p class="help-block center-block">(*) indicates required fields.</p>
             </div>
           </div>
         </div>

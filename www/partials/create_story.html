@@ -6,46 +6,33 @@
     <div class="container">
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Create Story {{createFormData.story_title}}</h3>
-            </div>
+          <h3>Create Story</h3>
+          <div class="panel panel-default">
             <div class="panel-body">
               <form name="createStoryForm" ng-submit="createStory(createFormData.story_title, createFormData.story_description, createFormData.story_notes, createFormData.story_points, createFormData.story.sprint_id)" accept-charset="UTF-8" role="form">
                 <fieldset>
-
                   <div class="form-group">
-                    <label for="story_title">Story Title (*)</label>
-                    <input class="form-control" ng-model="createFormData.story_title" placeholder="Story Title" name="story_title" type="text" required ng-maxlength="30">
+                    <p><strong>In sprint: </strong>{{ sprintId }}</p>
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="createFormData.story_title" placeholder="Story Title (*)" name="story_title" type="text" required ng-maxlength="30">
                     <p ng-show="createStoryForm.story_title.$dirty && createStoryForm.story_title.$error.required" class="text-danger">
                       Please enter a Story Title!
                     </p>
                   </div>
-
                   <div class="form-group">
-                    <label for="story_description">Story Description</label>
                     <textarea class="form-control" ng-model="createFormData.story_description" name="story_description" placeholder="Story Description" rows="4"></textarea>
                   </div>
-
                   <div class="form-group">
-                    <label for="story_notes">Story Notes</label>
                     <textarea class="form-control" ng-model="createFormData.story_notes" name="story_notes" placeholder="Story Notes" rows="4"></textarea>
                   </div>
-
                   <div class="form-group">
-                    <label for="story_points">Story Points(*)</label>
-                    <input class="form-control" type="number"   min="0" ng-model="createFormData.story_points" placeholder="Story Points" name="story_points" required ng-pattern="/^[0-9]+$/">
+                    <input class="form-control" type="number"   min="0" ng-model="createFormData.story_points" placeholder="Story Points (*)" name="story_points" required ng-pattern="/^[0-9]+$/">
                     <p ng-show="createStoryForm.story_points.$dirty && createStoryForm.story_points.$invalid" class="text-danger">
                       Please enter an integer over 0!
                     </p>
                   </div>
-
-                  <div class="form-group">
-                    <label for="sprint_id">Sprint:</label>
-                     {{sprintId}}
-                  </div>
-
                   <input type="submit" class="btn btn-primary" id="submit" value="Create" ng-disabled="createStoryForm.$invalid" />
                   <a ng-click="cancelCreateStory()" class="btn btn-default">Cancel</a>
 
@@ -53,7 +40,7 @@
               </form>
             </div>
             <div class="panel-footer">
-              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+              <p class="help-block center-block">(*) indicates required fields.</p>
             </div>
           </div>
         </div>

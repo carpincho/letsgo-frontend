@@ -13,16 +13,13 @@
               <form name="createSprintForm"ng-submit="createSprint(createFormData.sprint_name, createFormData.start_date, createFormData.end_date)" accept-charset="UTF-8" class="equal-margins" role="form">
                 <fieldset>
                   <div class="form-group">
-                    <label for="sprint_name">Sprint Name (*)</label>
-                    <input class="form-control" ng-model="createFormData.sprint_name" placeholder="Sprint Name" name="sprint_name" type="text" required ng-maxlength="30">
+                    <input class="form-control" ng-model="createFormData.sprint_name" placeholder="Sprint Name (*)" name="sprint_name" type="text" required ng-maxlength="30">
                     <p ng-show="createSprintForm.sprint_name.$dirty &&createSprintForm.sprint_name.$invalid" class="text-danger">
                       Please name your sprint!
                     </p>
                   </div>
-
                   <div class="form-group">
-                    <label for="start_date">Start Date(*)</label>
-                    <input class="form-control" ng-model="createFormData.start_date" ng-click="open_start_date($event)" datepicker-popup="{{format}}" placeholder="2013-2-1" name="start_date" type="text"  is-open="start_date_opened" close-text="Close" required date-lower-than="{{projectStartDate|date:'yyyy/MM/dd'}}" date-greater-than = "{{projectEndDate|date:'yyyy/MM/dd'}}">
+                    <input class="form-control" ng-model="createFormData.start_date" ng-click="open_start_date($event)" datepicker-popup="{{format}}" placeholder="Start Date (*)" name="start_date" type="text"  is-open="start_date_opened" close-text="Close" required date-lower-than="{{projectStartDate|date:'yyyy/MM/dd'}}" date-greater-than = "{{projectEndDate|date:'yyyy/MM/dd'}}">
                     <p ng-show="createSprintForm.start_date.$dirty &&(createSprintForm.start_date.$error.dateLowerThan||createSprintForm.start_date.$error.dateGreaterThan)" class="text-danger">
                       Please set sprint date within project date: {{projectStartDate|date:'yyyy/MM/dd'}} - {{projectEndDate|date:'yyyy/MM/dd'}}
                     </p>
@@ -30,10 +27,8 @@
                       Please set your sprint start date!
                     </p>
                   </div>
-
                   <div class="form-group">
-                    <label for="end_date">Completion Date(*)</label>
-                    <input class="form-control" ng-model="createFormData.end_date" ng-click="open_end_date($event)" datepicker-popup="{{format}}" placeholder="2014-2-1" name="end_date" type="text" is-open="end_date_opened" close-text="Close" required date-lower-than="{{createFormData.start_date|date:'yyyy/MM/dd'}}" date-greater-than = "{{projectEndDate|date:'yyyy/MM/dd'}}">
+                    <input class="form-control" ng-model="createFormData.end_date" ng-click="open_end_date($event)" datepicker-popup="{{format}}" placeholder="Completion Date (*)" name="end_date" type="text" is-open="end_date_opened" close-text="Close" required date-lower-than="{{createFormData.start_date|date:'yyyy/MM/dd'}}" date-greater-than = "{{projectEndDate|date:'yyyy/MM/dd'}}">
                     <p ng-show="createSprintForm.end_date.$dirty &&(createSprintForm.end_date.$error.dateLowerThan||createSprintForm.end_date.$error.dateGreaterThan)" class="text-danger">
                       Invalid end date!
                       Project date: {{projectStartDate|date:'yyyy/MM/dd'}} - {{projectEndDate|date:'yyyy/MM/dd'}}
@@ -42,15 +37,13 @@
                       Please set your sprint end date!
                     </p>
                   </div>
-
                   <input type="submit" class="btn btn-primary" id="submit" value="Create" ng-disabled="createSprintForm.$invalid"/>
                   <a ng-click="cancelCreateSprint()" class="btn btn-default">Cancel</a>
-
                 </fieldset>
               </form>
             </div>
             <div class="panel-footer">
-              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+              <p class="help-block center-block">(*) indicates required fields.</p>
             </div>
           </div>
         </div>

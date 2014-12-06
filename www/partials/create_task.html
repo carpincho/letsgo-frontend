@@ -6,44 +6,34 @@
     <div class="container">
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Create Task</h3>
-            </div>
+          <h3>Create Task</h3>
+          <div class="panel panel-default">
             <div class="panel-body">
               <form name="createTaskForm" ng-submit="createTask(createFormData.task_description, createFormData.task_nr, createFormData.task_comment)" accept-charset="UTF-8" role="form">
                 <fieldset>
-
                   <div class="form-group">
-                    <label for="task_description">Task Description(*):</label>
-                    <textarea class="form-control" ng-model="createFormData.task_description" name="task_description" placeholder="Task Description" required></textarea>
+                    <textarea class="form-control" ng-model="createFormData.task_description" name="task_description" placeholder="Task Description (*)" required></textarea>
                     <p ng-show="createTaskForm.task_description.$dirty && createTaskForm.task_description.$error.required" class="text-danger">
                       Please enter task description!
                     </p>
                   </div>
-
                   <div class="form-group">
-                  <label for="task_nr">Task Point(*):</label>
-                  <input class="form-control" ng-model="createFormData.task_nr" name="task_nr" type = "number" required min="0" ng-pattern="/^[0-9]+$/">
+                  <input class="form-control" ng-model="createFormData.task_nr" placeholder="Task Point (*):" name="task_nr" type = "number" required min="0" ng-pattern="/^[0-9]+$/">
                   <p ng-show="createTaskForm.task_nr.$dirty && createTaskForm.task_nr.$invalid" class="text-danger">
                     Please enter an integer over 0!
                   </p>
                   </div>
-
                   <div class="form-group">
-                    <label for="comment">Comment</label>
                     <textarea class="form-control" ng-model="createFormData.task_comment" name="task_comment" placeholder="Comment" rows="3"></textarea>
                   </div>
-
                   <button type="submit" class="btn btn-primary" ng-disabled="createTaskForm.$invalid">Create</button>
                   <a ng-click="cancelCreateTask()" class="btn btn-default">Cancel</a>
-
                 </fieldset>
               </form>
             </div>
             <div class="panel-footer">
-              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+              <p class="help-block center-block">(*) indicates required fields.</p>
             </div>
           </div>
         </div>

@@ -13,14 +13,14 @@
               <form name="editUserForm" ng-submit='editUser(userInfo.email, userInfo.firstname, userInfo.lastname)' accept-charset="UTF-8"  class="equal-margins" role="form">
                 <fieldset>
                   <div class="form-group">
-                    <label for="email">Email(*)</label>
+                    <label for="email">Email (*)</label>
                     <input class="form-control" ng-model="userInfo.email" placeholder="email address" name="email" type="email" required>
                     <p ng-show="editUserForm.email.$dirty &&editUserForm.email.$invalid" class="text-danger">
                       Please enter a valid e-mail!
                     </p>
                   </div>
                   <div class="form-group">
-                    <label for="firstname">Firstname(*) </label>
+                    <label for="firstname">Firstname (*)</label>
                     <input class="form-control" ng-model="userInfo.firstname" name="firstname" placeholder="Firstname" type="text" required ng-maxlength="30">
                     <p ng-show="editUserForm.firstname.$dirty && editUserForm.firstname.$invalid" class="text-danger">
                       Please enter a first name!
@@ -30,20 +30,18 @@
                     <label for="lastname">Lastname</label>
                     <input class="form-control" ng-model="userInfo.lastname" name="lastname" placeholder="Lastname" type="text">
                   </div>
-
                   <input type="submit" class="btn btn-primary" id="submit" value="Update" />
                   <a ng-click="cancelEditUser()" class="btn btn-default">Cancel</a>
                 </fieldset>
               </form>
             </div>
             <div class="panel-footer">
-              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+              <p class="help-block center-block">(*) indicates required fields.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-
 
   </div> <!-- end container -->
 </div> <!-- end ProjectCtrl -->

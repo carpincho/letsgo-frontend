@@ -7,13 +7,13 @@
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
 
-          <h3>Edit Task {{ task_retrieved.id }}</h3>
+          <h3>Edit Task</h3>
           <div class="panel panel-default">
             <div class="panel-body">
               <form name="editTaskForm" ng-submit="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr,task_option_selected.value,task_retrieved.comment)" accept-charset="UTF-8" class="equal-margins" role="form">
                 <fieldset>
                   <div class="form-group">
-                    <label for="exampleInputTaskDescription">Task Description(*)</label>
+                    <label for="task_description">Task Description (*)</label>
                     <textarea class="form-control" ng-model="task_retrieved.description" name="task_description"  rows="4" required></textarea>
                     <p ng-show="editTaskForm.task_description.$dirty && editTaskForm.task_description.$error.required" class="text-danger">
                       Please enter task description!
@@ -21,7 +21,7 @@
                   </div>
 
                   <div class="form-group" show-errors>
-                    <label >Task Point(*): </label>
+                    <label for="task_nr">Task Point (*)</label>
                     <input class="form-control" ng-model="task_retrieved.nr" name="task_nr" type = "number" required ng-pattern = "/^[0-9]+$/">
                     <p ng-show="editTaskForm.task_nr.$invalid" class="text-danger">
                       Please enter an integer over 0!
@@ -29,12 +29,12 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleSelectLanguage1">Status</label>
+                    <label for="status">Status</label>
                     <select name="status" class="form-control" ng-model="task_option_selected" ng-options="option.label for option in task_status_options" required></select>
                   </div>
 
                   <div class="form-group">
-                    <label for="comment">Comment</label>
+                    <label for="task_comment">Comment</label>
                     <textarea class="form-control" ng-model="task_retrieved.comment" name="task_comment" placeholder="Comment" rows="4"></textarea>
                   </div>
                   <div class="form-group">
@@ -53,12 +53,11 @@
                     </div>
                   <button type="submit" class="btn btn-primary" ng-disabled="editTaskForm.$invalid" >Update</button>
                   <a ng-click="cancelUpdateTask()" class="btn btn-default">Cancel</a>
-
                 </fieldset>
               </form>
             </div>
             <div class="panel-footer">
-              <p class="help-block center-block">(*) next to each field indicates required fields.</p>
+              <p class="help-block center-block">(*) indicates required fields.</p>
             </div>
           </div>
         </div>
