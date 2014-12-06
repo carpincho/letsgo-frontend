@@ -5,8 +5,8 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
   var currentSprintName = "someSprint";
   var currentStoryName = "SomeStory";
   var taskStatusOptions = [
-    { label:'Not Started ', value: 0 },
-    { label:'In Progress', value: 1 },
+    { label:'Not-Started ', value: 0 },
+    { label:'In-Progress', value: 1 },
     { label:'Completed', value: 2 },
     { label:'Blocked', value: 3 },
   ];
@@ -49,7 +49,7 @@ app.factory('TaskService', ['$http', 'RESTService', function ($http, RESTService
     },
 
 
-  
+
 
 
     getTaskStatusOptions: function(){
