@@ -1,6 +1,5 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-
 <div ng-controller="TasksCtrl">
   <div class="container">
     <div class="container">
@@ -19,7 +18,7 @@
                     </p>
                   </div>
                   <div class="form-group">
-                  <input class="form-control" ng-model="createFormData.task_nr" placeholder="Task Point (*):" name="task_nr" type = "number" required min="0" ng-pattern="/^[0-9]+$/">
+                  <input class="form-control" ng-model="createFormData.task_nr" placeholder="Task Point (*)" name="task_nr" type="number" required min="0" ng-pattern="/^[0-9]+$/">
                   <p ng-show="createTaskForm.task_nr.$dirty && createTaskForm.task_nr.$invalid" class="text-danger">
                     Please enter an integer over 0!
                   </p>
@@ -39,7 +38,6 @@
         </div>
       </div>
     </div>
-
 
   </div> <!-- end container -->
 </div> <!-- end TasksCtrl -->
