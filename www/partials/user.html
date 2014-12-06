@@ -4,39 +4,32 @@
   <div class="container">
     <div class="row vertical-offset-100">
       <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-primary">
 
-          <div class="panel-heading">
-            <h3 class="panel-title">{{ userInfo.email }}'s Profile</h3>
-          </div>
-
-          <div class="panel-body">
+        <h3>Profile</h3>
+        <div class="panel panel-default">
+           <div class="panel-body">
             <div class="form-group">
               <label>Email:</label>
               <p>{{ userInfo.email }}</p>
             </div>
-
             <div class="form-group">
               <label>Firstname:</label>
               <p>{{ userInfo.firstname }}</p>
             </div>
-
             <div class="form-group">
               <label>Lastname:</label>
               <p>{{ userInfo.lastname }}</p>
             </div>
-
             <div class="form-group">
               <label>Projects that participate:</label>
               <p>
                 <ul>
                   <div ng-repeat='project in userInfo.projects track by $index'>
-                    <li >{{ project }}</li>
+                    <li>{{ project }}</li>
                   </div>
                 </ul>
               </p>
             </div>
-
             <div class="form-group">
               <label>Assigned Tasks:</label>
               <p>
@@ -57,5 +50,6 @@
         </div>
       </div>
     </div>
+    
   </div> <!-- end container -->
-</div>
+</div> <!-- end UserCtrl -->

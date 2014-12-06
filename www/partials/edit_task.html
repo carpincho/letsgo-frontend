@@ -6,19 +6,12 @@
     <div class="container">
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Edit Task {{ task_retrieved.id }}</h3>
-            </div>
+          <h3>Edit Task {{ task_retrieved.id }}</h3>
+          <div class="panel panel-default">
             <div class="panel-body">
-              <form name="editTaskForm" ng-submit="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr,task_option_selected.value,task_retrieved.comment)" accept-charset="UTF-8" role="form">
+              <form name="editTaskForm" ng-submit="updateTask(task_retrieved.id, task_retrieved.description, task_retrieved.nr,task_option_selected.value,task_retrieved.comment)" accept-charset="UTF-8" class="equal-margins" role="form">
                 <fieldset>
-
-                  <div class="form-group">
-                    <h3 >Task: {{task_retrieved.id}}</h3>
-                  </div>
-
                   <div class="form-group">
                     <label for="exampleInputTaskDescription">Task Description(*)</label>
                     <textarea class="form-control" ng-model="task_retrieved.description" name="task_description"  rows="4" required></textarea>

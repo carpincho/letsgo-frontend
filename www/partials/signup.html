@@ -1,28 +1,23 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-
 <div ng-controller="UserCtrl">
   <div class="container">
     <div class="container">
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Sign Up</h3>
-            </div>
+          <h3>Sign Up</h3>
+          <div class="panel panel-default">
             <div class="panel-body">
-              <form name="signUpForm" ng-submit="signUp(signupDataForm.email, signupDataForm.firstname, signupDataForm.lastname, signupDataForm.password, signupDataForm.confirmPassword)" accept-charset="UTF-8" role="form">
+              <form name="signUpForm" ng-submit="signUp(signupDataForm.email, signupDataForm.firstname, signupDataForm.lastname, signupDataForm.password, signupDataForm.confirmPassword)" accept-charset="UTF-8" class="equal-margins" role="form">
                 <fieldset>
-
                   <div class="form-group" show-errors>
                     <label for="email">Email (*)</label>
                     <input class="form-control" ng-model="signupDataForm.email" placeholder="example@domain.com" name="email" type="email" required>
                     <p ng-show="signUpForm.email.$dirty &&signUpForm.email.$invalid" class="text-danger">
-                      Please enter a valid e-mail!
+                      Please enter a valid email!
                     </p>
                   </div>
-
                   <div class="form-group" show-errors>
                     <label for="firstname">First name (*)</label>
                     <input class="form-control" ng-model="signupDataForm.firstname" placeholder="first name" name="firstname" type="text" required ng-maxlength="30">
@@ -30,12 +25,10 @@
                       Please enter a first name!
                     </p>
                   </div>
-
                   <div class="form-group">
                     <label for="lastname">Last name</label>
                     <input class="form-control" ng-model="signupDataForm.lastname" placeholder="last name" name="lastname" type="text" ng-maxlength="30">
                   </div>
-
                   <div class="form-group" show-errors>
                     <label for="password">Password (*)</label>
                     <input id="password" class="form-control" ng-model="signupDataForm.password" placeholder="******" name="password" type="password" required ng-minlength="6" ng-maxlength="30">
@@ -46,19 +39,15 @@
                       Password must be between 6 and 30 characters!
                     </p>
                   </div>
-
                   <div class="form-group" show-errors>
                     <label for="confirmPassword">Confirm Password (*)</label>
                     <input id="confirmPassword" class="form-control" ng-model="signupDataForm.confirmPassword" placeholder="******" name="confirmPassword" type="password" required ng-minlength="6" ng-maxlength="30" pw-check="password">
                     <p class="text-danger" ng-show="signUpForm.confirmPassword.$error.pwmatch">
                       Passwords don't match!
                     </p>
-
                   </div>
-
                   <input type="submit" class="btn btn-primary" id="submit" value="Sign Up" ng-disabled="signUpForm.$invalid">
                   <a ng-click="cancelSignUp()" class="btn btn-default">Cancel</a>
-
                 </fieldset>
               </form>
             </div>

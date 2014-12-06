@@ -6,15 +6,12 @@
     <div class="container">
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Edit Story {{story_retrieved.title}}</h3>
-            </div>
+          <h3>Edit Story {{story_retrieved.title}}</h3>
+          <div class="panel panel-default">
             <div class="panel-body">
-              <form name="editStoryForm" ng-submit="updateStory(story_retrieved.title, story_retrieved.description,story_retrieved.notes, story_retrieved.points)" accept-charset="UTF-8" role="form">
+              <form name="editStoryForm" ng-submit="updateStory(story_retrieved.title, story_retrieved.description,story_retrieved.notes, story_retrieved.points)" accept-charset="UTF-8" class="equal-margins" role="form">
                 <fieldset>
-
                   <div class="form-group">
                     <label for="story_title">Story Title (*)</label>
                     <input class="form-control" ng-model="story_retrieved.title"  placeholder="{{story_retrieved.title}}" name="story_title" type="text" required ng-maxlength="30">

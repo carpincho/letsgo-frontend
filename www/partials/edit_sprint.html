@@ -6,13 +6,11 @@
     <div class="container">
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Edit Sprint {{ sprint_retrieved.name }}</h3>
-            </div>
+          <h3>Edit Sprint {{ sprint_retrieved.name }}</h3>
+          <div class="panel panel-default">
             <div class="panel-body">
-              <form name="editSprintForm" ng-submit="updateSprint(sprint_retrieved.name, sprint_retrieved.start_date, sprint_retrieved.end_date, sprint_option_selected.value)"accept-charset="UTF-8" role="form">
+              <form name="editSprintForm" ng-submit="updateSprint(sprint_retrieved.name, sprint_retrieved.start_date, sprint_retrieved.end_date, sprint_option_selected.value)" class="equal-margins" accept-charset="UTF-8" role="form">
                 <fieldset>
 
                   <div class="form-group">

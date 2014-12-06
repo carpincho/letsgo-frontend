@@ -97,6 +97,10 @@ angular.module('myApp')
     $location.path(window.history.back());
   }
 
+  $scope.goBack = function(){
+    $location.path(window.history.back());
+  }
+
   $scope.deleteProject = function(projectId) {
     ProjectService.deleteProject(projectId, function(data){
       $log.debug('Success deleting project');

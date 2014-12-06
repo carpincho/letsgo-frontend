@@ -6,6 +6,7 @@
     <div class="row">
       <h3>Project: {{ project.name }} - Sprint: {{ sprint.name }}</h3>
     </div>
+    
     <div ng-repeat="userStoryTasks in storiesTasks">
       <div class="row vertical-offset">
         <div class="col-md-2">
@@ -14,11 +15,10 @@
               <h3>Stories <span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/create"><i class="fa fa-plus"></i> Create Story</a>
-              </li>
+              <li><a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/create"><i class="fa fa-plus"></i> Create Story</a></li>
             </ul>
           </span>
+
           <div id="stream">
             <div class="stream-item">
               <div class="row">
@@ -32,7 +32,6 @@
                       <div class="btn-group">
                         <a  href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/edit/{{userStoryTasks.story.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
                         <a ng-click='deleteStory(projectId,sprintId,userStoryTasks.story.id)' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-
                       </div>
                     </li>
                   </ul>
@@ -42,17 +41,13 @@
           </div> <!-- end stream -->
         </div> <!-- end collumn -->
 
-
-
         <div class="col-md-2">
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
               <h3>Not Started <span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
-              </li>
+              <li><a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a></li>
             </ul>
           </span>
 
@@ -75,10 +70,8 @@
                 </div>
               </div> <!-- end stream-item -->
             </div> <!-- end stream -->
-
-          </div> <!-- end row -->
-        </div> <!-- end container -->
-
+          </div> <!-- end ng repeat -->
+        </div> <!-- end column -->
 
         <div class="col-md-2">
           <span class="dropdown" dropdown on-toggle="toggled(open)">
@@ -86,11 +79,10 @@
               <h3>In Progress <span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
-              </li>
+              <li><a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a></li>
             </ul>
           </span>
+
           <div ng-repeat="task in userStoryTasks.task_In_Progress">
             <div id="stream">
               <div class="stream-item">
@@ -110,28 +102,20 @@
                 </div>
               </div> <!-- end stream-item -->
             </div> <!-- end stream -->
-
-
-
-          </div> <!-- end row -->
-        </div>
-
+          </div> <!-- end ng repeat -->
+        </div> <!-- end column -->
 
         <div class="col-md-2">
-
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
               <h3>Completed<span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
-              </li>
+              <li><a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a></li>
             </ul>
           </span>
 
           <div ng-repeat="task in userStoryTasks.task_Completed">
-
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
@@ -150,29 +134,20 @@
                 </div>
               </div> <!-- end stream-item -->
             </div> <!-- end stream -->
-
-
-
-          </div> <!-- end row -->
-        </div>
-
+          </div> <!-- end repeat -->
+        </div> <!-- end column -->
 
         <div class="col-md-2">
-
           <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
               <h3>Blocked<span class="caret"></span></h3>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a>
-              </li>
+              <li><a href="#/projects/{{projectId}}/sprints/{{sprintId}}/stories/{{userStoryTasks.story.id}}/tasks/create"><i class="fa fa-plus"></i> Create Task</a></li>
             </ul>
           </span>
 
-
           <div ng-repeat="task in userStoryTasks.task_Blocked">
-
             <div id="stream">
               <div class="stream-item">
                 <div class="row">
@@ -191,16 +166,10 @@
                 </div>
               </div> <!-- end stream-item -->
             </div> <!-- end stream -->
+          </div> <!-- end ng repeat -->
+        </div> <!-- end column -->
+      </div> <!-- end row -->
+    </div> <!-- end ng repeat stories -->
 
-
-
-          </div> <!-- end row -->
-        </div>
-
-
-      </div>
-
-    </div> <!-- end Taskboard -->
-
-  </div>
-</div>
+  </div> <!-- end container -->
+</div> <!-- end TaskboardCtrl -->

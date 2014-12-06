@@ -1,51 +1,38 @@
 <div ng-include="'partials/navbar.html'"></div>
 
-
 <div ng-controller="ProjectsCtrl">
   <div class="container">
-    <div class="container">
-      <div class="row vertical-offset-100">
-        <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
+    <div class="row vertical-offset-100">
+      <div class="col-md-4 col-md-offset-4">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Share Project</h3>
-            </div>
-            <div class="panel-body">
-              <form accept-charset="UTF-8" role="form">
-                <fieldset>
-
-                  <div class="form-group">
-                    <h3>Project: {{project.id}}</h3>
-                  </div>
-
-                  <div class="form-group">
-                    <div class ="row">
-                      <div class="col-md-6">
-                        <div ng-repeat = "available in availables">
-                          <!--<a ng-click="assignDevelopersToTask(available.id)"><span class="glyphicon glyphicon-plus-sign"</span></a> {{available.name}}-->
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div ng-repeat = "assigned_dev in assigned_devs">
-                        <!--    <a ng-click="unassignDevelopersToTask(assigned_dev.id)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{assigned_dev.name}}-->
-                          </div>
-                        </div>
+        <h3>Share Project {{project.name}}</h3>
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <form accept-charset="UTF-8" class="equal-margins" role="form">
+              <fieldset>
+                <div class="form-group">
+                  <div class ="row">
+                    <div class="col-md-6">
+                      <div ng-repeat = "available in availables">
+                        <!-- <a ng-click="assignDevelopersToTask(available.id)"><span class="glyphicon glyphicon-plus-sign"</span></a> {{available.name}}-->
                       </div>
                     </div>
-                  <!--<button ng-click="projectShare()" class="btn btn-primary">Share</button>
-                  <a ng-click="cancelProjectShare()" class="btn btn-default">Cancel</a>-->
-
-                </fieldset>
-              </form>
-            </div>
-            <div class="panel-footer">
-            </div>
+                    <div class="col-md-6">
+                      <div ng-repeat = "assigned_dev in assigned_devs">
+                        <!-- <a ng-click="unassignDevelopersToTask(assigned_dev.id)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{assigned_dev.name}}-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <button ng-click="projectShare()" class="btn btn-primary">Share</button>
+                <a ng-click="cancelProjectShare()" class="btn btn-default">Cancel</a> -->
+              </fieldset>
+            </form>
           </div>
-        </div>
-      </div>
-    </div>
+        </div> <!-- end panel -->
 
+      </div> <!-- end column -->
+    </div> <!-- end row -->
 
   </div> <!-- end container -->
 </div> <!-- end ProjectsCtrl -->
