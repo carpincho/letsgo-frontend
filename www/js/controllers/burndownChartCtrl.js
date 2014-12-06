@@ -19,18 +19,7 @@ angular.module('myApp')
 
     return Math.round(Math.abs((date1.getTime() - date2.getTime())/(oneDay)));
   }
-  var getTaskStatusById = function (projectId, sprintId, storyId, taskId)
-  {
 
-
-    getTaskbyId(projectId, sprintId, storyId, taskId,function(data){
-
-
-      return data.status;
-    })
-
-
-  }
   var guideLine = function(){
     if(!angular.isUndefined(projectId) && !angular.isUndefined(sprintId)){
 
@@ -48,23 +37,15 @@ angular.module('myApp')
             totalTasks = totalTasks + story.tasks.length;
 
             angular.forEach(story.tasks, function(taskId, key){
-
               TaskService.getTaskById(projectId, sprintId, story.id, taskId, function(task){
-
                 if(task.status == TaskService.getValueFromLabel("Completed")){
                   $rootScope.totalTasksDone = $rootScope.totalTasksDone + 1;
-
-                  console.log("1: "+ $rootScope.totalTasksDone)
                 }
               });
-
-
-
-
             });
-
           });
 
+          // we send the info to build the data
           BurndownService.prepForBroadcast(storyTotalPoints, totalDays, totalTasks);
         });
       });
@@ -78,11 +59,10 @@ angular.module('myApp')
     $scope.totalTasks = BurndownService.totalTasks;
     $scope.totalTasksDone = BurndownService.totalTasksDone;
 
-    console.log("total tasks done" + $rootScope.totalTasksDone);
     var mylabels = [];
     var idealData = [];
     var mydata = [];
-    var m = (0 - $scope.totalTasks)/($scope.totalDays - 0)
+    var m = (-$scope.totalTasks)/$scope.totalDays
 
     for (var i=0; i <= $scope.totalDays; i++){
       mylabels[i]= String(i);
@@ -111,7 +91,7 @@ angular.module('myApp')
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgba(151,187,205,1)",
-        data: mydata,//[90, 0]
+        data: mydata,
       }
       ]
     };
@@ -122,7 +102,6 @@ angular.module('myApp')
   });
 
   $scope.myOptions =  {
-    // Chart.js options can go here.
   };
 
 }
