@@ -6,13 +6,11 @@
     <div class="container">
       <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
 
-            <div class="panel-heading">
-              <h3 class="panel-title">Edit Project {{ project_retrieved.name }}</h3>
-            </div>
+          <h3 >Edit Project {{ project_retrieved.name }}</h3>
+          <div class="panel panel-default">
             <div class="panel-body">
-              <form name="editProjectForm"ng-submit="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, project_option_selected.value)" accept-charset="UTF-8" role="form">
+              <form name="editProjectForm"ng-submit="updateProject(project_retrieved.id, project_retrieved.name, project_retrieved.description, project_retrieved.start_date, project_retrieved.end_date, project_option_selected.value)" accept-charset="UTF-8" class="equal-margins" role="form">
                 <fieldset>
 
                   <div class="form-group">
