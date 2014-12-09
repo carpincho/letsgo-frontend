@@ -163,7 +163,9 @@ angular.module('myApp')
       });
     });
   }
-
+  $scope.CommitProjectShare = function(){
+    $location.path(window.history.back());
+  }
 
 }
 ]);
