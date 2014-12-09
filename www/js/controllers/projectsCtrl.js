@@ -6,6 +6,7 @@ angular.module('myApp')
   var userId = AuthService.getUserInfo();
   $scope.project_status_options = ProjectService.getProjectStatusOptions();
   $scope.projects = [];
+  $scope.assigned_devs = [];
 
   //--- datepicker config
   $scope.open_start_date  = function($event) {
@@ -38,7 +39,9 @@ angular.module('myApp')
     });
   }
   // fetch the existing projects as init
-  getProjects();
+  if($routeParams.projectId==undefined){
+    getProjects();
+  }
 
   $scope.createProject = function(name, description, startDate, endDate) {
     if(description==undefined){description="";}
@@ -66,6 +69,7 @@ angular.module('myApp')
 
       ProjectService.getProjectById(projectId, function(data){
         $log.debug('Success getting a project');
+        console.log(data);
         $scope.project_retrieved = data;
         $scope.getInvitedDevelopersByProject(data);
         $scope.project_option_selected = ProjectService.getOptionByValue(data.status)
@@ -109,26 +113,32 @@ angular.module('myApp')
     });
   }
 
-  $scope.inviteDevelopersToProject = function(developers) {
-    var projectId = 67;
+  $scope.inviteDevelopersToProject = function(email) {
+    var projectId = $scope.project_retrieved.id;
     // var payload = developers;
     var payload = {
-      devs: [1, 2]
+      email: email
     };
-
+    $scope.assigned_devs.push([{id:"",email:email}])
     ProjectService.inviteDevelopersToProject(projectId, payload, function(){
       $log.debug('Success inviting developers to project');
     });
   }
 
-  $scope.removeDevelopersFromProject = function(developers) {
-    var projectId = 67;
+  $scope.removeDevelopersFromProject = function(developer) {
+    var projectId = $scope.project_retrieved.id;
     // var payload = developers;
     var payload = {
-      devs: [1, 2]
+      devs: [developer.id],
     };
-
-    ProjectService.inviteDevelopersToProject(projectId, payload, function(){
+    //getProjectById($routeParams.projectId);
+    for(var i=0;i<$scope.assigned_devs.length;i++){
+      if ($scope.assigned_devs[i].id==developer.id){
+        $scope.assigned_devs.splice(i,1);
+        break;
+      }
+    }
+    ProjectService.removeDevelopersFromProject(projectId, payload, function(){
       $log.debug('Success removing developers to project');
     });
   }
@@ -143,10 +153,13 @@ angular.module('myApp')
   }
 
   $scope.getInvitedDevelopersByProject = function(data){
-    $scope.inviteDevelopersToProjectNames = [];
     angular.forEach(data.invited_devs, function(value, key) {
-      UserService.getUserById(value, function(data){
-        $scope.inviteDevelopersToProjectNames.push(data.firstname+" "+data.lastname );
+      this.push({id:value, email:""});
+    },$scope.assigned_devs);
+    angular.forEach($scope.assigned_devs, function(value, key) {
+      UserService.getUserById(value.id, function(data){
+        value.email = data.email ;
+        console.log(value);
       });
     });
   }

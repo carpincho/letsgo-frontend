@@ -5,7 +5,7 @@
     <div class="row vertical-offset-100">
       <div class="col-md-4 col-md-offset-4">
 
-        <h3>Share Project {{project.name}}</h3>
+        <h3>Share Project {{project_retrieved.name}}</h3>
         <div class="panel panel-primary">
           <div class="panel-body">
             <form accept-charset="UTF-8" class="equal-margins" role="form">
@@ -13,13 +13,14 @@
                 <div class="form-group">
                   <div class ="row">
                     <div class="col-md-6">
-                      <div ng-repeat = "available in availables">
-                        <!-- <a ng-click="assignDevelopersToTask(available.id)"><span class="glyphicon glyphicon-plus-sign"</span></a> {{available.name}}-->
-                      </div>
+                      <input class="form-control" ng-model="email"  placeholder="Email Address (*)" name="email" type="email">
+                      <a ng-click="inviteDevelopersToProject(email)" class="btn btn-default">Invite</a>
                     </div>
+                  </div>
+                  <div class ="row">
                     <div class="col-md-6">
                       <div ng-repeat = "assigned_dev in assigned_devs">
-                        <!-- <a ng-click="unassignDevelopersToTask(assigned_dev.id)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{assigned_dev.name}}-->
+                        <a ng-click="removeDevelopersFromProject(assigned_dev)"><span class="glyphicon glyphicon-minus-sign"></span></a> {{assigned_dev.email}}
                       </div>
                     </div>
                   </div>
