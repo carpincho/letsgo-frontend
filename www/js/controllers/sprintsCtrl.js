@@ -20,8 +20,8 @@ angular.module('myApp')
       $scope.end_date_opened = true;
     };
 
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy'];
-    $scope.format = $scope.formats[1];
+    $scope.formats = ['yyyy/MM/dd'];
+    $scope.format = $scope.formats[0];
     //---end config
 
     $scope.$on('eventGetRelatedSprints', function(){
@@ -57,13 +57,15 @@ angular.module('myApp')
 
     $scope.createSprint = function(name, start_date, end_date){
       var projectId = $routeParams.projectId;
+      var d_start_date = new Date(start_date);
+      var d_end_date = new Date(end_date);
 
       if (projectId != undefined){
         var createFormData = {
           project_id: parseInt(projectId),
           name: name,
-          start_date: start_date,
-          end_date: end_date,
+          start_date: new Date(d_start_date.getFullYear(), d_start_date.getMonth(), d_start_date.getDate()),
+          end_date: new Date(d_end_date.getFullYear(), d_end_date.getMonth(), d_end_date.getDate()),
           status: 0,
         }
 
@@ -98,11 +100,14 @@ angular.module('myApp')
       var projectId = $routeParams.projectId;
 
       if(sprintId != undefined && projectId != undefined){
+        var d_start_date = new Date(start_date);
+        var d_end_date =  new Date(end_date);
+
         var updateFormData = {
           project_id: parseInt(projectId),
           name: name,
-          start_date: start_date,
-          end_date: end_date,
+          start_date: new Date(d_start_date.getFullYear(), d_start_date.getMonth(), d_start_date.getDate()),
+          end_date: new Date(d_end_date.getFullYear(), d_end_date.getMonth(), d_end_date.getDate()),
           status: parseInt(status),
         }
 

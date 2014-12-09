@@ -21,8 +21,8 @@ angular.module('myApp')
     $scope.end_date_opened = true;
   };
 
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy'];
-  $scope.format = $scope.formats[1];
+  $scope.formats = ['yyyy/MM/dd'];
+  $scope.format = $scope.formats[0];
   //---end config
 
   var getProjects = function() {
