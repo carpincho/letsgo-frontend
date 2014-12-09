@@ -119,7 +119,7 @@ angular.module('myApp')
     var payload = {
       email: email
     };
-    $scope.assigned_devs.push([{id:"",email:email}])
+    $scope.assigned_devs.push({id:"",email:email})
     ProjectService.inviteDevelopersToProject(projectId, payload, function(){
       $log.debug('Success inviting developers to project');
     });
