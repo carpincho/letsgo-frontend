@@ -99,7 +99,7 @@ angular.module('myApp')
 
       if(sprintId != undefined && projectId != undefined){
         var updateFormData = {
-          id: parseInt(projectId),
+          project_id: parseInt(projectId),
           name: name,
           start_date: start_date,
           end_date: end_date,
