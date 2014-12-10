@@ -24,11 +24,16 @@ angular.module('myApp')
       SprintService.getSprintBySprintId(projectId, sprintId, function(sprint){
         totalDays = diffDays(sprint.start_date, sprint.end_date);
 
+
+        $scope.start_date = sprint.start_date;
+        $scope.end_date = sprint.end_date;
+        $scope.name_burndownchart = sprint.name;
+
         BurndownChartService.getBurndownChartBySprintId(projectId,sprintId, function(brundown){
           $log.debug('Fetching ' + brundown.length + ' stories from server...');
           $scope.burndown = brundown;
 
-           var mylabels = [];
+          var mylabels = [];
           var idealData = [];
           var mydata = brundown.tasks_remaining;
           var m = (-brundown.total_task_count)/totalDays;
@@ -69,7 +74,7 @@ angular.module('myApp')
           // expose the data to plot
           $scope.myData = data;
 
-           
+
         });
 
 
