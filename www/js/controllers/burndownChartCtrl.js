@@ -1,15 +1,12 @@
 'use strict';
 
 angular.module('myApp')
-.controller('BurndownChartCtrl', ['BurndownService', '$rootScope', 'SprintService', 'StoryService', 'TaskService', '$scope', '$routeParams', '$log', 'BurndownTaskDoneService', function (BurndownService, $rootScope, SprintService, StoryService, TaskService, $scope, $routeParams, $log, BurndownTaskDoneService) {
+.controller('BurndownChartCtrl', ['BurndownChartService', '$rootScope', 'SprintService', 'StoryService', 'TaskService', '$scope', '$routeParams', '$log', 'BurndownTaskDoneService', function (BurndownChartService, $rootScope, SprintService, StoryService, TaskService, $scope, $routeParams, $log, BurndownTaskDoneService) {
 
   var projectId = $routeParams.projectId;
   var sprintId = $routeParams.sprintId;
-
-  var storyTotalPoints = 0;
   var totalDays = 0;
-  var totalTasks = 0;
-  $rootScope.totalTasksDone = 0;
+
 
 
   var diffDays = function(firstDate, secondDate){
@@ -23,86 +20,65 @@ angular.module('myApp')
   var guideLine = function(){
     if(!angular.isUndefined(projectId) && !angular.isUndefined(sprintId)){
 
+
       SprintService.getSprintBySprintId(projectId, sprintId, function(sprint){
         totalDays = diffDays(sprint.start_date, sprint.end_date);
 
-        StoryService.getStoriesBySprintId(projectId, sprintId, function(stories){
-          storyTotalPoints = 0;
-          totalTasks = 0;
-          //totalTasksDone = 0;
-          $rootScope.totalTasksDone = 0;
+        BurndownChartService.getBurndownChartBySprintId(projectId,sprintId, function(brundown){
+          $log.debug('Fetching ' + brundown.length + ' stories from server...');
+          $scope.burndown = brundown;
 
-          angular.forEach(stories, function(story, key) {
-            storyTotalPoints = storyTotalPoints + story.points;
-            totalTasks = totalTasks + story.tasks.length;
+           var mylabels = [];
+          var idealData = [];
+          var mydata = brundown.tasks_remaining;
+          var m = (-brundown.total_task_count)/totalDays;
 
-            angular.forEach(story.tasks, function(taskId, key){
-              TaskService.getTaskById(projectId, sprintId, story.id, taskId, function(task){
-                if(task.status == TaskService.getValueFromLabel("Completed")){
-                  $rootScope.totalTasksDone = $rootScope.totalTasksDone + 1;
-                }
-              });
-            });
-          });
 
-          // we send the info to build the data
-          BurndownService.prepForBroadcast(storyTotalPoints, totalDays, totalTasks);
+          for (var i=0; i <= totalDays; i++){
+            mylabels[i]= String(i);
+            idealData[i] = (i*m) + brundown.total_task_count;
+          }
+
+          var data = {
+            labels: mylabels,
+            datasets: [
+            {
+              label: "Ideal Performance",
+              fillColor: "rgba(155, 208, 161, 0.1)",
+              strokeColor: "rgb(155, 208, 161)",
+              pointColor: "rgb(155, 208, 161)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#6e8164",
+              pointHighlightStroke: "rgba(220,220,220, 1.0)",
+              data: idealData,
+            },
+
+            {
+              label: "Task Remaining",
+              fillColor: "rgba(155, 208, 161,0.2)",
+              strokeColor: "rgba(155, 208, 161, 1)",
+              pointColor: "rgba(155, 208, 161, 1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+              data: mydata,
+            }
+            ]
+          };
+
+          // expose the data to plot
+          $scope.myData = data;
+
+           
         });
+
+
+
       });
+
+
     }
   };
   guideLine();
-
-  $scope.$on('eventCoreInfoBurndown', function(){
-    $scope.totalPoints = BurndownService.totalPoints;
-    $scope.totalDays = BurndownService.totalDays;
-    $scope.totalTasks = BurndownService.totalTasks;
-    $scope.totalTasksDone = BurndownService.totalTasksDone;
-
-    var mylabels = [];
-    var idealData = [];
-    var mydata = [];
-    var m = (-$scope.totalTasks)/$scope.totalDays
-
-    for (var i=0; i <= $scope.totalDays; i++){
-      mylabels[i]= String(i);
-      idealData[i] = (i*m) + $scope.totalTasks;
-    }
-
-    var data = {
-      labels: mylabels,
-      datasets: [
-      {
-        label: "Ideal Performance",
-        fillColor: "rgba(155, 208, 161, 0.1)",
-        strokeColor: "rgb(155, 208, 161)",
-        pointColor: "rgb(155, 208, 161)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#6e8164",
-        pointHighlightStroke: "rgba(220,220,220, 1.0)",
-        data: idealData,
-      },
-
-      {
-        label: "Task Remaining",
-        fillColor: "rgba(155, 208, 161,0.2)",
-        strokeColor: "rgba(155, 208, 161, 1)",
-        pointColor: "rgba(155, 208, 161, 1)",
-        pointStrokeColor: "#fff",
-        pointHighlightFill: "#fff",
-        pointHighlightStroke: "rgba(151,187,205,1)",
-        data: mydata,
-      }
-      ]
-    };
-
-    // expose the data to plot
-    $scope.myData = data;
-
-  });
-
-  $scope.myOptions =  {
-  };
-
 }
 ]);
