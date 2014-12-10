@@ -17,6 +17,25 @@ angular.module('myApp')
     return Math.round(Math.abs((date1.getTime() - date2.getTime())/(oneDay)));
   }
 
+  var  addDays = function(date, days) {
+    var result = new Date(date);
+    result.setDate(date.getDate() + days);
+    return result;
+  }
+
+  var formattedDate = function(date) {
+    var d = new Date(date || Date.now()),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [month, day, year].join('/');
+  }
+
+
   var guideLine = function(){
     if(!angular.isUndefined(projectId) && !angular.isUndefined(sprintId)){
 
@@ -37,11 +56,26 @@ angular.module('myApp')
           var idealData = [];
           var mydata = brundown.tasks_remaining;
           var m = (-brundown.total_task_count)/totalDays;
+          var date_control = new Date();
 
 
           for (var i=0; i <= totalDays; i++){
             mylabels[i]= String(i);
             idealData[i] = (i*m) + brundown.total_task_count;
+
+
+            if(i==0){
+              date_control = new Date($scope.start_date) ;
+              mylabels[i]= formattedDate(date_control);
+
+            }else{
+
+              date_control = addDays(date_control,1);
+              mylabels[i]= formattedDate(date_control);
+            }
+
+
+
           }
 
           var data = {
@@ -49,12 +83,12 @@ angular.module('myApp')
             datasets: [
             {
               label: "Ideal Performance",
-              fillColor: "rgba(155, 208, 161, 0.1)",
-              strokeColor: "rgb(155, 208, 161)",
-              pointColor: "rgb(155, 208, 161)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#6e8164",
-              pointHighlightStroke: "rgba(220,220,220, 1.0)",
+              fillColor: 'rgba(220,220,220,0.2)',
+              strokeColor: 'rgba(220,220,220,1)',
+              pointColor: 'rgba(220,220,220,1)',
+              pointStrokeColor: '#fff',
+              pointHighlightFill: '#fff',
+              pointHighlightStroke: 'rgba(220,220,220,1)',
               data: idealData,
             },
 
