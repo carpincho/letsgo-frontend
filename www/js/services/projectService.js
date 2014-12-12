@@ -60,9 +60,9 @@ app.factory('ProjectService', ['$log', '$http', '$rootScope', 'RESTService', fun
       RESTService.delete(url, callback);
     },
 
-    inviteDevelopersToProject: function(projectId, payload, callback){
+    inviteDevelopersToProject: function(projectId, payload, callback, callback_error){
       var url = baseUrl + "/" + projectId +"/invite_dev";
-      RESTService.put(url, payload, callback);
+      RESTService.put(url, payload, callback, callback_error);
     },
 
     removeDevelopersFromProject: function(projectId, payload, callback){

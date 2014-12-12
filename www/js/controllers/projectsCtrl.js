@@ -1,12 +1,16 @@
 'use strict';
 
 angular.module('myApp')
-.controller('ProjectsCtrl', ['$scope', '$location', '$routeParams', '$http', '$log', 'AuthService', 'SharedProjectSprintService', 'ProjectService', 'UserService',function ($scope, $location, $routeParams, $http, $log, AuthService, SharedProjectSprintService, ProjectService,UserService) {
+.controller('ProjectsCtrl', ['$timeout', '$scope', '$location', '$routeParams', '$http', '$log', 'AuthService', 'SharedProjectSprintService', 'ProjectService', 'UserService',function ($timeout, $scope, $location, $routeParams, $http, $log, AuthService, SharedProjectSprintService, ProjectService,UserService) {
 
   var userId = AuthService.getUserInfo();
   $scope.project_status_options = ProjectService.getProjectStatusOptions();
   $scope.projects = [];
   $scope.assigned_devs = [];
+  $scope.ownerEmail = {
+    id:0,
+    email:""
+  };
 
   //--- datepicker config
   $scope.open_start_date  = function($event) {
@@ -66,10 +70,8 @@ angular.module('myApp')
 
   var getProjectById = function(projectId) {
     if(projectId != undefined && projectId != null) {
-
       ProjectService.getProjectById(projectId, function(data){
         $log.debug('Success getting a project');
-        console.log(data);
         $scope.project_retrieved = data;
         $scope.getInvitedDevelopersByProject(data);
         $scope.project_option_selected = ProjectService.getOptionByValue(data.status)
@@ -119,9 +121,14 @@ angular.module('myApp')
     var payload = {
       email: email
     };
-    $scope.assigned_devs.push({id:"",email:email})
     ProjectService.inviteDevelopersToProject(projectId, payload, function(){
+      $scope.assigned_devs.push({id:"",email:email})
       $log.debug('Success inviting developers to project');
+    },function(){
+      $scope.errorMsgVisible = true;
+      $timeout(function(){
+        $scope.errorMsgVisible = false;
+      }, 2000);
     });
   }
 
@@ -156,13 +163,23 @@ angular.module('myApp')
     angular.forEach(data.invited_devs, function(value, key) {
       this.push({id:value, email:""});
     },$scope.assigned_devs);
+
     angular.forEach($scope.assigned_devs, function(value, key) {
       UserService.getUserById(value.id, function(data){
         value.email = data.email ;
-        console.log(value);
       });
     });
+
+    for(var j=0;j<$scope.assigned_devs.length;j++){
+      if($scope.assigned_devs[j].id == data.owner){
+        $scope.ownerEmail = $scope.assigned_devs[j];
+        $scope.assigned_devs.splice(j,1);
+        break;
+      }
+    }
+
   }
+
   $scope.CommitProjectShare = function(){
     $location.path(window.history.back());
   }

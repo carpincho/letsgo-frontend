@@ -38,6 +38,9 @@ angular.module('myApp')
     }, function(data){
       $log.error("Error on login!");
       $scope.errorMsgVisible = true;
+      $timeout(function(){
+        $scope.errorMsgVisible = false;
+      },3000);
     });
   };
 
