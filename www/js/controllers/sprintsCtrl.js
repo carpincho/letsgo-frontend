@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('SprintsCtrl', ['$location', '$scope', '$log', '$routeParams', 'SharedProjectSprintService', 'SprintService', 'ProjectService', function ($location, $scope, $log, $routeParams, SharedProjectSprintService, SprintService, ProjectService) {
+  .controller('SprintsCtrl', ['$timeout', '$location', '$scope', '$log', '$routeParams', 'SharedProjectSprintService', 'SprintService', 'ProjectService', function ($timeout, $location, $scope, $log, $routeParams, SharedProjectSprintService, SprintService, ProjectService) {
 
     $scope.sprints = [];
     $scope.sprint_status_options = SprintService.getSprintStatusOptions();
@@ -72,7 +72,13 @@ angular.module('myApp')
         SprintService.createSprint(projectId, createFormData, function(data){
           $log.debug('Success creating new project');
           $location.path("/projects");
-        });
+        },function(){
+          $scope.errorMsgCreate = true;
+          $timeout(function(){
+            $scope.errorMsgCreate = false;
+          }, 3000);
+        }
+        );
       }
     }
 
@@ -106,8 +112,8 @@ angular.module('myApp')
         var updateFormData = {
           project_id: parseInt(projectId),
           name: name,
-          start_date: new Date(d_start_date.getFullYear(), d_start_date.getMonth(), d_start_date.getDate()),
-          end_date: new Date(d_end_date.getFullYear(), d_end_date.getMonth(), d_end_date.getDate()),
+          start_date: new Date(d_start_date.getFullYear(), d_start_date.getMonth(), d_start_date.getDay()),
+          end_date: new Date(d_end_date.getFullYear(), d_end_date.getMonth(), d_end_date.getDay()),
           status: parseInt(status),
         }
 

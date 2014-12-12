@@ -125,9 +125,9 @@ angular.module('myApp')
       $scope.assigned_devs.push({id:"",email:email})
       $log.debug('Success inviting developers to project');
     },function(){
-      $scope.errorMsgVisible = true;
+      $scope.errorMsgInvite = true;
       $timeout(function(){
-        $scope.errorMsgVisible = false;
+        $scope.errorMsgInvite = false;
       }, 2000);
     });
   }

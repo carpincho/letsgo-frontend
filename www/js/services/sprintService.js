@@ -45,9 +45,9 @@ app.factory('SprintService', ['$log', '$http', 'RESTService', function($log, $ht
        RESTService.get(url, callback);
     },
 
-    createSprint: function(projectId, payload, callback){
+    createSprint: function(projectId, payload, callback, callback_error){
       var url = baseUrl + "/" + projectId + "/sprints";
-      RESTService.post(url, payload, callback);
+      RESTService.post(url, payload, callback, callback_error);
     },
 
     editSprint: function(projectId, sprintId, payload, callback){

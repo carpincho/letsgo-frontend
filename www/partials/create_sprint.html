@@ -36,6 +36,7 @@
                     <p ng-show="createSprintForm.end_date.$dirty &&createSprintForm.end_date.$error.required" class="text-danger">
                       Please set your sprint end date!
                     </p>
+                    <div class="alert alert-danger alert-error"role="alert" ng-show="errorMsgCreate">Create failed! Please make sure sprints do not overlap</div>
                   </div>
                   <input type="submit" class="btn btn-primary" id="submit" value="Create" ng-disabled="createSprintForm.$invalid"/>
                   <a ng-click="cancelCreateSprint()" class="btn btn-default">Cancel</a>
