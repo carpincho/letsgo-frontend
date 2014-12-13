@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-.controller('ChatCtrl', ['$rootScope','$scope', '$routeParams', '$http', '$log', 'ChatService', 'AuthService','SprintService','StoryService','TaskService','SharedProjectSprintService','SharedStoryTaskService',function ($rootScope,$scope, $routeParams, $http, $log,ChatService, AuthService,SprintService,StoryService,TaskService,SharedProjectSprintService,SharedStoryTaskService) {
+.controller('ChatCtrl', ['$rootScope','$scope', '$routeParams', '$http', '$log', 'ChatService', 'AuthService','SprintService','StoryService','TaskService','SharedProjectSprintService','SharedStoryTaskService','$interval',function ($rootScope,$scope, $routeParams, $http, $log,ChatService, AuthService,SprintService,StoryService,TaskService,SharedProjectSprintService,SharedStoryTaskService,$interval) {
 
   var projectId = $routeParams.projectId;
   $scope.user_name = $rootScope.user_name;
@@ -20,6 +20,14 @@ angular.module('myApp')
 
       console.log(data);
     });
+
+
+    var var_1=$interval(function(){
+
+      getmsg();
+      console.log("interval")
+    },6000);
+
   }
 
   getmsg();
