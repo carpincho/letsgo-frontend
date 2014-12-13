@@ -32,6 +32,18 @@ angular.module('myApp')
 
     });
 
+    var formattedDate = function(date) {
+      var d = new Date(date || Date.now()),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [ year,month, day ].join('-');
+    }
+
     var getSprintsByProjectId = function(projectId){
       if (projectId != undefined){
         SprintService.getSprintsByProjectId(projectId, function(data){
@@ -65,8 +77,8 @@ angular.module('myApp')
         var createFormData = {
           project_id: parseInt(projectId),
           name: name,
-          start_date: new Date(d_start_date.getFullYear(), d_start_date.getMonth(), d_start_date.getDate()),
-          end_date: new Date(d_end_date.getFullYear(), d_end_date.getMonth(), d_end_date.getDate()),
+          start_date: formattedDate(d_start_date),
+          end_date: formattedDate(d_end_date),
           status: 0,
         }
 
@@ -113,10 +125,12 @@ angular.module('myApp')
         var updateFormData = {
           project_id: parseInt(projectId),
           name: name,
-          start_date: new Date(d_start_date.getFullYear(), d_start_date.getMonth(), d_start_date.getDay()),
-          end_date: new Date(d_end_date.getFullYear(), d_end_date.getMonth(), d_end_date.getDay()),
+          start_date: formattedDate(d_start_date),
+          end_date: formattedDate(d_end_date),
           status: parseInt(status),
         }
+console.log(updateFormData);
+
 
         SprintService.editSprint(projectId, sprintId, updateFormData, function(data){
           $log.debug('Success updating a sprint');
