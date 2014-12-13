@@ -49,6 +49,7 @@ angular.module('myApp')
         SprintService.getSprintBySprintId(projectId, sprintId, function(data){
           $log.debug('Success getting a sprint');
           $scope.sprint_retrieved = data;
+          console.log(data);
           $scope.sprint_option_selected = SprintService.getOptionByValue(data.status)
         });
       }
