@@ -40,12 +40,49 @@
                       <a ng-href="#/project/project_members/{{project.id}}" class="btn btn-default btn-xs" ><span class="glyphicon glyphicon-user"></span> Members</a>
                       <a ng-href="#/project/edit/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cog"></span> Edit</a>
                       <a ng-click='deleteProject(project.id);' class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                      <a data-toggle="collapse" data-target="#toggleDemo" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-comment"></span> Chat</a>
+
                       <a ng-href="#/project/share/{{project.id}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-share"></span> Share</a>
                     </div>
                     <div class="clearfix"></div>
                   </li>
+                  <li>
+                    <br/>
+                  <div id="toggleDemo" class="collapse">
+
+
+                  <div id="browser-window" class="stream-panel credits">
+                      <div id="viewport">
+                          <div id="viewport-content">Recent Chat History:
+                              <div class="bubble-container" ng-repeat="m in messages">
+                                  <div class="avatar avatar- "><img src="" /></div>
+                                  <div class="bubble bubble- "></div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <form class="equal-margins"  ng-submit="sendMessage()">
+                          <div class="input-group">
+
+                            <input class="form-control" ng-model="messageText" placeholder="Type your message" name="project_name" type="text" required ng-maxlength="30">
+
+
+                              <span class="input-group-btn">
+
+
+                                  <button type="submit" class="btn btn-primary">Send</button>
+                              </span>
+                          </div>
+
+                      </form>
+                  </div>
+
+                  </div>
+</li>
+
                 </ul>
               </div>
+
             </div>
           </div> <!-- end stream-item -->
         </div> <!-- end stream -->
@@ -94,5 +131,9 @@
       </div>
 
     </div> <!-- end row -->
+
+
+
+
   </div> <!-- end container -->
 </div> <!-- end ProjectCtrl -->
