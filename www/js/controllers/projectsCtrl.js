@@ -48,12 +48,14 @@ angular.module('myApp')
   }
 
   $scope.createProject = function(name, description, startDate, endDate) {
+    var d_start_date = new Date(start_date);
+    var d_end_date = new Date(end_date);
     if(description==undefined){description="";}
     var createFormData = {
       name: name,
       description: description,
-      start_date: startDate,
-      end_date: endDate,
+      start_date: formattedDate(d_start_date),
+      end_date: formattedDate(d_end_date),
       status: 0,
       owner: userId,
     }
@@ -83,12 +85,14 @@ angular.module('myApp')
 
   $scope.updateProject = function(projectId, name, description, start_date, end_date, status) {
     if(description==undefined){description="";}
+    var d_start_date = new Date(start_date);
+    var d_end_date = new Date(end_date);
     var updateFormData = {
       id: projectId,
       name: name,
       description: description,
-      start_date: start_date,
-      end_date: end_date,
+      start_date: formattedDate(d_start_date),
+      end_date: formattedDate(d_end_date),
       status: parseInt(status),
       owner: userId,
     }
@@ -115,21 +119,42 @@ angular.module('myApp')
     });
   }
 
+  var existDev = function(email){
+    var exist = false;
+    for(var i=0;i<$scope.assigned_devs.length;i++){
+      if(email==$scope.assigned_devs[i].email){
+        exist = true;
+      }
+    }
+    if(email==$scope.ownerEmail.email){exist = true;}
+    return exist;
+  }
+
   $scope.inviteDevelopersToProject = function(email) {
     var projectId = $scope.project_retrieved.id;
-    // var payload = developers;
-    var payload = {
-      email: email
-    };
-    ProjectService.inviteDevelopersToProject(projectId, payload, function(){
-      $scope.assigned_devs.push({id:"",email:email})
-      $log.debug('Success inviting developers to project');
-    },function(){
-      $scope.errorMsgInvite = true;
+    if(!existDev(email)){
+      var payload = {
+        email: email
+      };
+      ProjectService.inviteDevelopersToProject(projectId, payload, function(){
+        //$scope.assigned_devs.push({id:"",email:email})
+        getProjectById($routeParams.projectId);
+        $log.debug('Success inviting developers to project');
+      },function(){
+        $scope.errorMsgInvite = true;
+        $timeout(function(){
+          $scope.errorMsgInvite = false;
+        }, 2000);
+      });
+    }
+    else {
+      $scope.errorMsgExist = true;
       $timeout(function(){
-        $scope.errorMsgInvite = false;
+        $scope.errorMsgExist = false;
       }, 2000);
-    });
+    }
+    // var payload = developers;
+
   }
 
   $scope.removeDevelopersFromProject = function(developer) {
@@ -138,14 +163,14 @@ angular.module('myApp')
     var payload = {
       devs: [developer.id],
     };
-    //getProjectById($routeParams.projectId);
+    //
     for(var i=0;i<$scope.assigned_devs.length;i++){
       if ($scope.assigned_devs[i].id==developer.id){
         $scope.assigned_devs.splice(i,1);
-        break;
       }
     }
     ProjectService.removeDevelopersFromProject(projectId, payload, function(){
+      //getProjectById($routeParams.projectId);
       $log.debug('Success removing developers to project');
     });
   }
@@ -160,6 +185,7 @@ angular.module('myApp')
   }
 
   $scope.getInvitedDevelopersByProject = function(data){
+    $scope.assigned_devs=[];
     angular.forEach(data.invited_devs, function(value, key) {
       this.push({id:value, email:""});
     },$scope.assigned_devs);
@@ -183,5 +209,19 @@ angular.module('myApp')
   $scope.CommitProjectShare = function(){
     $location.path(window.history.back());
   }
+
+  var formattedDate = function(date) {
+    var d = new Date(date || Date.now()),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [ year,month, day ].join('-');
+  }
+
+
 }
 ]);
