@@ -33,7 +33,17 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
 
   });
 
+var formattedDate = function(date) {
+  var d = new Date(date || Date.now()),
+  month = '' + (d.getMonth() + 1),
+  day = '' + d.getDate(),
+  year = d.getFullYear();
 
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [ year,month, day ].join('-');
+}
   var getTasks = function(projectId, sprintId, storyId) {
     TaskService.getAllTasks(projectId, sprintId, storyId,function(data){
       $log.debug('Fetching ' + data.length + ' tasks from server...');
@@ -146,12 +156,15 @@ function ($scope, $http, $log, $location, TaskService, RESTService,$routeParams,
 
     $scope.updateTask = function(taskId, description, nr,status,comment) {
       if(comment==undefined){comment="";}
-        var updateFormData = {
+         var today = new Date();
+
+         var updateFormData = {
           description: description,
           nr: nr,
           owner: ownerId,
           status:status,
           comment:comment,
+          completion_date:formattedDate(today),
         }
         TaskService.editTask(projectId, sprintId, storyId, taskId, updateFormData, function(){
           $log.debug('Success updating a task');

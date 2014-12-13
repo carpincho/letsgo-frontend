@@ -128,7 +128,7 @@ angular.module('myApp')
           end_date: formattedDate(d_end_date),
           status: parseInt(status),
         }
-
+console.log(updateFormData);
 
 
         SprintService.editSprint(projectId, sprintId, updateFormData, function(data){
