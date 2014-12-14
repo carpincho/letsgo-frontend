@@ -209,9 +209,10 @@
                   <form name="sendMsgForm" ng-submit="sendMsg(messageText)" accept-charset="UTF-8" class="equal-margins" role="form">
 
                     <div class="input-group">
-                      <input id="btn-input"  type="text" ng-model="messageText" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                      <input id="btn-input"  type="text" ng-model="messageText" class="form-control input-sm chat_input" placeholder="Type your message" />
                       <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                         <input type="submit" class="btn btn-primary btn-sm" id="btn-chat" value="Send"  ng-disabled="btn-input.$invalid"/>
+
                       </span>
                     </div>
                   </from>

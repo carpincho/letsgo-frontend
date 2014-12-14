@@ -6,6 +6,7 @@ angular.module('myApp')
   var projectId = $routeParams.projectId;
   $scope.user_name = $rootScope.user_name;
   $scope.projectId = projectId;
+  $scope.message_sended = "Write your message2..."
   var getmsg = function() {
 
     var projectId = $routeParams.projectId;
@@ -18,19 +19,18 @@ angular.module('myApp')
         $scope.messages = data;
 
 
-    });
+      });
 
-}
+    }
     var var_1=$interval(function(){
       if (angular.isDefined($routeParams.projectId)) {
         getmsg();
-        console.log("interval");
       }else {
-        console.log("Indefinido projectID...");
+        console.log("Undefined projectID...");
         $interval.cancel(var_1);
         var_1 = undefined;
       }
-    },6000);
+    },10000);
   }
 
   getmsg();
@@ -38,26 +38,28 @@ angular.module('myApp')
 
   $scope.sendMsg = function(msg) {
 
-    var date = new Date();
-    //var date = "2012-04-23T18:25:43.511Z";
-    var user_id = AuthService.getUserInfo();
+    if(angular.isDefined(msg) ){
+      var date = new Date();
+      //var date = "2012-04-23T18:25:43.511Z";
+      var user_id = AuthService.getUserInfo();
 
-    var sendMsgFormData = {
-      text: msg,
-      user_id: user_id,
-      timestamp: date,
-      project_id:parseInt(projectId),
+      var sendMsgFormData = {
+        text: msg,
+        user_id: user_id,
+        timestamp: date,
+        project_id:parseInt(projectId),
+
+      }
+      $scope.messageText = "";
+
+      console.log(sendMsgFormData);
+      ChatService.sendMsg(projectId,sendMsgFormData, function(data){
+        $log.debug('Success sending msg');
+        getmsg();
+
+      });
 
     }
-
-    console.log(sendMsgFormData);
-    ChatService.sendMsg(projectId,sendMsgFormData, function(data){
-      $log.debug('Success sending msg');
-      getmsg();
-
-    });
-
-
   }
 
 
