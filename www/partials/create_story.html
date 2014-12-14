@@ -13,7 +13,7 @@
               <form name="createStoryForm" ng-submit="createStory(createFormData.story_title, createFormData.story_description, createFormData.story_notes, createFormData.story_points, createFormData.story.sprint_id)" accept-charset="UTF-8" role="form">
                 <fieldset>
                   <div class="form-group">
-                    <p><strong>In sprint: </strong>{{ sprintId }}</p>
+                    <p><strong>In sprint: </strong>{{ sprintName }}</p>
                   </div>
                   <div class="form-group">
                     <input class="form-control" ng-model="createFormData.story_title" placeholder="Story Title (*)" name="story_title" type="text" required ng-maxlength="30">
