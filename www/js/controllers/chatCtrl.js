@@ -7,9 +7,28 @@ angular.module('myApp')
   $scope.user_name = $rootScope.user_name;
   $scope.projectId = projectId;
   $scope.message_sended = "Write your message2..."
-  var getmsg = function() {
 
-    var projectId = $routeParams.projectId;
+
+
+
+  var launch_interval = function(){
+
+    var var_1=$interval(function(){
+      if (angular.isDefined($routeParams.projectId)) {
+
+
+        getAllMsg();
+      }else {
+        console.log("Undefined projectID...");
+        $interval.cancel(var_1);
+        var_1 = undefined;
+      }
+    },10000);
+
+  }
+
+
+  var getAllMsg = function(){
 
     if (angular.isDefined($routeParams.projectId)) {
 
@@ -17,23 +36,14 @@ angular.module('myApp')
       ChatService.getAllMsg(projectId, function(data){
         $log.debug('Fetching ' + data.length + ' chat msg  from server...');
         $scope.messages = data;
-
-
       });
 
     }
-    var var_1=$interval(function(){
-      if (angular.isDefined($routeParams.projectId)) {
-        getmsg();
-      }else {
-        console.log("Undefined projectID...");
-        $interval.cancel(var_1);
-        var_1 = undefined;
-      }
-    },10000);
+
   }
 
-  getmsg();
+  getAllMsg();
+  launch_interval();
 
 
   $scope.sendMsg = function(msg) {
@@ -55,7 +65,7 @@ angular.module('myApp')
       console.log(sendMsgFormData);
       ChatService.sendMsg(projectId,sendMsgFormData, function(data){
         $log.debug('Success sending msg');
-        getmsg();
+        getAllMsg();
 
       });
 
