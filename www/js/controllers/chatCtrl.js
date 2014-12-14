@@ -1,22 +1,18 @@
 'use strict';
 
 angular.module('myApp')
-.controller('ChatCtrl', ['$rootScope','$scope', '$routeParams', '$http', '$log', 'ChatService', 'AuthService','SprintService','StoryService','TaskService','SharedProjectSprintService','SharedStoryTaskService','$interval',function ($rootScope,$scope, $routeParams, $http, $log,ChatService, AuthService,SprintService,StoryService,TaskService,SharedProjectSprintService,SharedStoryTaskService,$interval) {
+.controller('ChatCtrl', ['$rootScope','$scope', '$routeParams', '$http', '$log', 'ChatService', 'AuthService','StoryService','TaskService','SharedProjectSprintService','SharedStoryTaskService','UserService','$interval',function ($rootScope,$scope, $routeParams, $http, $log,ChatService, AuthService,StoryService,TaskService,SharedProjectSprintService,SharedStoryTaskService,UserService,$interval) {
 
   var projectId = $routeParams.projectId;
   $scope.user_name = $rootScope.user_name;
   $scope.projectId = projectId;
-  $scope.message_sended = "Write your message2..."
-
-
+  $scope.message_sended = "Write your message..."
 
 
   var launch_interval = function(){
 
     var var_1=$interval(function(){
       if (angular.isDefined($routeParams.projectId)) {
-
-
         getAllMsg();
       }else {
         console.log("Undefined projectID...");
@@ -36,6 +32,13 @@ angular.module('myApp')
       ChatService.getAllMsg(projectId, function(data){
         $log.debug('Fetching ' + data.length + ' chat msg  from server...');
         $scope.messages = data;
+        angular.forEach($scope.messages, function(value, key) {
+          UserService.getUserById(value.user_id, function(data){
+            value.name = data.firstname+" "+data.lastname ;
+          });
+        });
+
+
       });
 
     }
@@ -52,7 +55,6 @@ angular.module('myApp')
       var date = new Date();
       //var date = "2012-04-23T18:25:43.511Z";
       var user_id = AuthService.getUserInfo();
-
       var sendMsgFormData = {
         text: msg,
         user_id: user_id,
@@ -61,8 +63,6 @@ angular.module('myApp')
 
       }
       $scope.messageText = "";
-
-      console.log(sendMsgFormData);
       ChatService.sendMsg(projectId,sendMsgFormData, function(data){
         $log.debug('Success sending msg');
         getAllMsg();
