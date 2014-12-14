@@ -33,7 +33,7 @@
                   <div class="form-group">
                     <label for="end_date">Completion Date (*)</label>
                     <input class="form-control" ng-model="project_retrieved.end_date" placeholder="2014/2/1" name="end_date" type="text" ng-click="open_end_date($event)" datepicker-popup="{{format}}" is-open="end_date_opened" close-text="Close" required date-lower-than="{{project_retrieved.start_date|date:'yyyy/MM/dd'}}">
-                    <p ng-show="editProjectForm.end_date.$dirty &&editProjectForm.end_date.$error.dateLowerThan" class="text-danger">
+                    <p ng-show="(editProjectForm.end_date.$dirty||editProjectForm.start_date.$dirty) &&editProjectForm.end_date.$error.dateLowerThan" class="text-danger">
                       Invalid end date !
                     </p>
                     <p ng-show="(editProjectForm.start_date.$dirty||editProjectForm.end_date.$dirty) &&editProjectForm.end_date.$error.required" class="text-danger">
