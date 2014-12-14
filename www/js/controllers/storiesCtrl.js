@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService','SharedStoryTaskService', 'StoryService',  function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,SharedStoryTaskService,StoryService) {
+.controller('StoriesCtrl', ['$scope', '$location', '$http', '$log', '$routeParams', 'RESTService', 'AuthService', 'SharedProjectSprintService','SharedStoryTaskService', 'StoryService', 'SprintService', function ($scope, $location, $http, $log, $routeParams, RESTService, AuthService, SharedProjectSprintService,SharedStoryTaskService,StoryService,SprintService) {
 
   var ownerId = AuthService.getUserInfo();
   $scope.stories = [];
@@ -16,6 +16,9 @@ angular.module('myApp')
     StoryService.getStoriesBySprintId(projectId,sprintId, function(data){
       $log.debug('Fetching ' + data.length + ' stories from server...');
       $scope.stories = data;
+    });
+    SprintService.getSprintBySprintId(projectId,sprintId,function(data){
+      $scope.sprintName = data.name;
     });
   }
    getStories();
