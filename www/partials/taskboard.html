@@ -196,46 +196,46 @@
                 <div class="messages msg_sent">
                   <p>{{m.text}}</p>
                   <time datetime="2009-11-13T20:00">  {{ m.name }} : • {{m.timestamp}}   </time>
-
+                  <div class="clearfix"></div> 
+                  </div>
+                </div>
+                <div class="col-md-2-chat  col-xs-2 avatar">
+                  <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
                 </div>
               </div>
-              <div class="col-md-2-chat  col-xs-2 avatar">
-                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-              </div>
             </div>
+
           </div>
+          <div class="panel-footer">
+            <form name="sendMsgForm" ng-submit="sendMsg(messageText)" accept-charset="UTF-8" class="equal-margins" role="form">
 
-        </div>
-        <div class="panel-footer">
-          <form name="sendMsgForm" ng-submit="sendMsg(messageText)" accept-charset="UTF-8" class="equal-margins" role="form">
+              <div class="input-group">
+                <input id="btn-input"  type="text" ng-model="messageText" class="form-control input-sm chat_input" placeholder="Type your message" />
+                <span class="input-group-btn">
+                  <input type="submit" class="btn btn-primary btn-sm" id="btn-chat" value="Send"  ng-disabled="btn-input.$invalid"/>
 
-            <div class="input-group">
-              <input id="btn-input"  type="text" ng-model="messageText" class="form-control input-sm chat_input" placeholder="Type your message" />
-              <span class="input-group-btn">
-                <input type="submit" class="btn btn-primary btn-sm" id="btn-chat" value="Send"  ng-disabled="btn-input.$invalid"/>
-
-              </span>
-            </div>
-          </from>
+                </span>
+              </div>
+            </from>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="btn-group dropup">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      <span class="glyphicon glyphicon-cog"></span>
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-      <li class="divider"></li>
-      <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-    </ul>
+    <div class="btn-group dropup">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-cog"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
+        <li class="divider"></li>
+        <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
+      </ul>
+    </div>
   </div>
-</div>
 
 </div> <!-- end container -->
 
