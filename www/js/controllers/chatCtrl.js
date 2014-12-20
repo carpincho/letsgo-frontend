@@ -59,7 +59,7 @@ angular.module('myApp')
         text: msg,
         user_id: user_id,
         timestamp: date,
-        project_id:parseInt(projectId),
+        //project_id:parseInt(projectId),
 
       }
       $scope.messageText = "";
