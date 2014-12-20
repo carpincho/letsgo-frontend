@@ -11,6 +11,17 @@ angular.module('myApp')
     id:0,
     email:""
   };
+var formattedDate = function(date) {
+  var d = new Date(date || Date.now()),
+  month = '' + (d.getMonth() + 1),
+  day = '' + d.getDate(),
+  year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [ year,month, day ].join('-');
+}
 
   //--- datepicker config
   $scope.open_start_date  = function($event) {
@@ -48,8 +59,8 @@ angular.module('myApp')
   }
 
   $scope.createProject = function(name, description, startDate, endDate) {
-    var d_start_date = new Date(start_date);
-    var d_end_date = new Date(end_date);
+    var d_start_date = new Date(startDate);
+    var d_end_date = new Date(endDate);
     if(description==undefined){description="";}
     var createFormData = {
       name: name,
@@ -59,6 +70,8 @@ angular.module('myApp')
       status: 0,
       owner: userId,
     }
+
+    console.log(createFormData);
 
     ProjectService.createProject(createFormData, function(data){
       $log.debug('Success creating new project');
@@ -210,17 +223,6 @@ angular.module('myApp')
     $location.path(window.history.back());
   }
 
-  var formattedDate = function(date) {
-    var d = new Date(date || Date.now()),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [ year,month, day ].join('-');
-  }
 
 
 }
